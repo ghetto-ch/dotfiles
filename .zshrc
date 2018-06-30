@@ -1,4 +1,3 @@
-export PATH=~/bin:$PATH
 export FPATH=~/.zsh.d/functions:$FPATH
 
 HISTFILE=~/.histfile
