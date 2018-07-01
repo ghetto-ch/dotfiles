@@ -9,7 +9,7 @@ if [[ "$TERM" != "dumb" ]]; then
   local fg_black="$FG[232]"
   local bg_black="$BG[232]"
   local fg_error="$FG[124]"
-  local fg_ok="$FG[20]"
+  local fg_ok="$FG[076]"
 
   local fg_time="$FG[232]" 
   local bg_time="$BG[027]"
@@ -79,7 +79,7 @@ function checkForClears() {
 
 #Now setup the rest of the prompts. This is more direct
 
-RPROMPT='$fg_clock$FX[bold]$bg_clock$fg_black$spad%*$spad$bg_black$fg_clock$FX[no-bold]'
+RPROMPT='$fg_clock$bg_clock$fg_black$spad%*$spad$bg_black$fg_clock'
 # WAS: '$FX[bold]$fg_black$(jobs_status)$FX[no-bold]$reset' 
 
 PROMPT2='$reset$bg_prompt %_$spad$reset$fg_prompt$indicator$reset '
