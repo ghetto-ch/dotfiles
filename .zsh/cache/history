@@ -1,0 +1,58 @@
+: 1530450828:0;ll
+: 1530451081:0;exit
+: 1530451096:0;cd dotfiles
+: 1530451129:0;exit
+: 1530451159:0;cd dotfiles
+: 1530451177:0;exit
+: 1530451390:0;htop
+: 1530451424:0;exit
+: 1530451464:0;ll
+: 1530451477:0;exit
+: 1530451479:0;ll
+: 1530451546:0;cd dotfiles
+: 1530451552:0;stow .
+: 1530451704:0;fc-cache
+: 1530451718:0;fc-list | grep Power
+: 1530451731:0;stow .
+: 1530451738:0;fc-cache
+: 1530451740:0;fc-list | grep Power
+: 1530451750:0;exit
+: 1530451976:0;su
+: 1530451987:0;su -
+: 1530452994:0;jobs
+: 1530453127:0;source .zshrc
+: 1530453190:0;cd dotfiles
+: 1530453871:0;source .zshrc
+: 1530454233:0;git status --porcelain 2
+: 1530454619:0;source .zshrc
+: 1530455927:0;pyenv activate jupyter
+: 1530455959:0;source .zshrc
+: 1530455984:0;pyenv deactivate
+: 1530456029:0;source .zshrc
+: 1530456112:0;clear
+: 1530456234:0;source .zshrc
+: 1530456292:0;git status --porcelain
+: 1530456329:0;source .zshrc
+: 1530456557:0;cd ../.emacs.d
+: 1530456572:0;cd ../dotfiles
+: 1530456575:0;source .zshrc
+: 1530456611:0;fc-cache
+: 1530456726:0;source .zshrc
+: 1530456811:0;exit
+: 1530456880:0;cd dotfiles
+: 1530456909:0;exit
+: 1530456915:0;cd dotfiles
+: 1530456938:0;exit
+: 1530456942:0;cd dotfiles
+: 1530456958:0;exit
+: 1530456963:0;cd dotfiles
+: 1530456975:0;exit
+: 1530456980:0;cd dotfiles
+: 1530456997:0;exit
+: 1530457000:0;cd dotfiles
+: 1530457029:0;exit
+: 1530457038:0;cd dotfiles
+: 1530457052:0;pyenv activate jupyter
+: 1530457356:0;source .zshrc
+: 1530457406:0;clear
+: 1530457539:0;source .zshrc

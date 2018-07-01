@@ -3,9 +3,12 @@ urxvt.termName: rxvt-unicode
 urxvt.scrollBar: false
 urxvt.background: black
 urxvt.foreground: gray
-!! Font prefferenes
-urxvt.font: xft:Inconsolata:pixelsize=17
-urxvt.boldFont: xft:Inconsolata:pixelsize=17:weight=bold
+!! Font preferenes
+
+!!DejaVu Sans Mono Bold for Powerline.ttf: DejaVu Sans Mono for Powerline:style=Bold
+
+urxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=15
+urxvt.boldFont: xft:DejaVu Sans Mono for Powerline:pixelsize=15:weight=bold
 urxvt.letterSpace: -1
 !! Larger history limit
 urxvt.saveLines: 1000000
