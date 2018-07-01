@@ -67,6 +67,7 @@ local LOCAL_ZSHRC=$HOME/.zshlocal/.zshrc       # Allow the local machine to have
    compinit -i -d "${ZSH_COMPDUMP}"                        # Init auto completion; tell where to store autocomplete dump
    zstyle ':completion:*' menu select                      # Have the menu highlight as we cycle through options
    zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'     # Case-insensitive (uppercase from lowercase) completion
+   zstyle ':completion:*' rehash true                      # Rehash completion automatically
    setopt COMPLETE_IN_WORD                                 # Allow completion from within a word/phrase
    setopt ALWAYS_TO_END                                    # When completing from the middle of a word, move cursor to end of word
    unsetopt FLOWCONTROL                                    # Disable ^s and ^q, which typically freeze and enable the console
