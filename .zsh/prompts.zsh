@@ -9,7 +9,7 @@ if [[ "$TERM" != "dumb" ]]; then
   local fg_black="$FG[232]"
   local bg_black="$BG[232]"
   local fg_error="$FG[124]"
-  local fg_ok="$FG[076]"
+  local fg_ok="$FG[070]"
 
   local fg_time="$FG[232]" 
   local bg_time="$BG[027]"
