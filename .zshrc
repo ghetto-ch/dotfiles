@@ -71,7 +71,7 @@ local LOCAL_ZSHRC=$HOME/.zshlocal/.zshrc       # Allow the local machine to have
    setopt COMPLETE_IN_WORD                                 # Allow completion from within a word/phrase
    setopt ALWAYS_TO_END                                    # When completing from the middle of a word, move cursor to end of word
    unsetopt FLOWCONTROL                                    # Disable ^s and ^q, which typically freeze and enable the console
-   setopt MENU_COMPLETE                                    # When using auto-complete, put the first option on the line immediately
+   setopt AUTO_MENU                                        # When using auto-complete, put the first option on the line immediately
    setopt COMPLETE_ALIASES                                 # Turn on completion for aliases as well
    setopt LIST_ROWS_FIRST                                  # Cycle through menus horizontally instead of vertically
 
