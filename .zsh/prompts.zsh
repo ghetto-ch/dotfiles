@@ -1,9 +1,10 @@
+
 #/usr/bin/zsh
 #if we're in a situation where we don't want colors
 #these variables aren't initialized and
 #so they don't have any impact on prompt definitions
 
-if [[ "$TERM" != "dumb" ]]; then
+if [[ ("$TERM" != "dumb") && ("$TERM" != "linux")]]; then
   local reset="%{$reset_color%}"
   local fg_text="$FG[232]"
   local fg_black="$FG[232]"
@@ -35,6 +36,7 @@ if [[ "$TERM" != "dumb" ]]; then
   local indicator="$split"
 
 else
+  local spad=" "
   local indicator=">"
 
 fi
@@ -48,7 +50,7 @@ setopt prompt_subst                                  #make sure we get color sub
 
 #first setup the main prompt. This can get a little tricky..
 local line_one='$return_status'
-local line_two='$FX[bold]$fg_text$bg_name$spad%n$spad$fg_name$bg_comp$split$fg_text$spad@%m$spad$fg_comp$bg_dir$split$fg_text$spad%~$spad$fg_dir$(git_status)$(virtualenv_info)$bg_black$split'
+local line_two='$FX[bold]$fg_text$bg_name$spad%n$spad$fg_name$bg_comp$indicator$fg_text$spad@%m$spad$fg_comp$bg_dir$indicator$fg_text$spad%~$spad$fg_dir$(git_status)$(virtualenv_info)$bg_black$indicator'
 local line_three='$reset$bg_prompt$spad$reset$fg_prompt$indicator$reset '
 
 autoload -U add-zsh-hook  # We need this for the hooks we call later on

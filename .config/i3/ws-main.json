@@ -1,0 +1,70 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1393,
+       "width": 2556,
+       "x": 0,
+       "y": 0
+    },
+    "name": "i3: Layout saving in i3 - Mozilla Firefox",
+    "percent": 0.5,
+    "swallows": [
+       {
+	   "class": "^Firefox$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    // tabbed split container with 2 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 675,
+               "width": 752,
+               "x": 0,
+               "y": 0
+            },
+            "name": "emacs@gondolin",
+            "percent": 0.5,
+            "swallows": [
+               {
+		   "class": "^Emacs$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 436,
+               "width": 724,
+               "x": 0,
+               "y": 0
+            },
+            "name": "i3-save-tree --workspace 1 > ~/dotfiles/.config/i3/ws-main.json",
+            "percent": 0.5,
+            "swallows": [
+               {
+		   "class": "^URxvt$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
