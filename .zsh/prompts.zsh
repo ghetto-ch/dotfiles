@@ -32,15 +32,14 @@ if [[ ("$TERM" != "dumb") && ("$TERM" != "linux")]]; then
   local git_icon=""
   local split="$FX[no-bold]$FX[bold]"
   #local split="$FX[no-bold] $FX[bold]"
-  local spad=" "  
   local indicator="$split"
 
 else
-  local spad=" "
   local indicator=">"
 
 fi
 
+local spad=" "
 local newline=$'\n'                                  #inlining $'\n' doesn't work for some reason
 local return_status="%(?. .$fg_error ✖$newline)"     #Setup the return status indicator
 ZLE_RPROMPT_INDENT=0                                 #get rid of the indent on the right-prompt
