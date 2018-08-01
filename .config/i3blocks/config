@@ -117,6 +117,11 @@ interval=10
 #interval=3600
 #markup=pango
 
+[volume]
+interval=1
+command=/home/ghetto/bin/i3volume
+markup=pango
+
 [pacman-updates]
 label=
 command=/home/ghetto/tools/i3blocks-contrib/arch-update/arch-update.py -b "#5fff5f" -u "#FFFF85" -w "^linux.*" "^pacman.*"
