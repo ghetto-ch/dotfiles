@@ -1,43 +1,44 @@
-!! Appearance
-urxvt.termName: rxvt-unicode
-urxvt.scrollBar: false
-urxvt.background: black
-urxvt.foreground: gray
-!! Font preferenes
-
-!!DejaVu Sans Mono Bold for Powerline.ttf: DejaVu Sans Mono for Powerline:style=Bold
-
-urxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=15
-urxvt.boldFont: xft:DejaVu Sans Mono for Powerline:pixelsize=15:weight=bold
-urxvt.letterSpace: -1
-!! Larger history limit
-urxvt.saveLines: 1000000
-
-!! Perl extensions
-urxvt.perl-ext-common: default,matcher,font-size
-!! Open urls in browser with Control-Click
-urxvt.urlLauncher: /usr/bin/firefox
-urxvt.matcher.button: C1
-!! Change font size on Control-Plus/Minus
-urxvt.keysym.Control-0x2b: perl:font-size:increase
-urxvt.keysym.Control-0x2d: perl:font-size:decrease
-
-!! Tango color theme
-!! Strange - it matches tango from gnome-terminal, but looks different
-urxvt.color0: rgb:00/00/00
-urxvt.color1: rgb:CC/00/00
-urxvt.color2: rgb:4E/9A/06
-urxvt.color3: rgb:C4/A0/00
-urxvt.color4: rgb:34/65/A4
-urxvt.color5: rgb:75/50/7B
-urxvt.color6: rgb:06/98/9A
-urxvt.color7: rgb:D3/D7/CF
-urxvt.color8: rgb:55/57/53
-urxvt.color9: rgb:EF/29/29
-urxvt.color10: rgb:8A/E2/34
-urxvt.color11: rgb:FC/E9/4F
-urxvt.color12: rgb:72/9F/CF
-urxvt.color13: rgb:AD/7F/A8
-urxvt.color14: rgb:34/E2/E2
-urxvt.color15: rgb:EE/EE/EC
-urxvt.colorBD: rgb:ff/ff/ff
+!!!! Appearance
+!!urxvt.termName: rxvt-unicode
+!!urxvt.scrollBar: false
+!!urxvt.background: black
+!!urxvt.foreground: gray
+!!!! Font preferenes
+!!
+!!!!DejaVu Sans Mono Bold for Powerline.ttf: DejaVu Sans Mono for Powerline:style=Bold
+!!
+!!urxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=15
+!!urxvt.boldFont: xft:DejaVu Sans Mono for Powerline:pixelsize=15:weight=bold
+!!urxvt.letterSpace: -1
+!!!! Larger history limit
+!!urxvt.saveLines: 1000000
+!!
+!!!! Perl extensions
+!!urxvt.perl-ext-common: default,matcher,font-size
+!!!! Open urls in browser with Control-Click
+!!urxvt.urlLauncher: /usr/bin/firefox
+!!urxvt.matcher.button: C1
+!!!! Change font size on Control-Plus/Minus
+!!urxvt.keysym.Control-0x2b: perl:font-size:increase
+!!urxvt.keysym.Control-0x2d: perl:font-size:decrease
+!!
+!!!! Tango color theme
+!!!! Strange - it matches tango from gnome-terminal, but looks different
+!!urxvt.color0: rgb:00/00/00
+!!urxvt.color1: rgb:CC/00/00
+!!urxvt.color2: rgb:4E/9A/06
+!!urxvt.color3: rgb:C4/A0/00
+!!urxvt.color4: rgb:34/65/A4
+!!urxvt.color5: rgb:75/50/7B
+!!urxvt.color6: rgb:06/98/9A
+!!urxvt.color7: rgb:D3/D7/CF
+!!urxvt.color8: rgb:55/57/53
+!!urxvt.color9: rgb:EF/29/29
+!!urxvt.color10: rgb:8A/E2/34
+!!urxvt.color11: rgb:FC/E9/4F
+!!urxvt.color12: rgb:72/9F/CF
+!!urxvt.color13: rgb:AD/7F/A8
+!!urxvt.color14: rgb:34/E2/E2
+!!urxvt.color15: rgb:EE/EE/EC
+!!urxvt.colorBD: rgb:ff/ff/ff
+!!

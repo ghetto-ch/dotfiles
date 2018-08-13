@@ -1,148 +1,66 @@
-# Written by Josh Hartwell
-# Borrowed from a lot of places, especially .oh-my-zsh
-# Version 1
+# Powerline9k
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
-local ZSH_CONF=$HOME/.zsh                      # Define the place I store all my zsh config stuff
-local ZSH_CACHE=$ZSH_CONF/cache                # for storing files like history and zcompdump 
-local LOCAL_ZSHRC=$HOME/.zshlocal/.zshrc       # Allow the local machine to have its own overriding zshrc if it wants it
+# Prompt customizations
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
+POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
+POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
+POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
 
-# Load external config files and tools
-   source $ZSH_CONF/functions.zsh              # Load misc functions. Done in a seperate file to keep this from getting too long and ugly
-   source $ZSH_CONF/spectrum.zsh               # Make nice colors available
-   source $ZSH_CONF/prompts.zsh                # Setup our PS1, PS2, etc.
-   source $ZSH_CONF/termsupport.zsh            # Set terminal window title and other terminal-specific things
 
-# Set important shell variables
-   export EDITOR=emacs                         # Set default editor
-   export WORDCHARS=''                         # This is the oh-my-zsh default, I think I'd like it to be a bit different 
-   export PAGER=less                           # Set default pager
-   export LESS="-R"                            # Set the default options for less 
-   export LANG="en_US.UTF-8"                   # I'm not sure who looks at this, but I know it's good to set in general
+# ZSH options
+   local ZSH_CONF=$HOME/.zsh           # Define the place I store all my zsh config stuff
+   local ZSH_CACHE=$ZSH_CONF/cache     # for storing files like history and zcompdump 
    
-# Misc
-   setopt ZLE                                  # Enable the ZLE line editor, which is default behavior, but to be sure
-   declare -U path                             # prevent duplicate entries in path
-   eval $(dircolors $ZSH_CONF/dircolors)       # Uses custom colors for LS, as outlined in dircolors
-   LESSHISTFILE="/dev/null"                    # Prevent the less hist file from being made, I don't want it
-   umask 002                                   # Default permissions for new files, subract from 777 to understand
-   setopt NO_BEEP                              # Disable beeps
-   setopt AUTO_CD                              # Sends cd commands without the need for 'cd'
-   setopt MULTI_OS                             # Can pipe to mulitple outputs
-   unsetopt NO_HUP                             # Kill all child processes when we exit, don't leave them running
-   setopt INTERACTIVE_COMMENTS                 # Allows comments in interactive shell.
-   setopt RC_EXPAND_PARAM                      # Abc{$cool}efg where $cool is an array surrounds all array variables individually
-   unsetopt FLOW_CONTROL                       # Ctrl+S and Ctrl+Q usually disable/enable tty input. This disables those inputs
-   setopt LONG_LIST_JOBS                       # List jobs in the long format by default. (I don't know what this does but it sounds good)
-   #setopt vi                                  # Make the shell act like vi if i hit escape
+   declare -U path                     # prevent duplicate entries in path
+   setopt NO_BEEP                      # Disable beeps
 
 # ZSH History 
    alias history='fc -fl 1'
-   HISTFILE=$ZSH_CACHE/history                 # Keep our home directory neat by keeping the histfile somewhere else
-   SAVEHIST=10000                              # Big history
-   HISTSIZE=10000                              # Big history
-   setopt EXTENDED_HISTORY                     # Include more information about when the command was executed, etc
-   setopt APPEND_HISTORY                       # Allow multiple terminal sessions to all append to one zsh command history
-   setopt HIST_FIND_NO_DUPS                    # When searching history don't display results already cycled through twice
-   setopt HIST_EXPIRE_DUPS_FIRST               # When duplicates are entered, get rid of the duplicates first when we hit $HISTSIZE 
-   setopt HIST_IGNORE_SPACE                    # Don't enter commands into history if they start with a space
-   setopt HIST_VERIFY                          # makes history substitution commands a bit nicer. I don't fully understand
-   setopt SHARE_HISTORY                        # Shares history across multiple zsh sessions, in real time
-   setopt HIST_IGNORE_DUPS                     # Do not write events to history that are duplicates of the immediately previous event
-   setopt INC_APPEND_HISTORY                   # Add commands to history as they are typed, don't wait until shell exit
-   setopt HIST_REDUCE_BLANKS                   # Remove extra blanks from each command line being added to history
+   HISTFILE=$ZSH_CACHE/history      # Keep our home directory neat by keeping the histfile somewhere else
+   SAVEHIST=10000                   # Big history
+   HISTSIZE=10000                   # Big history
+   setopt APPEND_HISTORY            # Allow multiple terminal sessions to all append to one zsh command history
+   setopt HIST_FIND_NO_DUPS         # When searching history don't display results already cycled through twice
+   setopt HIST_EXPIRE_DUPS_FIRST    # When duplicates are entered, get rid of the duplicates first when we hit $HISTSIZE 
+   setopt HIST_IGNORE_SPACE         # Don't enter commands into history if they start with a space
+   setopt SHARE_HISTORY             # Shares history across multiple zsh sessions, in real time
+   setopt HIST_IGNORE_DUPS          # Do not write events to history that are duplicates of the immediately previous event
+   setopt INC_APPEND_HISTORY        # Add commands to history as they are typed, don't wait until shell exit
+   setopt HIST_REDUCE_BLANKS        # Remove extra blanks from each command line being added to history
 
-# ZSH Auto Completion
-   # Figure out the short hostname
-   if [[ "$OSTYPE" = darwin* ]]; then          
-      # OS X's $HOST changes with dhcp, etc., so use ComputerName if possible.
-      SHORT_HOST=$(scutil --get ComputerName 2>/dev/null) || SHORT_HOST=${HOST/.*/}
-   else
-      SHORT_HOST=${HOST/.*/}
-   fi
-
-   #the auto complete dump is a cache file where ZSH stores its auto complete data, for faster load times
-   local ZSH_COMPDUMP="$ZSH_CACHE/acdump-${SHORT_HOST}-${ZSH_VERSION}"  #where to store autocomplete data
-
-   autoload -U compinit                                    # Autoload auto completion
-   compinit -i -d "${ZSH_COMPDUMP}"                        # Init auto completion; tell where to store autocomplete dump
+#   autoload -U compinit                                    # Autoload auto completion
+#   compinit -i -d "${ZSH_COMPDUMP}"                        # Init auto completion; tell where to store autocomplete dump
    zstyle ':completion:*' menu select                      # Have the menu highlight as we cycle through options
    zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'     # Case-insensitive (uppercase from lowercase) completion
    zstyle ':completion:*' rehash true                      # Rehash completion automatically
    setopt COMPLETE_IN_WORD                                 # Allow completion from within a word/phrase
    setopt ALWAYS_TO_END                                    # When completing from the middle of a word, move cursor to end of word
-   unsetopt FLOWCONTROL                                    # Disable ^s and ^q, which typically freeze and enable the console
-   setopt AUTO_MENU                                        # When using auto-complete, put the first option on the line immediately
+#   setopt AUTO_MENU                                        # When using auto-complete, put the first option on the line immediately
    setopt COMPLETE_ALIASES                                 # Turn on completion for aliases as well
    setopt LIST_ROWS_FIRST                                  # Cycle through menus horizontally instead of vertically
 
-# Syntax highlighting
-   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-   
 # Globbing
    setopt NO_CASE_GLOB                         # Case insensitive globbing
    setopt EXTENDED_GLOB                        # Allow the powerful zsh globbing features, see link:
    # http://www.refining-linux.org/archives/37/ZSH-Gem-2-Extended-globbing-and-expansion/
    setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers numerically, not by letter (i.e. 01 2 03)
-   
-# Aliases
-   git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit" 
 
-   alias -g ...='../..'
-   alias -g ....='../../..'
-   alias -g .....='../../../..'
-   alias -g ......='../../../../..'
-   alias -g .......='../../../../../..'
-   alias -g ........='../../../../../../..'
-   
-   alias ls="ls -h --color='auto'"
-   alias lsa='ls -a'
-   alias ll='ls -l'
-   alias la='ls -la'
-   alias cdl=changeDirectory; function changeDirectory { cd $1 ; la }
-   alias clr=clear
-   
-   alias md='mkdir -p'
-   alias rd='rmdir'
-
-   # Copy with a progress bar
-   alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --" 
-
-   alias d='dirs -v | head -10'                      # List the last ten directories we've been to this session, no duplicates
-
-   alias google='web_search google'                  # Note: websearch function is loaded in function file, see above
-   alias ddg='web_search ddg'
-   alias github='web_search github'
-   alias wiki='web_search ddg \!w'
-   alias news='web_search ddg \!n'
-   alias youtube='web_search ddg \!yt'
-   alias map='web_search ddg \!m'
-   alias image='web_search ddg \!i'
-
-   # Key Bindings
-   bindkey -e
-#   bindkey "^K" kill-whole-line                      # [Ctrl-K] erase whole line
-#   bindkey '^[[1;5C' forward-word                    # [Ctrl-RightArrow] - move forward one word
-#   bindkey '^[[1;5D' backward-word                   # [Ctrl-LeftArrow] - move backward one word                    
-#   bindkey '^?' backward-delete-char                 # [Backspace] - delete backward
+# ZSH keybindings
    bindkey "${terminfo[kdch1]}" delete-char          # [Delete] - delete forward
-#   bindkey '\e[2~' overwrite-mode                    # [Insert] - toggles overwrite mode                  
-   bindkey "${terminfo[kpp]}" up-line-or-history     # [PageUp] - Up a line of history
-   bindkey "${terminfo[knp]}" down-line-or-history   # [PageDown] - Down a line of history
    bindkey "^[[A" history-search-backward            # start typing + [Up-Arrow] - fuzzy find history forward  
    bindkey "^[[B" history-search-forward             # start typing + [Down-Arrow] - fuzzy find history backward
-#   bindkey '\e[H' beginning-of-line                  # Note: this works on cygwin/mintty, may not work on other systems 
-#   bindkey '\e[F' end-of-line                        # Note: this works on cygwin/mintty, may not work on other systems
-   bindkey "\e\e" sudo-command-line                  # [Esc] [Esc] - insert "sudo" at beginning of line
-      zle -N sudo-command-line
-      sudo-command-line() {
-            [[ -z $BUFFER ]] && zle up-history
-            if [[ $BUFFER == sudo\ * ]]; then
-                  LBUFFER="${LBUFFER#sudo }"
-            else
-                  LBUFFER="sudo $LBUFFER"
-            fi
-      }
-      
+   
+# Some aliases
+alias ls="ls -h --color='auto'"
+alias la='ls -la'
+alias clr=clear
+
 # Setup grep to be a bit more nice
   # check if 'x' grep argument available
    grep-flag-available() {
@@ -171,12 +89,12 @@ local LOCAL_ZSHRC=$HOME/.zshlocal/.zshrc       # Allow the local machine to have
    # clean up
    unfunction grep-flag-available
 
-# Allow local zsh settings (superseding anything in here) in case I want something specific for certain machines
-  if [[ -r $LOCAL_ZSHRC ]]; then
-    source $LOCAL_ZSHRC
-  fi
 
+# Pyenv
 export PATH="/home/ghetto/.pyenv/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Syntax highlighting
+   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

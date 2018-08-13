@@ -1,6 +1,6 @@
-if ! mount|grep ownCloud > /dev/null; then
-    mount /mnt/ownCloud
-fi
+#if ! mount|grep ownCloud > /dev/null; then
+#    mount /mnt/ownCloud
+#fi
 
 if ! mount|grep Data > /dev/null; then
     mount /mnt/Data

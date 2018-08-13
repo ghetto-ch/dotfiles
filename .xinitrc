@@ -60,3 +60,4 @@ xbindkeys
 unclutter -idle 3 &
 xautolock -time 15 -locker "i3-system-mode lock" &
 exec i3
+#exec dwm
