@@ -6,6 +6,7 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
 POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
 POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
@@ -34,8 +35,11 @@ POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
    setopt INC_APPEND_HISTORY        # Add commands to history as they are typed, don't wait until shell exit
    setopt HIST_REDUCE_BLANKS        # Remove extra blanks from each command line being added to history
 
-#   autoload -U compinit                                    # Autoload auto completion
-#   compinit -i -d "${ZSH_COMPDUMP}"                        # Init auto completion; tell where to store autocomplete dump
+#the auto complete dump is a cache file where ZSH stores its auto complete data, for faster load times
+   local ZSH_COMPDUMP="$ZSH_CACHE/acdump-${SHORT_HOST}-${ZSH_VERSION}"  #where to store autocomplete data
+
+   autoload -U compinit                                    # Autoload auto completion
+   compinit -i -d "${ZSH_COMPDUMP}"                        # Init auto completion; tell where to store autocomplete dump
    zstyle ':completion:*' menu select                      # Have the menu highlight as we cycle through options
    zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'     # Case-insensitive (uppercase from lowercase) completion
    zstyle ':completion:*' rehash true                      # Rehash completion automatically
@@ -43,7 +47,7 @@ POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
    setopt ALWAYS_TO_END                                    # When completing from the middle of a word, move cursor to end of word
 #   setopt AUTO_MENU                                        # When using auto-complete, put the first option on the line immediately
    setopt COMPLETE_ALIASES                                 # Turn on completion for aliases as well
-   setopt LIST_ROWS_FIRST                                  # Cycle through menus horizontally instead of vertically
+   #setopt LIST_ROWS_FIRST                                  # Cycle through menus horizontally instead of vertically
 
 # Globbing
    setopt NO_CASE_GLOB                         # Case insensitive globbing
@@ -52,14 +56,30 @@ POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
    setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers numerically, not by letter (i.e. 01 2 03)
 
 # ZSH keybindings
-   bindkey "${terminfo[kdch1]}" delete-char          # [Delete] - delete forward
+   bindkey "\e[3~" delete-char          # [Delete] - delete forward
    bindkey "^[[A" history-search-backward            # start typing + [Up-Arrow] - fuzzy find history forward  
    bindkey "^[[B" history-search-forward             # start typing + [Down-Arrow] - fuzzy find history backward
+   bindkey "\e\e" sudo-command-line                  # [Esc] [Esc] - insert "sudo" at beginning of line
+      zle -N sudo-command-line
+      sudo-command-line() {
+            [[ -z $BUFFER ]] && zle up-history
+            if [[ $BUFFER == sudo\ * ]]; then
+                  LBUFFER="${LBUFFER#sudo }"
+            else
+                  LBUFFER="sudo $LBUFFER"
+            fi
+      }
    
 # Some aliases
 alias ls="ls -h --color='auto'"
 alias la='ls -la'
 alias clr=clear
+alias psyu="sudo pacman -Syu"
+alias psearch="pacman -Ss"
+# Pastebin
+alias pbc="curl -F c=@- https://ptpb.pw" # Create a pastebin
+alias pbd="curl -X DELETE" # Delete a pastebin
+alias pbu="curl -X PUT -F c=@-" # Update a pastebin
 
 # Setup grep to be a bit more nice
   # check if 'x' grep argument available
@@ -91,7 +111,7 @@ alias clr=clear
 
 
 # Pyenv
-export PATH="/home/ghetto/.pyenv/bin:$PATH"
+export PATH="/home/ghetto/.pyenv/bin:/home/ghetto/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
