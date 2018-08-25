@@ -77,9 +77,13 @@ alias clr=clear
 alias psyu="sudo pacman -Syu"
 alias psearch="pacman -Ss"
 # Pastebin
+#alias pdc="curl -F 'f:1=<-' ix.io" # Create a pastebin
 alias pbc="curl -F c=@- https://ptpb.pw" # Create a pastebin
 alias pbd="curl -X DELETE" # Delete a pastebin
 alias pbu="curl -X PUT -F c=@-" # Update a pastebin
+
+
+
 
 # Setup grep to be a bit more nice
   # check if 'x' grep argument available
