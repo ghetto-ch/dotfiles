@@ -9,7 +9,7 @@
        "x": 0,
        "y": 0
     },
-    "name": "i3: Layout saving in i3 - Mozilla Firefox",
+    "name": "browser",
     "percent": 0.5,
     "swallows": [
        {
@@ -56,7 +56,7 @@
                "x": 0,
                "y": 0
             },
-            "name": "i3-save-tree --workspace 1 > ~/dotfiles/.config/i3/ws-main.json",
+            "name": "terminal",
             "percent": 0.5,
             "swallows": [
                {

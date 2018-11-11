@@ -1,0 +1,97 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 436,
+       "width": 724,
+       "x": 0,
+       "y": 0
+    },
+    "name": "htop",
+    "percent": 0.5,
+    "swallows": [
+       {
+           //"class": "^st\\-256color$",
+	   //"instance": "^st\\-256color$",
+	   "title": "^htop$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    // splitv split container with 3 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 436,
+               "width": 724,
+               "x": 0,
+               "y": 0
+            },
+            "name": "sensors",
+            "percent": 0.482004234297812,
+            "swallows": [
+               {
+                   //"class": "^st\\-256color$",
+                   //"instance": "^st\\-256color$",
+		   "title": "^sensors$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 436,
+               "width": 724,
+               "x": 0,
+               "y": 0
+            },
+            "name": "iostat",
+            "percent": 0.186779581274994,
+            "swallows": [
+               {
+                   //"class": "^st\\-256color$",
+                   //"instance": "^st\\-256color$",
+		   "title": "^iostat$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 436,
+               "width": 724,
+               "x": 0,
+               "y": 0
+            },
+            "name": "gpu",
+            "percent": 0.331216184427194,
+            "swallows": [
+               {
+                   //"class": "^st\\-256color$",
+		   //"instance": "^st\\-256color$",
+		   "title": "^gpu$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
