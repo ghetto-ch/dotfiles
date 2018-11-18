@@ -50,48 +50,48 @@
             ],
             "type": "con"
         },
-        {
-            "border": "normal",
-            "current_border_width": 2,
-            "floating": "auto_off",
-            "geometry": {
-               "height": 436,
-               "width": 724,
-               "x": 0,
-               "y": 0
-            },
-            "name": "iostat",
-            "percent": 0.186779581274994,
-            "swallows": [
-               {
-                   //"class": "^st\\-256color$",
-                   //"instance": "^st\\-256color$",
-		   "title": "^iostat$"
-               }
-            ],
-            "type": "con"
-        },
-        {
-            "border": "normal",
-            "current_border_width": 2,
-            "floating": "auto_off",
-            "geometry": {
-               "height": 436,
-               "width": 724,
-               "x": 0,
-               "y": 0
-            },
-            "name": "gpu",
-            "percent": 0.331216184427194,
-            "swallows": [
-               {
-                   //"class": "^st\\-256color$",
-		   //"instance": "^st\\-256color$",
-		   "title": "^gpu$"
-               }
-            ],
-            "type": "con"
-        }
+//   {
+//       "border": "normal",
+//       "current_border_width": 2,
+//       "floating": "auto_off",
+//       "geometry": {
+//          "height": 436,
+//          "width": 724,
+//          "x": 0,
+//          "y": 0
+//       },
+//       "name": "iostat",
+//       "percent": 0.186779581274994,
+//       "swallows": [
+//          {
+//              //"class": "^st\\-256color$",
+//              //"instance": "^st\\-256color$",
+//		   "title": "^iostat$"
+//          }
+//       ],
+//       "type": "con"
+//   },
+//        {
+//            "border": "normal",
+//            "current_border_width": 2,
+//            "floating": "auto_off",
+//            "geometry": {
+//               "height": 436,
+//               "width": 724,
+//               "x": 0,
+//               "y": 0
+//            },
+//            "name": "gpu",
+//            "percent": 0.331216184427194,
+//            "swallows": [
+//               {
+//                   //"class": "^st\\-256color$",
+//		   //"instance": "^st\\-256color$",
+//		   "title": "^gpu$"
+//               }
+//            ],
+//            "type": "con"
+//        }
     ]
 }
 
