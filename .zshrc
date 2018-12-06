@@ -73,6 +73,7 @@ POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
 # Some aliases
 alias ls="ls -h --color='auto'"
 alias la='ls -la'
+alias ll='ls -l'
 alias clr=clear
 alias psyu="sudo pacman -Syu"
 alias psearch="pacman -Ss"
@@ -121,6 +122,24 @@ export PATH="/home/ghetto/.pyenv/bin:/home/ghetto/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# ESP-IDF
+export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
+export IDF_PATH=~/esp/esp-idf
+
+# ESP8266
+#export PATH="$HOME/esp/xtensa-lx106-elf/bin:$PATH"
+#export IDF_PATH=~/esp/ESP8266_RTOS_SDK
+
+# Colored MAN pages
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
 
 # Syntax highlighting
    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

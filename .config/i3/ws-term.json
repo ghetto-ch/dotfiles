@@ -39,13 +39,13 @@
                "x": 0,
                "y": 0
             },
-            "name": "sensors",
+            "name": "files",
             "percent": 0.482004234297812,
             "swallows": [
                {
                    //"class": "^st\\-256color$",
                    //"instance": "^st\\-256color$",
-		   "title": "^sensors$"
+		   "title": "^files$"
                }
             ],
             "type": "con"

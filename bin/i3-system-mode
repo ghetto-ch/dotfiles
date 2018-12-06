@@ -1,6 +1,6 @@
 #!/bin/sh
 lock() {
-    i3lock -i ~/img/lockscreen.png
+    i3lock -t -i ~/img/lockscreen.png
     #sleep 1800
     #systemctl hybrid-sleep
 }

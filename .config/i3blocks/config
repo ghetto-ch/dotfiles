@@ -84,8 +84,13 @@ interval=30
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label=DISK
+label=ROOT
 instance=/
+interval=30
+
+[disk]
+label=HOME
+instance=/home
 interval=30
 
 # CPU usage
