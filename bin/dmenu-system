@@ -1,17 +1,17 @@
 #!/bin/sh
+
 lock() {
     #i3lock -t -i ~/img/lockscreen.png
-    slock
+    slock &
     #sleep 1800
     #systemctl hybrid-sleep
 }
 
-case "$1" in
+x=$(echo -e "lock\nsuspend\nhibernate\nreboot\npoweroff" | dmenu -i)
+
+case "$x" in
     lock)
         lock
-        ;;
-    logout)
-        i3-msg exit
         ;;
     suspend)
         lock; systemctl hybrid-sleep #suspend
@@ -26,7 +26,6 @@ case "$1" in
         systemctl poweroff
         ;;
     *)
-        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|poweroff}"
         exit 2
 esac
 

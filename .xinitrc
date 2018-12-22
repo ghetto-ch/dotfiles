@@ -1,6 +1,3 @@
-
-
-
 #!/bin/sh
 
 userresources=$HOME/.Xresources
@@ -11,15 +8,7 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
-
-
-
-
-
-
-
     xrdb -merge $sysresources
-
 fi
 
 if [ -f $sysmodmap ]; then
@@ -27,15 +16,7 @@ if [ -f $sysmodmap ]; then
 fi
 
 if [ -f "$userresources" ]; then
-
-
-
-
-
-
-
     xrdb -merge "$userresources"
-
 fi
 
 if [ -f "$usermodmap" ]; then
@@ -51,13 +32,20 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+xrandr --output DP-0 --left-of DP-4
+xrandr --output DP-0 --rotate left
+
 #twm &
 #xclock -geometry 50x50-1+1 &
 #xterm -geometry 80x50+494+51 &
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
-xbindkeys
-unclutter -idle 3 &
+udiskie &
+xbindkeys 
+unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 15 -locker "i3-system-mode lock" &
-exec i3
-#exec dwm
+feh --bg-fill img/wallpaper.jpg &
+compton -b -d :0
+dwm-status &
+#exec i3
+exec dwm

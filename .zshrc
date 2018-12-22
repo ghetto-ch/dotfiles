@@ -88,6 +88,9 @@ alias ...="cd ..\.."
 alias ....="cd ..\..\.."
 alias /="cd /"
 
+alias ncdu='ncdu --color dark'
+alias info=pinfo
+
 # Setup grep to be a bit more nice
   # check if 'x' grep argument available
    grep-flag-available() {
@@ -116,6 +119,48 @@ alias /="cd /"
    # clean up
    unfunction grep-flag-available
 
+   # Custom functions
+   ###########################################################################
+
+   # Query commandlinefu.com
+   cmdfu() {
+       curl "https://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | openssl base64)/plaintext";
+   }
+
+   # cdl - fuzzy cd from anywhere
+   # ex: cdl word1 word2 ... (even part of a file name)
+   # zsh autoload function
+   cdl() {
+       local file
+
+       file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
+
+       if [[ -n $file ]]
+       then
+	   if [[ -d $file ]]
+	   then
+               cd -- $file
+	   else
+               cd -- ${file:h}
+	   fi
+       fi
+   }
+
+   flocate() {
+       locate -Ai -0 $@ | fzf --read0 -0 | xclip -selection clipboard
+   }
+   
+# Colored MAN pages
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+# Default editor
+export EDITOR=vim
 
 # Pyenv
 export PATH="/home/ghetto/.pyenv/bin:/home/ghetto/bin:$PATH"
@@ -131,15 +176,13 @@ export IDF_PATH=~/esp/esp-idf
 #export PATH="$HOME/esp/xtensa-lx106-elf/bin:$PATH"
 #export IDF_PATH=~/esp/ESP8266_RTOS_SDK
 
-# Colored MAN pages
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-
+# FZF
+source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
+source $HOME/.fzf/completion.zsh
+source $HOME/.fzf/key-bindings.zsh
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^T' fzf-completion
+bindkey '^I' $fzf_default_completion
 
 # Syntax highlighting
-   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

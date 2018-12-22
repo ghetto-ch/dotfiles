@@ -42,3 +42,5 @@
 !!urxvt.color15: rgb:EE/EE/EC
 !!urxvt.colorBD: rgb:ff/ff/ff
 !!
+
+!!st.alpha: 240

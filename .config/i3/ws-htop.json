@@ -1,9 +1,9 @@
 // vim:ts=4:sw=4:et
 {
-    "name": "files",
+    "name": "htop",
     "swallows": [
        {
-       "title": "^files$"
+       "title": "^htop$"
        }
     ],
     "type": "con"

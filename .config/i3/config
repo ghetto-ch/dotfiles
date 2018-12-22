@@ -38,7 +38,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -i
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -119,6 +119,9 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+Right workspace next
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -136,7 +139,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -185,12 +189,12 @@ bindsym $mod+Pause mode "$mode_system"
 # quick apps mode
 set $mode_apps Apps (b) browser, (f) file manager, (e) emacs, (t) transmission, (p) picture editor, (v) virtualbox
 mode "$mode_apps" {
-    bindsym b exec firefox, mode "default"
-    bindsym f exec doublecmd, mode "default"
-    bindsym e exec emacs, mode "default"
-    bindsym t exec transmission-remote-gtk, mode "default"
-    bindsym p exec pinta, mode "default"
-    bindsym v exec virtualbox, mode "default"
+    bindsym b exec --no-startup-id qutebrowser, mode "default"
+    bindsym f exec --no-startup-id st -t files ranger, mode "default"
+    bindsym e exec --no-startup-id emacs, mode "default"
+    bindsym t exec --no-startup-id transmission-remote-gtk, mode "default"
+    bindsym p exec --no-startup-id pinta, mode "default"
+    bindsym v exec --no-startup-id virtualbox, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -215,6 +219,14 @@ bindsym $mod+l mode "$mode_layout"
 
 #for_window [workspace="9"] floating enable
 
+# hide title bars
+for_window [class="^.*"] border pixel 2
+
+# add a small gap
+
+gaps outer 0
+gaps inner 6
+
 # Assign workspaces to monitors
 
 workspace 1 output DP-0 HDMI-2
@@ -229,9 +241,15 @@ workspace 9 output HDMI-2 DP-0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
+set $transparent #00000000
+
 bar {
-#        status_command i3status
-	 status_command i3blocks
+    colors {
+    background $transparent
+}
+    status_command i3blocks
+    i3bar_command i3bar -t
 }
 
 # Startup applications
