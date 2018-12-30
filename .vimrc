@@ -1,20 +1,3 @@
-
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2017 Sep 20
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
-
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
 
@@ -27,11 +10,6 @@ else
   endif
 endif
 
-if &t_Co > 2 || has("gui_running")
-  " Switch on highlighting the last used search pattern.
-  set hlsearch
-endif
-
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -41,6 +19,18 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
+
+  " Strip all trailing spaces on write
+  function! StripTrailing()
+      let l = line(".")
+      let c = col(".")
+      %s/\s\+$//e
+      call cursor(l, c)
+  endfun
+  autocmd BufWritePre * :call StripTrailing()
+
+  " Code formatters (to be used with gq)
+  autocmd FileType python setlocal formatprg=autopep8\ -
 
   augroup END
 
@@ -60,9 +50,270 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+if has("gui")
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=m
+    set guioptions-=T
+    set guifont=Inconsolata\ 13
+endif
+
+"#####################################################################
+" Use vundle to install plugins
+set nocompatible              " be iMproved, required
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Theme related
+Plugin 'Solarized'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ayu-theme/ayu-vim'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'chriskempson/base16-vim'
+
+" General for programming
+Bundle 'Valloric/YouCompleteMe'
+Plugin 'Yggdroot/indentLine'
+Plugin 'tpope/vim-surround'
+Plugin 'majutsushi/tagbar'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'vim-syntastic/syntastic'
+
+" Python
+Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'nvie/vim-flake8'
+
+" Fuzzy finder
+Plugin 'junegunn/fzf.vim'
+
+" Usability
+Plugin 'junegunn/goyo.vim'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'easymotion/vim-easymotion'
+
+" File browsing
+Plugin 'scrooloose/nerdtree'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+"#####################################################################
+
+" Use UTF-8
+set encoding=utf-8
+
 " Tell vim to use zsh instead of bash
 set shell=/bin/zsh
 " Set shell interactive to have all custom aliases/functions available
-set shellcmdflag=-ic
+" set shellcmdflag=-ic
+
 " Replace selected text pressing C-r
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+
+" Show relative line numbers
+set cursorline
+set number relativenumber
+
+" Split in the correct way
+set splitbelow
+set splitright
+
+" Split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Folding
+" set foldmethod=indent
+"
+" Set colors
+set background=dark
+set t_Co=256
+
+if &term=~'xterm'
+    colorscheme solarized
+    let g:airline_theme='badcat'
+    "let base16colorspace=256
+else
+    " set Vim-specific sequences for RGB colors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+    "let ayucolor="dark"
+    "colorscheme ayu
+    "let g:airline_theme='ayu'
+    if filereadable(expand("~/.vimrc_background"))
+        source ~/.vimrc_background
+    endif
+endif
+
+"if has("gui_running")
+"    hi! Normal ctermbg=NONE guibg=NONE
+"    hi! NonText ctermbg=NONE guibg=NONE
+"endif
+
+"let g:nord_italic = 1
+"let g:nord_underline = 1
+"let g:nord_italic_comments = 1
+"let g:nord_uniform_diff_background = 1
+"let g:nord_cursor_line_number_background = 1
+"let g:nord_comment_brightness = 25
+
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+" Hide mode in status line
+set noshowmode
+set noruler
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set fileformat=unix
+set foldmethod=indent
+set foldlevelstart=99
+" Python
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+
+" Highlight unuseful whitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+
+" Indent guides
+let g:indentLine_char = '┆'
+let g:indentLine_enabled = 0
+
+" FZF
+" This is the default extra key bindings
+let g:fzf_action = {
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+            \ { 'fg':    ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'border':  ['fg', 'Ignore'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
+
+" Keybindings
+nnoremap <Leader>rf :History<CR>
+nnoremap <Leader>rc :History:<CR>
+nnoremap <Leader>ls :Buffers:<CR>
+nnoremap <Leader>ln :Lines:<CR>
+nnoremap <Leader>lb :BLines:<CR>
+" NERDTree
+nnoremap <Leader>tr :NERDTreeToggle<CR>
+
+" Tagbar
+nnoremap <Leader>tb :TagbarToggle<CR>
+
+" Search highlight
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+
+" EasyMotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+map <Leader><Leader> <Plug>(easymotion-prefix)
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+map  <Leader>s <Plug>(easymotion-f2)
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map  <Leader>gl <Plug>(easymotion-bd-jk)
+nmap <Leader>gl <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" Auto close parens etc...
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0

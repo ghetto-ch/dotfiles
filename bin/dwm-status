@@ -11,68 +11,68 @@ do
     # Executes every 900 seconds
     if (( (`date +"%s"` - $sec900) >= 60))
     then
-	# Reset seconds
-	sec900=`date +"%s"`
+        # Reset seconds
+        sec900=`date +"%s"`
 
-	# Pacman updates
-	#updates=$(checkupdates | awk '{++c} END {print c, "updates"}')
-	updates=$(checkupdates | wc -l)
-	if [ $updates -gt 0 ]
-	then
-	    updates=$updates" updates"
-	else
-	    updates="System up to date"
-	fi	
-
+    # Pacman updates
+    #updates=$(checkupdates | awk '{++c} END {print c, "updates"}')
+    updates=$(checkupdates | wc -l)
+    if [ $updates -gt 0 ]
+    then
+        updates=$updates" updates"
+    else
+        updates="System up to date"
     fi
-    
+
+fi
+
     # Executes every 300 seconds
     if (( (`date +"%s"` - $sec300) >= 60))
     then
-	# Reset seconds
-	sec300=`date +"%s"`
+        # Reset seconds
+        sec300=`date +"%s"`
 
-	# Get /home free space
-	home="HOME:"$(df -h /home | awk '/dev/ {print $4}')
-	# Get / free space
-	root="ROOT:"$(df -h / | awk '/dev/ {print $4}')
-		
-    fi    
+    # Get /home free space
+    home="HOME:"$(df -h /home | awk '/dev/ {print $4}')
+    # Get / free space
+    root="ROOT:"$(df -h / | awk '/dev/ {print $4}')
+
+fi
 
     # Executes every 60 seconds
     if (( (`date +"%s"` - $sec60) >= 60))
     then
-	# Reset seconds
-	sec60=`date +"%s"`
-	
-	# Get date and time
-	time=$(date +"%d/%b/%Y %H:%M")
-    	
-    fi
+        # Reset seconds
+        sec60=`date +"%s"`
+
+    # Get date and time
+    time=$(date +"%d/%b/%Y %H:%M")
+
+fi
 
     # Executes every 5 seconds
     if (( (`date +"%s"` - $sec5) >= 5))
     then
-	# Reset seconds
-	sec5=`date +"%s"`
+        # Reset seconds
+        sec5=`date +"%s"`
 
-	# Get CPU usage in %
-	#cpu="LOAD:"$(sed -e 's/ .*//' /proc/loadavg)
-	cpu="CPU:"$(/home/ghetto/dotfiles/bin/cpu_usage)	
-	
-	# Get free memory
-	mem="MEM:"$(free -h | awk '/Mem/ {print $3}')
-	
-	# Get network usage
-	bandwidth=$(/home/ghetto/dotfiles/bin/bandwidth)
-    fi
-    
+    # Get CPU usage in %
+    #cpu="LOAD:"$(sed -e 's/ .*//' /proc/loadavg)
+    cpu="CPU:"$(/home/ghetto/dotfiles/bin/cpu_usage)
+
+    # Get free memory
+    mem="MEM:"$(free -h | awk '/Mem/ {print $3}')
+
+    # Get network usage
+    bandwidth=$(/home/ghetto/dotfiles/bin/bandwidth)
+fi
+
     # Executes every second
 
-	
+
     # Compose status string
     status=$bandwidth" | "$cpu" "$mem" | "$root" "$home" | "$updates" | "$time
-    
+
     xsetroot -name "$status"
     sleep 1
 done

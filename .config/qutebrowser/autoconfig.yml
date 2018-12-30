@@ -6,6 +6,4 @@ settings:
   bindings.commands:
     global:
       normal:
-        M: hint links spawn mpv {hint-url}
-        m: spawn mpv {url}
         sp: spawn --userscript qutepocket

@@ -41,7 +41,8 @@ xrandr --output DP-0 --rotate left
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 udiskie &
-xbindkeys 
+xbindkeys
+setxkbmap -option ctrl:nocaps
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 15 -locker "i3-system-mode lock" &
 feh --bg-fill img/wallpaper.jpg &
