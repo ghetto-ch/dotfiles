@@ -34,6 +34,7 @@ fi
 
 xrandr --output DP-0 --left-of DP-4
 xrandr --output DP-0 --rotate left
+xrandr --output DP-4 --pos 1080x160
 
 #twm &
 #xclock -geometry 50x50-1+1 &
@@ -45,7 +46,7 @@ xbindkeys
 setxkbmap -option ctrl:nocaps
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 15 -locker "i3-system-mode lock" &
-feh --bg-fill img/wallpaper.jpg &
+~/.fehbg &
 compton -b -d :0
 dwm-status &
 #exec i3

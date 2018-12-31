@@ -123,6 +123,10 @@ vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 " Show relative line numbers
 set cursorline
 set number relativenumber
+set scrolloff=3
+
+" Disable all blinking:
+set guicursor+=a:blinkon0
 
 " Split in the correct way
 set splitbelow
@@ -142,8 +146,10 @@ set background=dark
 set t_Co=256
 
 if &term=~'xterm'
-    colorscheme solarized
-    let g:airline_theme='badcat'
+    colorscheme nord
+    let g:airline_theme='nord'
+"    hi! Normal ctermbg=NONE guibg=NONE
+"    hi! NonText ctermbg=NONE guibg=NONE
     "let base16colorspace=256
 else
     " set Vim-specific sequences for RGB colors
@@ -178,6 +184,10 @@ let g:airline#extensions#tabline#enabled = 1
 set noshowmode
 set noruler
 
+set showcmd
+set ignorecase
+set smartcase
+
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -186,14 +196,6 @@ set autoindent
 set fileformat=unix
 set foldmethod=indent
 set foldlevelstart=99
-" Python
-let g:ycm_python_interpreter_path = ''
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
 
 " Highlight unuseful whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -208,6 +210,17 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+" Python
+function! YcmLoadVenv()
+    let g:ycm_python_interpreter_path = ''
+    let g:ycm_python_sys_path = []
+    let g:ycm_extra_conf_vim_data = [
+                \  'g:ycm_python_interpreter_path',
+                \  'g:ycm_python_sys_path'
+                \]
+    let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+endfun
+call YcmLoadVenv()
 
 " Indent guides
 let g:indentLine_char = '┆'

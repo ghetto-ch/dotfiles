@@ -5,8 +5,8 @@ source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir pyenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv vcs root_indicator background_jobs time vi_mode)
 POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
 POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
@@ -14,8 +14,8 @@ POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
 
 # Base16 Shell
-BASE16_SHELL_SET_BACKGROUND=false
-BASE16_SHELL="$HOME/.config/base16-shell/"
+#BASE16_SHELL_SET_BACKGROUND=false
+#BASE16_SHELL="$HOME/.config/base16-shell/"
 #[ -n "$PS1" ] && \
 #    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 #    eval "$("$BASE16_SHELL/profile_helper.sh")"
@@ -61,6 +61,9 @@ setopt EXTENDED_GLOB                        # Allow the powerful zsh globbing fe
 # http://www.refining-linux.org/archives/37/ZSH-Gem-2-Extended-globbing-and-expansion/
 setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers numerically, not by letter (i.e. 01 2 03)
 
+# Vim or Emacs?
+bindkey -v
+export KEYTIMEOUT=1
 # ZSH keybindings
 bindkey "\e[3~" delete-char          # [Delete] - delete forward
 bindkey "^[[A" history-search-backward            # start typing + [Up-Arrow] - fuzzy find history forward
@@ -78,7 +81,6 @@ fi
 
 # Enable Ctrl-x-e to edit command line
 autoload -U edit-command-line
-# # Emacs style
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
@@ -106,7 +108,9 @@ alias info=pinfo
 
 if [ "$DISPLAY" ]
 then
-    alias vim=gvim
+    alias vi='gvim --remote-silent'
+else
+    alias vi='vim --remote-silent'
 fi
 
 # Setup grep to be a bit more nice
