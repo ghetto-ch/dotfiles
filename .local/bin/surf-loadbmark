@@ -1,0 +1,13 @@
+#!/bin/sh
+sel=`cat ~/.surf/bookmarks | sed 's/\([^ ]*\) *\(.*\)/\2 \1/' | \
+    dmenu -p 'Load Bookmark' -i -b -l 10 -w $1`
+    [ -z "$sel" ] && exit
+    opt=$(echo $sel | cut -d ' ' -f 1)
+    arg=$(echo $sel | cut -d ' ' -f 2-)
+    save=0
+    case "$opt" in
+        "d") echo "https://duckduckgo.com/?q=$arg"
+            ;;
+        *) echo $sel | awk '{print $NF}'
+            ;;
+    esac

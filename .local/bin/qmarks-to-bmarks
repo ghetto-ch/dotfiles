@@ -1,0 +1,2 @@
+#!/bin/sh
+awk '{url=$NF};NF{--NF};{print url, $0}'
