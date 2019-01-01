@@ -6,7 +6,7 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv vcs root_indicator background_jobs time vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv vcs root_indicator background_jobs time)
 POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
 POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
@@ -14,11 +14,11 @@ POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
 
 # Base16 Shell
-#BASE16_SHELL_SET_BACKGROUND=false
-#BASE16_SHELL="$HOME/.config/base16-shell/"
-#[ -n "$PS1" ] && \
-#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#    eval "$("$BASE16_SHELL/profile_helper.sh")"
+BASE16_SHELL_SET_BACKGROUND=false
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+    eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # ZSH options
 local ZSH_CONF=$HOME/.zsh           # Define the place I store all my zsh config stuff
@@ -62,7 +62,7 @@ setopt EXTENDED_GLOB                        # Allow the powerful zsh globbing fe
 setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers numerically, not by letter (i.e. 01 2 03)
 
 # Vim or Emacs?
-bindkey -v
+bindkey -e
 export KEYTIMEOUT=1
 # ZSH keybindings
 bindkey "\e[3~" delete-char          # [Delete] - delete forward
@@ -105,6 +105,7 @@ alias /="cd /"
 
 alias ncdu='ncdu --color dark'
 alias info=pinfo
+alias surf=surf-open
 
 if [ "$DISPLAY" ]
 then
@@ -191,7 +192,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 export EDITOR=vim
 
 # Pyenv
-export PATH="/home/ghetto/.pyenv/bin:/home/ghetto/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

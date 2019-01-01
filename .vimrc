@@ -2,41 +2,41 @@
 source $VIMRUNTIME/defaults.vim
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+    set nobackup      " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
-  if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
-  endif
+    set backup        " keep a backup file (restore to previous version)
+    if has('persistent_undo')
+        set undofile    " keep an undo file (undo changes after closing)
+    endif
 endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+        au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+        " For all text files set 'textwidth' to 78 characters.
+        autocmd FileType text setlocal textwidth=78
 
-  " Strip all trailing spaces on write
-  function! StripTrailing()
-      let l = line(".")
-      let c = col(".")
-      %s/\s\+$//e
-      call cursor(l, c)
-  endfun
-  autocmd BufWritePre * :call StripTrailing()
+        " Strip all trailing spaces on write
+        function! StripTrailing()
+            let l = line(".")
+            let c = col(".")
+            %s/\s\+$//e
+            call cursor(l, c)
+        endfun
+        autocmd BufWritePre * :call StripTrailing()
 
-  " Code formatters (to be used with gq)
-  autocmd FileType python setlocal formatprg=autopep8\ -
+        " Code formatters (to be used with gq)
+        autocmd FileType python setlocal formatprg=autopep8\ -
 
-  augroup END
+    augroup END
 
 else
 
-  set autoindent		" always set autoindenting on
+    set autoindent        " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -47,7 +47,7 @@ endif " has("autocmd")
 " The ! means the package won't be loaded right away but when plugins are
 " loaded during initialization.
 if has('syntax') && has('eval')
-  packadd! matchit
+    packadd! matchit
 endif
 
 if has("gui")
@@ -132,11 +132,6 @@ set guicursor+=a:blinkon0
 set splitbelow
 set splitright
 
-" Split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " Folding
 " set foldmethod=indent
@@ -148,9 +143,10 @@ set t_Co=256
 if &term=~'xterm'
     colorscheme nord
     let g:airline_theme='nord'
-"    hi! Normal ctermbg=NONE guibg=NONE
-"    hi! NonText ctermbg=NONE guibg=NONE
-    "let base16colorspace=256
+    let g:nord_uniform_diff_background = 1
+    let g:nord_cursor_line_number_background = 1
+    "    hi! Normal ctermbg=NONE guibg=NONE
+    "    hi! NonText ctermbg=NONE guibg=NONE
 else
     " set Vim-specific sequences for RGB colors
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -168,13 +164,6 @@ endif
 "    hi! Normal ctermbg=NONE guibg=NONE
 "    hi! NonText ctermbg=NONE guibg=NONE
 "endif
-
-"let g:nord_italic = 1
-"let g:nord_underline = 1
-"let g:nord_italic_comments = 1
-"let g:nord_uniform_diff_background = 1
-"let g:nord_cursor_line_number_background = 1
-"let g:nord_comment_brightness = 25
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -250,14 +239,33 @@ let g:fzf_colors =
             \ 'header':  ['fg', 'Comment'] }
 
 " Keybindings
+let mapleader = ' '
+set timeoutlen=2000
+" Fuzzy finder
 nnoremap <Leader>rf :History<CR>
 nnoremap <Leader>rc :History:<CR>
-nnoremap <Leader>ls :Buffers:<CR>
-nnoremap <Leader>ln :Lines:<CR>
-nnoremap <Leader>lb :BLines:<CR>
+nnoremap <Leader>ln :Lines<CR>
+nnoremap <Leader>lb :BLines<CR>
+" Buffers
+nnoremap <Leader>bl :Buffers<CR>
+nnoremap <Leader>bn :bnext!<CR>
+nnoremap <Leader>bp :bprevious!<CR>
+nnoremap <Leader>bd :bdelete<CR>
+" Windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <Leader>wv :vsplit<CR>
+nnoremap <Leader>ws :split<CR>
+nnoremap <Leader>wo :only<CR>
+nnoremap <Leader>wr :wincmd r<CR>
+nnoremap <Leader>wc :wincmd c<CR>
+nnoremap <Leader>wx :wincmd x<CR>
+nnoremap <Leader>w_ :wincmd _<CR>
+nnoremap <Leader>w= :wincmd =<CR>
 " NERDTree
 nnoremap <Leader>tr :NERDTreeToggle<CR>
-
 " Tagbar
 nnoremap <Leader>tb :TagbarToggle<CR>
 
@@ -305,8 +313,8 @@ map  <Leader>gl <Plug>(easymotion-bd-jk)
 nmap <Leader>gl <Plug>(easymotion-overwin-line)
 
 " Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+map  <Leader>gw <Plug>(easymotion-bd-w)
+nmap <Leader>gw <Plug>(easymotion-overwin-w)
 
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)

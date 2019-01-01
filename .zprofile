@@ -18,6 +18,7 @@ if ! mount|grep Backups > /dev/null; then
     mount /mnt/Backups
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
 
 emulate sh -c 'source /etc/profile'
 [[ ! $DISPLAY && $XDG_VTNR -eq 1 && $(id --group) -ne 0 ]] && exec startx
