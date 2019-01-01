@@ -1,6 +1,6 @@
 #!/bin/sh
-
 x=$(echo -e "browser\nfiles\nemacs\nhtop\nvirtualbox\nsurf" | dmenu -i -p "Favorites")
+
 case "$x" in
     browser) qutebrowser & disown ;;
     files) st ranger & disown ;;

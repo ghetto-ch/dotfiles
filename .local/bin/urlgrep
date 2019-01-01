@@ -1,0 +1,18 @@
+#!/bin/sh
+regexp="'https?://[^[:space:]]+'"
+
+COMMAND="grep -iIohE $regexp"
+while getopts o option
+do
+    case "${option}"
+        in
+        o) COMMAND="$COMMAND $2 | fzf | xargs xdg-open"
+        ;;
+        *) COMMAND="$COMMAND $1"
+        ;;
+    esac
+done
+
+eval $COMMAND
+#grep -iIohE $regexp $1
+
