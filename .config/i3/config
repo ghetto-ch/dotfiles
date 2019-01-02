@@ -253,4 +253,4 @@ bar {
 }
 
 # Startup applications
-exec --no-startup-id /home/ghetto/.config/i3/startup.sh
+#exec --no-startup-id /home/ghetto/.config/i3/startup.sh
