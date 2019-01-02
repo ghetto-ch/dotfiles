@@ -1,1 +1,2 @@
 .smbcredentials filter=git-crypt diff=git-crypt
+.config/qutebrowser/qutepocket.secrets filter=git-crypt diff=git-crypt
