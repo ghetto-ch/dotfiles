@@ -1,12 +1,12 @@
 #!/bin/sh
 bfile=~/.surf/bookmarks
 qfile=~/.config/qutebrowser/quickmarks
-url=`xprop -id $1 | grep URI | awk '{print $3}' | sed 's/\"//g'`
-title=`xprop -id $1 | grep WM_ICON_NAME\(STRING\) | cut -c 40- | sed 's/.$//g'`
-bmark=$(echo $url | dmenu -p 'Add Bookmark' -b -w $1)
 
-if [[ ! -z $bmark ]]
-then
-    echo $bmark >> $bfile
-    echo $bmark | bmarks-to-qmarks >> $qfile
-fi
+url=$(xprop -id $1 | grep URI | awk '{print $3}' | sed 's/\"//g')
+title=$(xprop -id $1 | grep WM_ICON_NAME\(STRING\) | cut -c 40- | sed 's/.$//g')
+
+bmark=$(echo $url | dmenu -p 'Add Bookmark' -l 1 -b -w $1)
+[[ -z $bmark ]] && exit
+
+echo $bmark >> $bfile
+echo $bmark | bmarks-to-qmarks >> $qfile

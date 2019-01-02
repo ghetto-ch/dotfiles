@@ -1,18 +1,15 @@
 #!/bin/sh
-regexp="'https?://[^[:space:]]+'"
+regexp='https?://[^[:space:]]+'
 
-COMMAND="grep -iIohE $regexp"
-while getopts o option
+while getopts "o:" opt
 do
-    case "${option}"
+    case "${opt}"
         in
-        o) COMMAND="$COMMAND $2 | fzf | xargs xdg-open"
-        ;;
-        *) COMMAND="$COMMAND $1"
+        o) arg="$OPTARG | fzf | xargs xdg-open"
         ;;
     esac
 done
 
-eval $COMMAND
-#grep -iIohE $regexp $1
+[[ -z $arg ]] && arg=$1
+eval "grep -iIohE $regexp $arg"
 
