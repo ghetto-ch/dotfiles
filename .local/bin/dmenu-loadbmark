@@ -1,14 +1,20 @@
 #!/bin/sh
 bfile=~/.surf/bookmarks
+qfile=~/.config/qutebrowser/quickmarks
 [ $# -eq 1 ] && extarg="-b -w $1"
-sel=$(cat $bfile | sed 's/\([^ ]*\) *\(.*\)/\2 \1/' | \
+#sel=$(cat $bfile | sed 's/\([^ ]*\) *\(.*\)/\2 \1/' | \
+sel=$(cat $qfile | \
     dmenu -p 'Load Bookmark' -i -l 20 $extarg)
     [ -z "$sel" ] && exit
     cmd=$(echo $sel | cut -d ' ' -f 1)
     arg=$(echo $sel | cut -d ' ' -f 2-)
     case "$cmd" in
-        "d") surf-open "https://duckduckgo.com/?q=$arg"
+        "d") xdg-open "https://duckduckgo.com/?q=$arg"
             ;;
-        *) surf-open $(echo $sel | awk '{print $NF}')
+        "y") xdg-open "https://youtube.com/results?search_query=$arg"
+            ;;
+        "aw") xdg-open "https://wiki.archlinux.org/index.php?search=$arg"
+            ;;
+        *) xdg-open $(echo $sel | awk '{print $NF}')
             ;;
     esac

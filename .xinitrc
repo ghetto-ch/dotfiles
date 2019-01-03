@@ -45,6 +45,7 @@ xrandr --output DP-4 --pos 1080x160
 udiskie &
 xbindkeys
 setxkbmap -option ctrl:nocaps
+numlockx &
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 15 -locker "i3-system-mode lock" &
 ~/.fehbg &

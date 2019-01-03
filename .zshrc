@@ -63,7 +63,7 @@ setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers 
 
 # Vim or Emacs?
 bindkey -e
-export KEYTIMEOUT=1
+export KEYTIMEOUT=15
 # ZSH keybindings
 bindkey "\e[3~" delete-char          # [Delete] - delete forward
 bindkey "^[[A" history-search-backward            # start typing + [Up-Arrow] - fuzzy find history forward
@@ -107,12 +107,6 @@ alias ncdu='ncdu --color dark'
 alias info=pinfo
 alias surf=surf-open
 
-if [ "$DISPLAY" ]
-then
-    alias vi='gvim --remote-silent'
-else
-    alias vi='vim --remote-silent'
-fi
 
 # Setup grep to be a bit more nice
 # check if 'x' grep argument available
@@ -179,6 +173,16 @@ flocate() {
     fi
 }
 
+# v - open files in ~/.viminfo
+#v() {
+#  local files
+#  #files=$(grep '^>' ~/.viminfo | awk -F '/' '{print $NF}' |
+#  files=$(grep '^>' ~/.viminfo | cut -c3- |
+#          while read line; do
+#            [ -f "${line/\~/$HOME}" ] && echo "$line"
+#          done | fzf-tmux -d -m -q "$*" -1) && vi ${files//\~/$HOME}
+#}
+
 # Colored MAN pages
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
@@ -209,9 +213,49 @@ export IDF_PATH=~/esp/esp-idf
 source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
 source $HOME/.fzf/completion.zsh
 source $HOME/.fzf/key-bindings.zsh
-#export FZF_COMPLETION_TRIGGER=''
-#bindkey '^T' fzf-completion
-#bindkey '^I' $fzf_default_completion
+export FZF_COMPLETION_TRIGGER=''
+bindkey '\t\t' fzf-completion
+bindkey '^I' $fzf_default_completion
+
+#source $HOME/.zsh/z.sh
+#source $HOME/.zsh/fz.sh
+eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
+#alias o='a -e xdg-open' # quick opening files with xdg-open
+if [ "$DISPLAY" ]
+then
+    alias vi='gvim --remote-silent'
+    #alias v='f -t -e "gvim --remote-silent" -b viminfo' # quick opening files with vim
+else
+    alias vi='vim --remote-silent'
+    #alias v='f -t -e "vim --remote-silent"  -b viminfo' # quick opening files with vim
+fi
+# fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
+v() {
+    if [ "$DISPLAY" ]
+    then
+        cmd="gvim --remote-silent"
+    else
+        cmd="vim --remote-silent"
+    fi
+
+    [ $# -gt 0 ] && fasd -f -B viminfo -e ${cmd} "$*" && return
+    local file
+    file="$(fasd -Rfl -B viminfo  "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
+}
+
+# fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
+unalias z
+z() {
+    [ $# -gt 0 ] && fasd_cd -d "$*" && return
+    local dir
+    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+}
+
+o() {
+    [ $# -gt 0 ] && fasd -a -e xdg-open "$*" && return
+    local file
+    file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" && xdg-open "${file}" || return 1
+}
 
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

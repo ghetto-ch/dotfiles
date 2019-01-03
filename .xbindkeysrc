@@ -33,13 +33,13 @@
 # NumLock, CapsLock and ScrollLock.
 # Uncomment the lines above if you want to pay attention to them.
 
-keystate_numlock = enable
+#keystate_numlock = enable
 #keystate_capslock = enable
 #keystate_scrolllock= enable
 
 # Examples of commands:
 
-#"xbindkeys_show" 
+#"xbindkeys_show"
 #  control+shift + q
 
 # set directly keycode (here control + f with my keyboard)

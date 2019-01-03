@@ -149,6 +149,14 @@ _fzf_complete_pass() {
 
 [ -n "$BASH" ] && complete -F _fzf_complete_pass -o default -o bashdefault pass
 
+_fzf_complete_vi() {
+    _fzf_complete '-d -m -q -1' "$@" < <(
+        grep '^>' ~/.viminfo | cut -c3-
+        #grep '^>' ~/.viminfo | awk -F '/' '{print $NF}'
+    )
+
+}
+
 fzf-completion() {
   local tokens cmd prefix trigger tail fzf matches lbuf d_cmds
   setopt localoptions noshwordsplit noksh_arrays noposixbuiltins

@@ -251,6 +251,8 @@ nnoremap <Leader>bl :Buffers<CR>
 nnoremap <Leader>bn :bnext!<CR>
 nnoremap <Leader>bp :bprevious!<CR>
 nnoremap <Leader>bd :bdelete<CR>
+nnoremap <C-n> :bnext!<CR>
+nnoremap <C-p> :bprevious!<CR>
 " Windows
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -283,7 +285,12 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
-
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
