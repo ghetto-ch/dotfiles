@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mounts=$(echo -e "$(ls -1 /run/media/ghetto)" | dmenu -p "Unmount" -i -l 10)
+mounts=$(echo -e "$(ls -1 /run/media/$USER)" | dmenu -p "Unmount" -i -l 10)
 umount "/run/media/ghetto/${mounts}"

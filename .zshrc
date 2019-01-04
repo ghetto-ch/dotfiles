@@ -60,7 +60,7 @@ setopt NO_CASE_GLOB                         # Case insensitive globbing
 setopt EXTENDED_GLOB                        # Allow the powerful zsh globbing features, see link:
 # http://www.refining-linux.org/archives/37/ZSH-Gem-2-Extended-globbing-and-expansion/
 setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers numerically, not by letter (i.e. 01 2 03)
-
+setopt RMSTARSILENT
 # Vim or Emacs?
 bindkey -e
 export KEYTIMEOUT=15
@@ -168,7 +168,7 @@ flocate() {
     sel="$(locate -Ai -0 $@ | fzf --read0 -0)"
     if [[ "$DISPLAY" ]]
     then
-        echo $sel | xclip -selection clipboard
+        echo $sel | tr -d '\n' | xclip -selection clipboard
         unset sel
     fi
 }

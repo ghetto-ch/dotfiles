@@ -43,6 +43,7 @@ xrandr --output DP-4 --pos 1080x160
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 udiskie &
+clipmenud &
 xbindkeys
 setxkbmap -option ctrl:nocaps
 numlockx &
