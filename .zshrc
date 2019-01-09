@@ -14,11 +14,13 @@ POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
 
 # Base16 Shell
-BASE16_SHELL_SET_BACKGROUND=false
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-    eval "$("$BASE16_SHELL/profile_helper.sh")"
+#BASE16_SHELL_SET_BACKGROUND=false
+#BASE16_SHELL="$HOME/.config/base16-shell/"
+#[ -n "$PS1" ] && \
+#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+#    eval "$("$BASE16_SHELL/profile_helper.sh")"
+#
+#source $HOME/.fzf/base16/$BASE16_THEME.config
 
 # ZSH options
 local ZSH_CONF=$HOME/.zsh           # Define the place I store all my zsh config stuff
@@ -99,8 +101,8 @@ alias pbd="curl -X DELETE" # Delete a pastebin
 alias pbu="curl -X PUT -F c=@-" # Update a pastebin
 
 alias ..="cd .."
-alias ...="cd ..\.."
-alias ....="cd ..\..\.."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 alias /="cd /"
 
 alias ncdu='ncdu --color dark'
@@ -147,7 +149,7 @@ cmdfu() {
 # cdf - fuzzy cd from anywhere
 # ex: cdf word1 word2 ... (even part of a file name)
 # zsh autoload function
-cdf() {
+fcd() {
     local file
 
     file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
@@ -164,7 +166,7 @@ cdf() {
     unset file
 }
 
-flocate() {
+fl() {
     sel="$(locate -Ai -0 $@ | fzf --read0 -0)"
     if [[ "$DISPLAY" ]]
     then
@@ -255,6 +257,26 @@ o() {
     [ $# -gt 0 ] && fasd -a -e xdg-open "$*" && return
     local file
     file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" && xdg-open "${file}" || return 1
+}
+
+unalias sd
+sd() {
+    [ $# -gt 0 ] && fasd -d "$*" && return
+    local dir
+    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" || return 1
+}
+
+unalias sf
+sf() {
+    [ $# -gt 0 ] && fasd -f "$*" && return
+    local file
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" || return 1
+}
+
+sa() {
+    [ $# -gt 0 ] && fasd -a "$*" && return
+    local file
+    file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" || return 1
 }
 
 # Syntax highlighting

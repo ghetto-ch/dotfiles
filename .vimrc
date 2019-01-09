@@ -98,6 +98,7 @@ Plugin 'junegunn/fzf.vim'
 
 " Usability
 Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-repeat'
@@ -260,9 +261,7 @@ nnoremap <Leader>ln :Lines<CR>
 nnoremap <Leader>lb :BLines<CR>
 " Buffers
 nnoremap <Leader>bl :Buffers<CR>
-nnoremap <Leader>bn :bnext!<CR>
-nnoremap <Leader>bp :bprevious!<CR>
-nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bd :b#<bar>bd#<CR>
 nnoremap <C-n> :bnext!<CR>
 nnoremap <C-p> :bprevious!<CR>
 " Windows
@@ -277,6 +276,7 @@ nnoremap <Leader>wr :wincmd r<CR>
 nnoremap <Leader>wc :wincmd c<CR>
 nnoremap <Leader>wx :wincmd x<CR>
 nnoremap <Leader>w_ :wincmd _<CR>
+nnoremap <Leader>w<bar> :wincmd <bar><CR>
 nnoremap <Leader>w= :wincmd =<CR>
 " NERDTree
 nnoremap <Leader>tr :NERDTreeToggle<CR>
@@ -357,3 +357,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Goyo / Limelight
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!

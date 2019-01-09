@@ -151,10 +151,39 @@ _fzf_complete_pass() {
 
 _fzf_complete_vi() {
     _fzf_complete '-d -m -q -1' "$@" < <(
-        grep '^>' ~/.viminfo | cut -c3-
-        #grep '^>' ~/.viminfo | awk -F '/' '{print $NF}'
+        fasd -Rfl -B viminfo
     )
+}
 
+_fzf_complete_v() {
+    _fzf_complete '-d -m -q -1' "$@" < <(
+        fasd -Rfl -B viminfo
+    )
+}
+
+_fzf_complete_z() {
+    _fzf_complete '-d -m -q -1' "$@" < <(
+        fasd -Rdl
+    )
+}
+
+_fzf_complete_o() {
+    _fzf_complete '-d -m -q -1' "$@" < <(
+        fasd -Ral
+    )
+}
+
+
+_fzf_complete_f() {
+    _fzf_complete '-d -m -q -1' "$@" < <(
+        fasd -Rfl
+    )
+}
+
+_fzf_complete_d() {
+    _fzf_complete '-d -m -q -1' "$@" < <(
+        fasd -Rdl
+    )
 }
 
 fzf-completion() {

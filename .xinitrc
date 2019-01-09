@@ -46,9 +46,10 @@ udiskie &
 clipmenud &
 xbindkeys
 setxkbmap -option ctrl:nocaps
+setxkbmap -option compose:ralt
 numlockx &
 unclutter --ignore-scrolling --timeout 2 --fork
-xautolock -time 15 -locker "i3-system-mode lock" &
+xautolock -time 15 -locker  slock &
 ~/.fehbg &
 compton -b -d :0
 dwm-status &
