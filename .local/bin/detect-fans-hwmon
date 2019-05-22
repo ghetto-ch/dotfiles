@@ -1,0 +1,2 @@
+#!/bin/sh
+ln -s /sys/devices/platform/nct6775.656/hwmon/* /tmp/hwmon

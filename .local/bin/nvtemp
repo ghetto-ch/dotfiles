@@ -1,0 +1,10 @@
+#!/bin/sh
+
+[[ ! -f "/tmp/temp1_input" ]] && touch /tmp/temp1_input
+
+while true
+do
+	t=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
+	echo $[ t * 1000 ] > /tmp/temp1_input
+	sleep 1
+done

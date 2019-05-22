@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/ghetto/tools/fand/src/fan'
+let g:netrw_dirhist_2='/home/ghetto/tools/fand/src/app'
+let g:netrw_dirhist_3='/home/ghetto'
+let g:netrw_dirhist_4='/mnt/Data/Documenti/ebooks'
