@@ -7,7 +7,7 @@ Pocket https://getpocket.com/a/queue/
 ArchWiki https://wiki.archlinux.org/
 ghettosrv/Monitorix http://192.168.7.3:8080/monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day&color=black
 ghettonet/Dynu https://www.dynu.com/en-US/ControlPanel/Login
-ghettonet/WebAdmin https://192.168.7.1:4444/
+ghettonet/WebAdmin https://webadmin.ghetto.link:4444/
 ghettonet/UserPortal https://ghetto.link:7443/
 ghettonet/OwnCloud https://cloud.ghetto.link/index.php/login
 ghettonet/Unifi Controller https://192.168.7.103:8443/manage/site/default/dashboard
@@ -28,3 +28,5 @@ Linux/Backreference https://backreference.org/
 Linux/entr http://eradman.com/entrproject/
 regexp/Useful Patterns https://projects.lukehaas.me/regexhub/
 Vim/Vim Galore https://github.com/mhinz/vim-galore#readme
+Programming/Julia Introduction Wikibook https://en.wikibooks.org/wiki/Introducing_Julia
+ghettonet/Plex http://192.168.7.3:32400/web/index.html#

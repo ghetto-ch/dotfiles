@@ -13,11 +13,12 @@ sel=$({ cat $bfile; sqlite3 $hfile "SELECT url from History"; } | uniq | \
     case "$cmd" in
         "d") xdg-open "https://duckduckgo.com/?q=$arg"
             ;;
+        "g") xdg-open "https://google.com/search?q=$arg"
+            ;;
         "y") xdg-open "https://youtube.com/results?search_query=$arg"
             ;;
         "aw") xdg-open "https://wiki.archlinux.org/index.php?search=$arg"
             ;;
-        *) xdg-open $(echo $sel | awk '{print $NF}')
-            echo $sel | awk '{print $NF}'
+        *) xdg-open $(echo $sel | awk '{print $1}')
             ;;
     esac

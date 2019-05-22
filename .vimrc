@@ -93,6 +93,11 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'nvie/vim-flake8'
 
+" Nim
+Plugin 'zah/nim.vim'
+
+Plugin 'JuliaEditorSupport/julia-vim'
+
 " Fuzzy finder
 Plugin 'junegunn/fzf.vim'
 
@@ -361,3 +366,16 @@ let g:syntastic_check_on_wq = 0
 " Goyo / Limelight
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+" Nimrod
+fun! JumpToDef()
+  if exists("*GotoDefinition_" . &filetype)
+    call GotoDefinition_{&filetype}()
+  else
+    exe "norm! \<C-]>"
+  endif
+endf
+
+" Jump to tag
+nn <M-g> :call JumpToDef()<cr>
+ino <M-g> <esc>:call JumpToDef()<cr>i

@@ -19,6 +19,7 @@ if ! mount|grep Backups > /dev/null; then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.nimble/bin:$PATH"
 
 emulate sh -c 'source /etc/profile'
 [[ ! $DISPLAY && $XDG_VTNR -eq 1 && $(id --group) -ne 0 ]] && exec startx

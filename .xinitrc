@@ -32,10 +32,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-xrandr --output DP-4 --primary
-xrandr --output DP-0 --rotate left
-xrandr --output DP-0 --left-of DP-4
-xrandr --output DP-4 --pos 1080x160
+#xrandr --setprovideroutputsource 1 0
+xrandr --output DisplayPort-0 --primary
+xrandr --output HDMI-A-0 --rotate left
+xrandr --output HDMI-A-0 --left-of DisplayPort-0
+xrandr --output HDMI-A-0 --pos 0x-150
 
 #twm &
 #xclock -geometry 50x50-1+1 &
@@ -47,11 +48,13 @@ clipmenud &
 xbindkeys
 setxkbmap -option ctrl:nocaps
 setxkbmap -option compose:ralt
+xset r rate 250 25
 numlockx &
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 15 -locker  slock &
 ~/.fehbg &
-compton -b -d :0
+compton -b
+export EDITOR=nvim
 dwm-status &
 #exec i3
 exec dwm

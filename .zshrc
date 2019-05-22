@@ -88,7 +88,8 @@ bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
 # Some aliases
-alias ls="ls -h --color='auto'"
+alias ls='lsd -F'
+#alias ls="ls -h --color='auto'"
 alias la='ls -la'
 alias ll='ls -l'
 alias clr=clear
@@ -108,7 +109,6 @@ alias /="cd /"
 alias ncdu='ncdu --color dark'
 alias info=pinfo
 alias surf=surf-open
-
 
 # Setup grep to be a bit more nice
 # check if 'x' grep argument available
@@ -167,14 +167,24 @@ fcd() {
 }
 
 fl() {
-    sel="$(locate -Ai -0 $@ | fzf --read0 -0)"
-    if [[ "$DISPLAY" ]]
-    then
-        echo $sel | tr -d '\n' | xclip -selection clipboard
-        unset sel
-    fi
+	sel="$(locate -Ai -0 $@ | fzf --read0 -0)"
+	if [[ "$DISPLAY" ]]
+	then
+		echo $sel | tr -d '\n' | xclip -selection clipboard
+		unset sel
+	fi
 }
 
+ec() {
+	emacsclient -n -e "(if (> (length (frame-list)) 1) 't)" | grep t >/dev/null 2>/dev/null
+
+	if [[ "$?" = "1" ]]
+	then
+		emacsclient -c -n -a "" "$@"
+	else
+		emacsclient -n -a "" "$@"
+	fi
+}
 # v - open files in ~/.viminfo
 #v() {
 #  local files
@@ -195,7 +205,7 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # Default editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # Pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
@@ -225,19 +235,20 @@ eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
 #alias o='a -e xdg-open' # quick opening files with xdg-open
 if [ "$DISPLAY" ]
 then
-    alias vi='gvim --remote-silent'
+    alias vi='nvr -s' #--remote-silent'
     #alias v='f -t -e "gvim --remote-silent" -b viminfo' # quick opening files with vim
 else
-    alias vi='vim --remote-silent'
+    alias vi='nvr -s' #--remote-silent'
     #alias v='f -t -e "vim --remote-silent"  -b viminfo' # quick opening files with vim
 fi
+
 # fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
 v() {
     if [ "$DISPLAY" ]
     then
-        cmd="gvim --remote-silent"
+        cmd="nvr -s" #--remote-silent"
     else
-        cmd="vim --remote-silent"
+        cmd="nvr -s" #--remote-silent"
     fi
 
     [ $# -gt 0 ] && fasd -f -B viminfo -e ${cmd} "$*" && return
