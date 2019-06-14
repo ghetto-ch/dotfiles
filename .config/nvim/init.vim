@@ -7,12 +7,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
-Plug 'arcticicestudio/nord-vim'
 
 " Usability
 Plug 'tpope/vim-sensible'
 Plug '/usr/bin/fzf'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'haya14busa/incsearch.vim'
@@ -81,23 +80,15 @@ set undofile
 set background=dark
 set t_Co=256
 
-" iPad terminal emulator doesn't like base16
-" therefore I check if the terminal is xterm.
-" It's not a nice solution but I don't know other...
-if &term=~'xterm'
-	colorscheme nord
-	let g:airline_theme='nord'
-else
-	" Load Base16 theme
-	set termguicolors
-	if filereadable(expand("~/.vimrc_background"))
-		source ~/.vimrc_background
-	endif
+" Load Base16 theme
+set termguicolors
+if filereadable(expand("~/.vimrc_background"))
+	source ~/.vimrc_background
 endif
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 
 "############################################################
 " USABILITY SETTINGS
@@ -178,6 +169,8 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+nnoremap <leader> f :FZF<CR>
 
 "##### GOYO / LIMELIGHT #####
 autocmd! User GoyoEnter Limelight

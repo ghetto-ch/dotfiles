@@ -20,6 +20,8 @@ fi
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
+export PLAN9=/usr/local/plan9
+export PATH=$PATH:$PLAN9/bin
 
 emulate sh -c 'source /etc/profile'
 [[ ! $DISPLAY && $XDG_VTNR -eq 1 && $(id --group) -ne 0 ]] && exec startx

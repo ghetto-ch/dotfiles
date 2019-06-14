@@ -1,17 +1,28 @@
-# Powerline9k
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+#export TERM=st-256color
 
-# Prompt customizations
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv vcs root_indicator background_jobs time)
-POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
-POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
-POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
+if [ "$TERM" != "linux" ]
+then
+
+	# Powerline9k
+	source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+
+	# Prompt customizations
+	POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
+	POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
+	POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
+	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+	POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv vcs root_indicator background_jobs time)
+	POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
+	POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
+	POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
+	POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
+	POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
+
+else
+
+	PROMPT='%n:%~%# '
+
+fi
 
 # Base16 Shell
 #BASE16_SHELL_SET_BACKGROUND=false
@@ -67,7 +78,7 @@ setopt RMSTARSILENT
 bindkey -e
 export KEYTIMEOUT=15
 # ZSH keybindings
-bindkey "\e[3~" delete-char          # [Delete] - delete forward
+bindkey "\e[3~" delete-char					      # [Delete] - delete forward
 bindkey "^[[A" history-search-backward            # start typing + [Up-Arrow] - fuzzy find history forward
 bindkey "^[[B" history-search-forward             # start typing + [Down-Arrow] - fuzzy find history backward
 bindkey "\e\e" sudo-command-line                  # [Esc] [Esc] - insert "sudo" at beginning of line
@@ -88,8 +99,8 @@ bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
 # Some aliases
-alias ls='lsd -F'
-#alias ls="ls -h --color='auto'"
+#alias ls='lsd -F'
+alias ls="ls -h --color='auto'"
 alias la='ls -la'
 alias ll='ls -l'
 alias clr=clear
@@ -221,6 +232,10 @@ export IDF_PATH=~/esp/esp-idf
 #export PATH="$HOME/esp/xtensa-lx106-elf/bin:$PATH"
 #export IDF_PATH=~/esp/ESP8266_RTOS_SDK
 
+# plan9port
+export PLAN9=/usr/local/plan9
+export PATH=$PATH:$PLAN9/bin
+
 # FZF
 source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
 source $HOME/.fzf/completion.zsh
@@ -228,6 +243,7 @@ source $HOME/.fzf/key-bindings.zsh
 export FZF_COMPLETION_TRIGGER=''
 bindkey '\t\t' fzf-completion
 bindkey '^I' $fzf_default_completion
+export FZF_TMUX=1
 
 #source $HOME/.zsh/z.sh
 #source $HOME/.zsh/fz.sh

@@ -8,4 +8,4 @@ bckdir="192.168.7.3:/pool1/Backups/gondolin/home"
 rsync -aubh --delete --exclude=.protonvpn-cli --exclude=Downloads --backup-dir=bckfiles $HOME $bckdir --log-file=/mnt/Backups/gondolin/rsynclog --progress
 
 # root partition image
-#fsarchiver -j8 -o -A -v savefs /mnt/Backups/gondolin/root/archlinux.fsa DISK/PARTITION BY UUID??????
+fsarchiver -j8 -o -A -v savefs /mnt/Backups/gondolin/root/archlinux.fsa /dev/disk/by-uuid/790909dd-6cc6-45ce-be11-0356d65146c5

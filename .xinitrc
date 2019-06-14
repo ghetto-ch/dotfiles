@@ -58,3 +58,4 @@ export EDITOR=nvim
 dwm-status &
 #exec i3
 exec dwm
+#exec rio
