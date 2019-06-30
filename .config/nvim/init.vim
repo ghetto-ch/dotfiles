@@ -16,9 +16,12 @@ Plug 'kana/vim-textobj-entire'
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+
 
 " Initialize plugin system
 call plug#end()
+
 "############################################################
 " CUSTOM FUNCTIONS
 "############################################################
@@ -99,10 +102,16 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+" Stop complaining about modified buffers
+set hidden
+
 "############################################################
 " PROGRAMMING SETTINGS
 "############################################################
 
+" Ebable file types plugin and omnifunction
+:filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 " Python indentation
 autocmd FileType python setlocal expandtab
 
@@ -148,3 +157,12 @@ vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Fuzzy find files
 nnoremap <leader>f :FZF<CR>
+
+" Generate CTAGS with F5
+nnoremap <f5> :!ctags -R --exclude=.git --languages=-sql<CR>
+
+"############################################################
+" CUSTOM COMMANDS
+"############################################################
+
+command WR :execute ':silent w !sudo tee % > /dev/null' | :edit!

@@ -32,3 +32,4 @@ Programming/Julia Introduction Wikibook https://en.wikibooks.org/wiki/Introducin
 ghettonet/Plex http://192.168.7.3:32400/web/index.html#
 ghettonet/CUPS http://localhost:631/
 git/fork https://stackoverflow.com/questions/9268849/how-to-fork-a-non-github-repo-on-github
+git/ctags/vim https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
