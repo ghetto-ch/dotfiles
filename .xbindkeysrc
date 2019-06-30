@@ -77,7 +77,25 @@
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
    XF86AudioMute
 
+# Lauch clipmenu
+"clipmenu -i"
+   Mod2+Mod4 + x
 
+# Launch system
+"dmenu-system"
+   Mod2+Mod4 + s
+
+# Unmount
+"dmenu-mount"
+   Mod2+Mod4 + u
+
+# Bookmarks
+"dmenu-loadbmark"
+   Shift+Mod2+Mod4 + b
+
+# tmux
+"st -e tmux a -t $USER"
+   Shift+Mod2+Mod4 + t
 
 ##################################
 # End of xbindkeys configuration #

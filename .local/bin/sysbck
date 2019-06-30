@@ -9,3 +9,4 @@ rsync -aubh --delete --exclude=.protonvpn-cli --exclude=Downloads --backup-dir=b
 
 # root partition image
 fsarchiver -j8 -o -A -v savefs /mnt/Backups/gondolin/root/archlinux.fsa /dev/disk/by-uuid/790909dd-6cc6-45ce-be11-0356d65146c5
+
