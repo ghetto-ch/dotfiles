@@ -1,2 +1,4 @@
 .smbcredentials filter=git-crypt diff=git-crypt
 .config/qutebrowser/qutepocket.secrets filter=git-crypt diff=git-crypt
+.config/stig/rc filter=git-crypt diff=git-crypt
+.config/tremc/settings.cfg filter=git-crypt diff=git-crypt

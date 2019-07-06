@@ -7,12 +7,15 @@ lock() {
     #systemctl hybrid-sleep
 }
 
-x=$(echo -e "lock\nsuspend\nhibernate\nreboot\npoweroff" | dmenu -i)
+x=$(echo -e "lock\nswitch\nsuspend\nhibernate\nreboot\npoweroff" | dmenu -i)
 
 case "$x" in
     lock)
         lock
         ;;
+	switch)
+		dm-tool switch-to-greeter
+		;;
     suspend)
         lock; systemctl hybrid-sleep #suspend
         ;;

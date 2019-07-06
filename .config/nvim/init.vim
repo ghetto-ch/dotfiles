@@ -15,7 +15,7 @@ Plug 'kana/vim-textobj-entire'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-eunuch'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
@@ -46,23 +46,14 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "############################################################
-" CUSTOM FUNCTIONS
-"############################################################
-
-" Strip all trailing spaces on write
-function! StripTrailing()
-	let l = line(".")
-	let c = col(".")
-	%s/\s\+$//e
-	call cursor(l, c)
-endfun
-
-"############################################################
 " GENERAL SETTINGS
 "############################################################
 "
 " Tell vim to use zsh instead of bash
 set shell=/bin/zsh
+
+" Spell check settings
+set spelllang=it,en_us
 
 " Tabs and folding
 set tabstop=4
@@ -193,5 +184,18 @@ inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
 " CUSTOM COMMANDS
 "############################################################
 
-command WR :execute ':silent w !sudo tee % > /dev/null' | :edit!
-command StripTrailing :call StripTrailing()
+command! StripTrailing :call StripTrailing()
+command! ST :call StripTrailing()
+"
+"############################################################
+" CUSTOM FUNCTIONS
+"############################################################
+
+" Strip all trailing spaces on write
+function! StripTrailing()
+	let l = line(".")
+	let c = col(".")
+	%s/\s\+$//e
+	call cursor(l, c)
+endfun
+

@@ -97,6 +97,10 @@
 "st -e tmux a -t $USER"
    Shift+Mod2+Mod4 + t
 
+# Lock screen
+"slock&"
+   Shift+Mod4 + l
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
