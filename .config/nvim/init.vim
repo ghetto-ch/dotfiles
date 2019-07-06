@@ -12,15 +12,38 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-eunuch'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-
+Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Initialize plugin system
 call plug#end()
+
+"############################################################
+" PLUGIN SETTINGS
+"############################################################
+
+" FZF #######################################################
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Ultisnips #################################################
+
+" let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "############################################################
 " CUSTOM FUNCTIONS
@@ -95,12 +118,12 @@ set mouse+=a
 source ~/.config/nvim/statusline.vim
 
 " Highlight unuseful whitespaces
-highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermbg=darkred guibg=darkred
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+" autocmd BufWinLeave * call clearmatches()
 
 " Stop complaining about modified buffers
 set hidden
@@ -161,8 +184,14 @@ nnoremap <leader>f :FZF<CR>
 " Generate CTAGS with F5
 nnoremap <f5> :!ctags -R --exclude=.git --languages=-sql<CR>
 
+" Use TAB in insert mode to go through choices
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+
 "############################################################
 " CUSTOM COMMANDS
 "############################################################
 
 command WR :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command StripTrailing :call StripTrailing()

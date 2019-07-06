@@ -33,3 +33,6 @@ ghettonet/Plex http://192.168.7.3:32400/web/index.html#
 ghettonet/CUPS http://localhost:631/
 git/fork https://stackoverflow.com/questions/9268849/how-to-fork-a-non-github-repo-on-github
 git/ctags/vim https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+arch/surface https://www.reddit.com/r/SurfaceLinux/comments/94hjxv/surface_go_first_impressions/
+tablet/dwm https://www.reddit.com/r/unixporn/comments/5x43lw/dwm_with_onscreen_keyboard/
+tablet/dwm/code https://github.com/minego/dwm-customized
