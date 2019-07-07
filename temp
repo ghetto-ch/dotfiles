@@ -1,0 +1,84 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.006  000.006: --- NVIM STARTING ---
+000.177  000.171: locale set
+000.471  000.294: inits 1
+000.479  000.008: window checked
+000.607  000.128: parsing arguments
+000.648  000.041: expanding arguments
+000.690  000.042: inits 2
+001.517  000.827: init highlight
+001.679  000.022  000.022: sourcing /usr/share/nvim/archlinux.vim
+001.686  000.058  000.036: sourcing /etc/xdg//nvim/sysinit.vim
+003.555  001.802  001.802: sourcing /home/ghetto/.local/share/nvim/site/autoload/plug.vim
+014.363  000.010  000.010: sourcing /home/ghetto/.local/share/nvim/plugged/vim-fugitive/ftdetect/fugitive.vim
+014.435  000.013  000.013: sourcing /home/ghetto/.local/share/nvim/plugged/neosnippet.vim/ftdetect/neosnippet.vim
+014.553  000.010  000.010: sourcing /usr/share/vim/vimfiles/ftdetect/PKGBUILD.vim
+014.572  000.008  000.008: sourcing /usr/share/vim/vimfiles/ftdetect/augeas.vim
+014.596  000.013  000.013: sourcing /usr/share/vim/vimfiles/ftdetect/conkyrc.vim
+014.619  000.015  000.015: sourcing /usr/share/vim/vimfiles/ftdetect/meson.vim
+014.661  007.012  006.943: sourcing /usr/share/nvim/runtime/filetype.vim
+014.785  000.027  000.027: sourcing /usr/share/nvim/runtime/ftplugin.vim
+014.906  000.027  000.027: sourcing /usr/share/nvim/runtime/indent.vim
+015.372  000.210  000.210: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+015.458  000.396  000.186: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+015.482  000.533  000.136: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+016.154  000.157  000.157: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+017.360  000.177  000.177: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+017.998  000.198  000.198: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+025.149  008.636  008.262: sourcing /home/ghetto/.local/share/nvim/plugged/base16-vim/colors/base16-default-dark.vim
+025.154  008.674  000.039: sourcing /home/ghetto/.vimrc_background
+025.210  000.023  000.023: sourcing /home/ghetto/.config/nvim/statusline.vim
+025.296  000.007  000.007: sourcing /usr/share/nvim/runtime/filetype.vim
+025.370  000.006  000.006: sourcing /usr/share/nvim/runtime/ftplugin.vim
+025.441  000.005  000.005: sourcing /usr/share/nvim/runtime/indent.vim
+025.549  023.842  005.567: sourcing /home/ghetto/.config/nvim/init.vim
+025.552  000.135: sourcing vimrc file(s)
+026.159  000.500  000.500: sourcing /home/ghetto/.local/share/nvim/plugged/fzf.vim/plugin/fzf.vim
+026.217  000.013  000.013: sourcing /home/ghetto/.local/share/nvim/plugged/goyo.vim/plugin/goyo.vim
+026.369  000.115  000.115: sourcing /home/ghetto/.local/share/nvim/plugged/vim-vinegar/plugin/vinegar.vim
+034.627  008.218  008.218: sourcing /home/ghetto/.local/share/nvim/plugged/vim-unimpaired/plugin/unimpaired.vim
+035.003  000.333  000.333: sourcing /home/ghetto/.local/share/nvim/plugged/vim-surround/plugin/surround.vim
+035.182  000.126  000.126: sourcing /home/ghetto/.local/share/nvim/plugged/vim-commentary/plugin/commentary.vim
+035.424  000.202  000.202: sourcing /home/ghetto/.local/share/nvim/plugged/vim-fugitive/plugin/fugitive.vim
+035.665  000.199  000.199: sourcing /home/ghetto/.local/share/nvim/plugged/vim-endwise/plugin/endwise.vim
+035.762  000.057  000.057: sourcing /home/ghetto/.local/share/nvim/plugged/vim-closer/plugin/closer.vim
+035.823  000.015  000.015: sourcing /home/ghetto/.local/share/nvim/plugged/deoplete.nvim/plugin/deoplete.vim
+035.902  000.041  000.041: sourcing /home/ghetto/.local/share/nvim/plugged/neco-vim/plugin/necovim.vim
+035.973  000.025  000.025: sourcing /home/ghetto/.local/share/nvim/plugged/neoinclude.vim/plugin/neoinclude.vim
+036.122  000.111  000.111: sourcing /home/ghetto/.local/share/nvim/plugged/neosnippet.vim/plugin/neosnippet.vim
+036.459  000.155  000.155: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+036.482  000.009  000.009: sourcing /usr/share/nvim/runtime/plugin/health.vim
+036.546  000.054  000.054: sourcing /usr/share/nvim/runtime/plugin/man.vim
+036.901  000.344  000.344: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+037.045  000.110  000.110: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+037.420  000.363  000.363: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+037.764  000.121  000.121: sourcing /usr/share/nvim/runtime/autoload/remote/host.vim
+038.012  000.103  000.103: sourcing /usr/share/nvim/runtime/autoload/remote/define.vim
+038.073  000.533  000.309: sourcing /home/ghetto/.local/share/nvim/rplugin.vim
+038.077  000.637  000.104: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+038.177  000.078  000.078: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+038.214  000.019  000.019: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+038.335  000.108  000.108: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+038.418  000.059  000.059: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+038.448  000.014  000.014: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+038.581  000.120  000.120: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+038.977  000.328  000.328: sourcing /usr/share/vim/vimfiles/plugin/fzf.vim
+038.981  001.077: loading plugins
+039.054  000.073: loading packages
+039.102  000.048: loading after plugins
+039.109  000.006: inits 3
+040.283  001.174: reading ShaDa
+041.513  001.231: clearing screen
+041.695  000.182: opening buffers
+041.711  000.017: BufEnter autocommands
+041.713  000.002: editing files in windows
+044.231  002.341  002.341: sourcing /home/ghetto/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim
+045.020  000.966: VimEnter autocommands
+045.022  000.002: before starting main loop
+046.507  001.485: first screen update
+046.509  000.002: --- NVIM STARTED ---

@@ -10,10 +10,10 @@ Plug 'chriskempson/base16-vim'
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
+" Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-entire'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-speeddating'
+" Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 " Plug 'tpope/vim-eunuch'
 
@@ -22,7 +22,12 @@ Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'w0rp/ALE'
 
 " Initialize plugin system
 call plug#end()
@@ -39,11 +44,21 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Ultisnips #################################################
+" Neosnippets
+imap <C-j>     <Plug>(neosnippet_expand_or_jump)
+smap <C-j>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-j>     <Plug>(neosnippet_expand_target)
 
-" let g:UltiSnipsExpandTrigger="<c-j>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" ALE
+let g:ale_c_parse_makefile=1
+let g:ale_c_parse_compile_commands=1
+let g:ale_linters = {
+			\ 'cpp': ['clangtidy'] ,
+			\ 'c': ['clangtidy'] ,
+			\ }
 
 "############################################################
 " GENERAL SETTINGS
@@ -53,7 +68,13 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 set shell=/bin/zsh
 
 " Spell check settings
-set spelllang=it,en_us
+set spelllang=it,en
+" highlight SpellBad cterm=Reverse ctermbg=Red
+" highlight SpellCap ctermbg=Yellow
+" highlight SpellRare ctermbg=DarkYellow
+" highlight SpellLocal ctermbg=Magenta
+
+
 
 " Tabs and folding
 set tabstop=4
@@ -98,6 +119,8 @@ set scrolloff=5
 set ignorecase
 set smartcase
 set inccommand=nosplit
+" nnoremap / /\v
+" cnoremap s/ s/\v
 
 " Ex completion
 set wildmenu
@@ -168,9 +191,9 @@ nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
 
-" Replace word or selected text pressing C-r
-nnoremap <C-M-r> :%s/<C-r><C-w>//g<left><left>
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+" Replace selected text pressing C-r, use very nomagic
+vnoremap <C-r> "hy:%s/\V<C-r>h
+" //g<left><left>
 
 " Fuzzy find files
 nnoremap <leader>f :FZF<CR>
@@ -182,6 +205,18 @@ nnoremap <f5> :!ctags -R --exclude=.git --languages=-sql<CR>
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
 
+" Enable completion
+nmap <leader>c :call deoplete#toggle()<CR>
+
+" Enable linting
+nmap <silent> <leader>l <Plug>(ale_toggle)
+
+" Go to next/previous lint
+nmap <silent> <leader>n <Plug>(ale_next)
+nmap <silent> <leader>p <Plug>(ale_previous)
+
+" Get lint info
+nmap <silent> <leader>i <Plug>(ale_info)
 
 "############################################################
 " CUSTOM COMMANDS
@@ -201,4 +236,3 @@ function! StripTrailing()
 	%s/\s\+$//e
 	call cursor(l, c)
 endfun
-
