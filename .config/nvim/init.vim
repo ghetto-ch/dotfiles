@@ -97,6 +97,7 @@ set scrolloff=5
 " Search
 set ignorecase
 set smartcase
+set inccommand=nosplit
 
 " Ex completion
 set wildmenu
@@ -124,17 +125,19 @@ set hidden
 "############################################################
 
 " Ebable file types plugin and omnifunction
-:filetype plugin indent on
+filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 " Python indentation
-autocmd FileType python setlocal expandtab
+autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+" Ruby
+autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
 
 "############################################################
 " SOME AUTOCOMMANDS
 "############################################################
 
 " Need to set DISPLAY in case tmux deleted the variable
-autocmd BufWritePost *.md :silent !export DISPLAY=:0 & markdown -o ~/.var/tmp/surf-preview.html % & surf-preview
+autocmd BufWritePost *.md :silent !export DISPLAY=:0 & markdown -o ~/.var/tmp/surf-preview.html % && surf-preview
 autocmd BufWritePost *.adoc :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview
 
 "############################################################

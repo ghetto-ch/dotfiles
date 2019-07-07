@@ -6,3 +6,4 @@ export PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
 # Variables
 export EDITOR=nvim
 export HOST
+export QT_QPA_PLATFORMTHEME=qt5ct
