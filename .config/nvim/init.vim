@@ -44,7 +44,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Neosnippets
+" Neosnippets ###############################################
 imap <C-j>     <Plug>(neosnippet_expand_or_jump)
 smap <C-j>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-j>     <Plug>(neosnippet_expand_target)
@@ -52,12 +52,13 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" ALE
+" ALE #######################################################
+let g:ale_enabled=0
 let g:ale_c_parse_makefile=1
 let g:ale_c_parse_compile_commands=1
 let g:ale_linters = {
-			\ 'cpp': ['clangtidy'] ,
-			\ 'c': ['clangtidy'] ,
+			\ 'cpp': ['clangd'] ,
+			\ 'c': ['clangd'] ,
 			\ }
 
 "############################################################
@@ -73,8 +74,6 @@ set spelllang=it,en
 " highlight SpellCap ctermbg=Yellow
 " highlight SpellRare ctermbg=DarkYellow
 " highlight SpellLocal ctermbg=Magenta
-
-
 
 " Tabs and folding
 set tabstop=4

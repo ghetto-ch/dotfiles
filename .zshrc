@@ -228,16 +228,16 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # ESP-IDF
-export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
-export IDF_PATH=~/esp/esp-idf
+# export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
+# export IDF_PATH=~/esp/esp-idf
 
 # ESP8266
 #export PATH="$HOME/esp/xtensa-lx106-elf/bin:$PATH"
 #export IDF_PATH=~/esp/ESP8266_RTOS_SDK
 
 # plan9port
-export PLAN9=/usr/local/plan9
-export PATH=$PATH:$PLAN9/bin
+# export PLAN9=/usr/local/plan9
+# export PATH=$PATH:$PLAN9/bin
 
 # FZF
 source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
@@ -250,7 +250,8 @@ export FZF_TMUX=1
 
 #source $HOME/.zsh/z.sh
 #source $HOME/.zsh/fz.sh
-eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
+# eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
+eval "$(fasd --init auto)"
 #alias o='a -e xdg-open' # quick opening files with xdg-open
 if [ "$DISPLAY" ]
 then

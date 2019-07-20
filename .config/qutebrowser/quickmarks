@@ -36,3 +36,6 @@ git/ctags/vim https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 arch/surface https://www.reddit.com/r/SurfaceLinux/comments/94hjxv/surface_go_first_impressions/
 tablet/dwm https://www.reddit.com/r/unixporn/comments/5x43lw/dwm_with_onscreen_keyboard/
 tablet/dwm/code https://github.com/minego/dwm-customized
+freenas/microserver https://www.ixsystems.com/community/threads/unable-to-boot-freenas-on-ssd.74327/
+grub/usb https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/
+freenas/transmission https://www.ixsystems.com/community/threads/transmission-download-to-directory-resetting-after-plugin-jail-restart.69651/
