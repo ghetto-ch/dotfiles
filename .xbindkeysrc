@@ -101,6 +101,10 @@
 "slock&"
    Shift+Mod4 + l
 
+# Find recent files
+"dmenu-fasd"
+   Shift+Mod4 + f
+
 ##################################
 # End of xbindkeys configuration #
 ##################################

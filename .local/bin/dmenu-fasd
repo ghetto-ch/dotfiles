@@ -1,0 +1,8 @@
+#!/bin/sh
+exec xdg-open "$(fasd -Ral |\
+    # tac |\
+	# awk -F "/" {print $NF} |\
+    sed "s:$HOME:~:" |\
+    dmenu -i -l 20 "$@" |\
+    sed "s:~:$HOME:")" & disown
+

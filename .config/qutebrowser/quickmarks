@@ -5,12 +5,9 @@ C# NN from scratch part 2 https://www.infozone.se/en/blog/2017/04/27/machine-lea
 TNTVillage http://forum.tntvillage.scambioetico.org/index.php
 Pocket https://getpocket.com/a/queue/
 ArchWiki https://wiki.archlinux.org/
-ghettosrv/Monitorix http://192.168.7.3:8080/monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day&color=black
 ghettonet/Dynu https://www.dynu.com/en-US/ControlPanel/Login
 ghettonet/WebAdmin https://webadmin.ghetto.link:4444/
-ghettonet/UserPortal https://ghetto.link:7443/
-ghettonet/OwnCloud https://cloud.ghetto.link/index.php/login
-ghettonet/Unifi Controller https://192.168.7.103:8443/manage/site/default/dashboard
+ghettonet/UserPortal https://webadmin.ghetto.link:7443/
 YouTube https://www.youtube.com/?reload=9
 Ilcorsaronero https://ilcorsaronero.cc/cat/1
 Github https://github.com/
@@ -20,16 +17,16 @@ Linux/Panix https://www.panix.com/~elflord/unix/
 Linux/Howtos https://linuxhowtos.org/
 Linux/Awesome shell https://github.com/alebcay/awesome-shell
 Linux/The book of secret knowledge https://github.com/trimstray/the-book-of-secret-knowledge
-Vim/Vim Tips Wiki http://vim.wikia.com/wiki/Vim_Tips_Wiki
+vim/Vim Tips Wiki http://vim.wikia.com/wiki/Vim_Tips_Wiki
 Programming/DevDocs https://devdocs.io/
-suckless/base16-st https://github.com/honza/base16-st
 vim/Wyatt Videos http://derekwyatt.org/vim/tutorials/index.html
 Linux/Backreference https://backreference.org/
 Linux/entr http://eradman.com/entrproject/
 regexp/Useful Patterns https://projects.lukehaas.me/regexhub/
-Vim/Vim Galore https://github.com/mhinz/vim-galore#readme
+vim/Vim Galore https://github.com/mhinz/vim-galore#readme
 Programming/Julia Introduction Wikibook https://en.wikibooks.org/wiki/Introducing_Julia
-ghettonet/Plex http://192.168.7.3:32400/web/index.html#
+ghettonet/Freenas https://192.168.7.3
+ghettonet/Emby http://192.168.7.101:8096
 ghettonet/CUPS http://localhost:631/
 git/fork https://stackoverflow.com/questions/9268849/how-to-fork-a-non-github-repo-on-github
 git/ctags/vim https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
@@ -39,3 +36,4 @@ tablet/dwm/code https://github.com/minego/dwm-customized
 freenas/microserver https://www.ixsystems.com/community/threads/unable-to-boot-freenas-on-ssd.74327/
 grub/usb https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/
 freenas/transmission https://www.ixsystems.com/community/threads/transmission-download-to-directory-resetting-after-plugin-jail-restart.69651/
+tmux/cheatsheet https://gist.github.com/andreyvit/2921703

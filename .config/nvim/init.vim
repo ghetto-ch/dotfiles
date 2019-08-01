@@ -217,12 +217,17 @@ nmap <silent> <leader>p <Plug>(ale_previous)
 " Get lint info
 nmap <silent> <leader>i <Plug>(ale_info)
 
+" Search for selection in visual mode
+xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
 "############################################################
 " CUSTOM COMMANDS
 "############################################################
 
 command! StripTrailing :call StripTrailing()
 command! ST :call StripTrailing()
+command! -nargs=* Z :call Z(<f-args>)
 "
 "############################################################
 " CUSTOM FUNCTIONS
@@ -235,3 +240,23 @@ function! StripTrailing()
 	%s/\s\+$//e
 	call cursor(l, c)
 endfun
+
+function! s:VSetSearch(cmdtype)
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
+
+" Z - cd to recent / frequent directories
+function! Z(...)
+  let cmd = 'fasd -d -e printf'
+  for arg in a:000
+    let cmd = cmd . ' ' . arg
+  endfor
+  let path = system(cmd)
+  if isdirectory(path)
+    echo path
+    exec 'cd' fnameescape(path)
+  endif
+endfunction

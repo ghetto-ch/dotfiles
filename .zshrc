@@ -54,6 +54,8 @@ setopt HIST_IGNORE_DUPS          # Do not write events to history that are dupli
 setopt HIST_IGNORE_ALL_DUPS      # If a new command line being added to the history list duplicates an older one, the older command is removed from the list (even if it is not the previous event).
 setopt INC_APPEND_HISTORY        # Add commands to history as they are typed, don't wait until shell exit
 setopt HIST_REDUCE_BLANKS        # Remove extra blanks from each command line being added to history
+setopt autopushd pushdminus pushdsilent pushdtohome
+DIRSTACKSIZE=10
 
 #the auto complete dump is a cache file where ZSH stores its auto complete data, for faster load times
 local ZSH_COMPDUMP="$ZSH_CACHE/acdump-${SHORT_HOST}-${ZSH_VERSION}"  #where to store autocomplete data
@@ -100,6 +102,8 @@ bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
 # Some aliases
+alias dh='dirs -v'
+alias pd='popd'
 alias ls='exa'
 # alias ls="ls -h --color='auto'"
 alias la='ls -la'
@@ -199,15 +203,6 @@ ec() {
 		emacsclient -n -a "" "$@"
 	fi
 }
-# v - open files in ~/.viminfo
-#v() {
-#  local files
-#  #files=$(grep '^>' ~/.viminfo | awk -F '/' '{print $NF}' |
-#  files=$(grep '^>' ~/.viminfo | cut -c3- |
-#          while read line; do
-#            [ -f "${line/\~/$HOME}" ] && echo "$line"
-#          done | fzf-tmux -d -m -q "$*" -1) && vi ${files//\~/$HOME}
-#}
 
 # Colored MAN pages
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -234,10 +229,6 @@ eval "$(pyenv virtualenv-init -)"
 # ESP8266
 #export PATH="$HOME/esp/xtensa-lx106-elf/bin:$PATH"
 #export IDF_PATH=~/esp/ESP8266_RTOS_SDK
-
-# plan9port
-# export PLAN9=/usr/local/plan9
-# export PATH=$PATH:$PLAN9/bin
 
 # FZF
 source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
@@ -288,26 +279,6 @@ o() {
     [ $# -gt 0 ] && fasd -a -e xdg-open "$*" && return
     local file
     file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" && xdg-open "${file}" || return 1
-}
-
-unalias sd
-sd() {
-    [ $# -gt 0 ] && fasd -d "$*" && return
-    local dir
-    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" || return 1
-}
-
-unalias sf
-sf() {
-    [ $# -gt 0 ] && fasd -f "$*" && return
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" || return 1
-}
-
-sa() {
-    [ $# -gt 0 ] && fasd -a "$*" && return
-    local file
-    file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" || return 1
 }
 
 # Syntax highlighting
