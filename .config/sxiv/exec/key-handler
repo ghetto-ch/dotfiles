@@ -58,7 +58,7 @@ case "$KEY" in
 "y")          tr '\n' ' ' | xclip -i ;;
 "C-c")        while read file; do xclip -selection clipboard -target image/png "$file"; done ;;
 "C-e")        while read file; do st -t "$file" exiv2 pr -q -pa '$file' | less & done ;;
-"C-g")        tr '\n' '\0' | xargs -0 krita & ;;
+"C-g")        tr '\n' '\0' | xargs -0 pinta & ;;
 "less")       rotate 270 ;;
 "greater")    rotate  90 ;;
 "question")   rotate 180 ;;

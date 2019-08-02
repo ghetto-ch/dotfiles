@@ -242,6 +242,7 @@ export FZF_TMUX=1
 #source $HOME/.zsh/z.sh
 #source $HOME/.zsh/fz.sh
 # eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
+eval $(thefuck --alias)
 eval "$(fasd --init auto)"
 #alias o='a -e xdg-open' # quick opening files with xdg-open
 if [ "$DISPLAY" ]
