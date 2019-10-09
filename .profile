@@ -7,8 +7,10 @@
 export EDITOR=nvim
 export HOST
 export QT_QPA_PLATFORMTHEME=qt5ct
+export PLAN9=/usr/local/plan9
+export GOPATH=$HOME/Develop/goprojects
 
-export PATH="$HOME/.local/bin:$HOME/.nimble/bin:$PLAN9/bin:$HOME/.gem/ruby/2.6.0/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH:$HOME/.nimble/bin:$HOME/.gem/ruby/2.6.0/bin:$PLAN9/bin:$GOPATH/bin"
 
 if ! mount|grep Data > /dev/null; then
     mount /mnt/Data
@@ -25,3 +27,7 @@ fi
 if ! mount|grep Downloads > /dev/null; then
     mount /mnt/Downloads
 fi
+
+systemctl --user start tmux.service
+
+# [[ ! $DISPLAY && $XDG_VTNR -eq 1 && $(id --group) -ne 0 ]] && exec startx

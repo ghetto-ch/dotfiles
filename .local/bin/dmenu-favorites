@@ -2,10 +2,10 @@
 x=$(echo -e "browser\nfiles\ntmux\nhtop\nvirtualbox\neplayer" | dmenu -i -p "Favorites")
 
 case "$x" in
-    browser) qutebrowser & disown ;;
-    files) st vifm & disown ;;
-    eplayer) electronplayer & disown ;;
-    htop) st htop & disown ;;
-    virtualbox) virtualbox & disown ;;
+    browser) qutebrowser & ;;
+    files) st vifm & ;;
+    eplayer) electronplayer & ;;
+    htop) st htop & ;;
+    virtualbox) virtualbox & ;;
     tmux) st -e tmux a -t $USER;
 esac

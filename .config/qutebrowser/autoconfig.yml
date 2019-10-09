@@ -3,5 +3,5 @@
 
 config_version: 2
 settings:
-  completion.use_best_match:
-    global: false
+  content.notifications:
+    https://www.reddit.com: false

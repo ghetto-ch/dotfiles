@@ -10,12 +10,13 @@ Plug 'chriskempson/base16-vim'
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-abolish'
+" Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-speeddating'
 " Plug 'kana/vim-textobj-user'
 " Plug 'kana/vim-textobj-entire'
-Plug 'tpope/vim-vinegar'
-" Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-unimpaired'
-" Plug 'tpope/vim-eunuch'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
@@ -27,7 +28,12 @@ Plug 'Shougo/neco-vim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'w0rp/ALE'
+Plug 'dense-analysis/ale'
+
+" Golang
+Plug 'fatih/vim-go'
+", { 'do': ':GoUpdateBinaries' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 
 " Initialize plugin system
 call plug#end()
@@ -39,15 +45,15 @@ call plug#end()
 " FZF #######################################################
 
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
+" imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Neosnippets ###############################################
-imap <C-j>     <Plug>(neosnippet_expand_or_jump)
-smap <C-j>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-j>     <Plug>(neosnippet_expand_target)
+imap <C-j> <Plug>(neosnippet_expand_or_jump)
+smap <C-j> <Plug>(neosnippet_expand_or_jump)
+xmap <C-j> <Plug>(neosnippet_expand_target)
 
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
@@ -56,10 +62,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 let g:ale_enabled=0
 let g:ale_c_parse_makefile=1
 let g:ale_c_parse_compile_commands=1
-let g:ale_linters = {
-			\ 'cpp': ['clangd'] ,
-			\ 'c': ['clangd'] ,
-			\ }
+" let g:ale_linters = {
+" 			\ 'cpp': ['clangd'] ,
+" 			\ 'c': ['clangd'] ,
+" 			\ }
 
 "############################################################
 " GENERAL SETTINGS
@@ -76,9 +82,9 @@ set spelllang=it,en
 " highlight SpellLocal ctermbg=Magenta
 
 " Tabs and folding
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=0
 set foldmethod=indent
 set foldlevelstart=99
 
@@ -92,9 +98,9 @@ set undofile
 " Set colors
 set background=dark
 set t_Co=256
+set termguicolors
 
 " Load Base16 theme
-set termguicolors
 if filereadable(expand("~/.vimrc_background"))
 	source ~/.vimrc_background
 endif
@@ -128,16 +134,22 @@ set wildmode=full
 " Use mouse
 set mouse+=a
 
+" Don't redraw the screen while executing macros
+set lazyredraw
+
 " Populate the statusline
 source ~/.config/nvim/statusline.vim
 
 " Highlight unuseful whitespaces
 highlight ExtraWhitespace ctermbg=darkred guibg=darkred
 match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-" autocmd BufWinLeave * call clearmatches()
+augroup whitespace
+	autocmd!
+	autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+	autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+	autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+	autocmd BufWinLeave * call clearmatches()
+augroup END
 
 " Stop complaining about modified buffers
 set hidden
@@ -148,19 +160,30 @@ set hidden
 
 " Ebable file types plugin and omnifunction
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
-" Python indentation
-autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-" Ruby
-autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+" set omnifunc=syntaxcomplete#Complete
+" Add included files to completion
+set complete+=i
+
+augroup indentation
+	autocmd!
+	" Python indentation
+	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+	" Ruby
+	autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+	" C
+	autocmd FileType c,go setlocal ts=2 sts=2 sw=2
+augroup END
 
 "############################################################
 " SOME AUTOCOMMANDS
 "############################################################
 
-" Need to set DISPLAY in case tmux deleted the variable
-autocmd BufWritePost *.md :silent !export DISPLAY=:0 & markdown -o ~/.var/tmp/surf-preview.html % && surf-preview
-autocmd BufWritePost *.adoc :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview
+augroup adoc
+	autocmd!
+	" Need to set DISPLAY in case tmux deleted the variable
+	autocmd BufWritePost *.md :silent !export DISPLAY=:0 & markdown -o ~/.var/tmp/surf-preview.html % && surf-preview
+	autocmd BufWritePost *.adoc :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview
+augroup END
 
 "############################################################
 " KEY BINDINGS
@@ -183,12 +206,16 @@ nnoremap <C-n> :bnext!<CR>
 vnoremap <C-n> :bnext!<CR>
 nnoremap <C-p> :bprevious!<CR>
 vnoremap <C-p> :bprevious!<CR>
+nnoremap <M-d> :bd!<CR>
 
 " Windows
 nnoremap <C-j> <C-W><C-j>
 nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
 nnoremap <C-h> <C-W><C-h>
+
+" Rerun the last executed macro
+nnoremap Q @@
 
 " Replace selected text pressing C-r, use very nomagic
 vnoremap <C-r> "hy:%s/\V<C-r>h
@@ -198,7 +225,7 @@ vnoremap <C-r> "hy:%s/\V<C-r>h
 nnoremap <leader>f :FZF<CR>
 
 " Generate CTAGS with F5
-nnoremap <f5> :!ctags -R --exclude=.git --languages=-sql<CR>
+nnoremap <f5> :!ctags
 
 " Use TAB in insert mode to go through choices
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -221,6 +248,9 @@ nmap <silent> <leader>i <Plug>(ale_info)
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 
+" Open help in vertical slpit
+cabbrev vh vert h
+
 "############################################################
 " CUSTOM COMMANDS
 "############################################################
@@ -241,6 +271,7 @@ function! StripTrailing()
 	call cursor(l, c)
 endfun
 
+" Search for selection in visual mode
 function! s:VSetSearch(cmdtype)
   let temp = @s
   norm! gv"sy

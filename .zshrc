@@ -125,9 +125,10 @@ alias /="cd /"
 alias ncdu='ncdu --color dark'
 alias info=pinfo
 # alias surf=surf-open
-
-# Vimgolf wants vim command
 alias vim=nvim
+# Bulkrename cli utils
+alias qmv='qmv -f do'
+
 # Setup grep to be a bit more nice
 # check if 'x' grep argument available
 grep-flag-available() {
