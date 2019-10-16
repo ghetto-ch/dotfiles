@@ -105,7 +105,7 @@ nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 
 " Use space to select files and move to next
-" nmap <space> tj
+nmap <space> tj
 
 " Move between siblings dirs
 nmap J hzjl

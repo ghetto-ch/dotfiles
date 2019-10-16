@@ -51,7 +51,7 @@ setxkbmap -option compose:ralt
 xset r rate 250 25
 numlockx &
 unclutter --ignore-scrolling --timeout 2 --fork
-xautolock -time 15 -locker  slock &
+xautolock -time 15 -locker slock &
 ~/.fehbg &
 compton -b
 export EDITOR=nvim

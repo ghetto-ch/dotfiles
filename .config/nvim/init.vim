@@ -44,6 +44,12 @@ call plug#end()
 
 " FZF #######################################################
 
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -154,6 +160,9 @@ augroup END
 " Stop complaining about modified buffers
 set hidden
 
+" Display as tree when browsing directories
+let g:netrw_liststyle=3
+
 "############################################################
 " PROGRAMMING SETTINGS
 "############################################################
@@ -258,6 +267,7 @@ cabbrev vh vert h
 command! StripTrailing :call StripTrailing()
 command! ST :call StripTrailing()
 command! -nargs=* Z :call Z(<f-args>)
+command! Args :call SetArgumentListByFzf()
 "
 "############################################################
 " CUSTOM FUNCTIONS
@@ -290,4 +300,13 @@ function! Z(...)
     echo path
     exec 'cd' fnameescape(path)
   endif
+endfunction
+
+" Add files to arglist with FZF
+function! SetArgumentListByFzf()
+    " Clear argument list
+    execute "%argdelete"
+    " Run fzf with preview and select files.
+    " Run argadd command passing seleted files as argument.
+    call fzf#run(fzf#wrap({'sink': 'argadd', 'options': '--multi' }))
 endfunction
