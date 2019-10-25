@@ -1,28 +1,26 @@
 #export TERM=st-256color
 
-if [ "$TERM" != "linux" ]
-then
+# if [ "$TERM" != "linux" ]
+# then
 
-	# Powerline9k
-	source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
-	# Prompt customizations
-	POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
-	POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
-	POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
-	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir ssh)
-	POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv vcs root_indicator background_jobs time)
-	POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
-	POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
-	POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
-	POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
-	POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
+# 	# Prompt customizations
+# 	POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
+# 	POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
+# 	POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
+# 	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir ssh)
+# 	POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv vcs root_indicator background_jobs time)
+# 	POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
+# 	POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
+# 	POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
+# 	POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
+# 	POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
 
-else
+# else
 
-	PROMPT='%n:%~%# '
+# 	PROMPT='%n:%~%# '
 
-fi
+# fi
 
 # Base16 Shell
 # BASE16_SHELL_SET_BACKGROUND=false
@@ -283,5 +281,11 @@ o() {
     file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" && xdg-open "${file}" || return 1
 }
 
+# Powerline10k
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+

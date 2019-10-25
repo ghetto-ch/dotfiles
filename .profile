@@ -9,6 +9,8 @@ export HOST
 export QT_QPA_PLATFORMTHEME=qt5ct
 export PLAN9=/usr/local/plan9
 export GOPATH=$HOME/Develop/goprojects
+# Get java apps show up in dwm
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 export PATH="$HOME/.local/bin:$PATH:$HOME/.nimble/bin:$HOME/.gem/ruby/2.6.0/bin:$PLAN9/bin:$GOPATH/bin"
 

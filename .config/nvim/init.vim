@@ -187,12 +187,12 @@ augroup END
 " SOME AUTOCOMMANDS
 "############################################################
 
-augroup adoc
-	autocmd!
-	" Need to set DISPLAY in case tmux deleted the variable
-	autocmd BufWritePost *.md :silent !export DISPLAY=:0 & markdown -o ~/.var/tmp/surf-preview.html % && surf-preview
-	autocmd BufWritePost *.adoc :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview
-augroup END
+" augroup adoc
+" 	autocmd!
+" 	" Need to set DISPLAY in case tmux deleted the variable
+" 	autocmd BufWritePost *.md :silent !export DISPLAY=:0 & markdown -o ~/.var/tmp/surf-preview.html % && surf-preview
+" 	autocmd BufWritePost *.adoc :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview
+" augroup END
 
 "############################################################
 " KEY BINDINGS
@@ -256,6 +256,9 @@ nmap <silent> <leader>i <Plug>(ale_info)
 " Search for selection in visual mode
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
+" Export asciidoc to html and open a preview
+nmap <leader>a :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview
 
 " Open help in vertical slpit
 cabbrev vh vert h
