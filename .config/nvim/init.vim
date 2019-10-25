@@ -111,6 +111,8 @@ if filereadable(expand("~/.vimrc_background"))
 	source ~/.vimrc_background
 endif
 
+hi Comment guifg=#88AA55
+
 "############################################################
 " USABILITY SETTINGS
 "############################################################
@@ -139,6 +141,9 @@ set wildmode=full
 
 " Use mouse
 set mouse+=a
+
+" Set clipboard
+set clipboard+=unnamedplus
 
 " Don't redraw the screen while executing macros
 set lazyredraw
