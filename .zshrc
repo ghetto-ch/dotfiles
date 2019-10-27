@@ -68,15 +68,18 @@ setopt ALWAYS_TO_END                                    # When completing from t
 #   setopt AUTO_MENU                                        # When using auto-complete, put the first option on the line immediately
 setopt COMPLETE_ALIASES                                 # Turn on completion for aliases as well
 #setopt LIST_ROWS_FIRST                                  # Cycle through menus horizontally instead of vertically
+eval "`pip completion --zsh`"
+compctl -K _pip_completion pip3
 
 # Globbing
 setopt NO_CASE_GLOB                         # Case insensitive globbing
 setopt EXTENDED_GLOB                        # Allow the powerful zsh globbing features, see link:
-# http://www.refining-linux.org/archives/37/ZSH-Gem-2-Extended-globbing-and-expansion/
+# http://www.refining-linux.org/archives/37-ZSH-Gem-2-Extended-globbing-and-expansion/
 setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers numerically, not by letter (i.e. 01 2 03)
 setopt RMSTARSILENT
 # Vim or Emacs?
-bindkey -e
+bindkey -v
+source ~/.zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh
 export KEYTIMEOUT=15
 # ZSH keybindings
 bindkey "\e[3~" delete-char					      # [Delete] - delete forward
@@ -122,8 +125,10 @@ alias /="cd /"
 
 alias ncdu='ncdu --color dark'
 alias info=pinfo
+
 # alias surf=surf-open
-alias vim=nvim
+alias vi=nvim
+
 # Bulkrename cli utils
 alias qmv='qmv -f do'
 
@@ -212,6 +217,8 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # Default editor
 export EDITOR=nvim
 
@@ -229,14 +236,19 @@ eval "$(pyenv virtualenv-init -)"
 #export PATH="$HOME/esp/xtensa-lx106-elf/bin:$PATH"
 #export IDF_PATH=~/esp/ESP8266_RTOS_SDK
 
+export FD_OPTS="--exclude .git -H"
 # FZF
 source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
 source $HOME/.fzf/completion.zsh
 source $HOME/.fzf/key-bindings.zsh
-export FZF_COMPLETION_TRIGGER=''
-bindkey '\t\t' fzf-completion
-bindkey '^I' $fzf_default_completion
+export FZF_COMPLETION_TRIGGER=',,'
 export FZF_TMUX=1
+export FZF_DEFAULT_OPTS="--multi --preview '(bat {} || tree -C {}) 2> /dev/null | head -200' --preview-window='hidden' --bind='alt-p:toggle-preview'"
+export FZF_DEFAULT_COMMAND="fd $FD_OPTS"
+export FZF_CTRL_T_COMMAND="fd $FD_OPTS"
+export FZF_CTRL_T_OPTS="--preview-window='right'"
+export FZF_ALT_C_COMMAND="fd $FD_OPTS --type d"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --preview-window='right'"
 
 #source $HOME/.zsh/z.sh
 #source $HOME/.zsh/fz.sh
@@ -244,22 +256,14 @@ export FZF_TMUX=1
 eval $(thefuck --alias)
 eval "$(fasd --init auto)"
 #alias o='a -e xdg-open' # quick opening files with xdg-open
-if [ "$DISPLAY" ]
-then
-    alias vi='nvr -s' #--remote-silent'
-    #alias v='f -t -e "gvim --remote-silent" -b viminfo' # quick opening files with vim
-else
-    alias vi='nvr -s' #--remote-silent'
-    #alias v='f -t -e "vim --remote-silent"  -b viminfo' # quick opening files with vim
-fi
 
 # fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
 v() {
     if [ "$DISPLAY" ]
     then
-        cmd="nvr -s" #--remote-silent"
+        cmd="nvim" #--remote-silent"
     else
-        cmd="nvr -s" #--remote-silent"
+        cmd="nvim" #--remote-silent"
     fi
 
     [ $# -gt 0 ] && fasd -f -B viminfo -e ${cmd} "$*" && return

@@ -64,6 +64,21 @@ xmap <C-j> <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
+" Use preview when Files runs in fullscreen
+command! -nargs=? -bang -complete=dir Files
+      \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
+
+" Use preview when History runs in fullscreen
+command! -nargs=? -bang -complete=dir History
+      \ call fzf#vim#history(<bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 " ALE #######################################################
 let g:ale_enabled=0
 let g:ale_c_parse_makefile=1
@@ -111,7 +126,10 @@ if filereadable(expand("~/.vimrc_background"))
 	source ~/.vimrc_background
 endif
 
+" Some customization of the theme
 hi Comment guifg=#88AA55
+hi LineNr guifg=lightgrey
+hi CursorLineNr guifg=darkorange
 
 "############################################################
 " USABILITY SETTINGS
@@ -120,6 +138,7 @@ hi Comment guifg=#88AA55
 " Split in the correct way
 set splitbelow
 set splitright
+set diffopt+=vertical
 
 " Highlight current line and show relative line numbers
 set cursorline
@@ -236,7 +255,9 @@ vnoremap <C-r> "hy:%s/\V<C-r>h
 " //g<left><left>
 
 " Fuzzy find files
-nnoremap <leader>f :FZF<CR>
+" nnoremap <leader>f :Files<CR>
+nnoremap <leader>f :Files!<CR>
+nnoremap <leader>h :History!<CR>
 
 " Generate CTAGS with F5
 nnoremap <f5> :!ctags
@@ -263,7 +284,7 @@ xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 
 " Export asciidoc to html and open a preview
-nmap <leader>a :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview
+nmap <leader>a :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
 
 " Open help in vertical slpit
 cabbrev vh vert h
