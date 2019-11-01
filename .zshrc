@@ -138,7 +138,7 @@ grep-flag-available() {
     echo | grep $1 "" >/dev/null 2>&1
 }
 
-local GREP_OPTIONS=""
+local GREP_OPTIONS="-n"
 
 # color grep results
 if grep-flag-available --color=auto; then
@@ -243,7 +243,7 @@ source $HOME/.fzf/completion.zsh
 source $HOME/.fzf/key-bindings.zsh
 export FZF_COMPLETION_TRIGGER=',,'
 export FZF_TMUX=1
-export FZF_DEFAULT_OPTS="--multi --preview '(bat {} || tree -C {}) 2> /dev/null | head -200' --preview-window='hidden' --bind='alt-p:toggle-preview'"
+export FZF_DEFAULT_OPTS="--multi --preview '(bat --color=always --style=numbers {} || tree -C {}) 2> /dev/null | head -200' --preview-window='hidden' --bind='alt-p:toggle-preview'"
 export FZF_DEFAULT_COMMAND="fd $FD_OPTS"
 export FZF_CTRL_T_COMMAND="fd $FD_OPTS"
 export FZF_CTRL_T_OPTS="--preview-window='right'"
@@ -258,18 +258,18 @@ eval "$(fasd --init auto)"
 #alias o='a -e xdg-open' # quick opening files with xdg-open
 
 # fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
-v() {
-    if [ "$DISPLAY" ]
-    then
-        cmd="nvim" #--remote-silent"
-    else
-        cmd="nvim" #--remote-silent"
-    fi
+# v() {
+#     if [ "$DISPLAY" ]
+#     then
+#         cmd="nvim" #--remote-silent"
+#     else
+#         cmd="nvim" #--remote-silent"
+#     fi
 
-    [ $# -gt 0 ] && fasd -f -B viminfo -e ${cmd} "$*" && return
-    local file
-    file="$(fasd -Rfl -B viminfo  "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
-}
+#     [ $# -gt 0 ] && fasd -f -B viminfo -e ${cmd} "$*" && return
+#     local file
+#     file="$(fasd -Rfl -B viminfo  "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
+# }
 
 # fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
 unalias z

@@ -43,3 +43,4 @@ shell/pure sh bible https://github.com/dylanaraps/pure-sh-bible
 ghettonet/transmission http://192.168.7.103:9091/transmission/web/
 shell/tutotrial https://www.shellscript.sh/index.html
 zsh/globbing https://www.refining-linux.org/archives/37-ZSH-Gem-2-Extended-globbing-and-expansion.html
+regex/tutorial https://www.regular-expressions.info/characters.html

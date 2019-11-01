@@ -155,11 +155,11 @@ _fzf_complete_vi() {
     )
 }
 
-_fzf_complete_v() {
-    _fzf_complete '-d -m -q -1' "$@" < <(
-        fasd -Rfl -B viminfo
-    )
-}
+# _fzf_complete_v() {
+#     _fzf_complete '-d -m -q -1' "$@" < <(
+#         fasd -Rfl -B viminfo
+#     )
+# }
 
 _fzf_complete_z() {
     _fzf_complete '-d -m -q -1' "$@" < <(

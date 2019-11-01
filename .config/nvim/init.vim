@@ -52,8 +52,10 @@ let g:fzf_action = {
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <expr> <plug>(fzf-complete-mypath) fzf#vim#complete#path("fd -H --exclude .git .")
+imap <c-x><c-f> <plug>(fzf-complete-mypath)
+inoremap <expr> <plug>(fzf-complete-myfile) fzf#vim#complete#path("fd -H --exclude .git --type f .")
+imap <c-x><c-j> <plug>(fzf-complete-myfile)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Neosnippets ###############################################
@@ -83,10 +85,6 @@ command! -bang -nargs=* Rg
 let g:ale_enabled=0
 let g:ale_c_parse_makefile=1
 let g:ale_c_parse_compile_commands=1
-" let g:ale_linters = {
-" 			\ 'cpp': ['clangd'] ,
-" 			\ 'c': ['clangd'] ,
-" 			\ }
 
 "############################################################
 " GENERAL SETTINGS
@@ -97,10 +95,6 @@ set shell=/bin/zsh
 
 " Spell check settings
 set spelllang=it,en
-" highlight SpellBad cterm=Reverse ctermbg=Red
-" highlight SpellCap ctermbg=Yellow
-" highlight SpellRare ctermbg=DarkYellow
-" highlight SpellLocal ctermbg=Magenta
 
 " Tabs and folding
 set tabstop=2
@@ -127,7 +121,7 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 " Some customization of the theme
-hi Comment guifg=#88AA55
+hi Comment guifg=#88AA88
 hi LineNr guifg=lightgrey
 hi CursorLineNr guifg=darkorange
 
@@ -197,26 +191,21 @@ filetype plugin indent on
 " Add included files to completion
 set complete+=i
 
+"############################################################
+" SOME AUTOCOMMANDS
+"############################################################
+
 augroup indentation
 	autocmd!
-	" Python indentation
+	" Python
 	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 	" Ruby
 	autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
 	" C
 	autocmd FileType c,go setlocal ts=2 sts=2 sw=2
+	" asciidoc
+	autocmd FileType plaintext,markdown,asciidoc setlocal ts=2 sts=2 sw=2 noautoindent
 augroup END
-
-"############################################################
-" SOME AUTOCOMMANDS
-"############################################################
-
-" augroup adoc
-" 	autocmd!
-" 	" Need to set DISPLAY in case tmux deleted the variable
-" 	autocmd BufWritePost *.md :silent !export DISPLAY=:0 & markdown -o ~/.var/tmp/surf-preview.html % && surf-preview
-" 	autocmd BufWritePost *.adoc :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview
-" augroup END
 
 "############################################################
 " KEY BINDINGS
@@ -258,6 +247,9 @@ vnoremap <C-r> "hy:%s/\V<C-r>h
 " nnoremap <leader>f :Files<CR>
 nnoremap <leader>f :Files!<CR>
 nnoremap <leader>h :History!<CR>
+
+" Ripgrep with preview
+nnoremap <leader>g :Rg!<CR>
 
 " Generate CTAGS with F5
 nnoremap <f5> :!ctags
