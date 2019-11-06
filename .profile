@@ -32,6 +32,6 @@ if ! mount|grep Downloads > /dev/null; then
     mount /mnt/Downloads
 fi
 
-systemctl --user start tmux.service
+# systemctl --user start tmux.service
 
 # [[ ! $DISPLAY && $XDG_VTNR -eq 1 && $(id --group) -ne 0 ]] && exec startx

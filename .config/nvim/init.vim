@@ -103,6 +103,11 @@ set shiftwidth=0
 set foldmethod=indent
 set foldlevelstart=99
 
+" Text width and column highlight
+set textwidth=80
+command! Col set colorcolumn=+1
+command! Nocol set colorcolumn=0
+
 " Enable persistent undo
 set undofile
 
