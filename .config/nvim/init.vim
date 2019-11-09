@@ -13,10 +13,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
-" Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-speeddating'
-" Plug 'kana/vim-textobj-user'
-" Plug 'kana/vim-textobj-entire'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
@@ -103,13 +99,11 @@ set shiftwidth=0
 set foldmethod=indent
 set foldlevelstart=99
 
-" Text width and column highlight
-set textwidth=80
-command! Col set colorcolumn=+1
-command! Nocol set colorcolumn=0
-
 " Enable persistent undo
 set undofile
+
+" Search for subdirs as well
+set path+=**
 
 "############################################################
 " THEME AND GUI RELATED SETTINGS
@@ -126,9 +120,14 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 " Some customization of the theme
-hi Comment guifg=#88AA88
+hi Comment guifg=#999999
 hi LineNr guifg=lightgrey
 hi CursorLineNr guifg=darkorange
+
+" Text width and column highlight
+set textwidth=80
+command! Col set colorcolumn=+1
+command! Nocol set colorcolumn=0
 
 "############################################################
 " USABILITY SETTINGS
@@ -150,8 +149,6 @@ set scrolloff=5
 set ignorecase
 set smartcase
 set inccommand=nosplit
-" nnoremap / /\v
-" cnoremap s/ s/\v
 
 " Ex completion
 set wildmenu
@@ -192,7 +189,7 @@ let g:netrw_liststyle=3
 
 " Ebable file types plugin and omnifunction
 filetype plugin indent on
-" set omnifunc=syntaxcomplete#Complete
+
 " Add included files to completion
 set complete+=i
 

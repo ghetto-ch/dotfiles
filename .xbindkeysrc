@@ -105,6 +105,10 @@
 "dmenu-fasd"
    Shift+Mod4 + f
 
+# Lauch clipmenu
+"qalculate-gtk"
+   Mod2+Mod4 + q
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
