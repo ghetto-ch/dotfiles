@@ -33,10 +33,14 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 #xrandr --setprovideroutputsource 1 0
-xrandr --output DisplayPort-0 --primary
-xrandr --output HDMI-A-0 --rotate left
-xrandr --output HDMI-A-0 --left-of DisplayPort-0
-xrandr --output HDMI-A-0 --pos 0x-150
+# xrandr --output DisplayPort-0 --primary
+xrandr --output DP-4 --primary
+# xrandr --output HDMI-A-0 --rotate left
+xrandr --output DP-0 --rotate left
+# xrandr --output HDMI-A-0 --left-of DisplayPort-0
+xrandr --output DP-0 --left-of DP-4
+# xrandr --output HDMI-A-0 --pos 0x-150
+xrandr --output DP-0 --pos 0x-150
 
 #twm &
 #xclock -geometry 50x50-1+1 &
@@ -53,7 +57,7 @@ numlockx &
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 15 -locker slock &
 ~/.fehbg &
-compton -b
+picom -b
 export EDITOR=nvim
 dwm-status &
 #exec i3

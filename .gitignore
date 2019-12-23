@@ -1,3 +1,4 @@
 .zsh/cache
 *.old
 /.zshrc-ori
+.uuid

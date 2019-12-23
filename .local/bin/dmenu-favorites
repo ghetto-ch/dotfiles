@@ -1,11 +1,9 @@
 #!/bin/sh
-x=$(echo -e "browser\nfiles\ntmux\nhtop\nvirtualbox\neplayer" | dmenu -i -p "Favorites")
+x=$(echo -e "browser\nfiles\nhtop\nvirtualbox" | dmenu -i -p "Favorites")
 
 case "$x" in
     browser) qutebrowser & ;;
     files) st vifm & ;;
-    eplayer) electronplayer & ;;
     htop) st htop & ;;
     virtualbox) virtualbox & ;;
-    tmux) st -e tmux a -t $USER;
 esac

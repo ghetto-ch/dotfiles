@@ -85,16 +85,16 @@ export KEYTIMEOUT=15
 bindkey "\e[3~" delete-char					      # [Delete] - delete forward
 bindkey "^[[A" history-search-backward            # start typing + [Up-Arrow] - fuzzy find history forward
 bindkey "^[[B" history-search-forward             # start typing + [Down-Arrow] - fuzzy find history backward
-bindkey "\e\e" sudo-command-line                  # [Esc] [Esc] - insert "sudo" at beginning of line
-zle -N sudo-command-line
-sudo-command-line() {
-[[ -z $BUFFER ]] && zle up-history
-if [[ $BUFFER == sudo\ * ]]; then
-    LBUFFER="${LBUFFER#sudo }"
-else
-    LBUFFER="sudo $LBUFFER"
-fi
-}
+# bindkey "\e\e" sudo-command-line                  # [Esc] [Esc] - insert "sudo" at beginning of line
+# zle -N sudo-command-line
+# sudo-command-line() {
+# [[ -z $BUFFER ]] && zle up-history
+# if [[ $BUFFER == sudo\ * ]]; then
+#     LBUFFER="${LBUFFER#sudo }"
+# else
+#     LBUFFER="sudo $LBUFFER"
+# fi
+# }
 
 # Enable Ctrl-x-e to edit command line
 autoload -U edit-command-line
@@ -164,69 +164,71 @@ unfunction grep-flag-available
 ###########################################################################
 
 # Query commandlinefu.com
-cmdfu() {
-   curl "https://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | openssl base64)/plaintext";
-}
+# cmdfu() {
+#    curl "https://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | openssl base64)/plaintext";
+# }
 
 # cdf - fuzzy cd from anywhere
 # ex: cdf word1 word2 ... (even part of a file name)
 # zsh autoload function
-fcd() {
-    local file
+# fcd() {
+#     local file
 
-    file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
+#     file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
 
-    if [[ -n $file ]]
-    then
-        if [[ -d $file ]]
-        then
-            cd -- $file
-        else
-            cd -- ${file:h}
-        fi
-    fi
-    unset file
-}
+#     if [[ -n $file ]]
+#     then
+#         if [[ -d $file ]]
+#         then
+#             cd -- $file
+#         else
+#             cd -- ${file:h}
+#         fi
+#     fi
+#     unset file
+# }
 
-fl() {
-	sel="$(locate -Ai -0 $@ | fzf --read0 -0)"
-	if [[ "$DISPLAY" ]]
-	then
-		echo $sel | tr -d '\n' | xclip -selection clipboard
-		unset sel
-	fi
-}
+# fl() {
+# 	sel="$(locate -Ai -0 $@ | fzf --read0 -0)"
+# 	if [[ "$DISPLAY" ]]
+# 	then
+# 		echo $sel | tr -d '\n' | xclip -selection clipboard
+# 		unset sel
+# 	fi
+# }
 
-ec() {
-	emacsclient -n -e "(if (> (length (frame-list)) 1) 't)" | grep t >/dev/null 2>/dev/null
+# ec() {
+# 	emacsclient -n -e "(if (> (length (frame-list)) 1) 't)" | grep t >/dev/null 2>/dev/null
 
-	if [[ "$?" = "1" ]]
-	then
-		emacsclient -c -n -a "" "$@"
-	else
-		emacsclient -n -a "" "$@"
-	fi
-}
+# 	if [[ "$?" = "1" ]]
+# 	then
+# 		emacsclient -c -n -a "" "$@"
+# 	else
+# 		emacsclient -n -a "" "$@"
+# 	fi
+# }
 
 # Colored MAN pages
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
+# export LESS_TERMCAP_mb=$'\e[1;32m'
+# export LESS_TERMCAP_md=$'\e[1;32m'
+# export LESS_TERMCAP_me=$'\e[0m'
+# export LESS_TERMCAP_se=$'\e[0m'
+# export LESS_TERMCAP_so=$'\e[01;33m'
+# export LESS_TERMCAP_ue=$'\e[0m'
+# export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER='nvim +Man!'
+# export MANWIDTH=999
 
 # Default editor
 export EDITOR=nvim
 
 # Pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PATH="$HOME/.pyenv/bin:$PATH"
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # ESP-IDF
 # export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
@@ -237,6 +239,7 @@ eval "$(pyenv virtualenv-init -)"
 #export IDF_PATH=~/esp/ESP8266_RTOS_SDK
 
 export FD_OPTS="--exclude .git -H"
+
 # FZF
 source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
 source $HOME/.fzf/completion.zsh
@@ -253,7 +256,7 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --preview-window='righ
 #source $HOME/.zsh/z.sh
 #source $HOME/.zsh/fz.sh
 # eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 eval "$(fasd --init auto)"
 #alias o='a -e xdg-open' # quick opening files with xdg-open
 

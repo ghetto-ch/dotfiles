@@ -109,6 +109,9 @@
 "qalculate-gtk"
    Mod2+Mod4 + q
 
+# Lauch clipmenu
+"passmenu"
+   Shift+Mod4 + p
 ##################################
 # End of xbindkeys configuration #
 ##################################

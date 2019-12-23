@@ -115,9 +115,10 @@ set t_Co=256
 set termguicolors
 
 " Load Base16 theme
-if filereadable(expand("~/.vimrc_background"))
-	source ~/.vimrc_background
-endif
+" if filereadable(expand("~/.vimrc_background"))
+" 	source ~/.vimrc_background
+" endif
+source ~/dotfiles/.config/nvim/base16-default-dark-custom.vim
 
 " Some customization of the theme
 hi Comment guifg=#999999
