@@ -1,36 +1,3 @@
-#export TERM=st-256color
-
-# if [ "$TERM" != "linux" ]
-# then
-
-
-# 	# Prompt customizations
-# 	POWERLEVEL9K_PROMPT_ON_NEWLINE=true   # place the prompt on the second line
-# 	POWERLEVEL9K_RPROMPT_ON_NEWLINE=true  # ...and the rprompt as well
-# 	POWERLEVEL9K_PROMPT_ADD_NEWLINE=true  # add a newline after each prompt
-# 	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir ssh)
-# 	POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv vcs root_indicator background_jobs time)
-# 	POWERLEVEL9K_PYENV_BACKGROUND='141'   # pyenv segment color
-# 	POWERLEVEL9K_DIR_HOME_BACKGROUND='006'     # dir segment color
-# 	POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='006'     # dir segment color
-# 	POWERLEVEL9K_DIR_ETC_BACKGROUND='006'     # dir segment color
-# 	POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='006'     # dir segment color
-
-# else
-
-# 	PROMPT='%n:%~%# '
-
-# fi
-
-# Base16 Shell
-# BASE16_SHELL_SET_BACKGROUND=false
-# BASE16_SHELL="$HOME/.config/base16-shell/"
-# [ -n "$PS1" ] && \
-#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#     eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-# source $HOME/.fzf/base16/$BASE16_THEME.config
-
 # ZSH options
 local ZSH_CONF=$HOME/.zsh           # Define the place I store all my zsh config stuff
 local ZSH_CACHE=$ZSH_CONF/cache     # for storing files like history and zcompdump
@@ -73,8 +40,7 @@ compctl -K _pip_completion pip3
 
 # Globbing
 setopt NO_CASE_GLOB                         # Case insensitive globbing
-setopt EXTENDED_GLOB                        # Allow the powerful zsh globbing features, see link:
-# http://www.refining-linux.org/archives/37-ZSH-Gem-2-Extended-globbing-and-expansion/
+setopt EXTENDED_GLOB                        # Allow the powerful zsh globbing features
 setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers numerically, not by letter (i.e. 01 2 03)
 setopt RMSTARSILENT
 # Vim or Emacs?
@@ -85,16 +51,6 @@ export KEYTIMEOUT=15
 bindkey "\e[3~" delete-char					      # [Delete] - delete forward
 bindkey "^[[A" history-search-backward            # start typing + [Up-Arrow] - fuzzy find history forward
 bindkey "^[[B" history-search-forward             # start typing + [Down-Arrow] - fuzzy find history backward
-# bindkey "\e\e" sudo-command-line                  # [Esc] [Esc] - insert "sudo" at beginning of line
-# zle -N sudo-command-line
-# sudo-command-line() {
-# [[ -z $BUFFER ]] && zle up-history
-# if [[ $BUFFER == sudo\ * ]]; then
-#     LBUFFER="${LBUFFER#sudo }"
-# else
-#     LBUFFER="sudo $LBUFFER"
-# fi
-# }
 
 # Enable Ctrl-x-e to edit command line
 autoload -U edit-command-line
@@ -163,80 +119,12 @@ unfunction grep-flag-available
 # Custom functions
 ###########################################################################
 
-# Query commandlinefu.com
-# cmdfu() {
-#    curl "https://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | openssl base64)/plaintext";
-# }
-
-# cdf - fuzzy cd from anywhere
-# ex: cdf word1 word2 ... (even part of a file name)
-# zsh autoload function
-# fcd() {
-#     local file
-
-#     file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
-
-#     if [[ -n $file ]]
-#     then
-#         if [[ -d $file ]]
-#         then
-#             cd -- $file
-#         else
-#             cd -- ${file:h}
-#         fi
-#     fi
-#     unset file
-# }
-
-# fl() {
-# 	sel="$(locate -Ai -0 $@ | fzf --read0 -0)"
-# 	if [[ "$DISPLAY" ]]
-# 	then
-# 		echo $sel | tr -d '\n' | xclip -selection clipboard
-# 		unset sel
-# 	fi
-# }
-
-# ec() {
-# 	emacsclient -n -e "(if (> (length (frame-list)) 1) 't)" | grep t >/dev/null 2>/dev/null
-
-# 	if [[ "$?" = "1" ]]
-# 	then
-# 		emacsclient -c -n -a "" "$@"
-# 	else
-# 		emacsclient -n -a "" "$@"
-# 	fi
-# }
-
-# Colored MAN pages
-# export LESS_TERMCAP_mb=$'\e[1;32m'
-# export LESS_TERMCAP_md=$'\e[1;32m'
-# export LESS_TERMCAP_me=$'\e[0m'
-# export LESS_TERMCAP_se=$'\e[0m'
-# export LESS_TERMCAP_so=$'\e[01;33m'
-# export LESS_TERMCAP_ue=$'\e[0m'
-# export LESS_TERMCAP_us=$'\e[1;4;31m'
-
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPAGER='nvim +Man!'
 # export MANWIDTH=999
 
 # Default editor
 export EDITOR=nvim
-
-# Pyenv
-# export PATH="$HOME/.pyenv/bin:$PATH"
-# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
-# ESP-IDF
-# export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
-# export IDF_PATH=~/esp/esp-idf
-
-# ESP8266
-#export PATH="$HOME/esp/xtensa-lx106-elf/bin:$PATH"
-#export IDF_PATH=~/esp/ESP8266_RTOS_SDK
 
 export FD_OPTS="--exclude .git -H"
 
@@ -253,26 +141,7 @@ export FZF_CTRL_T_OPTS="--preview-window='right'"
 export FZF_ALT_C_COMMAND="fd $FD_OPTS --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --preview-window='right'"
 
-#source $HOME/.zsh/z.sh
-#source $HOME/.zsh/fz.sh
-# eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
-# eval $(thefuck --alias)
 eval "$(fasd --init auto)"
-#alias o='a -e xdg-open' # quick opening files with xdg-open
-
-# fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
-# v() {
-#     if [ "$DISPLAY" ]
-#     then
-#         cmd="nvim" #--remote-silent"
-#     else
-#         cmd="nvim" #--remote-silent"
-#     fi
-
-#     [ $# -gt 0 ] && fasd -f -B viminfo -e ${cmd} "$*" && return
-#     local file
-#     file="$(fasd -Rfl -B viminfo  "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
-# }
 
 # fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
 unalias z
@@ -295,4 +164,3 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
