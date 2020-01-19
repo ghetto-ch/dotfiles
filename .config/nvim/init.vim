@@ -12,24 +12,24 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-abolish'
+" Plug 'tpope/vim-abolish'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neco-vim'
-Plug 'Shougo/neoinclude.vim'
+Plug 'ajh17/VimCompletesMe'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'dense-analysis/ale'
 
+" Debug with gdb etc...
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
+
 " Golang
 Plug 'fatih/vim-go'
 ", { 'do': ':GoUpdateBinaries' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 
 " Initialize plugin system
 call plug#end()
@@ -54,14 +54,6 @@ inoremap <expr> <plug>(fzf-complete-myfile) fzf#vim#complete#path("fd -H --exclu
 imap <c-x><c-j> <plug>(fzf-complete-myfile)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Neosnippets ###############################################
-imap <C-j> <Plug>(neosnippet_expand_or_jump)
-smap <C-j> <Plug>(neosnippet_expand_or_jump)
-xmap <C-j> <Plug>(neosnippet_expand_target)
-
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
 " Use preview when Files runs in fullscreen
 command! -nargs=? -bang -complete=dir Files
       \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
@@ -76,6 +68,14 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+" Neosnippets ###############################################
+imap <C-j> <Plug>(neosnippet_expand_or_jump)
+smap <C-j> <Plug>(neosnippet_expand_or_jump)
+xmap <C-j> <Plug>(neosnippet_expand_target)
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " ALE #######################################################
 let g:ale_enabled=0
@@ -114,10 +114,6 @@ set background=dark
 set t_Co=256
 set termguicolors
 
-" Load Base16 theme
-" if filereadable(expand("~/.vimrc_background"))
-" 	source ~/.vimrc_background
-" endif
 source ~/dotfiles/.config/nvim/base16-default-dark-custom.vim
 
 " Some customization of the theme
@@ -167,7 +163,7 @@ set lazyredraw
 " Populate the statusline
 source ~/.config/nvim/statusline.vim
 
-" Highlight unuseful whitespaces
+" Highlight trailng spaces
 highlight ExtraWhitespace ctermbg=darkred guibg=darkred
 match ExtraWhitespace /\s\+$/
 augroup whitespace
@@ -181,7 +177,7 @@ augroup END
 " Stop complaining about modified buffers
 set hidden
 
-" Display as tree when browsing directories
+" Display a tree when browsing directories
 let g:netrw_liststyle=3
 
 "############################################################
@@ -254,15 +250,9 @@ nnoremap <leader>h :History!<CR>
 " Ripgrep with preview
 nnoremap <leader>g :Rg!<CR>
 
-" Generate CTAGS with F5
-nnoremap <f5> :!ctags
-
 " Use TAB in insert mode to go through choices
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-" Enable completion
-nmap <leader>c :call deoplete#toggle()<CR>
 
 " Enable linting
 nmap <silent> <leader>l <Plug>(ale_toggle)
@@ -279,7 +269,7 @@ xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 
 " Export asciidoc to html and open a preview
-nmap <leader>a :silent !export DISPLAY=:0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
+nmap <leader>a :silent !export DISPLAY:=0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
 
 " Open help in vertical slpit
 cabbrev vh vert h

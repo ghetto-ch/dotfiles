@@ -61,7 +61,7 @@ bindkey '^x^e' edit-command-line
 # Some aliases
 alias dh='dirs -v'
 alias pd='popd'
-alias ls='exa'
+alias ls='exa -g'
 # alias ls="ls -h --color='auto'"
 alias la='ls -la'
 alias ll='ls -l'

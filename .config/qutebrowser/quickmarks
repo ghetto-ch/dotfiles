@@ -44,3 +44,7 @@ ghettonet/transmission http://192.168.7.103:9091/transmission/web/
 shell/tutotrial https://www.shellscript.sh/index.html
 zsh/globbing https://www.refining-linux.org/archives/37-ZSH-Gem-2-Extended-globbing-and-expansion.html
 regex/tutorial https://www.regular-expressions.info/characters.html
+webassembly/tutorial1 https://www.freecodecamp.org/news/get-started-with-webassembly-using-only-14-lines-of-javascript-b37b6aaca1e4/
+webassembly/tutorial/go https://tutorialedge.net/golang/go-webassembly-tutorial/
+webassembly/tutorial2 https://tutorialzine.com/2017/06/getting-started-with-web-assembly
+gdb/cheatsheet http://www.yolinux.com/TUTORIALS/GDB-Commands.html
