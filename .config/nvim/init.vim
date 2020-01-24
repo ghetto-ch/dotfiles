@@ -13,6 +13,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 " Plug 'tpope/vim-abolish'
+Plug 'christoomey/vim-tmux-navigator'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
@@ -228,12 +229,6 @@ vnoremap <C-n> :bnext!<CR>
 nnoremap <C-p> :bprevious!<CR>
 vnoremap <C-p> :bprevious!<CR>
 nnoremap <M-d> :bd!<CR>
-
-" Windows
-nnoremap <C-j> <C-W><C-j>
-nnoremap <C-k> <C-W><C-k>
-nnoremap <C-l> <C-W><C-l>
-nnoremap <C-h> <C-W><C-h>
 
 " Rerun the last executed macro
 nnoremap Q @@

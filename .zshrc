@@ -116,9 +116,6 @@ alias grep="grep $GREP_OPTIONS"
 # clean up
 unfunction grep-flag-available
 
-# Custom functions
-###########################################################################
-
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPAGER='nvim +Man!'
 # export MANWIDTH=999
