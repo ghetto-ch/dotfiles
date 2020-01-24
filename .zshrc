@@ -129,7 +129,7 @@ export FD_OPTS="--exclude .git -H"
 source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
 source $HOME/.fzf/completion.zsh
 source $HOME/.fzf/key-bindings.zsh
-export FZF_COMPLETION_TRIGGER=',,'
+export FZF_COMPLETION_TRIGGER=','
 export FZF_TMUX=1
 export FZF_DEFAULT_OPTS="--multi --preview '(bat --color=always --style=numbers {} || tree -C {}) 2> /dev/null | head -200' --preview-window='hidden' --bind='alt-p:toggle-preview'"
 export FZF_DEFAULT_COMMAND="fd $FD_OPTS"
