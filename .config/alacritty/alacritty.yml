@@ -12,7 +12,7 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: xterm-256color
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -63,7 +63,7 @@
   #startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+  title: term
 
   # Window class (Linux/BSD only):
   #class:

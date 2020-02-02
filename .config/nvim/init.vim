@@ -9,16 +9,13 @@ Plug 'chriskempson/base16-vim'
 " Usability
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
-" Plug 'tpope/vim-abolish'
 Plug 'christoomey/vim-tmux-navigator'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'ajh17/VimCompletesMe'
 Plug 'Shougo/neosnippet.vim'
@@ -238,16 +235,11 @@ vnoremap <C-r> "hy:%s/\V<C-r>h
 " //g<left><left>
 
 " Fuzzy find files
-" nnoremap <leader>f :Files<CR>
 nnoremap <leader>f :Files!<CR>
 nnoremap <leader>h :History!<CR>
 
 " Ripgrep with preview
 nnoremap <leader>g :Rg!<CR>
-
-" Use TAB in insert mode to go through choices
-inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " Enable linting
 nmap <silent> <leader>l <Plug>(ale_toggle)
@@ -258,10 +250,6 @@ nmap <silent> <leader>p <Plug>(ale_previous)
 
 " Get lint info
 nmap <silent> <leader>i <Plug>(ale_info)
-
-" Search for selection in visual mode
-xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
-xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 
 " Export asciidoc to html and open a preview
 nmap <leader>a :silent !export DISPLAY:=0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
@@ -289,14 +277,6 @@ function! StripTrailing()
 	%s/\s\+$//e
 	call cursor(l, c)
 endfun
-
-" Search for selection in visual mode
-function! s:VSetSearch(cmdtype)
-  let temp = @s
-  norm! gv"sy
-  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
-  let @s = temp
-endfunction
 
 " Z - cd to recent / frequent directories
 function! Z(...)
