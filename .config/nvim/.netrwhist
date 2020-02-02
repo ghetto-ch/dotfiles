@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/home/ghetto/.ncmpcpp'
 let g:netrw_dirhist_1='/home/ghetto/Develop/c_tutorial'
 let g:netrw_dirhist_0='/home/ghetto'
 let g:netrw_dirhist_9='/home/ghetto/Develop'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_6='/home/ghetto/dotfiles/.config/nvim'
 let g:netrw_dirhist_5='/home/ghetto/.local/share/nvim/plugged/fzf.vim'
 let g:netrw_dirhist_4='/home/ghetto/.local/share/nvim/plugged/fzf.vim/bin'
 let g:netrw_dirhist_3='/home/ghetto/.local/share/nvim/plugged/fzf.vim/plugin'
-let g:netrw_dirhist_2='/home/ghetto/.local/share/nvim/plugged/fzf.vim'

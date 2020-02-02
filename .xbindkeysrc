@@ -94,7 +94,7 @@
    Shift+Mod2+Mod4 + b
 
 # tmux
-"st -e tmux a -t $USER"
+"alacritty -e tmux a -t $USER"
    Shift+Mod2+Mod4 + t
 
 # Lock screen
