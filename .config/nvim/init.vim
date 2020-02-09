@@ -1,10 +1,15 @@
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.local/share/nvim/plugged')
 
-" Theme related
-Plug 'chriskempson/base16-vim'
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'junegunn/vim-plug'
 
 " Usability
 Plug '/usr/bin/fzf'
@@ -12,22 +17,22 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'jesseleite/vim-noh'
+Plug 'moll/vim-bbye'
+Plug 'junegunn/vim-peekaboo'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'ajh17/VimCompletesMe'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'dense-analysis/ale'
+Plug 'ghetto-ch/vim-minisnip', { 'branch': 'testing' }
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
-" Golang
-Plug 'fatih/vim-go'
-", { 'do': ':GoUpdateBinaries' }
+" Testing for vim script
+Plug 'junegunn/vader.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -46,39 +51,38 @@ let g:fzf_action = {
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
-inoremap <expr> <plug>(fzf-complete-mypath) fzf#vim#complete#path("fd -H --exclude .git .")
+inoremap <expr> <plug>(fzf-complete-mypath)
+			\ fzf#vim#complete#path("fd -H --exclude .git .")
 imap <c-x><c-f> <plug>(fzf-complete-mypath)
-inoremap <expr> <plug>(fzf-complete-myfile) fzf#vim#complete#path("fd -H --exclude .git --type f .")
+inoremap <expr> <plug>(fzf-complete-myfile)
+			\ fzf#vim#complete#path("fd -H --exclude .git --type f .")
 imap <c-x><c-j> <plug>(fzf-complete-myfile)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Use preview when Files runs in fullscreen
 command! -nargs=? -bang -complete=dir Files
-      \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
+      \ call fzf#vim#files(
+			\   <q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
 
 " Use preview when History runs in fullscreen
 command! -nargs=? -bang -complete=dir History
-      \ call fzf#vim#history(<bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
+      \ call fzf#vim#history(
+			\   <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+			\ call fzf#vim#grep(
+			\   'rg --column --line-number --no-heading --color=always --smart-case
+			\   '.shellescape(<q-args>), 1,
+			\   <bang>0 ? fzf#vim#with_preview('up:60%')
+			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+			\   <bang>0)
 
-" Neosnippets ###############################################
-imap <C-j> <Plug>(neosnippet_expand_or_jump)
-smap <C-j> <Plug>(neosnippet_expand_or_jump)
-xmap <C-j> <Plug>(neosnippet_expand_target)
+" Peekaboo ##################################################
+let g:peekaboo_window = 'vert bo 50new'
 
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" ALE #######################################################
-let g:ale_enabled=0
-let g:ale_c_parse_makefile=1
-let g:ale_c_parse_compile_commands=1
+" minisnip ##################################################
+let g:minisnip_trigger = '<c-j>'
+let g:minisnip_backreffirst = 1
 
 "############################################################
 " GENERAL SETTINGS
@@ -93,6 +97,7 @@ set spelllang=it,en
 " Tabs and folding
 set tabstop=2
 set softtabstop=2
+set noexpandtab
 set shiftwidth=0
 set foldmethod=indent
 set foldlevelstart=99
@@ -109,12 +114,11 @@ set path+=**
 
 " Set colors
 set background=dark
-set t_Co=256
 set termguicolors
 
 source ~/dotfiles/.config/nvim/base16-default-dark-custom.vim
 
-" Some customization of the theme
+" Should customize the file above... but for now :)
 hi Comment guifg=#999999
 hi LineNr guifg=lightgrey
 hi CursorLineNr guifg=darkorange
@@ -175,9 +179,6 @@ augroup END
 " Stop complaining about modified buffers
 set hidden
 
-" Display a tree when browsing directories
-let g:netrw_liststyle=3
-
 "############################################################
 " PROGRAMMING SETTINGS
 "############################################################
@@ -196,12 +197,19 @@ augroup indentation
 	autocmd!
 	" Python
 	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-	" Ruby
-	autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
 	" C
 	autocmd FileType c,go setlocal ts=2 sts=2 sw=2
 	" asciidoc
-	autocmd FileType plaintext,markdown,asciidoc setlocal ts=2 sts=2 sw=2 noautoindent
+	autocmd FileType plaintext,markdown,asciidoc
+				\ setlocal ts=2 sts=2 sw=2 noautoindent
+augroup END
+
+augroup linting
+	autocmd!
+	autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
+	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
+	autocmd BufWritePost *.c silent make | silent redraw!
+	autocmd QuickFixCmdPost [^l]* cwindow
 augroup END
 
 "############################################################
@@ -213,46 +221,30 @@ set timeoutlen=2000
 
 " Search
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
+noremap <Plug>NohAfter zz
 
 " Buffers
 nnoremap <C-n> :bnext!<CR>
 vnoremap <C-n> :bnext!<CR>
 nnoremap <C-p> :bprevious!<CR>
 vnoremap <C-p> :bprevious!<CR>
-nnoremap <M-d> :bd!<CR>
-
-" Rerun the last executed macro
-nnoremap Q @@
+nnoremap <M-d> :Bdelete<CR>
 
 " Replace selected text pressing C-r, use very nomagic
 vnoremap <C-r> "hy:%s/\V<C-r>h
-" //g<left><left>
 
 " Fuzzy find files
 nnoremap <leader>f :Files!<CR>
 nnoremap <leader>h :History!<CR>
 
-" Ripgrep with preview
+" Ripgrep
 nnoremap <leader>g :Rg!<CR>
 
-" Enable linting
-nmap <silent> <leader>l <Plug>(ale_toggle)
-
-" Go to next/previous lint
-nmap <silent> <leader>n <Plug>(ale_next)
-nmap <silent> <leader>p <Plug>(ale_previous)
-
-" Get lint info
-nmap <silent> <leader>i <Plug>(ale_info)
-
 " Export asciidoc to html and open a preview
-nmap <leader>a :silent !export DISPLAY:=0 & asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
+nmap <leader>a :silent !export DISPLAY:=0 &
+			\ asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
+
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Open help in vertical slpit
 cabbrev vh vert h
@@ -262,9 +254,6 @@ cabbrev vh vert h
 "############################################################
 
 command! StripTrailing :call StripTrailing()
-command! ST :call StripTrailing()
-command! -nargs=* Z :call Z(<f-args>)
-command! Args :call SetArgumentListByFzf()
 "
 "############################################################
 " CUSTOM FUNCTIONS
@@ -277,25 +266,3 @@ function! StripTrailing()
 	%s/\s\+$//e
 	call cursor(l, c)
 endfun
-
-" Z - cd to recent / frequent directories
-function! Z(...)
-  let cmd = 'fasd -d -e printf'
-  for arg in a:000
-    let cmd = cmd . ' ' . arg
-  endfor
-  let path = system(cmd)
-  if isdirectory(path)
-    echo path
-    exec 'cd' fnameescape(path)
-  endif
-endfunction
-
-" Add files to arglist with FZF
-function! SetArgumentListByFzf()
-    " Clear argument list
-    execute "%argdelete"
-    " Run fzf with preview and select files.
-    " Run argadd command passing seleted files as argument.
-    call fzf#run(fzf#wrap({'sink': 'argadd', 'options': '--multi' }))
-endfunction

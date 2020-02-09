@@ -9,15 +9,15 @@ sec5=0
 while :
 do
     # Executes every 900 seconds
-    if (( (`date +"%s"` - $sec900) >= 60))
+    if (( ($( date +"%s" ) - "$sec900") >= 60 ))
     then
         # Reset seconds
-        sec900=`date +"%s"`
+        sec900=$( date +"%s" )
 
         # Pacman updates
         #updates=$(checkupdates | awk '{++c} END {print c, "updates"}')
         updates=$(checkupdates | wc -l)
-        if [ $updates -gt 0 ]
+        if [ "$updates" -gt 0 ]
         then
             updates=$updates" updates"
         else
@@ -27,10 +27,10 @@ do
     fi
 
     # Executes every 300 seconds
-    if (( (`date +"%s"` - $sec300) >= 60))
+    if (( ($( date +"%s" ) - "$sec300") >= 60))
     then
         # Reset seconds
-        sec300=`date +"%s"`
+        sec300=$( date +"%s" )
 
         # Get /home free space
         home="HOME:"$(df -h /home | awk '/dev/ {print $4}')
@@ -40,10 +40,10 @@ do
     fi
 
     # Executes every 60 seconds
-    if (( (`date +"%s"` - $sec60) >= 60))
+    if (( ($( date +"%s" ) - "$sec60") >= 60))
     then
         # Reset seconds
-        sec60=`date +"%s"`
+        sec60=$( date +"%s" )
 
         # Get date and time
         time=$(date +"%d/%b/%Y %H:%M")
@@ -51,10 +51,10 @@ do
     fi
 
     # Executes every 5 seconds
-    if (( (`date +"%s"` - $sec5) >= 5))
+    if (( ($( date +"%s" ) - "$sec5") >= 5))
     then
         # Reset seconds
-        sec5=`date +"%s"`
+        sec5=$( date +"%s" )
 
         # Get CPU usage in %
         #cpu="LOAD:"$(sed -e 's/ .*//' /proc/loadavg)

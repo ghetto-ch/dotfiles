@@ -2,8 +2,8 @@
 local ZSH_CONF=$HOME/.zsh           # Define the place I store all my zsh config stuff
 local ZSH_CACHE=$ZSH_CONF/cache     # for storing files like history and zcompdump
 
-    declare -U path                     # prevent duplicate entries in path
-    setopt NO_BEEP                      # Disable beeps
+declare -U path                     # prevent duplicate entries in path
+setopt NO_BEEP                      # Disable beeps
 
 # ZSH History
 alias history='fc -fl 1'
@@ -35,6 +35,8 @@ setopt ALWAYS_TO_END                                    # When completing from t
 #   setopt AUTO_MENU                                        # When using auto-complete, put the first option on the line immediately
 setopt COMPLETE_ALIASES                                 # Turn on completion for aliases as well
 #setopt LIST_ROWS_FIRST                                  # Cycle through menus horizontally instead of vertically
+
+# Autocompletions
 eval "`pip completion --zsh`"
 compctl -K _pip_completion pip3
 
@@ -126,7 +128,6 @@ export EDITOR=nvim
 export FD_OPTS="--exclude .git -H"
 
 # FZF
-source $HOME/.fzf/zsh-interactive-cd.plugin.zsh
 source $HOME/.fzf/completion.zsh
 source $HOME/.fzf/key-bindings.zsh
 export FZF_COMPLETION_TRIGGER=','
@@ -138,24 +139,24 @@ export FZF_CTRL_T_OPTS="--preview-window='right'"
 export FZF_ALT_C_COMMAND="fd $FD_OPTS --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --preview-window='right'"
 
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
 
 # fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
-unalias z
-z() {
-    [ $# -gt 0 ] && fasd_cd -d "$*" && return
-    local dir
-    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-}
+# unalias z
+# z() {
+#     [ $# -gt 0 ] && fasd_cd -d "$*" && return
+#     local dir
+#     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+# }
 
-o() {
-    [ $# -gt 0 ] && fasd -a -e xdg-open "$*" && return
-    local file
-    file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" && xdg-open "${file}" || return 1
-}
+# o() {
+#     [ $# -gt 0 ] && fasd -a -e xdg-open "$*" && return
+#     local file
+#     file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" && xdg-open "${file}" || return 1
+# }
 
-# Powerline10k
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# Powerlevel10k
+source ~/tools/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
