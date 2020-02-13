@@ -49,3 +49,5 @@ webassembly/tutorial/go https://tutorialedge.net/golang/go-webassembly-tutorial/
 webassembly/tutorial2 https://tutorialzine.com/2017/06/getting-started-with-web-assembly
 gdb/cheatsheet http://www.yolinux.com/TUTORIALS/GDB-Commands.html
 vim/scheme/slimv https://github.com/kovisoft/slimv
+git/book https://git-scm.com/book/en/v2
+vim/hardway https://learnvimscriptthehardway.stevelosh.com/

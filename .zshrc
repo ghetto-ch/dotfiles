@@ -124,8 +124,10 @@ export MANPAGER='nvim +Man!'
 
 # Default editor
 export EDITOR=nvim
+export VIMRUNTIME="/usr/share/nvim/runtime"
 
 export FD_OPTS="--exclude .git -H"
+export BAT_THEME="base16"
 
 # FZF
 source $HOME/.fzf/completion.zsh

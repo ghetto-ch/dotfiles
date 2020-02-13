@@ -1,3 +1,7 @@
+"############################################################
+" PLUGINS
+"############################################################
+"{{{
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
@@ -19,7 +23,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jesseleite/vim-noh'
 Plug 'moll/vim-bbye'
-Plug 'junegunn/vim-peekaboo'
+Plug 'norcalli/nvim-colorizer.lua'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
@@ -34,13 +38,18 @@ Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 " Testing for vim script
 Plug 'junegunn/vader.vim'
 
+" Text objects
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-entire'
+
 " Initialize plugin system
 call plug#end()
-
+"}}}
 "############################################################
 " PLUGIN SETTINGS
 "############################################################
-
+"{{{
 " FZF #######################################################
 
 " This is the default extra key bindings
@@ -77,17 +86,21 @@ command! -bang -nargs=* Rg
 			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
 			\   <bang>0)
 
-" Peekaboo ##################################################
-let g:peekaboo_window = 'vert bo 50new'
-
 " minisnip ##################################################
 let g:minisnip_trigger = '<c-j>'
 let g:minisnip_backreffirst = 1
 
+" colorizer #################################################
+set termguicolors "Required by colorizer setup
+lua require'colorizer'.setup()
+
+"}}}
 "############################################################
 " GENERAL SETTINGS
 "############################################################
-"
+"{{{
+" VIM runtime path
+set runtimepath += "~/.local/share/nvim/runtime/"
 " Tell vim to use zsh instead of bash
 set shell=/bin/zsh
 
@@ -99,22 +112,20 @@ set tabstop=2
 set softtabstop=2
 set noexpandtab
 set shiftwidth=0
-set foldmethod=indent
-set foldlevelstart=99
+set foldnestmax=1
 
 " Enable persistent undo
 set undofile
 
 " Search for subdirs as well
 set path+=**
-
+"}}}
 "############################################################
 " THEME AND GUI RELATED SETTINGS
 "############################################################
-
+"{{{
 " Set colors
 set background=dark
-set termguicolors
 
 source ~/dotfiles/.config/nvim/base16-default-dark-custom.vim
 
@@ -128,10 +139,11 @@ set textwidth=80
 command! Col set colorcolumn=+1
 command! Nocol set colorcolumn=0
 
+"}}}
 "############################################################
 " USABILITY SETTINGS
 "############################################################
-
+"{{{
 " Split in the correct way
 set splitbelow
 set splitright
@@ -179,26 +191,34 @@ augroup END
 " Stop complaining about modified buffers
 set hidden
 
-"############################################################
-" PROGRAMMING SETTINGS
-"############################################################
+let g:netrw_liststyle= 3
 
+"}}}
+"############################################################
+" FORMATTING AND PROGRAMMING SETTINGS
+"############################################################
+"{{{
 " Ebable file types plugin and omnifunction
 filetype plugin indent on
 
 " Add included files to completion
 set complete+=i
 
-"############################################################
-" SOME AUTOCOMMANDS
-"############################################################
+" Disable annoying preview window!
+set completeopt-=preview
 
-augroup indentation
+" <CR> selects current completion
+" :inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+augroup filetypes
 	autocmd!
+	" Vim
+	autocmd FileType vim setlocal foldmethod=marker foldlevel=0
 	" Python
 	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 	" C
-	autocmd FileType c,go setlocal ts=2 sts=2 sw=2
+	autocmd FileType c setlocal ts=2 sts=2 sw=2 formatprg=astyle
+				\ foldmethod=syntax
 	" asciidoc
 	autocmd FileType plaintext,markdown,asciidoc
 				\ setlocal ts=2 sts=2 sw=2 noautoindent
@@ -211,12 +231,22 @@ augroup linting
 	autocmd BufWritePost *.c silent make | silent redraw!
 	autocmd QuickFixCmdPost [^l]* cwindow
 augroup END
-
+"}}}
 "############################################################
 " KEY BINDINGS
 "############################################################
+"{{{
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 let mapleader = ' '
+let maplocalleader = '\\'
 set timeoutlen=2000
 
 " Search
@@ -241,24 +271,28 @@ nnoremap <leader>h :History!<CR>
 nnoremap <leader>g :Rg!<CR>
 
 " Export asciidoc to html and open a preview
-nmap <leader>a :silent !export DISPLAY:=0 &
+nnoremap <leader>a :silent !export DISPLAY:=0 &
 			\ asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
 
+" cd in the directory of the current file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" Add semicolon at the end of the line
+nnoremap <leader>; :normal! mqA;<Esc>`q
 
 " Open help in vertical slpit
 cabbrev vh vert h
-
+"}}}
 "############################################################
 " CUSTOM COMMANDS
 "############################################################
-
+"{{{
 command! StripTrailing :call StripTrailing()
-"
+"}}}
 "############################################################
 " CUSTOM FUNCTIONS
 "############################################################
-
+"{{{
 " Strip all trailing spaces on write
 function! StripTrailing()
 	let l = line(".")
@@ -266,3 +300,4 @@ function! StripTrailing()
 	%s/\s\+$//e
 	call cursor(l, c)
 endfun
+"}}}
