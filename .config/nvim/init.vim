@@ -32,6 +32,11 @@ Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'ajh17/VimCompletesMe'
 Plug 'ghetto-ch/vim-minisnip', { 'branch': 'testing' }
 
+" LSP with neovim nightly
+if has("nvim-0.5")
+	Plug 'neovim/nvim-lsp'
+endif
+
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
@@ -86,8 +91,14 @@ command! -bang -nargs=* Rg
 			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
 			\   <bang>0)
 
-" VimCompletesMe
+" VimCompletesMe ############################################
 let g:vcm_s_tab_mapping = "\<c-x>\<c-u>"
+" Set completion for some filetypes
+augroup VCMcomp
+	autocmd!
+	" C
+	autocmd FileType c let b:vcm_tab_complete="omni"
+augroup END
 
 " minisnip ##################################################
 let g:minisnip_trigger = '<c-j>'

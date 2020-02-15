@@ -1,0 +1,13 @@
+--style=kr
+--indent=tab=2
+--pad-oper
+--pad-comma
+--pad-header
+--indent-after-parens
+--align-pointer=name
+--align-reference=name
+--break-return-type
+--attach-return-type-decl
+--keep-one-line-blocks
+--keep-one-line-statements
+--mode=c
