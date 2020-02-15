@@ -86,6 +86,9 @@ command! -bang -nargs=* Rg
 			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
 			\   <bang>0)
 
+" VimCompletesMe
+let g:vcm_s_tab_mapping = "\<c-x>\<c-u>"
+
 " minisnip ##################################################
 let g:minisnip_trigger = '<c-j>'
 let g:minisnip_backreffirst = 1
@@ -163,7 +166,7 @@ set inccommand=nosplit
 
 " Ex completion
 set wildmenu
-set wildmode=full
+set wildmode=longest:full,full
 
 " Use mouse
 set mouse+=a
@@ -218,7 +221,7 @@ augroup filetypes
 	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 	" C
 	autocmd FileType c setlocal ts=2 sts=2 sw=2 formatprg=astyle
-				\ foldmethod=syntax
+				\ foldmethod=syntax foldlevel=1
 	" asciidoc
 	autocmd FileType plaintext,markdown,asciidoc
 				\ setlocal ts=2 sts=2 sw=2 noautoindent
