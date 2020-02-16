@@ -1,4 +1,5 @@
 .zsh/cache
+.zsh/zsh-vim-mode
 *.old
 /.zshrc-ori
 .uuid
