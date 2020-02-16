@@ -134,8 +134,7 @@ set path+=**
 "{{{
 " Set colors
 set background=dark
-
-source ~/dotfiles/.config/nvim/base16-default-dark-custom.vim
+colorscheme base16-ghetto
 
 " Text width and column highlight
 set textwidth=80
@@ -193,7 +192,7 @@ augroup END
 
 " Stop complaining about modified buffers
 set hidden
-
+" Tree style for directories navigation
 let g:netrw_liststyle= 3
 
 "}}}
