@@ -16,8 +16,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/vim-plug'
 
 " Usability
-Plug '/usr/bin/fzf'
-Plug 'junegunn/fzf.vim'
+Plug '/usr/bin/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
@@ -31,11 +30,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'ajh17/VimCompletesMe'
 Plug 'ghetto-ch/vim-minisnip', { 'branch': 'testing' }
-
-" LSP with neovim nightly
-if has("nvim-0.5")
-	Plug 'neovim/nvim-lsp'
-endif
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
@@ -94,10 +88,10 @@ command! -bang -nargs=* Rg
 " VimCompletesMe ############################################
 let g:vcm_s_tab_mapping = "\<c-x>\<c-u>"
 " Set completion for some filetypes
-augroup VCMcomp
+augroup ftVCM
 	autocmd!
-	" C
 	autocmd FileType c let b:vcm_tab_complete="omni"
+	autocmd FileType vim let b:vcm_tab_complete="vim"
 augroup END
 
 " minisnip ##################################################
@@ -106,7 +100,7 @@ let g:minisnip_backreffirst = 1
 
 " colorizer #################################################
 set termguicolors "Required by colorizer setup
-lua require'colorizer'.setup()
+lua require 'colorizer'.setup()
 
 "}}}
 "############################################################
@@ -143,11 +137,6 @@ set background=dark
 
 source ~/dotfiles/.config/nvim/base16-default-dark-custom.vim
 
-" Should customize the file above... but for now :)
-hi Comment guifg=#999999
-hi LineNr guifg=lightgrey
-hi CursorLineNr guifg=darkorange
-
 " Text width and column highlight
 set textwidth=80
 command! Col set colorcolumn=+1
@@ -165,7 +154,7 @@ set diffopt+=vertical
 
 " Highlight current line and show relative line numbers
 set cursorline
-set number relativenumber
+set number relativenumber numberwidth=5
 
 " Keep some lines for context
 set scrolloff=5
@@ -234,8 +223,11 @@ augroup filetypes
 	autocmd FileType c setlocal ts=2 sts=2 sw=2 formatprg=astyle
 				\ foldmethod=syntax foldlevel=1
 	" asciidoc
-	autocmd FileType plaintext,markdown,asciidoc
+	autocmd FileType plaintext,markdown,asciidoc,help
 				\ setlocal ts=2 sts=2 sw=2 noautoindent
+				\ nonumber norelativenumber
+				\ foldcolumn=2
+				\ | highlight! link FoldColumn Normal
 augroup END
 
 augroup linting
@@ -243,7 +235,7 @@ augroup linting
 	autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
 	autocmd BufWritePost *.c silent make | silent redraw!
-	autocmd QuickFixCmdPost [^l]* cwindow
+	autocmd QuickFixCmdPost [^l]* nested botright cwindow
 augroup END
 "}}}
 "############################################################
@@ -314,4 +306,5 @@ function! StripTrailing()
 	%s/\s\+$//e
 	call cursor(l, c)
 endfun
+
 "}}}
