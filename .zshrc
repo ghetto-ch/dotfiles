@@ -19,7 +19,7 @@ setopt HIST_IGNORE_DUPS          # Do not write events to history that are dupli
 setopt HIST_IGNORE_ALL_DUPS      # If a new command line being added to the history list duplicates an older one, the older command is removed from the list (even if it is not the previous event).
 setopt INC_APPEND_HISTORY        # Add commands to history as they are typed, don't wait until shell exit
 setopt HIST_REDUCE_BLANKS        # Remove extra blanks from each command line being added to history
-setopt autopushd pushdminus pushdsilent pushdtohome
+setopt autopushd pushdminus pushdsilent pushdtohome autocd
 DIRSTACKSIZE=10
 
 #the auto complete dump is a cache file where ZSH stores its auto complete data, for faster load times
