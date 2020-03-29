@@ -93,8 +93,12 @@
 "dmenu-loadbmark"
    Shift+Mod2+Mod4 + b
 
+# terminal
+"$TERM_EMULATOR"
+   Shift+Mod2+Mod4 + Return
+
 # tmux
-"alacritty -e tmux a -t $USER"
+"$TERM_EMULATOR -e tmux a -t $USER"
    Shift+Mod2+Mod4 + t
 
 # Lock screen
@@ -112,6 +116,13 @@
 # Lauch clipmenu
 "passmenu"
    Shift+Mod4 + p
+
+# Switch between us and intl
+"switch-kb-layout"
+   Shift+Mod4 + k
+
+
+
 ##################################
 # End of xbindkeys configuration #
 ##################################

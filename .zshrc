@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # ZSH options
 local ZSH_CONF=$HOME/.zsh           # Define the place I store all my zsh config stuff
 local ZSH_CACHE=$ZSH_CONF/cache     # for storing files like history and zcompdump
@@ -132,30 +139,16 @@ export BAT_THEME="base16"
 # FZF
 source $HOME/.fzf/completion.zsh
 source $HOME/.fzf/key-bindings.zsh
+source $HOME/.fzf/base16/base16-default-dark.config
+source $HOME/.fzf/fzf-tab/fzf-tab.plugin.zsh
 export FZF_COMPLETION_TRIGGER=','
-export FZF_TMUX=1
-export FZF_DEFAULT_OPTS="--multi --preview '(bat --color=always --style=numbers {} || tree -C {}) 2> /dev/null | head -200' --preview-window='hidden' --bind='alt-p:toggle-preview'"
+export FZF_TMUX=0
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --multi --preview '(bat --theme base16 --color=always --style=numbers {} || tree -C {}) 2> /dev/null | head -200' --preview-window='hidden' --bind='alt-p:toggle-preview'"
 export FZF_DEFAULT_COMMAND="fd $FD_OPTS"
-export FZF_CTRL_T_COMMAND="fd $FD_OPTS"
+export FZF_CTRL_T_COMMAND="fd $FD_OPTS --type f"
 export FZF_CTRL_T_OPTS="--preview-window='right'"
 export FZF_ALT_C_COMMAND="fd $FD_OPTS --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --preview-window='right'"
-
-# eval "$(fasd --init auto)"
-
-# fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
-# unalias z
-# z() {
-#     [ $# -gt 0 ] && fasd_cd -d "$*" && return
-#     local dir
-#     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-# }
-
-# o() {
-#     [ $# -gt 0 ] && fasd -a -e xdg-open "$*" && return
-#     local file
-#     file="$(fasd -Ral "$1" | fzf -1 -0 --no-sort +m)" && xdg-open "${file}" || return 1
-# }
 
 # Powerlevel10k
 source ~/tools/powerlevel10k/powerlevel10k.zsh-theme

@@ -1,0 +1,21 @@
+#!/bin/sh
+TNT_FILE="/mnt/Data/dump_release_tntvillage_2019-08-30.csv"
+
+# To correctly parse CSV, awk is not enough.
+# When there are commas inside double quotes, awk creates extra fields;
+# csvawk handle this correctly.
+# This tool is part of csvtools.
+choice=$(csvawk \
+'NR>1 {
+		split( "KB MB GB TB" , v , " " ); s=0; 
+		while( $(NF-1)>1024 )
+			{ $(NF-1)/=1024; s++ }
+		printf "%s | %6.1f%s | %-20s | %s | %s | %s\n",
+			$1, $(NF-1), v[s], $5, $6, $7, $2
+	}' "$TNT_FILE" | fzf)
+
+[ -z "$choice" ] || \
+	(torrent=$(echo "$choice" | \
+	awk -F '|' '{print $6 " " $4}' | \
+	xargs hash-to-magnet); \
+	tremc "$torrent")

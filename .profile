@@ -1,5 +1,9 @@
 # Variables
 export EDITOR=nvim
+export TERM_EMULATOR=alacritty
+export BROWSER=qutebrowser
+export X_FILEMANAGER=spacefm
+export CLI_FILEMANAGER=vifm
 export HOST
 export QT_QPA_PLATFORMTHEME=qt5ct
 export PLAN9=/usr/local/plan9

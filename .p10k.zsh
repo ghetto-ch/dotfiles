@@ -804,6 +804,7 @@
 
   # When instant prompt is disabled, prompt won't appear until zsh is fully initialized.
   # typeset -g POWERLEVEL9K_DISABLE_INSTANT_PROMPT=true
+  # typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always
 }
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}

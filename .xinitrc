@@ -42,16 +42,9 @@ xrandr --output DP-0 --left-of DP-4
 # xrandr --output HDMI-A-0 --pos 0x-150
 xrandr --output DP-0 --pos 0x-150
 
-#twm &
-#xclock -geometry 50x50-1+1 &
-#xterm -geometry 80x50+494+51 &
-#xterm -geometry 80x20+494-0 &
-#exec xterm -geometry 80x66+0+0 -name login
 udiskie &
 clipmenud &
 xbindkeys
-setxkbmap -option ctrl:nocaps
-setxkbmap -option compose:ralt
 xset r rate 250 25
 numlockx &
 unclutter --ignore-scrolling --timeout 2 --fork
@@ -60,6 +53,5 @@ xautolock -time 15 -locker slock &
 picom -b
 export EDITOR=nvim
 dwm-status &
-#exec i3
 exec dwm
 #exec rio

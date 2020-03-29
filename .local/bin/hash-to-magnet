@@ -1,0 +1,5 @@
+#!/bin/sh
+base="magnet:?xt=urn:btih:$1&dn="
+[ -z "$2" ] && name="" || name=$(urlencode "$2")
+echo "$base$name"
+

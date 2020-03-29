@@ -7,9 +7,9 @@
 " - Avoid using standard Vim directory names like 'plugin'
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -23,12 +23,15 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'jesseleite/vim-noh'
 Plug 'moll/vim-bbye'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'unblevable/quick-scope'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
-Plug 'ajh17/VimCompletesMe'
+" Plug 'ajh17/VimCompletesMe'
+Plug 'ghetto-ch/VimCompletesMe', { 'branch': 'testing' }
+" Plug 'lifepillar/vim-mucomplete'
 Plug 'ghetto-ch/vim-minisnip', { 'branch': 'testing' }
 
 " Debug with gdb etc...
@@ -53,9 +56,9 @@ call plug#end()
 
 " This is the default extra key bindings
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+			\ 'ctrl-t': 'tab split',
+			\ 'ctrl-x': 'split',
+			\ 'ctrl-v': 'vsplit' }
 
 " Insert mode completion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
@@ -69,12 +72,12 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Use preview when Files runs in fullscreen
 command! -nargs=? -bang -complete=dir Files
-      \ call fzf#vim#files(
+			\ call fzf#vim#files(
 			\   <q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
 
 " Use preview when History runs in fullscreen
 command! -nargs=? -bang -complete=dir History
-      \ call fzf#vim#history(
+			\ call fzf#vim#history(
 			\   <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
 
 command! -bang -nargs=* Rg
@@ -94,6 +97,15 @@ augroup ftVCM
 	autocmd FileType vim let b:vcm_tab_complete="vim"
 augroup END
 
+" mucomplete
+imap <expr> <C-l> mucomplete#extend_fwd("\<down>")
+imap <c-k> <plug>(MUcompleteCycFwd)
+let g:mucomplete#chains = {
+			\ 'default' : ['path', 'omni', 'c-p', 'user'],
+			\ 'vim' : ['path', 'cmd', 'c-p', 'user'],
+			\ 'c' : ['path', 'omni', 'c-p', 'defs', 'incl', 'user'],
+			\}
+
 " minisnip ##################################################
 let g:minisnip_trigger = '<c-j>'
 let g:minisnip_backreffirst = 1
@@ -101,6 +113,9 @@ let g:minisnip_backreffirst = 1
 " colorizer #################################################
 set termguicolors "Required by colorizer setup
 lua require 'colorizer'.setup()
+
+" quick-scope ###############################################
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 "}}}
 "############################################################
@@ -137,9 +152,10 @@ set background=dark
 colorscheme base16-ghetto
 
 " Text width and column highlight
-set textwidth=80
-command! Col set colorcolumn=+1
+set textwidth=0
+command! Col set colorcolumn=81
 command! Nocol set colorcolumn=0
+set nowrap
 
 "}}}
 "############################################################
@@ -180,15 +196,18 @@ set lazyredraw
 source ~/.config/nvim/statusline.vim
 
 " Highlight trailng spaces
-highlight ExtraWhitespace ctermbg=darkred guibg=darkred
-match ExtraWhitespace /\s\+$/
-augroup whitespace
-	autocmd!
-	autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-	autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-	autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-	autocmd BufWinLeave * call clearmatches()
-augroup END
+" highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+" match ExtraWhitespace /\s\+$/
+" augroup whitespace
+" 	autocmd!
+" 	autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" 	autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" 	autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" 	autocmd BufWinLeave * call clearmatches()
+" augroup END
+
+" set listchars="tab:▸ ,trail:·"
+" set listchars="tab:>"
 
 " Stop complaining about modified buffers
 set hidden
@@ -204,18 +223,18 @@ let g:netrw_liststyle= 3
 filetype plugin indent on
 
 " Add included files to completion
-set complete+=i
+" set complete+=i
 
 " Disable annoying preview window!
-set completeopt-=preview
-
-" <CR> selects current completion
-" :inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+" set completeopt-=preview
+" set completeopt+=menuone,noselect
 
 augroup filetypes
 	autocmd!
 	" Vim
 	autocmd FileType vim setlocal foldmethod=marker foldlevel=0
+	" sh
+	autocmd FileType sh setlocal
 	" Python
 	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 	" C
@@ -223,7 +242,7 @@ augroup filetypes
 				\ foldmethod=syntax foldlevel=1
 	" asciidoc
 	autocmd FileType plaintext,markdown,asciidoc,help
-				\ setlocal ts=2 sts=2 sw=2 noautoindent
+				\ setlocal ts=2 sts=2 sw=2 noautoindent textwidth=80
 				\ nonumber norelativenumber
 				\ foldcolumn=2
 				\ | highlight! link FoldColumn Normal
@@ -268,6 +287,9 @@ nnoremap <M-d> :Bdelete<CR>
 " Replace selected text pressing C-r, use very nomagic
 vnoremap <C-r> "hy:%s/\V<C-r>h
 
+" Replace visual selection with yanked text
+vnoremap <M-r> dh"0p
+
 " Fuzzy find files
 nnoremap <leader>f :Files!<CR>
 nnoremap <leader>h :History!<CR>
@@ -292,14 +314,14 @@ cabbrev vh vert h
 " CUSTOM COMMANDS
 "############################################################
 "{{{
-command! StripTrailing :call StripTrailing()
+command! TrimWhitspaces :call TrimWhitspaces()
 "}}}
 "############################################################
 " CUSTOM FUNCTIONS
 "############################################################
 "{{{
 " Strip all trailing spaces on write
-function! StripTrailing()
+function! TrimWhitspaces()
 	let l = line(".")
 	let c = col(".")
 	%s/\s\+$//e
