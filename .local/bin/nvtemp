@@ -1,14 +1,14 @@
 #!/bin/sh
 
-[[ ! -f "/tmp/temp1_input" ]] && touch /tmp/temp1_input
-[[ ! -f "/tmp/temp2_input" ]] && touch /tmp/temp2_input
+[ ! -f "/tmp/temp1_input" ] && touch /tmp/temp1_input
+[ ! -f "/tmp/temp2_input" ] && touch /tmp/temp2_input
 
 # STUPID NVIDIA-SMI is using CPU like there's no tomorrow... fuck!!!!!!
 while true
 do
 	t=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader|sed 1q)
-	echo $[ t * 1000 ] > /tmp/temp1_input
+	echo $(( t * 1000 )) > /tmp/temp1_input
 	t=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader|sed 1d)
-	echo $[ t * 1000 ] > /tmp/temp2_input
+	echo $(( t * 1000 )) > /tmp/temp2_input
 	sleep 2
 done

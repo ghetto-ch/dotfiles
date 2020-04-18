@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 string="${1}"
 strlen=${#string}
 encoded=""

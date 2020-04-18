@@ -77,6 +77,10 @@
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
    XF86AudioMute
 
+# Launch dmenu
+"dmenu_run -i"
+   Mod4 + p
+
 # Lauch clipmenu
 "clipmenu -i"
    Mod2+Mod4 + x
@@ -90,30 +94,22 @@
    Mod2+Mod4 + u
 
 # Bookmarks
-"dmenu-loadbmark"
+"dmenu-buku"
    Shift+Mod2+Mod4 + b
 
 # terminal
-"$TERM_EMULATOR"
+"$TERMINAL"
    Shift+Mod2+Mod4 + Return
 
 # tmux
-"$TERM_EMULATOR -e tmux a -t $USER"
+"$TERMINAL -e tmux a -t $USER"
    Shift+Mod2+Mod4 + t
 
 # Lock screen
 "slock&"
    Shift+Mod4 + l
 
-# Find recent files
-"dmenu-fasd"
-   Shift+Mod4 + f
-
-# Lauch clipmenu
-"qalculate-gtk"
-   Mod2+Mod4 + q
-
-# Lauch clipmenu
+# Lauch passmenu
 "passmenu"
    Shift+Mod4 + p
 
@@ -121,7 +117,9 @@
 "switch-kb-layout"
    Shift+Mod4 + k
 
-
+# Take a screenshot
+"flameshot gui -p ~/pics/captures"
+   Print
 
 ##################################
 # End of xbindkeys configuration #

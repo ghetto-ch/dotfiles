@@ -48,10 +48,12 @@ xbindkeys
 xset r rate 250 25
 numlockx &
 unclutter --ignore-scrolling --timeout 2 --fork
-xautolock -time 15 -locker slock &
-~/.fehbg &
+xautolock -time 30 -locker slock &
+xwallpaper --output DP-4 --center /home/ghetto/img/wallpaper \
+	--output DP-0 --center /home/ghetto/img/wallpaperV
 picom -b
-export EDITOR=nvim
+# export EDITOR=nvim
 dwm-status &
 exec dwm
+# exec spectrwm
 #exec rio

@@ -72,7 +72,7 @@ do
 
 
     # Compose status string
-    status=$bandwidth" | "$cpu" "$mem" | "$root" "$home" | "$updates" | "$vol" | "$time
+    status="$bandwidth | $cpu $mem | $root $home | $updates | $vol | $time"
 
     xsetroot -name "$status"
     sleep 1

@@ -70,7 +70,7 @@ bindkey '^x^e' edit-command-line
 # Some aliases
 alias dh='dirs -v'
 alias pd='popd'
-alias ls='exa -g'
+alias ls='exa -g --group-directories-first'
 # alias ls="ls -h --color='auto'"
 alias la='ls -la'
 alias ll='ls -l'
@@ -96,6 +96,9 @@ alias vi=nvim
 
 # Bulkrename cli utils
 alias qmv='qmv -f do'
+
+# buku shortcut
+alias b='buku --suggest'
 
 # Setup grep to be a bit more nice
 # check if 'x' grep argument available

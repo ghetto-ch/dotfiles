@@ -1,7 +1,7 @@
 # Variables
 export EDITOR=nvim
-export TERM_EMULATOR=alacritty
-export BROWSER=qutebrowser
+export TERMINAL=alacritty
+export BROWSER=vimb-tabbed
 export X_FILEMANAGER=spacefm
 export CLI_FILEMANAGER=vifm
 export HOST
