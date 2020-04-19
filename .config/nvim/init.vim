@@ -38,7 +38,7 @@ Plug 'ghetto-ch/vim-minisnip', { 'branch': 'testing' }
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
 " Testing for vim script
-Plug 'junegunn/vader.vim'
+" Plug 'junegunn/vader.vim'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
@@ -96,15 +96,6 @@ augroup ftVCM
 	autocmd FileType c let b:vcm_tab_complete="omni"
 	autocmd FileType vim let b:vcm_tab_complete="vim"
 augroup END
-
-" mucomplete
-imap <expr> <C-l> mucomplete#extend_fwd("\<down>")
-imap <c-k> <plug>(MUcompleteCycFwd)
-let g:mucomplete#chains = {
-			\ 'default' : ['path', 'omni', 'c-p', 'user'],
-			\ 'vim' : ['path', 'cmd', 'c-p', 'user'],
-			\ 'c' : ['path', 'omni', 'c-p', 'defs', 'incl', 'user'],
-			\}
 
 " minisnip ##################################################
 let g:minisnip_trigger = '<c-j>'
@@ -195,19 +186,16 @@ set lazyredraw
 " Populate the statusline
 source ~/.config/nvim/statusline.vim
 
-" Highlight trailng spaces
-" highlight ExtraWhitespace ctermbg=darkred guibg=darkred
-" match ExtraWhitespace /\s\+$/
-" augroup whitespace
-" 	autocmd!
-" 	autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-" 	autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" 	autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-" 	autocmd BufWinLeave * call clearmatches()
-" augroup END
-
-" set listchars="tab:▸ ,trail:·"
-" set listchars="tab:>"
+" Highlight trailing spaces
+highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+match ExtraWhitespace /\s\+$/
+augroup whitespace
+	autocmd!
+	autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+	autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+	autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+	autocmd BufWinLeave * call clearmatches()
+augroup END
 
 " Stop complaining about modified buffers
 set hidden
@@ -223,11 +211,10 @@ let g:netrw_liststyle= 3
 filetype plugin indent on
 
 " Add included files to completion
-" set complete+=i
+set complete+=i
 
 " Disable annoying preview window!
-" set completeopt-=preview
-" set completeopt+=menuone,noselect
+set completeopt-=preview
 
 augroup filetypes
 	autocmd!
@@ -235,6 +222,7 @@ augroup filetypes
 	autocmd FileType vim setlocal foldmethod=marker foldlevel=0
 	" sh
 	autocmd FileType sh setlocal ts=2 sts=2 sw=2
+				\ omnifunc=syntaxcomplete#Complete
 	" Python
 	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 	" C
