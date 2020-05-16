@@ -113,6 +113,10 @@
 "passmenu"
    Shift+Mod4 + p
 
+# Lauch favorites
+"dmenu-favorites"
+   Mod2+Mod4 + v
+
 # Switch between us and intl
 "switch-kb-layout"
    Shift+Mod4 + k

@@ -45,15 +45,15 @@ xrandr --output DP-0 --pos 0x-150
 udiskie &
 clipmenud &
 xbindkeys
-xset r rate 250 25
+xset r rate 250 30
 numlockx &
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 30 -locker slock &
 xwallpaper --output DP-4 --center /home/ghetto/img/wallpaper \
 	--output DP-0 --center /home/ghetto/img/wallpaperV
 picom -b
-# export EDITOR=nvim
+lxpolkit &
 dwm-status &
+# nm-applet &
+# blueman-applet &
 exec dwm
-# exec spectrwm
-#exec rio

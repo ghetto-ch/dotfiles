@@ -1,5 +1,6 @@
 # Variables
 export EDITOR=nvim
+export NVR_CMD=nvim-qt
 export TERMINAL=alacritty
 export BROWSER=vimb-tabbed
 export X_FILEMANAGER=spacefm

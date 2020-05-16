@@ -31,14 +31,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 " Plug 'ajh17/VimCompletesMe'
 Plug 'ghetto-ch/VimCompletesMe', { 'branch': 'testing' }
-" Plug 'lifepillar/vim-mucomplete'
 Plug 'ghetto-ch/vim-minisnip', { 'branch': 'testing' }
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
-
-" Testing for vim script
-" Plug 'junegunn/vader.vim'
 
 " Text objects
 Plug 'kana/vim-textobj-user'

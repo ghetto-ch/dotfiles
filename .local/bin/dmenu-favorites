@@ -1,10 +1,10 @@
 #!/bin/sh
-x=$(echo -e "browser\nfiles\nhtop\nvirtualbox\nvolume-control" | dmenu -i -p "Favorites")
+x=$(echo -e "browser\nfiles\nglances\nvirtualbox\nvolume-control" | dmenu -i -p "Favorites")
 
 case "$x" in
     browser) "$BROWSER" & ;;
     files) "$X_FILEMANAGER" & ;;
-    htop) "$TERMINAL" -e htop & ;;
+    glances) "$TERMINAL" -e glances & ;;
     virtualbox) virtualbox & ;;
     volume-control) pavucontrol & ;;
 esac

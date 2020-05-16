@@ -133,7 +133,7 @@ export MANPAGER='nvim +Man!'
 # export MANWIDTH=999
 
 # Default editor
-export EDITOR=nvim
+# export EDITOR=nvim
 export VIMRUNTIME="/usr/share/nvim/runtime"
 
 export FD_OPTS="--exclude .git -H"
