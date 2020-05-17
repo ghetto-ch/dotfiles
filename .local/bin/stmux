@@ -1,2 +1,0 @@
-#/bin/sh
-st -t terminal tmux a -t $USER
