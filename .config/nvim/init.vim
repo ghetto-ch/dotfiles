@@ -20,7 +20,6 @@ Plug '/usr/bin/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'jesseleite/vim-noh'
 Plug 'moll/vim-bbye'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'unblevable/quick-scope'
@@ -28,23 +27,18 @@ Plug 'unblevable/quick-scope'
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
-" Plug 'ajh17/VimCompletesMe'
-" Plug 'ghetto-ch/VimCompletesMe', { 'branch': 'testing' }
-" Plug 'ghetto-ch/vim-minisnip', { 'branch': 'testing' }
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
 " Text objects
 Plug 'kana/vim-textobj-user'
-" Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-entire'
 
+" Completion and snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger="<c-k>"
 
 " Initialize plugin system
 call plug#end()
@@ -89,19 +83,6 @@ command! -bang -nargs=* Rg
 			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
 			\   <bang>0)
 
-" " VimCompletesMe ############################################
-" let g:vcm_s_tab_mapping = "\<c-x>\<c-u>"
-" " Set completion for some filetypes
-" augroup ftVCM
-" 	autocmd!
-" 	autocmd FileType c let b:vcm_tab_complete="omni"
-" 	autocmd FileType vim let b:vcm_tab_complete="vim"
-" augroup END
-
-" " minisnip ##################################################
-" let g:minisnip_trigger = '<c-j>'
-" let g:minisnip_backreffirst = 1
-
 " colorizer #################################################
 set termguicolors "Required by colorizer setup
 lua require 'colorizer'.setup()
@@ -109,8 +90,10 @@ lua require 'colorizer'.setup()
 " quick-scope ###############################################
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
-" coc.nvim ##################################################
+" UltiSnips #################################################
+let g:UltiSnipsExpandTrigger="<c-k>"
 
+" coc.nvim ##################################################
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -163,6 +146,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
+" unmap <expr>gd
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -183,11 +167,11 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>cf  <Plug>(coc-format-selected)
-nmap <leader>cf  <Plug>(coc-format-selected)
+xmap <F3>  <Plug>(coc-format-selected)
+nmap <F3>  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -197,15 +181,10 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
 " Remap keys for applying codeAction to the current line.
-nmap <leader>q  <Plug>(coc-codeaction)
+nmap <F4>  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>cqf  <Plug>(coc-fix-current)
+nmap <F6>  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -231,24 +210,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <leader>d  <C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <leader>e  <C-u>CocList extensions<cr>
-" Show commands.
-noremap <silent> <leader>c  <C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <leader>o  <C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <leader>s  <C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <leader>j  <C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <leader>k  <C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <leader>p  <C-u>CocListResume<CR>
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
@@ -380,14 +341,6 @@ augroup filetypes
 				\ foldcolumn=2
 				\ | highlight! link FoldColumn Normal
 augroup END
-
-" augroup linting
-" 	autocmd!
-" 	autocmd FileType python setlocal makeprg=pylint\ --output-format=parseable
-" 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
-" 	autocmd BufWritePost *.c silent make | silent redraw!
-" 	autocmd QuickFixCmdPost [^l]* nested botright cwindow
-" augroup END
 
 "}}}
 "############################################################
