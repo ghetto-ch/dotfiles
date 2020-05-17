@@ -37,8 +37,9 @@ Plug 'kana/vim-textobj-entire'
 
 " Completion and snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Initialize plugin system
 call plug#end()
@@ -89,9 +90,6 @@ lua require 'colorizer'.setup()
 
 " quick-scope ###############################################
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-" UltiSnips #################################################
-let g:UltiSnipsExpandTrigger="<c-k>"
 
 " coc.nvim ##################################################
 " TextEdit might fail if hidden is not set.
@@ -379,6 +377,9 @@ vnoremap <M-r> dh"0p
 " Fuzzy find files
 nnoremap <leader>f :Files!<CR>
 nnoremap <leader>h :History!<CR>
+
+" File explorer
+nnoremap <leader>e :CocCommand explorer<CR>
 
 " Ripgrep
 nnoremap <leader>g :Rg!<CR>
