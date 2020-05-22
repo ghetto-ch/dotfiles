@@ -40,6 +40,25 @@ let g:base16_gui0F = "#a16946"
 let s:gui10        = "#999999"
 let g:base16_gui10 = "#999999"
 
+let g:terminal_color_0 =  "#181818"
+let g:terminal_color_1 =  "#ab4642"
+let g:terminal_color_2 =  "#a1b56c"
+let g:terminal_color_3 =  "#f7ca88"
+let g:terminal_color_4 =  "#7cafc2"
+let g:terminal_color_5 =  "#ba8baf"
+let g:terminal_color_6 =  "#86c1b9"
+let g:terminal_color_7 =  "#d8d8d8"
+let g:terminal_color_8 =  "#585858"
+let g:terminal_color_9 =  "#ab4642"
+let g:terminal_color_10 = "#a1b56c"
+let g:terminal_color_11 = "#f7ca88"
+let g:terminal_color_12 = "#7cafc2"
+let g:terminal_color_13 = "#ba8baf"
+let g:terminal_color_14 = "#86c1b9"
+let g:terminal_color_15 = "#f8f8f8"
+let g:terminal_color_background = g:terminal_color_0
+let g:terminal_color_foreground = g:terminal_color_5
+
 " Theme setup
 hi clear
 syntax reset

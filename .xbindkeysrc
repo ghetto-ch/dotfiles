@@ -109,8 +109,8 @@
 "slock&"
    Shift+Mod4 + l
 
-# Lauch passmenu
-"passmenu"
+# Lauch pass manager
+"bitwarden-desktop"
    Shift+Mod4 + p
 
 # Lauch favorites

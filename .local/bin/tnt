@@ -8,7 +8,7 @@ TNT_FILE="/mnt/Data/dump_release_tntvillage_2019-08-30.csv"
 IFS=$'\n'
 choices=$(csvawk \
 'NR>1 {
-		split( "KB MB GB TB" , v , " " ); s=0; 
+		split( "KB MB GB TB" , v , " " ); s=0;
 		while( $(NF-1)>1024 )
 			{ $(NF-1)/=1024; s++ }
 		printf "%s | %6.1f%s | %-20s | %s | %s | %s\n",

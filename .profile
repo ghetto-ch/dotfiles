@@ -2,7 +2,7 @@
 export EDITOR=nvim
 export NVR_CMD=nvim-qt
 export TERMINAL=alacritty
-export BROWSER=vimb-tabbed
+export BROWSER=brave
 export X_FILEMANAGER=spacefm
 export CLI_FILEMANAGER=vifm
 export HOST
@@ -12,6 +12,7 @@ export GOPATH=$HOME/Develop/goprojects
 # Get java apps show up in dwm
 export _JAVA_AWT_WM_NONREPARENTING=1
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
+export BW_SESSION="HvfyHep8tukRNuSTIJ42H0aZB7SlhwbEMTd8yI1MtyCLIod8mAM7nH2k7UjNpfs7jPdpFPMcNcQff2+YTwYPcQ=="
 
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH:$HOME/.nimble/bin:$HOME/.gem/ruby/2.6.0/bin:$PLAN9/bin:$GOPATH/bin"
 

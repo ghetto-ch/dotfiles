@@ -1,3 +1,6 @@
+" Map leader key
+let mapleader = ' '
+
 "############################################################
 " PLUGINS
 "############################################################
@@ -23,10 +26,13 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'moll/vim-bbye'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'unblevable/quick-scope'
+Plug 'justinmk/vim-sneak'
+Plug 'ghetto-ch/vim-noh'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
@@ -39,7 +45,10 @@ Plug 'kana/vim-textobj-entire'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
+" Go programming
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+Plug 'ThePrimeagen/vim-be-good', { 'do': ':UpdateRemotePlugins' }
 
 " Initialize plugin system
 call plug#end()
@@ -91,16 +100,16 @@ lua require 'colorizer'.setup()
 " quick-scope ###############################################
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
-" coc.nvim ##################################################
-" TextEdit might fail if hidden is not set.
-set hidden
+" vim-sneak #################################################
+let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
+let g:sneak#s_next = 1
+
+" CoC #######################################################
 
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -130,21 +139,11 @@ endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-" unmap <expr>gd
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -152,11 +151,14 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+vnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'vert h '.expand('<cword>')
-  else
+	elseif (index(['c'], &filetype) >=0)
+		execute 'vert Man '.expand('<cword>')
+	else
     call CocAction('doHover')
   endif
 endfunction
@@ -211,6 +213,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Highlight for config file comments
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 "}}}
 "############################################################
@@ -317,9 +322,6 @@ filetype plugin indent on
 " Add included files to completion
 set complete+=i
 
-" Disable annoying preview window!
-set completeopt-=preview
-
 augroup filetypes
 	autocmd!
 	" Vim
@@ -336,6 +338,7 @@ augroup filetypes
 	autocmd FileType plaintext,markdown,asciidoc,help
 				\ setlocal ts=2 sts=2 sw=2 noautoindent textwidth=80
 				\ nonumber norelativenumber
+				\	signcolumn=no
 				\ foldcolumn=2
 				\ | highlight! link FoldColumn Normal
 augroup END
@@ -354,7 +357,6 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-let mapleader = ' '
 set timeoutlen=2000
 
 " Search
@@ -367,6 +369,7 @@ vnoremap <C-n> :bnext!<CR>
 nnoremap <C-p> :bprevious!<CR>
 vnoremap <C-p> :bprevious!<CR>
 nnoremap <M-d> :Bdelete<CR>
+nnoremap <C-q> :quit<CR>
 
 " Replace selected text pressing C-r, use very nomagic
 vnoremap <C-r> "hy:%s/\V<C-r>h
@@ -377,9 +380,6 @@ vnoremap <M-r> dh"0p
 " Fuzzy find files
 nnoremap <leader>f :Files!<CR>
 nnoremap <leader>h :History!<CR>
-
-" File explorer
-nnoremap <leader>e :CocCommand explorer<CR>
 
 " Ripgrep
 nnoremap <leader>g :Rg!<CR>

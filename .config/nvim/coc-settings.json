@@ -1,29 +1,6 @@
 {
-	"suggest.autoTrigger": "none",
-	"explorer.previewAction.onHover": false,
+	"suggest.autoTrigger": "trigger",
 	"languageserver": {
-		"ccls": {
-			"command": "ccls",
-			"filetypes": [
-				"c",
-				"cc",
-				"cpp",
-				"c++",
-				"objc",
-				"objcpp"
-			],
-			"rootPatterns": [
-				".ccls",
-				"compile_commands.json",
-				".git/",
-				".hg/"
-			],
-			"initializationOptions": {
-				"cache": {
-					"directory": "/tmp/ccls"
-				}
-			}
-		},
 		"bash": {
 			"command": "bash-language-server",
 			"args": [
@@ -34,16 +11,6 @@
 			],
 			"ignoredRootPaths": [
 				"~"
-			]
-		},
-		"golang": {
-			"command": "gopls",
-			"rootPatterns": [
-				"go.mod"
-			],
-			"disableWorkspaceFolders": true,
-			"filetypes": [
-				"go"
 			]
 		}
 	}
