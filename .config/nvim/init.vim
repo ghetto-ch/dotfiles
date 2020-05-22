@@ -139,6 +139,18 @@ endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+let g:endwise_no_mappings = 1
+if exists('*complete_info')
+  imap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" :
+				\ "\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" :
+				\ "\<CR>\DiscretionaryEnd<Plug>CloserClose"
+endif
+
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -310,6 +322,9 @@ augroup END
 set hidden
 " Tree style for directories navigation
 let g:netrw_liststyle= 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
 
 "}}}
 "############################################################
@@ -395,6 +410,9 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>; :normal! mqA;<Esc>`q
 " Add comma at the end of the line
 nnoremap <leader>, :normal! mqA,<Esc>`q
+
+" Use nterw to explore directories
+nnoremap <leader>e :Lexplore<CR>
 
 " Open help in vertical slpit
 cabbrev vh vert h

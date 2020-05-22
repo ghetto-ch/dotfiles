@@ -1,5 +1,7 @@
 {
 	"suggest.autoTrigger": "trigger",
+	"suggest.noselect": false,
+	"suggest.snippetIndicator": "►",
 	"languageserver": {
 		"bash": {
 			"command": "bash-language-server",
@@ -11,6 +13,12 @@
 			],
 			"ignoredRootPaths": [
 				"~"
+			]
+		},
+		"lua": {
+			"command": "lua-lsp",
+			"filetypes": [
+				"lua"
 			]
 		}
 	}
