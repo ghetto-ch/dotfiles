@@ -116,7 +116,7 @@ call <sid>hi("Search",        s:gui01, s:gui0A, "", "")
 call <sid>hi("Substitute",    s:gui01, s:gui0A, "none", "")
 call <sid>hi("SpecialKey",    s:gui03, "", "", "")
 call <sid>hi("TooLong",       s:gui08, "", "", "")
-call <sid>hi("Underlined",    s:gui08, "", "", "")
+call <sid>hi("Underlined",    s:gui08, "", "underline", "")
 call <sid>hi("Visual",        "", s:gui02, "", "")
 call <sid>hi("VisualNOS",     s:gui08, "", "", "")
 call <sid>hi("WarningMsg",    s:gui08, "", "", "")
@@ -126,7 +126,7 @@ call <sid>hi("Conceal",       s:gui0D, s:gui00, "", "")
 call <sid>hi("Cursor",        s:gui00, s:gui05, "", "")
 call <sid>hi("NonText",       s:gui03, "", "", "")
 call <sid>hi("LineNr",        s:gui04, s:gui00, "", "")
-call <sid>hi("SignColumn",    s:gui03, s:gui01, "", "")
+call <sid>hi("SignColumn",    s:gui03, s:gui00, "", "")
 call <sid>hi("StatusLine",    s:gui04, s:gui02, "none", "")
 call <sid>hi("StatusLineNC",  s:gui03, s:gui01, "none", "")
 call <sid>hi("VertSplit",     s:gui02, s:gui02, "none", "")
@@ -322,6 +322,9 @@ call <sid>hi("StartifySpecial",  s:gui03, "", "", "")
 
 " Java highlighting
 call <sid>hi("javaOperator",     s:gui0D, "", "", "")
+
+" CoC
+call <sid>hi("CocHighlightText", "", "", "underline", "")
 
 " Remove functions
 delf <sid>hi

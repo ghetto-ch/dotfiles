@@ -1,5 +1,6 @@
 " Map leader key
 let mapleader = ' '
+set termguicolors
 
 "############################################################
 " PLUGINS
@@ -94,7 +95,6 @@ command! -bang -nargs=* Rg
 			\   <bang>0)
 
 " colorizer #################################################
-set termguicolors "Required by colorizer setup
 lua require 'colorizer'.setup()
 
 " quick-scope ###############################################
@@ -148,7 +148,7 @@ if exists('*complete_info')
 				\ "\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
 else
   imap <expr> <cr> pumvisible() ? "\<C-y>" :
-				\ "\<CR>\DiscretionaryEnd<Plug>CloserClose"
+				\ "\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -168,7 +168,7 @@ vnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'vert h '.expand('<cword>')
-	elseif (index(['c'], &filetype) >=0)
+	elseif (index(['c','sh'], &filetype) >=0)
 		execute 'vert Man '.expand('<cword>')
 	else
     call CocAction('doHover')
@@ -414,6 +414,9 @@ nnoremap <leader>, :normal! mqA,<Esc>`q
 " Use nterw to explore directories
 nnoremap <leader>e :Lexplore<CR>
 
+" Enable / Disable completion
+nnoremap <leader>ce :CocEnable<CR>
+nnoremap <leader>cc :CocDisable<CR>
 " Open help in vertical slpit
 cabbrev vh vert h
 "}}}
