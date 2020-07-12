@@ -7,7 +7,7 @@ export X_FILEMANAGER=spacefm
 export CLI_FILEMANAGER=vifm
 export HOST
 export QT_QPA_PLATFORMTHEME=qt5ct
-export PLAN9=/usr/local/plan9
+# export PLAN9=/usr/local/plan9
 export GOPATH=$HOME/Develop/goprojects
 # Get java apps show up in dwm
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -19,15 +19,12 @@ export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH:$HOME/.nimble/bin:$HOME/.ge
 if ! mount|grep Data > /dev/null; then
     mount /mnt/Data
 fi
-
 if ! mount|grep Movies > /dev/null; then
     mount /mnt/Movies
 fi
-
 if ! mount|grep Series > /dev/null; then
     mount /mnt/Series
 fi
-
 if ! mount|grep Downloads > /dev/null; then
     mount /mnt/Downloads
 fi

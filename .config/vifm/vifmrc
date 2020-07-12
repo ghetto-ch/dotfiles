@@ -118,5 +118,5 @@ nmap K hzkl
 
 " Open in the other pane while moving
 nmap zo :sync %c<CR>
-nmap <c-j> zj:sync %c<CR>
-nmap <c-k> zk:sync %c<CR>
+nmap <M-j> zj:sync %c<CR>
+nmap <M-k> zk:sync %c<CR>

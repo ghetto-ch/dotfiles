@@ -43,10 +43,10 @@ xrandr --output DP-0 --left-of DP-4
 xrandr --output DP-0 --pos 0x-150
 
 udiskie &
-clipmenud &
 xbindkeys
 xset r rate 250 30
 numlockx &
+xcape -t 200 -e 'Control_L=Escape;Shift_R=Caps_Lock'
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 30 -locker slock &
 xwallpaper --output DP-4 --center /home/ghetto/img/wallpaper \

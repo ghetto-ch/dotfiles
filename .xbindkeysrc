@@ -125,6 +125,10 @@
 "flameshot gui -p ~/pics/captures"
    Print
 
+# Lauch xkill
+"xkill"
+   Shift+Mod4 + x
+
 ##################################
 # End of xbindkeys configuration #
 ##################################

@@ -52,10 +52,9 @@ setopt NO_CASE_GLOB                         # Case insensitive globbing
 setopt EXTENDED_GLOB                        # Allow the powerful zsh globbing features
 setopt NUMERIC_GLOB_SORT                    # Sort globs that expand to numbers numerically, not by letter (i.e. 01 2 03)
 setopt RMSTARSILENT
-# Vim or Emacs?
-bindkey -v
+## vim-mode
 source ~/.zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh
-export KEYTIMEOUT=15
+export KEYTIMEOUT=20
 # ZSH keybindings
 bindkey "\e[3~" delete-char					      # [Delete] - delete forward
 bindkey "^[[A" history-search-backward            # start typing + [Up-Arrow] - fuzzy find history forward
@@ -88,20 +87,20 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias /="cd /"
 
-alias ncdu='ncdu --color dark'
+#alias ncdu='ncdu --color dark'
 alias info=pinfo
 
-# alias surf=surf-open
+## alias surf=surf-open
 alias vi=nvim
 
-# Bulkrename cli utils
+## Bulkrename cli utils
 alias qmv='qmv -f do'
 
-# buku shortcut
+## buku shortcut
 alias b='buku --suggest'
 
-# Setup grep to be a bit more nice
-# check if 'x' grep argument available
+## Setup grep to be a bit more nice
+## check if 'x' grep argument available
 grep-flag-available() {
     echo | grep $1 "" >/dev/null 2>&1
 }
@@ -114,26 +113,23 @@ if grep-flag-available --color=auto; then
 fi
 
 # ignore VCS folders (if the necessary grep flags are available)
-   local VCS_FOLDERS="{.bzr,CVS,.git,.hg,.svn}"
+local VCS_FOLDERS="{.bzr,CVS,.git,.hg,.svn}"
 
-   if grep-flag-available --exclude-dir=.cvs; then
-       GREP_OPTIONS+=" --exclude-dir=$VCS_FOLDERS"
-   elif grep-flag-available --exclude=.cvs; then
-       GREP_OPTIONS+=" --exclude=$VCS_FOLDERS"
-   fi
+if grep-flag-available --exclude-dir=.cvs; then
+	GREP_OPTIONS+=" --exclude-dir=$VCS_FOLDERS"
+elif grep-flag-available --exclude=.cvs; then
+	GREP_OPTIONS+=" --exclude=$VCS_FOLDERS"
+fi
 
-# export grep settings
+## export grep settings
 alias grep="grep $GREP_OPTIONS"
 
-# clean up
+## clean up
 unfunction grep-flag-available
 
-# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPAGER='nvim +Man!'
-# export MANWIDTH=999
 
-# Default editor
-# export EDITOR=nvim
+## Default editor
 export VIMRUNTIME="/usr/share/nvim/runtime"
 
 export FD_OPTS="--exclude .git -H"
@@ -144,6 +140,10 @@ source $HOME/.fzf/completion.zsh
 source $HOME/.fzf/key-bindings.zsh
 source $HOME/.fzf/base16/base16-default-dark.config
 source $HOME/.fzf/fzf-tab/fzf-tab.plugin.zsh
+# disable sort when completing options of any command
+zstyle ':completion:complete:*:options' sort false
+# query string
+zstyle ':fzf-tab:*' query-string prefix input first
 export FZF_COMPLETION_TRIGGER=','
 export FZF_TMUX=0
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --multi --preview '(bat --color=always --style=numbers {} || tree -C {}) 2> /dev/null | head -200' --preview-window='hidden' --bind='alt-p:toggle-preview'"
@@ -153,10 +153,10 @@ export FZF_CTRL_T_OPTS="--preview-window='right'"
 export FZF_ALT_C_COMMAND="fd $FD_OPTS --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --preview-window='right'"
 
-# Powerlevel10k
-source ~/tools/powerlevel10k/powerlevel10k.zsh-theme
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+## Powerlevel10k
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Syntax highlighting
+## Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

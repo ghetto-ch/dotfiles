@@ -4,7 +4,7 @@ set statusline+=%f
 set statusline+=%m
 set statusline+=%r
 " set statusline+=%{FugitiveStatusline()}
-set statusline+=\ %{coc#status()}
+" set statusline+=\ %{coc#status()}
 set statusline+=%=
 " set statusline+=%#CursorColumn#
 set statusline+=%y
