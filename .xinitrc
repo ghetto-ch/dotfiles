@@ -34,13 +34,13 @@ fi
 
 #xrandr --setprovideroutputsource 1 0
 # xrandr --output DisplayPort-0 --primary
-xrandr --output DP-4 --primary
+# xrandr --output DP-4 --primary
 # xrandr --output HDMI-A-0 --rotate left
-xrandr --output DP-0 --rotate left
+# xrandr --output DP-0 --rotate left
 # xrandr --output HDMI-A-0 --left-of DisplayPort-0
-xrandr --output DP-0 --left-of DP-4
+# xrandr --output DP-0 --left-of DP-4
 # xrandr --output HDMI-A-0 --pos 0x-150
-xrandr --output DP-0 --pos 0x-150
+# xrandr --output DP-0 --pos 0x-150
 
 udiskie &
 xbindkeys
@@ -49,8 +49,7 @@ numlockx &
 xcape -t 200 -e 'Control_L=Escape;Shift_R=Caps_Lock'
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 30 -locker slock &
-xwallpaper --output DP-4 --center /home/ghetto/img/wallpaper \
-	--output DP-0 --center /home/ghetto/img/wallpaperV
+xwallpaper --output DP-4 --center /home/ghetto/img/wallpaper
 picom -b
 lxpolkit &
 dwm-status &
