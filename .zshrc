@@ -105,7 +105,7 @@ grep-flag-available() {
     echo | grep $1 "" >/dev/null 2>&1
 }
 
-local GREP_OPTIONS="-n"
+local GREP_OPTIONS=""
 
 # color grep results
 if grep-flag-available --color=auto; then

@@ -4,6 +4,41 @@ set termguicolors
 packadd! matchit
 
 "############################################################
+" THEME AND GUI RELATED SETTINGS
+"############################################################
+"{{{
+" Set colors
+set background=dark
+colorscheme base16-ghetto
+" highlight! link LspDiagnosticsError Error
+" highlight! link LspDiagnosticsWarning Warning
+
+" LspDiagnosticsUnderline xxx cleared
+" LspDiagnosticsUnderlineWarning xxx links to LspDiagnosticsUnderline
+" LspDiagnosticsUnderlineError xxx links to LspDiagnosticsUnderline
+" LspDiagnosticsUnderlineHint xxx links to LspDiagnosticsUnderline
+" LspDiagnosticsUnderlineInformation xxx links to LspDiagnosticsUnderline
+" LspDiagnosticsHint xxx cleared
+" LspDiagnosticsHintSign xxx links to LspDiagnosticsHint
+" LspDiagnosticsHintFloating xxx links to LspDiagnosticsHint
+" LspDiagnosticsError xxx cleared
+" LspDiagnosticsErrorSign xxx links to LspDiagnosticsError
+" LspDiagnosticsErrorFloating xxx links to LspDiagnosticsError
+" LspDiagnosticsWarning xxx cleared
+" LspDiagnosticsWarningSign xxx links to LspDiagnosticsWarning
+" LspDiagnosticsWarningFloating xxx links to LspDiagnosticsWarning
+" LspDiagnosticsInformation xxx cleared
+" LspDiagnosticsInformationSign xxx links to LspDiagnosticsInformation
+" LspDiagnosticsInformationFloating xxx links to LspDiagnosticsInformation
+
+" Text width and column highlight
+set textwidth=0
+command! Col set colorcolumn=81
+command! Nocol set colorcolumn=0
+set nowrap
+
+"}}}
+"############################################################
 " PLUGINS
 "############################################################
 "{{{
@@ -122,11 +157,11 @@ EOF
 autocmd BufEnter * lua require'completion'.on_attach()
 set shortmess+=c
 set signcolumn=yes
-set completeopt=menu,longest
+set completeopt=menuone,noselect,noinsert
 
 let g:completion_enable_auto_popup = 1
 let g:completion_enable_snippet = 'vim-vsnip'
-let g:completion_auto_change_source = 1
+let g:completion_auto_change_source = 0
 let g:completion_matching_strategy_list = ['fuzzy', 'substring', 'exact']
 
 let g:completion_chain_complete_list = [
@@ -205,41 +240,6 @@ set undofile
 
 " Search for subdirs as well
 set path+=**
-"}}}
-"############################################################
-" THEME AND GUI RELATED SETTINGS
-"############################################################
-"{{{
-" Set colors
-set background=dark
-colorscheme base16-ghetto
-highlight! link LspDiagnosticsError Error
-highlight! link LspDiagnosticsWarning Warning
-
-" LspDiagnosticsUnderline xxx cleared
-" LspDiagnosticsUnderlineWarning xxx links to LspDiagnosticsUnderline
-" LspDiagnosticsUnderlineError xxx links to LspDiagnosticsUnderline
-" LspDiagnosticsUnderlineHint xxx links to LspDiagnosticsUnderline
-" LspDiagnosticsUnderlineInformation xxx links to LspDiagnosticsUnderline
-" LspDiagnosticsHint xxx cleared
-" LspDiagnosticsHintSign xxx links to LspDiagnosticsHint
-" LspDiagnosticsHintFloating xxx links to LspDiagnosticsHint
-" LspDiagnosticsError xxx cleared
-" LspDiagnosticsErrorSign xxx links to LspDiagnosticsError
-" LspDiagnosticsErrorFloating xxx links to LspDiagnosticsError
-" LspDiagnosticsWarning xxx cleared
-" LspDiagnosticsWarningSign xxx links to LspDiagnosticsWarning
-" LspDiagnosticsWarningFloating xxx links to LspDiagnosticsWarning
-" LspDiagnosticsInformation xxx cleared
-" LspDiagnosticsInformationSign xxx links to LspDiagnosticsInformation
-" LspDiagnosticsInformationFloating xxx links to LspDiagnosticsInformation
-
-" Text width and column highlight
-set textwidth=0
-command! Col set colorcolumn=81
-command! Nocol set colorcolumn=0
-set nowrap
-
 "}}}
 "############################################################
 " USABILITY SETTINGS
