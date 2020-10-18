@@ -80,10 +80,12 @@ Plug 'kana/vim-textobj-entire'
 Plug 'wellle/targets.vim'
 
 " Completion and snippets
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
 Plug 'haorenW1025/completion-nvim'
+Plug 'haorenW1025/diagnostic-nvim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Go programming
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -148,13 +150,17 @@ nmap gs <Plug>SlimeMotionSend
 
 " nvim-lsp ##################################################
 lua << EOF
-require'nvim_lsp'.clangd.setup{}
-require'nvim_lsp'.bashls.setup{}
-require'nvim_lsp'.vimls.setup{}
+local on_attach_vim = function(client)
+  require'completion'.on_attach(client)
+  require'diagnostic'.on_attach(client)
+end
+
+require'nvim_lsp'.clangd.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.bashls.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.vimls.setup{on_attach=on_attach_vim}
 EOF
 
 " completion-nvim ###########################################
-autocmd BufEnter * lua require'completion'.on_attach()
 set shortmess+=c
 set signcolumn=yes
 set completeopt=menuone,noselect,noinsert
@@ -163,14 +169,13 @@ let g:completion_enable_auto_popup = 1
 let g:completion_enable_snippet = 'vim-vsnip'
 let g:completion_auto_change_source = 0
 let g:completion_matching_strategy_list = ['fuzzy', 'substring', 'exact']
+let g:completion_trigger_keyword_length = 3
 
-let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp']},
-    \{'complete_items': ['snippet']},
-    \{'mode': '<c-p>'},
-    \{'mode': '<c-n>'},
-	\{'complete_items': ['path'], 'triggered_only': ['/']}
-\]
+" let g:completion_chain_complete_list = [
+"     \{'complete_items': ['lsp, snippet']},
+"     \{'mode': '<c-p>'},
+"     \{'mode': '<c-n>'}
+" \]
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -203,6 +208,9 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
 
+" imap <c-j> <Plug>(completion_next_source) "use <c-j> to switch to previous completion
+" imap <c-k> <Plug>(completion_prev_source) "use <c-k> to switch to next completion
+
 let g:endwise_no_mappings = 1
 let g:completion_confirm_key = ""
 imap <expr> <cr>  pumvisible() ?
@@ -214,6 +222,21 @@ imap <expr> <cr>  pumvisible() ?
 			\ : get(b:, 'closer') ?
 				\ "\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
 				\ : "\<CR>\<Plug>DiscretionaryEnd"
+
+let g:diagnostic_insert_delay = 1
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_virtual_text_prefix = ' '
+let g:space_before_virtual_text = 5
+
+" nvim-treesitter ############################################
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",     -- one of "all", "language", or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
 
 "}}}
 "############################################################
