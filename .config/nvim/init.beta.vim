@@ -155,9 +155,9 @@ local on_attach_vim = function(client)
   require'diagnostic'.on_attach(client)
 end
 
-require'nvim_lsp'.clangd.setup{on_attach=on_attach_vim}
-require'nvim_lsp'.bashls.setup{on_attach=on_attach_vim}
-require'nvim_lsp'.vimls.setup{on_attach=on_attach_vim}
+require'lspconfig'.clangd.setup{on_attach=on_attach_vim}
+require'lspconfig'.bashls.setup{on_attach=on_attach_vim}
+require'lspconfig'.vimls.setup{on_attach=on_attach_vim}
 EOF
 
 " completion-nvim ###########################################
