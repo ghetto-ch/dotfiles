@@ -414,8 +414,8 @@ nnoremap <leader>h :History!<CR>
 nnoremap <leader>g :Rg!<CR>
 
 " Export asciidoc to html and open a preview
-" nnoremap <leader>a :silent !export DISPLAY:=0 &
-" 			\ asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
+nnoremap <leader>a :silent !export DISPLAY:=0 &
+			\ asciidoctor -o ~/.var/tmp/surf-preview.html % && surf-preview<CR>
 
 " cd in the directory of the current file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>

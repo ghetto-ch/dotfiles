@@ -119,7 +119,7 @@
 
 # Switch between us and intl
 "switch-kb-layout"
-   Shift+Mod4 + k
+   Mod1+Mod4 + k
 
 # Take a screenshot
 "flameshot gui -p ~/pics/captures"

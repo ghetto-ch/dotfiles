@@ -15,8 +15,8 @@ setopt NO_BEEP                      # Disable beeps
 # ZSH History
 alias history='fc -fl 1'
 HISTFILE=$ZSH_CACHE/history      # Keep our home directory neat by keeping the histfile somewhere else
-SAVEHIST=10000                   # Big history
-HISTSIZE=10000                   # Big history
+SAVEHIST=50000                   # Big history
+HISTSIZE=50000                   # Big history
 setopt APPEND_HISTORY            # Allow multiple terminal sessions to all append to one zsh command history
 setopt HIST_FIND_NO_DUPS         # When searching history don't display results already cycled through twice
 setopt HIST_EXPIRE_DUPS_FIRST    # When duplicates are entered, get rid of the duplicates first when we hit $HISTSIZE
