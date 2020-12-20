@@ -10,31 +10,9 @@ packadd! matchit
 " Set colors
 set background=dark
 colorscheme base16-ghetto
-" highlight! link LspDiagnosticsError Error
-" highlight! link LspDiagnosticsWarning Warning
-
-" LspDiagnosticsUnderline xxx cleared
-" LspDiagnosticsUnderlineWarning xxx links to LspDiagnosticsUnderline
-" LspDiagnosticsUnderlineError xxx links to LspDiagnosticsUnderline
-" LspDiagnosticsUnderlineHint xxx links to LspDiagnosticsUnderline
-" LspDiagnosticsUnderlineInformation xxx links to LspDiagnosticsUnderline
-" LspDiagnosticsHint xxx cleared
-" LspDiagnosticsHintSign xxx links to LspDiagnosticsHint
-" LspDiagnosticsHintFloating xxx links to LspDiagnosticsHint
-" LspDiagnosticsError xxx cleared
-" LspDiagnosticsErrorSign xxx links to LspDiagnosticsError
-" LspDiagnosticsErrorFloating xxx links to LspDiagnosticsError
-" LspDiagnosticsWarning xxx cleared
-" LspDiagnosticsWarningSign xxx links to LspDiagnosticsWarning
-" LspDiagnosticsWarningFloating xxx links to LspDiagnosticsWarning
-" LspDiagnosticsInformation xxx cleared
-" LspDiagnosticsInformationSign xxx links to LspDiagnosticsInformation
-" LspDiagnosticsInformationFloating xxx links to LspDiagnosticsInformation
 
 " Text width and column highlight
 set textwidth=0
-command! Col set colorcolumn=81
-command! Nocol set colorcolumn=0
 set nowrap
 
 "}}}
@@ -85,9 +63,6 @@ Plug 'haorenW1025/completion-nvim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-" Go programming
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Initialize plugin system
 call plug#end()
@@ -183,12 +158,6 @@ let g:completion_auto_change_source = 0
 let g:completion_matching_strategy_list = ['fuzzy', 'substring', 'exact']
 let g:completion_trigger_keyword_length = 3
 
-" let g:completion_chain_complete_list = [
-"     \{'complete_items': ['lsp, snippet']},
-"     \{'mode': '<c-p>'},
-"     \{'mode': '<c-n>'}
-" \]
-
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
@@ -220,9 +189,6 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
 
-" imap <c-j> <Plug>(completion_next_source) "use <c-j> to switch to previous completion
-" imap <c-k> <Plug>(completion_prev_source) "use <c-k> to switch to next completion
-
 let g:endwise_no_mappings = 1
 let g:completion_confirm_key = ""
 imap <expr> <cr>  pumvisible() ?
@@ -235,7 +201,7 @@ imap <expr> <cr>  pumvisible() ?
 				\ "\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
 				\ : "\<CR>\<Plug>DiscretionaryEnd"
 
-" nvim-treesitter ############################################
+" nvim-treesitter ###########################################
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
@@ -320,17 +286,6 @@ set lazyredraw
 " Populate the statusline
 source ~/.config/nvim/statusline.vim
 
-" Highlight trailing spaces
-highlight ExtraWhitespace ctermbg=darkred guibg=darkred
-match ExtraWhitespace /\s\+$/
-augroup whitespace
-	autocmd!
-	autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-	autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-	autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-	autocmd BufWinLeave * call clearmatches()
-augroup END
-
 " Stop complaining about modified buffers
 set hidden
 " Tree style for directories navigation
@@ -338,6 +293,10 @@ let g:netrw_liststyle= 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
+
+" Show non printable chars
+set list
+set listchars=tab:→\ ,trail:░,extends:…,precedes:…,conceal:┊,nbsp:␣
 
 "}}}
 "############################################################
@@ -366,7 +325,7 @@ augroup filetypes
 	autocmd FileType text,plaintext,markdown,asciidoc,help
 				\ setlocal ts=2 sts=2 sw=2 noautoindent textwidth=80
 				\ nonumber norelativenumber
-				\	signcolumn=no
+				\ signcolumn=no
 				\ foldcolumn=2
 				\ | highlight! link FoldColumn Normal
 augroup END
@@ -436,6 +395,8 @@ cabbrev vh vert h
 "############################################################
 "{{{
 command! TrimWhitspaces :call TrimWhitspaces()
+command! Col set colorcolumn=81
+command! Nocol set colorcolumn=0
 "}}}
 "############################################################
 " CUSTOM FUNCTIONS
