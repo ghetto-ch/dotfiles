@@ -48,6 +48,7 @@ Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'jpalardy/vim-slime'
+Plug 'tjdevries/nlua.nvim'
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
@@ -132,6 +133,13 @@ require'lspconfig'.clangd.setup{on_attach=on_attach_vim}
 require'lspconfig'.bashls.setup{on_attach=on_attach_vim}
 require'lspconfig'.vimls.setup{on_attach=on_attach_vim}
 require'lspconfig'.gopls.setup{on_attach=on_attach_vim}
+require('nlua.lsp.nvim').setup(require('lspconfig'), {
+  on_attach = on_attach_vim,
+  globals = {
+    -- Colorbuddy
+    "Color", "c", "Group", "g", "s",
+  }
+})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -315,7 +323,6 @@ augroup filetypes
 	autocmd FileType vim setlocal foldmethod=marker foldlevel=0
 	" sh
 	autocmd FileType sh setlocal ts=4 sts=4 sw=4
-				" \ omnifunc=syntaxcomplete#Complete
 	" Python
 	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 	" C

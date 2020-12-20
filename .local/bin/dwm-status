@@ -68,11 +68,11 @@ do
     fi
 
     # Executes every second
-    vol=$(pavolume)
+    # vol=$(pavolume)
 
 
     # Compose status string
-    status="$bandwidth | $cpu $mem | $root $home | $updates | $vol | $time"
+    status="$bandwidth | $cpu $mem | $root $home | $updates | $time |"
 
     xsetroot -name "$status"
     sleep 1
