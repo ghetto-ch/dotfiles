@@ -11,7 +11,7 @@ packadd! matchit
 set background=dark
 colorscheme base16-ghetto
 
-" Text width and column highlight
+" Text width and wrapping
 set textwidth=0
 set nowrap
 
@@ -35,11 +35,10 @@ Plug 'junegunn/vim-plug'
 
 " Usability
 Plug '/usr/bin/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'moll/vim-bbye'
-Plug 'norcalli/nvim-colorizer.lua'
+" Plug 'norcalli/nvim-colorizer.lua'
 Plug 'unblevable/quick-scope'
 Plug 'ghetto-ch/vim-noh'
 
@@ -60,6 +59,7 @@ Plug 'wellle/targets.vim'
 
 " Completion and snippets
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp-status.nvim'
 Plug 'haorenW1025/completion-nvim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
@@ -72,6 +72,9 @@ call plug#end()
 " PLUGIN SETTINGS
 "############################################################
 "{{{
+" Load settings from plugins.lua
+lua require('plugins')
+
 " FZF #######################################################
 
 " This is the default extra key bindings
@@ -109,7 +112,7 @@ command! -bang -nargs=* Rg
 			\   <bang>0)
 
 " colorizer #################################################
-lua require 'colorizer'.setup()
+" lua require 'colorizer'.setup()
 
 " quick-scope ###############################################
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -124,34 +127,6 @@ nmap gss <Plug>SlimeLineSend
 nmap gs <Plug>SlimeMotionSend
 
 " nvim-lsp ##################################################
-lua << EOF
-local on_attach_vim = function(client)
-  require'completion'.on_attach(client)
-end
-
-require'lspconfig'.clangd.setup{on_attach=on_attach_vim}
-require'lspconfig'.bashls.setup{on_attach=on_attach_vim}
-require'lspconfig'.vimls.setup{on_attach=on_attach_vim}
-require'lspconfig'.gopls.setup{on_attach=on_attach_vim}
-require('nlua.lsp.nvim').setup(require('lspconfig'), {
-  on_attach = on_attach_vim,
-  globals = {
-    -- Colorbuddy
-    "Color", "c", "Group", "g", "s",
-  }
-})
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = {
-      spacing = 4,
-      prefix = ' ',
-    },
-  }
-)
-EOF
-
 nnoremap <leader>dn <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <leader>dp <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
@@ -208,28 +183,6 @@ imap <expr> <cr>  pumvisible() ?
 			\ : get(b:, 'closer') ?
 				\ "\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
 				\ : "\<CR>\<Plug>DiscretionaryEnd"
-
-" nvim-treesitter ###########################################
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  indent = {
-    enable = true
-  },
-}
-EOF
 
 "}}}
 "############################################################
@@ -296,11 +249,6 @@ source ~/.config/nvim/statusline.vim
 
 " Stop complaining about modified buffers
 set hidden
-" Tree style for directories navigation
-let g:netrw_liststyle= 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 20
 
 " Show non printable chars
 set list
@@ -322,11 +270,13 @@ augroup filetypes
 	" Vim
 	autocmd FileType vim setlocal foldmethod=marker foldlevel=0
 	" sh
-	autocmd FileType sh setlocal ts=4 sts=4 sw=4
+	autocmd FileType sh setlocal ts=2 sts=2 sw=2
+	" html
+	autocmd FileType html setlocal ts=2 sts=2 sw=2
 	" Python
-	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+	autocmd FileType python setlocal ts=2 sts=2 sw=2 expandtab
 	" C
-	autocmd FileType c setlocal ts=4 sts=4 sw=4 formatprg=astyle
+	autocmd FileType c,cpp setlocal ts=2 sts=2 sw=2 formatprg=astyle
 				\ foldmethod=syntax foldlevel=1
 	" asciidoc and others
 	autocmd FileType text,plaintext,markdown,asciidoc,help
@@ -336,6 +286,9 @@ augroup filetypes
 				\ foldcolumn=2
 				\ | highlight! link FoldColumn Normal
 augroup END
+
+" Enable lua syntax highlighting inside .vim files
+let g:vimsyn_embed = 'l'
 
 "}}}
 "############################################################
@@ -392,7 +345,7 @@ nnoremap <leader>; :normal! mqA;<Esc>`q
 nnoremap <leader>, :normal! mqA,<Esc>`q
 
 " Use nterw to explore directories
-nnoremap <leader>e :Lexplore<CR>
+nnoremap <leader>e :NvimTreeToggle<CR>
 
 " Open help in vertical slpit
 cabbrev vh vert h

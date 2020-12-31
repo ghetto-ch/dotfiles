@@ -90,7 +90,7 @@ alias /="cd /"
 #alias ncdu='ncdu --color dark'
 alias info=pinfo
 
-## alias surf=surf-open
+# alias surf=surf-open
 alias vi=nvim
 
 ## Bulkrename cli utils
@@ -160,3 +160,5 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 ## Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source /home/ghetto/.config/broot/launcher/bash/br
