@@ -34,11 +34,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/vim-plug'
 
 " Usability
-Plug '/usr/bin/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'moll/vim-bbye'
-" Plug 'norcalli/nvim-colorizer.lua'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'unblevable/quick-scope'
 Plug 'ghetto-ch/vim-noh'
 
@@ -47,7 +47,6 @@ Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'jpalardy/vim-slime'
-Plug 'tjdevries/nlua.nvim'
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
@@ -60,15 +59,14 @@ Plug 'wellle/targets.vim'
 " Completion and snippets
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp-status.nvim'
-Plug 'haorenW1025/completion-nvim'
+Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Initialize plugin system
 call plug#end()
-"}}}
-"############################################################
+"}}}"############################################################
 " PLUGIN SETTINGS
 "############################################################
 "{{{
@@ -76,15 +74,9 @@ call plug#end()
 lua require('plugins')
 
 " FZF #######################################################
-
-" This is the default extra key bindings
-let g:fzf_action = {
-			\ 'ctrl-t': 'tab split',
-			\ 'ctrl-x': 'split',
-			\ 'ctrl-v': 'vsplit' }
+let g:fzf_preview_window = ['right:50%:nohidden', 'ctrl-/']
 
 " Insert mode completion
-" imap <c-x><c-k> <plug>(fzf-complete-word)
 inoremap <expr> <plug>(fzf-complete-mypath)
 			\ fzf#vim#complete#path("fd -H --exclude .git .")
 inoremap <c-x><c-f> <plug>(fzf-complete-mypath)
@@ -92,27 +84,6 @@ inoremap <expr> <plug>(fzf-complete-myfile)
 			\ fzf#vim#complete#path("fd -H --exclude .git --type f .")
 inoremap <c-x><c-j> <plug>(fzf-complete-myfile)
 inoremap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Use preview when Files runs in fullscreen
-command! -nargs=? -bang -complete=dir Files
-			\ call fzf#vim#files(
-			\   <q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
-
-" Use preview when History runs in fullscreen
-command! -nargs=? -bang -complete=dir History
-			\ call fzf#vim#history(
-			\   <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
-
-command! -bang -nargs=* Rg
-			\ call fzf#vim#grep(
-			\   'rg --column --line-number --no-heading --color=always --smart-case
-			\   '.shellescape(<q-args>), 1,
-			\   <bang>0 ? fzf#vim#with_preview('up:60%')
-			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
-			\   <bang>0)
-
-" colorizer #################################################
-" lua require 'colorizer'.setup()
 
 " quick-scope ###############################################
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -136,7 +107,7 @@ set signcolumn=yes
 set completeopt=menuone,noselect,noinsert
 
 let g:completion_enable_auto_popup = 1
-let g:completion_enable_snippet = 'vim-vsnip'
+" let g:completion_enable_snippet = 'vim-vsnip'
 let g:completion_auto_change_source = 0
 let g:completion_matching_strategy_list = ['fuzzy', 'substring', 'exact']
 let g:completion_trigger_keyword_length = 3
@@ -326,11 +297,11 @@ vnoremap <C-r> "hy:%s/\V<C-r>h
 vnoremap <M-r> dh"0p
 
 " Fuzzy find files
-nnoremap <leader>f :Files!<CR>
-nnoremap <leader>h :History!<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>h :History<CR>
 
 " Ripgrep
-nnoremap <leader>g :Rg!<CR>
+nnoremap <leader>g :Rg<CR>
 
 " Export asciidoc to html and open a preview
 nnoremap <leader>a :silent !export DISPLAY:=0 &
@@ -343,9 +314,6 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>; :normal! mqA;<Esc>`q
 " Add comma at the end of the line
 nnoremap <leader>, :normal! mqA,<Esc>`q
-
-" Use nterw to explore directories
-nnoremap <leader>e :NvimTreeToggle<CR>
 
 " Open help in vertical slpit
 cabbrev vh vert h

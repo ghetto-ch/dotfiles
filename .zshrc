@@ -146,7 +146,7 @@ zstyle ':completion:complete:*:options' sort false
 zstyle ':fzf-tab:*' query-string prefix input first
 export FZF_COMPLETION_TRIGGER=','
 export FZF_TMUX=0
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --multi --preview '(bat --color=always --style=numbers {} || tree -C {}) 2> /dev/null | head -200' --preview-window='hidden' --bind='alt-p:toggle-preview'"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --multi --preview '(bat --color=always --style=numbers {} || tree -C {}) 2> /dev/null | head -200' --bind='ctrl-/:toggle-preview'"
 export FZF_DEFAULT_COMMAND="fd $FD_OPTS"
 export FZF_CTRL_T_COMMAND="fd $FD_OPTS --type f"
 export FZF_CTRL_T_OPTS="--preview-window='right'"

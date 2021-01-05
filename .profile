@@ -1,16 +1,15 @@
 # Variables
 export EDITOR=nvim
-export NVR_CMD=nvim-qt
 export TERMINAL=alacritty
 export BROWSER=brave
 export X_FILEMANAGER=spacefm
 export CLI_FILEMANAGER=vifm
 export HOST
 export QT_QPA_PLATFORMTHEME=qt5ct
-# export PLAN9=/usr/local/plan9
+export PLAN9=/usr/local/plan9
 export GOPATH=$HOME/Develop/goprojects
 # Get java apps show up in dwm
-export _JAVA_AWT_WM_NONREPARENTING=1
+# export _JAVA_AWT_WM_NONREPARENTING=1
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 export BW_SESSION="HvfyHep8tukRNuSTIJ42H0aZB7SlhwbEMTd8yI1MtyCLIod8mAM7nH2k7UjNpfs7jPdpFPMcNcQff2+YTwYPcQ=="
 
