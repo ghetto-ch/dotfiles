@@ -10,7 +10,6 @@ set statusline=
 set statusline+=%f
 set statusline+=%m
 set statusline+=%r
-set statusline+=%{LspStatus()}
 set statusline+=%=
 set statusline+=%y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}

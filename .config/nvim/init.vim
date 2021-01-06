@@ -58,8 +58,8 @@ Plug 'wellle/targets.vim'
 
 " Completion and snippets
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/lsp-status.nvim'
 Plug 'nvim-lua/completion-nvim'
+Plug 'tjdevries/nlua.nvim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
