@@ -59,3 +59,6 @@ require'nvim-treesitter.configs'.setup {
 
 -- colorizer #################################################
 require'colorizer'.setup()
+
+-- nvim.cheat.sh
+vim.g.cheat_default_window_layout = 'vertical_split'

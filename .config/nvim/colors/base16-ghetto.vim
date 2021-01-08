@@ -323,9 +323,6 @@ call <sid>hi("StartifySpecial",  s:gui03, "", "", "")
 " Java highlighting
 call <sid>hi("javaOperator",     s:gui0D, "", "", "")
 
-" CoC
-call <sid>hi("CocHighlightText", "", "", "underline", "")
-
 " Remove functions
 delf <sid>hi
 

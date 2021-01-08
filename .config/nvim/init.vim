@@ -64,6 +64,9 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-cheat.sh'
+
 " Initialize plugin system
 call plug#end()
 "}}}"############################################################
@@ -223,7 +226,7 @@ set hidden
 
 " Show non printable chars
 set list
-set listchars=tab:→\ ,trail:░,extends:…,precedes:…,conceal:┊,nbsp:␣
+set listchars=tab:→\ ,trail:▒,extends:…,precedes:…,conceal:┊,nbsp:␣
 
 "}}}
 "############################################################
