@@ -24,8 +24,8 @@ set nowrap
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -41,12 +41,15 @@ Plug 'moll/vim-bbye'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'unblevable/quick-scope'
 Plug 'ghetto-ch/vim-noh'
+Plug 'editorconfig/editorconfig-vim'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'jpalardy/vim-slime'
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-cheat.sh'
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
@@ -64,8 +67,6 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-Plug 'RishabhRD/popfix'
-Plug 'RishabhRD/nvim-cheat.sh'
 
 " Initialize plugin system
 call plug#end()
