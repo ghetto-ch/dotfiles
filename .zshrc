@@ -99,6 +99,8 @@ alias qmv='qmv -f do'
 ## buku shortcut
 alias b='buku --suggest'
 
+alias mcom='minicom -con'
+
 ## Setup grep to be a bit more nice
 ## check if 'x' grep argument available
 grep-flag-available() {

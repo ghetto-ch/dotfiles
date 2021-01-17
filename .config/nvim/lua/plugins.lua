@@ -13,7 +13,7 @@ local general_on_attach = function(client, bufnr)
 end
 
 -- Setup basic lsp servers
-for _, server in pairs({"html", "clangd", "gopls", "html", "bashls", "vimls", "tsserver", "cssls"}) do
+for _, server in pairs({"html", "clangd", "gopls", "html", "bashls", "vimls", "tsserver", "cssls", "pyls"}) do
 	lsp_config[server].setup {
 		-- Add capabilities
 		capabilities = capabilities,

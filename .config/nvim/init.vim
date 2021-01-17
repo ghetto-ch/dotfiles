@@ -50,6 +50,7 @@ Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'jpalardy/vim-slime'
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
+Plug 'airblade/vim-gitgutter'
 
 " Debug with gdb etc...
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
@@ -228,6 +229,12 @@ set hidden
 " Show non printable chars
 set list
 set listchars=tab:→\ ,trail:▒,extends:…,precedes:…,conceal:┊,nbsp:␣
+
+" Higlight yanked text
+augroup highlight_yank
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+augroup END
 
 "}}}
 "############################################################
