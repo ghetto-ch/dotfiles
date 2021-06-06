@@ -41,15 +41,14 @@ Plug 'moll/vim-bbye'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'unblevable/quick-scope'
 Plug 'ghetto-ch/vim-noh'
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'jpalardy/vim-slime'
-Plug 'RishabhRD/popfix'
-Plug 'RishabhRD/nvim-cheat.sh'
+" Plug 'RishabhRD/nvim-cheat.sh' | Plug 'RishabhRD/popfix'
 Plug 'airblade/vim-gitgutter'
 
 " Debug with gdb etc...
@@ -64,14 +63,14 @@ Plug 'wellle/targets.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'hrsh7th/vim-vsnip' | Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
 " Initialize plugin system
 call plug#end()
-"}}}"############################################################
+"}}}
+"############################################################
 " PLUGIN SETTINGS
 "############################################################
 "{{{
@@ -112,10 +111,10 @@ set signcolumn=yes
 set completeopt=menuone,noselect,noinsert
 
 let g:completion_enable_auto_popup = 1
-" let g:completion_enable_snippet = 'vim-vsnip'
+let g:completion_enable_snippet = 'vim-vsnip'
 let g:completion_auto_change_source = 0
 let g:completion_matching_strategy_list = ['fuzzy', 'substring', 'exact']
-let g:completion_trigger_keyword_length = 3
+let g:completion_trigger_keyword_length = 2
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -256,7 +255,7 @@ augroup filetypes
 	" html
 	autocmd FileType html setlocal ts=2 sts=2 sw=2
 	" Python
-	autocmd FileType python setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 	" C
 	autocmd FileType c,cpp setlocal ts=2 sts=2 sw=2 formatprg=astyle
 				\ foldmethod=syntax foldlevel=1
