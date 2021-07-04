@@ -55,5 +55,5 @@ lxpolkit &
 [ -z $(pgrep 'dwm-status') ] && dwm-status &
 nm-applet &
 blueman-applet &
-pa-applet &
+# pa-applet &
 exec dwm

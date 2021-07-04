@@ -41,14 +41,13 @@ Plug 'moll/vim-bbye'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'unblevable/quick-scope'
 Plug 'ghetto-ch/vim-noh'
-" Plug 'editorconfig/editorconfig-vim'
+Plug 'dhruvasagar/vim-table-mode'
 
 " General for programming
 Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
 Plug 'jpalardy/vim-slime'
-" Plug 'RishabhRD/nvim-cheat.sh' | Plug 'RishabhRD/popfix'
 Plug 'airblade/vim-gitgutter'
 
 " Debug with gdb etc...
@@ -58,12 +57,14 @@ Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'wellle/targets.vim'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " Completion and snippets
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 Plug 'hrsh7th/vim-vsnip' | Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
@@ -113,7 +114,7 @@ set completeopt=menuone,noselect,noinsert
 let g:completion_enable_auto_popup = 1
 let g:completion_enable_snippet = 'vim-vsnip'
 let g:completion_auto_change_source = 0
-let g:completion_matching_strategy_list = ['fuzzy', 'substring', 'exact']
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_trigger_keyword_length = 2
 
 function! s:check_back_space() abort
@@ -158,6 +159,15 @@ imap <expr> <cr>  pumvisible() ?
 			\ : get(b:, 'closer') ?
 				\ "\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
 				\ : "\<CR>\<Plug>DiscretionaryEnd"
+
+" vim-vsnip #################################################
+imap <expr> <c-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+smap <expr> <c-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+imap <expr> <c-l> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+smap <expr> <c-l> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+
+" gitgutter
+set updatetime=100
 
 "}}}
 "############################################################

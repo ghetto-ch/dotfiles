@@ -2,8 +2,8 @@ local lsp_config = require("lspconfig")
 local lsp_completion = require("completion")
 
 --Enable snippets completion
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local general_on_attach = function(client)
 	lsp_completion.on_attach(client)
@@ -13,7 +13,7 @@ end
 for _, server in pairs({"html", "clangd", "gopls", "html", "bashls", "vimls", "tsserver", "cssls", "pyls"}) do
 	lsp_config[server].setup {
 		-- Add capabilities
-		-- capabilities = capabilities,
+		capabilities = capabilities,
 		on_attach = general_on_attach
 	}
 end
@@ -41,7 +41,7 @@ require'nvim-treesitter.configs'.setup {
 		enable = true,
 	},
 	incremental_selection = {
-		enable = false,
+		enable = true,
 		keymaps = {
 			init_selection = "gnn",
 			node_incremental = "grn",
@@ -57,5 +57,38 @@ require'nvim-treesitter.configs'.setup {
 -- colorizer #################################################
 require'colorizer'.setup()
 
--- nvim.cheat.sh
-vim.g.cheat_default_window_layout = 'vertical_split'
+-- treesitter text objects ###################################
+require'nvim-treesitter.configs'.setup {
+	textobjects = {
+		select = {
+			enable = true,
+			keymaps = {
+				-- You can use the capture groups defined in textobjects.scm
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+				},
+			},
+			move = {
+				enable = true,
+				set_jumps = true, -- whether to set jumps in the jumplist
+				goto_next_start = {
+					["]m"] = "@function.outer",
+					["]]"] = "@class.outer",
+				},
+				goto_next_end = {
+					["]M"] = "@function.outer",
+					["]["] = "@class.outer",
+				},
+				goto_previous_start = {
+					["[m"] = "@function.outer",
+					["[["] = "@class.outer",
+				},
+				goto_previous_end = {
+					["[M"] = "@function.outer",
+					["[]"] = "@class.outer",
+				},
+			},
+		},
+	}
