@@ -1,7 +1,60 @@
+vim.opt.termguicolors = true
+vim.opt.background = 'dark'
+vim.cmd('colorscheme base16-ghetto')
+vim.opt.wrap = false
+
+require('packer').startup(function(use)
+use 'wbthomason/packer.nvim'
+
+use 'lourenci/github-colors'
+use 'junegunn/fzf'
+use 'junegunn/fzf.vim'
+use 'tpope/vim-unimpaired'
+use 'christoomey/vim-tmux-navigator'
+use 'moll/vim-bbye'
+use 'norcalli/nvim-colorizer.lua'
+use 'unblevable/quick-scope'
+use 'ghetto-ch/vim-noh'
+use 'dhruvasagar/vim-table-mode'
+use 'winston0410/cmd-parser.nvim'
+use 'winston0410/range-highlight.nvim'
+
+-- General for programming
+use 'tpope/vim-surround'
+use 'tpope/vim-repeat'
+use 'tpope/vim-commentary'
+use 'tpope/vim-endwise'
+use 'rstacruz/vim-closer'
+use 'jpalardy/vim-slime'
+use 'airblade/vim-gitgutter'
+
+-- Debug with gdb etc...
+use { 'sakhnik/nvim-gdb', run = ':!./install.sh' }
+
+-- Text objects
+use 'kana/vim-textobj-user'
+use 'kana/vim-textobj-entire'
+use 'wellle/targets.vim'
+use 'nvim-treesitter/nvim-treesitter-textobjects'
+use 'RRethy/nvim-treesitter-textsubjects'
+
+-- Completion and snippets
+use 'neovim/nvim-lspconfig'
+use 'nvim-lua/completion-nvim'
+use 'folke/lsp-colors.nvim'
+use 'tjdevries/nlua.nvim'
+use 'hrsh7th/vim-vsnip'
+use 'hrsh7th/vim-vsnip-integ'
+use 'rafamadriz/friendly-snippets'
+use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+end)
+
+-- LSP and completion #######################################
 local lsp_config = require("lspconfig")
 local lsp_completion = require("completion")
 
---Enable snippets completion
+-- Enable snippets completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -10,7 +63,8 @@ local general_on_attach = function(client)
 end
 
 -- Setup basic lsp servers
-for _, server in pairs({"html", "clangd", "gopls", "html", "bashls", "vimls", "tsserver", "cssls", "pyls"}) do
+local servers = { "vimls", "bashls", "clangd", "gopls", "pylsp", "cssls", "html", "tsserver" }
+for _, server in ipairs(servers) do
 	lsp_config[server].setup {
 		-- Add capabilities
 		capabilities = capabilities,
@@ -54,9 +108,6 @@ require'nvim-treesitter.configs'.setup {
 	},
 }
 
--- colorizer #################################################
-require'colorizer'.setup()
-
 -- treesitter text objects ###################################
 require'nvim-treesitter.configs'.setup {
 	textobjects = {
@@ -92,3 +143,20 @@ require'nvim-treesitter.configs'.setup {
 			},
 		},
 	}
+
+-- treesitter text objects ###################################
+require'nvim-treesitter.configs'.setup {
+    textsubjects = {
+        enable = true,
+        keymaps = {
+            ['.'] = 'textsubjects-smart',
+            [';'] = 'textsubjects-container-outer',
+        }
+    },
+}
+
+-- colorizer #################################################
+require'colorizer'.setup()
+
+-- range--highlight #################################################
+require'range-highlight'.setup{}

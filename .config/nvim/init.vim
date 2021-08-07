@@ -1,78 +1,18 @@
 " Map leader key
 let mapleader = ' '
-set termguicolors
 packadd! matchit
 
 "############################################################
 " THEME AND GUI RELATED SETTINGS
 "############################################################
 "{{{
-" Set colors
-set background=dark
-colorscheme base16-ghetto
 
 " Text width and wrapping
 set textwidth=0
-set nowrap
 
 "}}}
 "############################################################
 " PLUGINS
-"############################################################
-"{{{
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
-
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.local/share/nvim/plugged')
-Plug 'junegunn/vim-plug'
-
-" Usability
-Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-unimpaired'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'moll/vim-bbye'
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'unblevable/quick-scope'
-Plug 'ghetto-ch/vim-noh'
-Plug 'dhruvasagar/vim-table-mode'
-
-" General for programming
-Plug 'tpope/vim-surround' | Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise' | Plug 'rstacruz/vim-closer'
-Plug 'jpalardy/vim-slime'
-Plug 'airblade/vim-gitgutter'
-
-" Debug with gdb etc...
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
-
-" Text objects
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
-Plug 'wellle/targets.vim'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-
-" Completion and snippets
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'tjdevries/nlua.nvim'
-Plug 'hrsh7th/vim-vsnip' | Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'rafamadriz/friendly-snippets'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-
-" Initialize plugin system
-call plug#end()
-"}}}
-"############################################################
-" PLUGIN SETTINGS
 "############################################################
 "{{{
 " Load settings from plugins.lua
@@ -269,6 +209,8 @@ augroup filetypes
 	" C
 	autocmd FileType c,cpp setlocal ts=2 sts=2 sw=2 formatprg=astyle
 				\ foldmethod=syntax foldlevel=1
+	" go
+	autocmd FileType go setlocal formatprg=gofmt
 	" asciidoc and others
 	autocmd FileType text,plaintext,markdown,asciidoc,help
 				\ setlocal ts=2 sts=2 sw=2 noautoindent textwidth=80
