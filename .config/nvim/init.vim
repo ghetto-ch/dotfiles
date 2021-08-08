@@ -106,9 +106,6 @@ smap <expr> <c-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 imap <expr> <c-l> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 smap <expr> <c-l> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 
-" gitgutter
-set updatetime=100
-
 "}}}
 "############################################################
 " GENERAL SETTINGS
@@ -181,8 +178,8 @@ set listchars=tab:→\ ,trail:▒,extends:…,precedes:…,conceal:┊,nbsp:␣
 
 " Higlight yanked text
 augroup highlight_yank
-  autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+	autocmd!
+	autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
 
 "}}}
@@ -241,7 +238,7 @@ set timeoutlen=2000
 
 " Search
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
-noremap <Plug>NohAfter zz
+noremap <Plug>NohAfter zzzo
 
 " Buffers
 nnoremap <C-n> :bnext!<CR>
@@ -276,6 +273,18 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>; :normal! mqA;<Esc>`q
 " Add comma at the end of the line
 nnoremap <leader>, :normal! mqA,<Esc>`q
+
+" Move lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Add blank lines
+nnoremap <silent>]<Space> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent>[<Space> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " Open help in vertical slpit
 cabbrev vh vert h

@@ -6,47 +6,57 @@ vim.opt.wrap = false
 require('packer').startup(function(use)
 use 'wbthomason/packer.nvim'
 
-use 'lourenci/github-colors'
-use 'junegunn/fzf'
-use 'junegunn/fzf.vim'
-use 'tpope/vim-unimpaired'
-use 'christoomey/vim-tmux-navigator'
-use 'moll/vim-bbye'
-use 'norcalli/nvim-colorizer.lua'
-use 'unblevable/quick-scope'
-use 'ghetto-ch/vim-noh'
-use 'dhruvasagar/vim-table-mode'
-use 'winston0410/cmd-parser.nvim'
-use 'winston0410/range-highlight.nvim'
+use {'junegunn/fzf.vim',
+	requires = {'junegunn/fzf'}
+}
+use {'christoomey/vim-tmux-navigator'}
+use {'moll/vim-bbye'}
+use {'norcalli/nvim-colorizer.lua',
+	config = function() require'colorizer'.setup() end
+}
+use {'unblevable/quick-scope'}
+use {'ghetto-ch/vim-noh'}
+use {'dhruvasagar/vim-table-mode'}
+use {'winston0410/range-highlight.nvim',
+	requires = {'winston0410/cmd-parser.nvim'},
+	config = function() require'range-highlight'.setup{} end
+}
+use {'tversteeg/registers.nvim'}
 
 -- General for programming
-use 'tpope/vim-surround'
-use 'tpope/vim-repeat'
-use 'tpope/vim-commentary'
-use 'tpope/vim-endwise'
-use 'rstacruz/vim-closer'
-use 'jpalardy/vim-slime'
-use 'airblade/vim-gitgutter'
+use {'tpope/vim-surround',
+	requires = {'tpope/vim-repeat'}
+}
+use {'tpope/vim-commentary',
+	requires = {'tpope/vim-repeat'}
+}
+use {'tpope/vim-endwise'}
+use {'rstacruz/vim-closer'}
+use {'jpalardy/vim-slime'}
+use {'lewis6991/gitsigns.nvim',
+  requires = {'nvim-lua/plenary.nvim'},
+  config = function() require('gitsigns').setup() end
+}
 
 -- Debug with gdb etc...
-use { 'sakhnik/nvim-gdb', run = ':!./install.sh' }
+use {'sakhnik/nvim-gdb', run = ':!./install.sh'}
 
 -- Text objects
-use 'kana/vim-textobj-user'
-use 'kana/vim-textobj-entire'
-use 'wellle/targets.vim'
-use 'nvim-treesitter/nvim-treesitter-textobjects'
-use 'RRethy/nvim-treesitter-textsubjects'
+use {'kana/vim-textobj-entire',
+	requires = {'kana/vim-textobj-user'}
+}
+use {'wellle/targets.vim'}
+use {'nvim-treesitter/nvim-treesitter-textobjects'}
+use {'RRethy/nvim-treesitter-textsubjects'}
 
 -- Completion and snippets
-use 'neovim/nvim-lspconfig'
-use 'nvim-lua/completion-nvim'
-use 'folke/lsp-colors.nvim'
-use 'tjdevries/nlua.nvim'
-use 'hrsh7th/vim-vsnip'
-use 'hrsh7th/vim-vsnip-integ'
-use 'rafamadriz/friendly-snippets'
-use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+use {'neovim/nvim-lspconfig'}
+use {'nvim-lua/completion-nvim'}
+use {'tjdevries/nlua.nvim'}
+use {'hrsh7th/vim-vsnip'}
+use {'hrsh7th/vim-vsnip-integ'}
+use {'rafamadriz/friendly-snippets'}
+use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
 end)
 
@@ -63,7 +73,17 @@ local general_on_attach = function(client)
 end
 
 -- Setup basic lsp servers
-local servers = { "vimls", "bashls", "clangd", "gopls", "pylsp", "cssls", "html", "tsserver" }
+local servers = { 
+	"vimls",
+	"bashls",
+	"clangd",
+	"gopls",
+	"pylsp",
+	"cssls",
+	"html",
+	"tsserver" 
+}
+
 for _, server in ipairs(servers) do
 	lsp_config[server].setup {
 		-- Add capabilities
@@ -154,9 +174,3 @@ require'nvim-treesitter.configs'.setup {
         }
     },
 }
-
--- colorizer #################################################
-require'colorizer'.setup()
-
--- range--highlight #################################################
-require'range-highlight'.setup{}
