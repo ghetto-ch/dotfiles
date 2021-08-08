@@ -219,7 +219,7 @@ call <sid>hi("gitcommitSelectedFile",   s:gui0B, "", "bold", "")
 
 " GitGutter highlighting
 call <sid>hi("GitGutterAdd",     s:gui0B, s:gui01, "", "")
-call <sid>hi("GitGutterChange",  s:gui0D, s:gui01, "", "")
+call <sid>hi("GitGutterChange",  s:gui0A, s:gui01, "", "")
 call <sid>hi("GitGutterDelete",  s:gui08, s:gui01, "", "")
 call <sid>hi("GitGutterChangeDelete",  s:gui0E, s:gui01, "", "")
 
