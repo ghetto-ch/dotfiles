@@ -40,25 +40,6 @@ let g:base16_gui0F = "#a16946"
 let s:gui10        = "#999999"
 let g:base16_gui10 = "#999999"
 
-let g:terminal_color_0 =  "#181818"
-let g:terminal_color_1 =  "#ab4642"
-let g:terminal_color_2 =  "#a1b56c"
-let g:terminal_color_3 =  "#f7ca88"
-let g:terminal_color_4 =  "#7cafc2"
-let g:terminal_color_5 =  "#ba8baf"
-let g:terminal_color_6 =  "#86c1b9"
-let g:terminal_color_7 =  "#d8d8d8"
-let g:terminal_color_8 =  "#585858"
-let g:terminal_color_9 =  "#ab4642"
-let g:terminal_color_10 = "#a1b56c"
-let g:terminal_color_11 = "#f7ca88"
-let g:terminal_color_12 = "#7cafc2"
-let g:terminal_color_13 = "#ba8baf"
-let g:terminal_color_14 = "#86c1b9"
-let g:terminal_color_15 = "#f8f8f8"
-let g:terminal_color_background = g:terminal_color_0
-let g:terminal_color_foreground = g:terminal_color_5
-
 " Theme setup
 hi clear
 syntax reset
@@ -263,65 +244,6 @@ call <sid>hi("LspDiagnosticsUnderlineWarning"     ,"",     "", "undercurl", s:gu
 call <sid>hi("LspDiagnosticsUnderlineInformation" ,"",     "", "undercurl", s:gui0F )
 call <sid>hi("LspDiagnosticsUnderlineHint"        ,"",     "", "undercurl", s:gui0C )
 
-" Treesitter
-call <sid>hi("TSAnnotation"         ,s:gui0F, "",             "none",             ""     )
-call <sid>hi("TSAttribute"          ,s:gui0A, "",             "none",             ""     )
-call <sid>hi("TSBoolean"            ,s:gui09, "",             "none",             ""     )
-call <sid>hi("TSCharacter"          ,s:gui08, "",             "none",             ""     )
-call <sid>hi("TSComment"            ,s:gui03, "",             "italic",           ""     )
-call <sid>hi("TSConstructor"        ,s:gui0D, "",             "none",             ""     )
-call <sid>hi("TSConditional"        ,s:gui0E, "",             "none",             ""     )
-call <sid>hi("TSConstant"           ,s:gui09, "",             "none",             ""     )
-call <sid>hi("TSConstBuiltin"       ,s:gui09, "",             "italic",           ""     )
-call <sid>hi("TSConstMacro"         ,s:gui08, "",             "none",             ""     )
-call <sid>hi("TSError"              ,s:gui08, "",             "none",             ""     )
-call <sid>hi("TSException"          ,s:gui08, "",             "none",             ""     )
-call <sid>hi("TSField"              ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSFloat"              ,s:gui09, "",             "none",             ""     )
-call <sid>hi("TSFunction"           ,s:gui0D, "",             "none",             ""     )
-call <sid>hi("TSFuncBuiltin"        ,s:gui0D, "",             "italic",           ""     )
-call <sid>hi("TSFuncMacro"          ,s:gui08, "",             "none",             ""     )
-call <sid>hi("TSInclude"            ,s:gui0D, "",             "none",             ""     )
-call <sid>hi("TSKeyword"            ,s:gui0E, "",             "none",             ""     )
-call <sid>hi("TSKeywordFunction"    ,s:gui0E, "",             "none",             ""     )
-call <sid>hi("TSKeywordOperator"    ,s:gui0E, "",             "none",             ""     )
-call <sid>hi("TSLabel"              ,s:gui0A, "",             "none",             ""     )
-call <sid>hi("TSMethod"             ,s:gui0D, "",             "none",             ""     )
-call <sid>hi("TSNamespace"          ,s:gui08, "",             "none",             ""     )
-call <sid>hi("TSNone"               ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSNumber"             ,s:gui09, "",             "none",             ""     )
-call <sid>hi("TSOperator"           ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSParameter"          ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSParameterReference" ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSProperty"           ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSPunctDelimiter"     ,s:gui0F, "",             "none",             ""     )
-call <sid>hi("TSPunctBracket"       ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSPunctSpecial"       ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSRepeat"             ,s:gui0A, "",             "none",             ""     )
-call <sid>hi("TSString"             ,s:gui0B, "",             "none",             ""     )
-call <sid>hi("TSStringRegex"        ,s:gui0C, "",             "none",             ""     )
-call <sid>hi("TSStringEscape"       ,s:gui0C, "",             "none",             ""     )
-call <sid>hi("TSSymbol"             ,s:gui0B, "",             "none",             ""     )
-call <sid>hi("TSTag"                ,s:gui0A, "",             "none",             ""     )
-call <sid>hi("TSTagDelimiter"       ,s:gui0F, "",             "none",             ""     )
-call <sid>hi("TSText"               ,s:gui05, "",             "none",             ""     )
-call <sid>hi("TSStrong"             ,"",      "",             "bold",             ""     )
-call <sid>hi("TSEmphasis"           ,s:gui09, "",             "italic",           ""     )
-call <sid>hi("TSUnderline"          ,s:gui00, "",             "underline",        ""     )
-call <sid>hi("TSStrike"             ,s:gui00, "",             "strikethrough",    ""     )
-call <sid>hi("TSTitle"              ,s:gui0D, "",             "none",             ""     )
-call <sid>hi("TSLiteral"            ,s:gui09, "",             "none",             ""     )
-call <sid>hi("TSURI"                ,s:gui09, "",             "underline",        ""     )
-call <sid>hi("TSType"               ,s:gui0A, "",             "none",             ""     )
-call <sid>hi("TSTypeBuiltin"        ,s:gui0A, "",             "italic",           ""     )
-call <sid>hi("TSVariable"           ,s:gui08, "",             "none",             ""     )
-call <sid>hi("TSVariableBuiltin"    ,s:gui08, "",             "italic",           ""     )
-call <sid>hi("TSDefinition"         ,"",      "",             "underline",        s:gui04 )
-call <sid>hi("TSDefinitionUsage"    ,"",      "",             "underline",        s:gui04 )
-call <sid>hi("TSCurrentScope"       ,"",      "",             "bold",             ""     )
-call <sid>hi("NvimInternalError"    ,s:gui00, s:gui08,         "none",             ""     )
-call <sid>hi("TreesitterContext"    ,"",     s:gui01,         "italic",           ""     )
-
 " Mail highlighting
 call <sid>hi("mailQuoted1",  s:gui0A, "", "", "")
 call <sid>hi("mailQuoted2",  s:gui0B, "", "", "")
@@ -394,6 +316,65 @@ call <sid>hi("StartifySpecial",  s:gui03, "", "", "")
 
 " Java highlighting
 call <sid>hi("javaOperator",     s:gui0D, "", "", "")
+
+" Treesitter
+call <sid>hi("TSAnnotation"         ,s:gui0F, "",             "none",             ""     )
+call <sid>hi("TSAttribute"          ,s:gui0A, "",             "none",             ""     )
+call <sid>hi("TSBoolean"            ,s:gui09, "",             "none",             ""     )
+call <sid>hi("TSCharacter"          ,s:gui08, "",             "none",             ""     )
+call <sid>hi("TSComment"            ,s:gui03, "",             "italic",           ""     )
+call <sid>hi("TSConstructor"        ,s:gui0D, "",             "none",             ""     )
+call <sid>hi("TSConditional"        ,s:gui0E, "",             "none",             ""     )
+call <sid>hi("TSConstant"           ,s:gui09, "",             "none",             ""     )
+call <sid>hi("TSConstBuiltin"       ,s:gui09, "",             "italic",           ""     )
+call <sid>hi("TSConstMacro"         ,s:gui08, "",             "none",             ""     )
+call <sid>hi("TSError"              ,s:gui08, "",             "none",             ""     )
+call <sid>hi("TSException"          ,s:gui08, "",             "none",             ""     )
+call <sid>hi("TSField"              ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSFloat"              ,s:gui09, "",             "none",             ""     )
+call <sid>hi("TSFunction"           ,s:gui0D, "",             "none",             ""     )
+call <sid>hi("TSFuncBuiltin"        ,s:gui0D, "",             "italic",           ""     )
+call <sid>hi("TSFuncMacro"          ,s:gui08, "",             "none",             ""     )
+call <sid>hi("TSInclude"            ,s:gui0D, "",             "none",             ""     )
+call <sid>hi("TSKeyword"            ,s:gui0E, "",             "none",             ""     )
+call <sid>hi("TSKeywordFunction"    ,s:gui0E, "",             "none",             ""     )
+call <sid>hi("TSKeywordOperator"    ,s:gui0E, "",             "none",             ""     )
+call <sid>hi("TSLabel"              ,s:gui0A, "",             "none",             ""     )
+call <sid>hi("TSMethod"             ,s:gui0D, "",             "none",             ""     )
+call <sid>hi("TSNamespace"          ,s:gui08, "",             "none",             ""     )
+call <sid>hi("TSNone"               ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSNumber"             ,s:gui09, "",             "none",             ""     )
+call <sid>hi("TSOperator"           ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSParameter"          ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSParameterReference" ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSProperty"           ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSPunctDelimiter"     ,s:gui0F, "",             "none",             ""     )
+call <sid>hi("TSPunctBracket"       ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSPunctSpecial"       ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSRepeat"             ,s:gui0A, "",             "none",             ""     )
+call <sid>hi("TSString"             ,s:gui0B, "",             "none",             ""     )
+call <sid>hi("TSStringRegex"        ,s:gui0C, "",             "none",             ""     )
+call <sid>hi("TSStringEscape"       ,s:gui0C, "",             "none",             ""     )
+call <sid>hi("TSSymbol"             ,s:gui0B, "",             "none",             ""     )
+call <sid>hi("TSTag"                ,s:gui0A, "",             "none",             ""     )
+call <sid>hi("TSTagDelimiter"       ,s:gui0F, "",             "none",             ""     )
+call <sid>hi("TSText"               ,s:gui05, "",             "none",             ""     )
+call <sid>hi("TSStrong"             ,"",      "",             "bold",             ""     )
+call <sid>hi("TSEmphasis"           ,s:gui09, "",             "italic",           ""     )
+call <sid>hi("TSUnderline"          ,s:gui00, "",             "underline",        ""     )
+call <sid>hi("TSStrike"             ,s:gui00, "",             "strikethrough",    ""     )
+call <sid>hi("TSTitle"              ,s:gui0D, "",             "none",             ""     )
+call <sid>hi("TSLiteral"            ,s:gui09, "",             "none",             ""     )
+call <sid>hi("TSURI"                ,s:gui09, "",             "underline",        ""     )
+call <sid>hi("TSType"               ,s:gui0A, "",             "none",             ""     )
+call <sid>hi("TSTypeBuiltin"        ,s:gui0A, "",             "italic",           ""     )
+call <sid>hi("TSVariable"           ,s:gui08, "",             "none",             ""     )
+call <sid>hi("TSVariableBuiltin"    ,s:gui08, "",             "italic",           ""     )
+call <sid>hi("TSDefinition"         ,"",      "",             "underline",        s:gui04 )
+call <sid>hi("TSDefinitionUsage"    ,"",      "",             "underline",        s:gui04 )
+call <sid>hi("TSCurrentScope"       ,"",      "",             "bold",             ""     )
+call <sid>hi("NvimInternalError"    ,s:gui00, s:gui08,         "none",             ""     )
+call <sid>hi("TreesitterContext"    ,"",     s:gui01,         "italic",           ""     )
 
 " Remove functions
 delf <sid>hi

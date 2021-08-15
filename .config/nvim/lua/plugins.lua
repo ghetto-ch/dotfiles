@@ -1,8 +1,3 @@
-vim.opt.termguicolors = true
-vim.opt.background = 'dark'
-vim.cmd('colorscheme base16-ghetto')
-vim.opt.wrap = false
-
 require('packer').startup(function(use)
 use 'wbthomason/packer.nvim'
 
@@ -30,12 +25,13 @@ use {'tpope/vim-surround',
 use {'tpope/vim-commentary',
 	requires = {'tpope/vim-repeat'}
 }
-use {'tpope/vim-endwise'}
-use {'rstacruz/vim-closer'}
+use {'windwp/nvim-autopairs',
+	config = function() require('nvim-autopairs').setup{} end
+}
 use {'jpalardy/vim-slime'}
 use {'lewis6991/gitsigns.nvim',
-  requires = {'nvim-lua/plenary.nvim'},
-  config = function() require('gitsigns').setup() end
+	requires = {'nvim-lua/plenary.nvim'},
+	config = function() require('gitsigns').setup() end
 }
 
 -- Debug with gdb etc...
@@ -174,3 +170,29 @@ require'nvim-treesitter.configs'.setup {
         }
     },
 }
+
+-- autopairs #################################################
+local remap = vim.api.nvim_set_keymap
+local npairs = require('nvim-autopairs')
+
+-- skip it, if you use another global object
+_G.MUtils= {}
+
+vim.g.completion_confirm_key = ""
+
+MUtils.completion_confirm=function()
+  if vim.fn.pumvisible() ~= 0  then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      require'completion'.confirmCompletion()
+      return npairs.esc("<c-y>")
+    else
+      vim.api.nvim_select_popupmenu_item(0 , false , false ,{})
+      require'completion'.confirmCompletion()
+      return npairs.esc("<c-n><c-y>")
+    end
+  else
+    return npairs.autopairs_cr()
+  end
+end
+
+remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})

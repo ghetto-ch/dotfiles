@@ -1,16 +1,6 @@
-" Map leader key
-let mapleader = ' '
 packadd! matchit
+lua require('settings')
 
-"############################################################
-" THEME AND GUI RELATED SETTINGS
-"############################################################
-"{{{
-
-" Text width and wrapping
-set textwidth=0
-
-"}}}
 "############################################################
 " PLUGINS
 "############################################################
@@ -20,15 +10,6 @@ lua require('plugins')
 
 " FZF #######################################################
 let g:fzf_preview_window = ['right:50%:nohidden', 'ctrl-/']
-
-" Insert mode completion
-inoremap <expr> <plug>(fzf-complete-mypath)
-			\ fzf#vim#complete#path("fd -H --exclude .git .")
-inoremap <c-x><c-f> <plug>(fzf-complete-mypath)
-inoremap <expr> <plug>(fzf-complete-myfile)
-			\ fzf#vim#complete#path("fd -H --exclude .git --type f .")
-inoremap <c-x><c-j> <plug>(fzf-complete-myfile)
-inoremap <c-x><c-l> <plug>(fzf-complete-line)
 
 " quick-scope ###############################################
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -88,18 +69,6 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
 
-let g:endwise_no_mappings = 1
-let g:completion_confirm_key = ""
-imap <expr> <cr>  pumvisible() ?
-			\ complete_info()["selected"] != "-1" ?
-				\ "\<Plug>(completion_confirm_completion)" :
-				\ get(b:, 'closer') ?
-					\ "\<c-e>\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
-					\ : "\<c-e>\<CR>\<Plug>DiscretionaryEnd"
-			\ : get(b:, 'closer') ?
-				\ "\<CR>\<Plug>DiscretionaryEnd\<Plug>CloserClose"
-				\ : "\<CR>\<Plug>DiscretionaryEnd"
-
 " vim-vsnip #################################################
 imap <expr> <c-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 smap <expr> <c-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
@@ -108,73 +77,11 @@ smap <expr> <c-l> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 
 "}}}
 "############################################################
-" GENERAL SETTINGS
-"############################################################
-"{{{
-" VIM runtime path
-set runtimepath += "~/.local/share/nvim/runtime/"
-" Tell vim to use zsh instead of bash
-set shell=/bin/zsh
-
-" Spell check settings
-set spelllang=it,en
-
-" Tabs and folding
-set tabstop=4
-set softtabstop=4
-set noexpandtab
-set shiftwidth=0
-set foldnestmax=1
-
-" Enable persistent undo
-set undofile
-
-" Search for subdirs as well
-set path+=**
-"}}}
-"############################################################
 " USABILITY SETTINGS
 "############################################################
 "{{{
-" Split in the correct way
-set splitbelow
-set splitright
-set diffopt+=vertical
-
-" Highlight current line and show relative line numbers
-set cursorline
-set number relativenumber numberwidth=5
-
-" Keep some lines for context
-set scrolloff=5
-
-" Search
-set ignorecase
-set smartcase
-set inccommand=nosplit
-
-" Ex completion
-set wildmenu
-set wildmode=longest:full,full
-
-" Use mouse
-set mouse+=a
-
-" Set clipboard
-set clipboard+=unnamedplus
-
-" Don't redraw the screen while executing macros
-set lazyredraw
-
 " Populate the statusline
 source ~/.config/nvim/statusline.vim
-
-" Stop complaining about modified buffers
-set hidden
-
-" Show non printable chars
-set list
-set listchars=tab:→\ ,trail:▒,extends:…,precedes:…,conceal:┊,nbsp:␣
 
 " Higlight yanked text
 augroup highlight_yank
@@ -187,9 +94,6 @@ augroup END
 " FORMATTING AND PROGRAMMING SETTINGS
 "############################################################
 "{{{
-" Ebable file types plugin and omnifunction
-filetype plugin indent on
-
 " Add included files to completion
 set complete+=i
 
@@ -216,9 +120,6 @@ augroup filetypes
 				\ foldcolumn=2
 				\ | highlight! link FoldColumn Normal
 augroup END
-
-" Enable lua syntax highlighting inside .vim files
-let g:vimsyn_embed = 'l'
 
 "}}}
 "############################################################

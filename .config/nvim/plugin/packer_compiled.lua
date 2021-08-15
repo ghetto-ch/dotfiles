@@ -98,6 +98,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/nlua.nvim"
   },
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\1\2@\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\1G\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
+    loaded = true,
+    path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+  },
   ["nvim-colorizer.lua"] = {
     config = { "\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\14colorizer\frequire\0" },
     loaded = true,
@@ -152,17 +157,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/vim-bbye"
   },
-  ["vim-closer"] = {
-    loaded = true,
-    path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/vim-closer"
-  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/vim-commentary"
-  },
-  ["vim-endwise"] = {
-    loaded = true,
-    path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/vim-endwise"
   },
   ["vim-noh"] = {
     loaded = true,
@@ -215,6 +212,10 @@ time([[Config for nvim-colorizer.lua]], false)
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\1\2@\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\1G\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
 -- Config for: range-highlight.nvim
 time([[Config for range-highlight.nvim]], true)
 try_loadstring("\27LJ\1\2A\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\1G\0\1\0\nsetup\20range-highlight\frequire\0", "config", "range-highlight.nvim")
