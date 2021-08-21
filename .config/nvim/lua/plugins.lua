@@ -53,6 +53,7 @@ use {'hrsh7th/vim-vsnip'}
 use {'hrsh7th/vim-vsnip-integ'}
 use {'rafamadriz/friendly-snippets'}
 use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+use {'thugcee/nvim-map-to-lua'}
 
 end)
 
@@ -75,7 +76,7 @@ local servers = {
 	"clangd",
 	"gopls",
 	"pylsp",
-	"cssls",
+	-- "cssls",
 	"html",
 	"tsserver" 
 }
@@ -103,6 +104,19 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
 	},
 }
 )
+
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "K", ":call <SID>show_documentation()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", { noremap = true, })
 
 -- nvim-treesitter ###########################################
 require'nvim-treesitter.configs'.setup {
@@ -196,3 +210,16 @@ MUtils.completion_confirm=function()
 end
 
 remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+
+-- vim-vsnip #################################################
+vim.api.nvim_set_keymap("i", "<c-j>", "vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'", { expr = true, })
+vim.api.nvim_set_keymap("s", "<c-j>", "vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'", { expr = true, })
+vim.api.nvim_set_keymap("i", "<c-l>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'", { expr = true, })
+vim.api.nvim_set_keymap("s", "<c-l>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'", { expr = true, })
+
+-- FZF #######################################################
+vim.g.fzf_preview_window = {'right:50%:nohidden', 'ctrl-/'}
+
+-- quick-scope ###############################################
+vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
+
