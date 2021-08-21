@@ -322,7 +322,7 @@ call <sid>hi("TSAnnotation"         ,s:gui0F, "",             "none",           
 call <sid>hi("TSAttribute"          ,s:gui0A, "",             "none",             ""     )
 call <sid>hi("TSBoolean"            ,s:gui09, "",             "none",             ""     )
 call <sid>hi("TSCharacter"          ,s:gui08, "",             "none",             ""     )
-call <sid>hi("TSComment"            ,s:gui03, "",             "italic",           ""     )
+call <sid>hi("TSComment"            ,s:gui10, "",             "italic",           ""     )
 call <sid>hi("TSConstructor"        ,s:gui0D, "",             "none",             ""     )
 call <sid>hi("TSConditional"        ,s:gui0E, "",             "none",             ""     )
 call <sid>hi("TSConstant"           ,s:gui09, "",             "none",             ""     )

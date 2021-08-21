@@ -81,14 +81,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/friendly-snippets"
   },
-  fzf = {
-    loaded = true,
-    path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/fzf"
-  },
-  ["fzf.vim"] = {
-    loaded = true,
-    path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/fzf.vim"
-  },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0" },
     loaded = true,
@@ -157,6 +149,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/targets.vim"
   },
+  ["telescope-symbols.nvim"] = {
+    loaded = true,
+    path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/telescope-symbols.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
   ["vim-bbye"] = {
     loaded = true,
     path = "/home/ghetto/.local/share/nvim/site/pack/packer/start/vim-bbye"
@@ -208,14 +208,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-try_loadstring("\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
-time([[Config for nvim-colorizer.lua]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\1\0026\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+try_loadstring("\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
+time([[Config for nvim-colorizer.lua]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\1\2@\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\1G\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")

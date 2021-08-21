@@ -1,9 +1,13 @@
+local map = vim.api.nvim_set_keymap
 require('packer').startup(function(use)
 use 'wbthomason/packer.nvim'
 
-use {'junegunn/fzf.vim',
-	requires = {'junegunn/fzf'}
+-- Common use
+use {
+  'nvim-telescope/telescope.nvim',
+  requires = { {'nvim-lua/plenary.nvim'} }
 }
+use {'nvim-telescope/telescope-symbols.nvim'}
 use {'christoomey/vim-tmux-navigator'}
 use {'moll/vim-bbye'}
 use {'norcalli/nvim-colorizer.lua',
@@ -48,12 +52,14 @@ use {'RRethy/nvim-treesitter-textsubjects'}
 -- Completion and snippets
 use {'neovim/nvim-lspconfig'}
 use {'nvim-lua/completion-nvim'}
-use {'tjdevries/nlua.nvim'}
 use {'hrsh7th/vim-vsnip'}
 use {'hrsh7th/vim-vsnip-integ'}
 use {'rafamadriz/friendly-snippets'}
 use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+-- neovim related
 use {'thugcee/nvim-map-to-lua'}
+use {'tjdevries/nlua.nvim'}
 
 end)
 
@@ -70,7 +76,7 @@ local general_on_attach = function(client)
 end
 
 -- Setup basic lsp servers
-local servers = { 
+local servers = {
 	"vimls",
 	"bashls",
 	"clangd",
@@ -78,7 +84,7 @@ local servers = {
 	"pylsp",
 	-- "cssls",
 	"html",
-	"tsserver" 
+	"tsserver"
 }
 
 for _, server in ipairs(servers) do
@@ -105,18 +111,18 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
 }
 )
 
-vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "K", ":call <SID>show_documentation()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", { silent = true, noremap = true, })
-vim.api.nvim_set_keymap("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { noremap = true, })
-vim.api.nvim_set_keymap("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", { noremap = true, })
+map("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true, noremap = true, })
+map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true, })
+map("n", "K", ":call <SID>show_documentation()<CR>", { silent = true, noremap = true, })
+map("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true, noremap = true, })
+map("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true, })
+map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { silent = true, noremap = true, })
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true, noremap = true, })
+map("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", { silent = true, noremap = true, })
+map("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", { silent = true, noremap = true, })
+map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", { silent = true, noremap = true, })
+map("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { noremap = true, })
+map("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", { noremap = true, })
 
 -- nvim-treesitter ###########################################
 require'nvim-treesitter.configs'.setup {
@@ -186,7 +192,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- autopairs #################################################
-local remap = vim.api.nvim_set_keymap
+local remap = map
 local npairs = require('nvim-autopairs')
 
 -- skip it, if you use another global object
@@ -209,17 +215,47 @@ MUtils.completion_confirm=function()
   end
 end
 
-remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+remap('i' , '<CR>','v:lua.MUtils.completion_confirm()',
+	{expr = true , noremap = true})
 
 -- vim-vsnip #################################################
-vim.api.nvim_set_keymap("i", "<c-j>", "vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'", { expr = true, })
-vim.api.nvim_set_keymap("s", "<c-j>", "vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'", { expr = true, })
-vim.api.nvim_set_keymap("i", "<c-l>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'", { expr = true, })
-vim.api.nvim_set_keymap("s", "<c-l>", "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'", { expr = true, })
-
--- FZF #######################################################
-vim.g.fzf_preview_window = {'right:50%:nohidden', 'ctrl-/'}
+map("i", "<c-j>",
+	"vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'",
+	{ expr = true, })
+map("s", "<c-j>",
+	"vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'",
+	{ expr = true, })
+map("i", "<c-l>",
+	"vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'",
+	{ expr = true, })
+map("s", "<c-l>",
+	"vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'",
+	{ expr = true, })
 
 -- quick-scope ###############################################
 vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
+
+-- Telescope #################################################
+local actions = require('telescope.actions')
+require("telescope").setup {
+	defaults = {
+		mappings = {
+			i = {
+				["<esc>"] = actions.close
+			},
+		}
+	}
+}
+
+-- Fuzzy find files
+map("n", "<leader>f", ":Telescope find_files<CR>", { noremap = true, })
+map("n", "<leader>o", ":Telescope oldfiles<CR>", { noremap = true, })
+map("n", "<leader>gf", ":Telescope git_files<CR>", { noremap = true, })
+
+-- grep
+map("n", "<leader>gs", ":Telescope grep_string<CR>", { noremap = true, })
+map("n", "<leader>gl", ":Telescope live_grep<CR>", { noremap = true, })
+
+-- The rest
+map("n", "<leader>b", ":Telescope builtin<CR>", { noremap = true, })
 
