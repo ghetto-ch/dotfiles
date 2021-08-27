@@ -7,7 +7,6 @@ use {
   'nvim-telescope/telescope.nvim',
   requires = { {'nvim-lua/plenary.nvim'} }
 }
-use {'nvim-telescope/telescope-symbols.nvim'}
 use {'christoomey/vim-tmux-navigator'}
 use {'moll/vim-bbye'}
 use {'norcalli/nvim-colorizer.lua',
@@ -111,18 +110,30 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
 }
 )
 
-map("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true, noremap = true, })
-map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true, })
-map("n", "K", ":call <SID>show_documentation()<CR>", { silent = true, noremap = true, })
-map("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true, noremap = true, })
-map("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, noremap = true, })
-map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { silent = true, noremap = true, })
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true, noremap = true, })
-map("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", { silent = true, noremap = true, })
-map("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", { silent = true, noremap = true, })
-map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", { silent = true, noremap = true, })
-map("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { noremap = true, })
-map("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", { noremap = true, })
+map("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "K", ":call <SID>show_documentation()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>",
+	{ silent = true, noremap = true, })
+map("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+	{ noremap = true, })
+map("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
+	{ noremap = true, })
 
 -- nvim-treesitter ###########################################
 require'nvim-treesitter.configs'.setup {

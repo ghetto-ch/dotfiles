@@ -1,4 +1,3 @@
-packadd! matchit
 lua require('settings')
 
 lua require('plugins')

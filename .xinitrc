@@ -44,7 +44,7 @@ fi
 
 udiskie &
 xbindkeys
-xset r rate 250 30
+xset r rate 250 40
 numlockx &
 xcape -t 200 -e 'Control_L=Escape;Shift_R=Caps_Lock'
 unclutter --ignore-scrolling --timeout 2 --fork
