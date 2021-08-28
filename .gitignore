@@ -6,3 +6,4 @@
 .netrwhist
 .fzf/fzf-tab
 history.json
+packer_compiled.lua

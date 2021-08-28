@@ -153,10 +153,6 @@ require'nvim-treesitter.configs'.setup {
 	indent = {
 		enable = false
 	},
-}
-
--- treesitter text objects ###################################
-require'nvim-treesitter.configs'.setup {
 	textobjects = {
 		select = {
 			enable = true,
@@ -166,33 +162,29 @@ require'nvim-treesitter.configs'.setup {
 				["if"] = "@function.inner",
 				["ac"] = "@class.outer",
 				["ic"] = "@class.inner",
-				},
-			},
-			move = {
-				enable = true,
-				set_jumps = true, -- whether to set jumps in the jumplist
-				goto_next_start = {
-					["]m"] = "@function.outer",
-					["]]"] = "@class.outer",
-				},
-				goto_next_end = {
-					["]M"] = "@function.outer",
-					["]["] = "@class.outer",
-				},
-				goto_previous_start = {
-					["[m"] = "@function.outer",
-					["[["] = "@class.outer",
-				},
-				goto_previous_end = {
-					["[M"] = "@function.outer",
-					["[]"] = "@class.outer",
-				},
 			},
 		},
-	}
-
--- treesitter text objects ###################################
-require'nvim-treesitter.configs'.setup {
+		move = {
+			enable = true,
+			set_jumps = true, -- whether to set jumps in the jumplist
+			goto_next_start = {
+				["]m"] = "@function.outer",
+				["]]"] = "@class.outer",
+			},
+			goto_next_end = {
+				["]M"] = "@function.outer",
+				["]["] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[m"] = "@function.outer",
+				["[["] = "@class.outer",
+			},
+			goto_previous_end = {
+				["[M"] = "@function.outer",
+				["[]"] = "@class.outer",
+			},
+		},
+	},
     textsubjects = {
         enable = true,
         keymaps = {
@@ -203,7 +195,6 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- autopairs #################################################
-local remap = map
 local npairs = require('nvim-autopairs')
 
 -- skip it, if you use another global object
@@ -226,7 +217,7 @@ MUtils.completion_confirm=function()
   end
 end
 
-remap('i' , '<CR>','v:lua.MUtils.completion_confirm()',
+map('i' , '<CR>','v:lua.MUtils.completion_confirm()',
 	{expr = true , noremap = true})
 
 -- vim-vsnip #################################################
