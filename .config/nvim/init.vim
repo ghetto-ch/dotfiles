@@ -1,5 +1,4 @@
 lua require('settings')
-
 lua require('plugins')
 
 " vim-slime #################################################

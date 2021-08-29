@@ -3,17 +3,16 @@ local map = vim.api.nvim_set_keymap
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd 'packadd packer.nvim'
+	fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+	vim.cmd 'packadd packer.nvim'
 end
 
 require('packer').startup(function(use)
 use 'wbthomason/packer.nvim'
 
 -- Common use
-use {
-  'nvim-telescope/telescope.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
+use {'nvim-telescope/telescope.nvim',
+	requires = {'nvim-lua/plenary.nvim'}
 }
 use {'christoomey/vim-tmux-navigator'}
 use {'moll/vim-bbye'}
@@ -103,8 +102,8 @@ for _, server in ipairs(servers) do
 end
 
 require('nlua.lsp.nvim').setup(require('lspconfig'), {
-  on_attach = general_on_attach
-  }
+	on_attach = general_on_attach
+	}
 )
 
 -- customize diagnostics
@@ -120,8 +119,8 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
 
 map("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
 	{ silent = true, noremap = true, })
-map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
-	{ silent = true, noremap = true, })
+-- map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
+-- 	{ silent = true, noremap = true, })
 map("n", "K", ":call <SID>show_documentation()<CR>",
 	{ silent = true, noremap = true, })
 map("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
@@ -193,40 +192,40 @@ require'nvim-treesitter.configs'.setup {
 			},
 		},
 	},
-    textsubjects = {
-        enable = true,
-        keymaps = {
-            ['.'] = 'textsubjects-smart',
-            [';'] = 'textsubjects-container-outer',
-        }
-    },
+	textsubjects = {
+		enable = true,
+		keymaps = {
+			['.'] = 'textsubjects-smart',
+			[';'] = 'textsubjects-container-outer',
+		}
+	},
 }
 
 -- autopairs #################################################
-local npairs = require('nvim-autopairs')
+-- local npairs = require('nvim-autopairs')
 
--- skip it, if you use another global object
-_G.MUtils= {}
+-- -- skip it, if you use another global object
+-- _G.MUtils= {}
 
-vim.g.completion_confirm_key = ""
+-- vim.g.completion_confirm_key = ""
 
-MUtils.completion_confirm=function()
-  if vim.fn.pumvisible() ~= 0  then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      require'completion'.confirmCompletion()
-      return npairs.esc("<c-y>")
-    else
-      vim.api.nvim_select_popupmenu_item(0 , false , false ,{})
-      require'completion'.confirmCompletion()
-      return npairs.esc("<c-n><c-y>")
-    end
-  else
-    return npairs.autopairs_cr()
-  end
-end
+-- MUtils.completion_confirm=function()
+--   if vim.fn.pumvisible() ~= 0  then
+--     if vim.fn.complete_info()["selected"] ~= -1 then
+--       require'completion'.confirmCompletion()
+--       return npairs.esc("<c-y>")
+--     else
+--       vim.api.nvim_select_popupmenu_item(0 , false , false ,{})
+--       require'completion'.confirmCompletion()
+--       return npairs.esc("<c-n><c-y>")
+--     end
+--   else
+--     return npairs.autopairs_cr()
+--   end
+-- end
 
-map('i' , '<CR>','v:lua.MUtils.completion_confirm()',
-	{expr = true , noremap = true})
+-- map('i' , '<CR>','v:lua.MUtils.completion_confirm()',
+-- 	{expr = true , noremap = true})
 
 -- vim-vsnip #################################################
 map("i", "<c-j>",
