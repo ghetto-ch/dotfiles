@@ -22,11 +22,6 @@ use {'norcalli/nvim-colorizer.lua',
 use {'unblevable/quick-scope'}
 use {'ghetto-ch/vim-noh'}
 use {'dhruvasagar/vim-table-mode'}
-use {'winston0410/range-highlight.nvim',
-	requires = {'winston0410/cmd-parser.nvim'},
-	config = function() require'range-highlight'.setup{} end
-}
-use {'tversteeg/registers.nvim'}
 
 -- General for programming
 use {'tpope/vim-surround',
@@ -202,30 +197,28 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- autopairs #################################################
--- local npairs = require('nvim-autopairs')
+local npairs = require('nvim-autopairs')
 
--- -- skip it, if you use another global object
--- _G.MUtils= {}
+-- skip it, if you use another global object
+_G.MUtils= {}
 
--- vim.g.completion_confirm_key = ""
+vim.g.completion_confirm_key = ""
 
--- MUtils.completion_confirm=function()
---   if vim.fn.pumvisible() ~= 0  then
---     if vim.fn.complete_info()["selected"] ~= -1 then
---       require'completion'.confirmCompletion()
---       return npairs.esc("<c-y>")
---     else
---       vim.api.nvim_select_popupmenu_item(0 , false , false ,{})
---       require'completion'.confirmCompletion()
---       return npairs.esc("<c-n><c-y>")
---     end
---   else
---     return npairs.autopairs_cr()
---   end
--- end
+MUtils.completion_confirm=function()
+  if vim.fn.pumvisible() ~= 0  then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      require'completion'.confirmCompletion()
+      return npairs.esc("<c-y>")
+    else
+      return npairs.esc('<c-e><CR>')
+    end
+  else
+    return npairs.autopairs_cr()
+  end
+end
 
--- map('i' , '<CR>','v:lua.MUtils.completion_confirm()',
--- 	{expr = true , noremap = true})
+map('i' , '<CR>','v:lua.MUtils.completion_confirm()',
+	{expr = true , noremap = true})
 
 -- vim-vsnip #################################################
 map("i", "<c-j>",
@@ -266,5 +259,5 @@ map("n", "<leader>gs", ":Telescope grep_string<CR>", { noremap = true, })
 map("n", "<leader>gl", ":Telescope live_grep<CR>", { noremap = true, })
 
 -- The rest
+map("n", "\"", ":Telescope registers<CR>", { noremap = true, })
 map("n", "<leader>b", ":Telescope builtin<CR>", { noremap = true, })
-
