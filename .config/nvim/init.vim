@@ -11,26 +11,26 @@ nmap gss <Plug>SlimeLineSend
 nmap gs <Plug>SlimeMotionSend
 
 " completion-nvim ###########################################
-set shortmess+=c
-set signcolumn=yes
-set completeopt=menuone,noselect,noinsert
+" set shortmess+=c
+" set signcolumn=yes
+" set completeopt=menuone,noselect,noinsert
 
-let g:completion_enable_auto_popup = 1
-let g:completion_matching_smart_case = 1
-let g:completion_enable_snippet = 'vim-vsnip'
-let g:completion_auto_change_source = 0
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:completion_trigger_keyword_length = 3
+" let g:completion_enable_auto_popup = 1
+" let g:completion_matching_smart_case = 1
+" let g:completion_enable_snippet = 'vim-vsnip'
+" let g:completion_auto_change_source = 0
+" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" let g:completion_trigger_keyword_length = 3
 
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" function! s:check_back_space() abort
+" 	let col = col('.') - 1
+" 	return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
 
-inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ completion#trigger_completion()
+" inoremap <silent><expr> <TAB>
+" 			\ pumvisible() ? "\<C-n>" :
+" 			\ <SID>check_back_space() ? "\<TAB>" :
+" 			\ completion#trigger_completion()
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

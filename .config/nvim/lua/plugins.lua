@@ -52,9 +52,19 @@ use {'RRethy/nvim-treesitter-textsubjects'}
 
 -- Completion and snippets
 use {'neovim/nvim-lspconfig'}
-use {'nvim-lua/completion-nvim'}
-use {'hrsh7th/vim-vsnip'}
-use {'hrsh7th/vim-vsnip-integ'}
+use {
+	"hrsh7th/nvim-cmp",
+	requires = {
+		"hrsh7th/vim-vsnip",
+		"hrsh7th/cmp-vsnip",
+		-- "hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lua",
+	}
+}
+use {'hrsh7th/vim-vsnip',
+	requires = {'hrsh7th/vim-vsnip-integ'}
+}
 use {'rafamadriz/friendly-snippets'}
 use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
@@ -66,14 +76,14 @@ end)
 
 -- LSP and completion #######################################
 local lsp_config = require("lspconfig")
-local lsp_completion = require("completion")
+-- local lsp_completion = require("completion")
 
 -- Enable snippets completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local general_on_attach = function(client)
-	lsp_completion.on_attach(client)
+	-- lsp_completion.on_attach(client)
 end
 
 -- Setup basic lsp servers
@@ -137,6 +147,28 @@ map("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
 map("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
 	{ noremap = true, })
 
+-- nvim-cmp
+local cmp = require'cmp'
+cmp.setup({
+	completion = {
+		keyword_length = 3,
+	},
+	snippet = {
+		expand = function(args)
+			vim.fn["vsnip#anonymous"](args.body)
+		end,
+	},
+	mapping = {
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+	},
+	sources = {
+		{ name = 'nvim_lsp' },
+		-- { name = 'buffer' },
+		{ name = 'nvim_lua' },
+		{ name = 'vsnip' },
+	}
+})
 -- nvim-treesitter ###########################################
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = "all",
@@ -197,28 +229,34 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- autopairs #################################################
-local npairs = require('nvim-autopairs')
+-- local npairs = require('nvim-autopairs')
 
--- skip it, if you use another global object
-_G.MUtils= {}
+-- -- skip it, if you use another global object
+-- _G.MUtils= {}
 
-vim.g.completion_confirm_key = ""
+-- vim.g.completion_confirm_key = ""
 
-MUtils.completion_confirm=function()
-  if vim.fn.pumvisible() ~= 0  then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      require'completion'.confirmCompletion()
-      return npairs.esc("<c-y>")
-    else
-      return npairs.esc('<c-e><CR>')
-    end
-  else
-    return npairs.autopairs_cr()
-  end
-end
+-- MUtils.completion_confirm=function()
+--   if vim.fn.pumvisible() ~= 0  then
+--     if vim.fn.complete_info()["selected"] ~= -1 then
+--       require'completion'.confirmCompletion()
+--       return npairs.esc("<c-y>")
+--     else
+--       return npairs.esc('<c-e><CR>')
+--     end
+--   else
+--     return npairs.autopairs_cr()
+--   end
+-- end
 
-map('i' , '<CR>','v:lua.MUtils.completion_confirm()',
-	{expr = true , noremap = true})
+-- map('i' , '<CR>','v:lua.MUtils.completion_confirm()',
+-- 	{expr = true , noremap = true})
+
+require("nvim-autopairs.completion.cmp").setup({
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true, -- it will auto insert `(` after select function or method item
+  auto_select = false -- automatically select the first item
+})
 
 -- vim-vsnip #################################################
 map("i", "<c-j>",
