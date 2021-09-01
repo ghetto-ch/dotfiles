@@ -229,29 +229,6 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- autopairs #################################################
--- local npairs = require('nvim-autopairs')
-
--- -- skip it, if you use another global object
--- _G.MUtils= {}
-
--- vim.g.completion_confirm_key = ""
-
--- MUtils.completion_confirm=function()
---   if vim.fn.pumvisible() ~= 0  then
---     if vim.fn.complete_info()["selected"] ~= -1 then
---       require'completion'.confirmCompletion()
---       return npairs.esc("<c-y>")
---     else
---       return npairs.esc('<c-e><CR>')
---     end
---   else
---     return npairs.autopairs_cr()
---   end
--- end
-
--- map('i' , '<CR>','v:lua.MUtils.completion_confirm()',
--- 	{expr = true , noremap = true})
-
 require("nvim-autopairs.completion.cmp").setup({
   map_cr = true, --  map <CR> on insert mode
   map_complete = true, -- it will auto insert `(` after select function or method item
