@@ -7,8 +7,18 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd 'packadd packer.nvim'
 end
 
+vim.api.nvim_exec(
+	[[
+		augroup Packer
+		autocmd!
+		autocmd BufWritePost plugins.lua PackerCompile
+		augroup end
+	]],
+	false
+)
+
 require('packer').startup(function(use)
-use 'wbthomason/packer.nvim'
+use {'wbthomason/packer.nvim'}
 
 -- Common use
 use {'nvim-telescope/telescope.nvim',
@@ -52,38 +62,62 @@ use {'RRethy/nvim-treesitter-textsubjects'}
 
 -- Completion and snippets
 use {'neovim/nvim-lspconfig'}
-use {
-	"hrsh7th/nvim-cmp",
+use {'hrsh7th/nvim-cmp',
 	requires = {
-		"hrsh7th/vim-vsnip",
-		"hrsh7th/cmp-vsnip",
-		-- "hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-nvim-lua",
+		'hrsh7th/vim-vsnip',
+		'hrsh7th/cmp-vsnip',
+		'hrsh7th/cmp-path',
+		'hrsh7th/cmp-nvim-lsp',
+		'hrsh7th/cmp-nvim-lua',
 	}
 }
 use {'hrsh7th/vim-vsnip',
-	requires = {'hrsh7th/vim-vsnip-integ'}
+	requires = {
+		'hrsh7th/vim-vsnip-integ',
+		'rafamadriz/friendly-snippets'
+	}
 }
-use {'rafamadriz/friendly-snippets'}
 use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
 -- neovim related
 use {'thugcee/nvim-map-to-lua'}
-use {'tjdevries/nlua.nvim'}
 
 end)
 
 -- LSP and completion #######################################
 local lsp_config = require("lspconfig")
--- local lsp_completion = require("completion")
 
 -- Enable snippets completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local general_on_attach = function(client)
+local general_on_attach = function()
 	-- lsp_completion.on_attach(client)
+	map("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
+	{ silent = true, noremap = true, })
+	-- map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
+	-- 	{ silent = true, noremap = true, })
+	map("n", "K", ":call <SID>show_documentation()<CR>",
+	{ silent = true, noremap = true, })
+	map("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
+	{ silent = true, noremap = true, })
+	map("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+	{ silent = true, noremap = true, })
+	map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
+	{ silent = true, noremap = true, })
+	map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
+	{ silent = true, noremap = true, })
+	map("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>",
+	{ silent = true, noremap = true, })
+	map("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>",
+	{ silent = true, noremap = true, })
+	map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>",
+	{ silent = true, noremap = true, })
+	map("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+	{ noremap = true, })
+	map("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
+	{ noremap = true, })
+
 end
 
 -- Setup basic lsp servers
@@ -92,10 +126,6 @@ local servers = {
 	"bashls",
 	"clangd",
 	"gopls",
-	"pylsp",
-	-- "cssls",
-	"html",
-	"tsserver"
 }
 
 for _, server in ipairs(servers) do
@@ -106,10 +136,42 @@ for _, server in ipairs(servers) do
 	}
 end
 
-require('nlua.lsp.nvim').setup(require('lspconfig'), {
-	on_attach = general_on_attach
-	}
-)
+-- Lua lsp
+local sumneko_root_path = '/usr/share/lua-language-server'
+local sumneko_binary = '/usr/bin/lua-language-server'
+
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+require('lspconfig').sumneko_lua.setup {
+	cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+	on_attach = general_on_attach,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT',
+				-- Setup your lua path
+				path = runtime_path,
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { 'vim' },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file('', true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+}
 
 -- customize diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -121,31 +183,6 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
 	},
 }
 )
-
-map("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
-	{ silent = true, noremap = true, })
--- map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
--- 	{ silent = true, noremap = true, })
-map("n", "K", ":call <SID>show_documentation()<CR>",
-	{ silent = true, noremap = true, })
-map("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
-	{ silent = true, noremap = true, })
-map("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
-	{ silent = true, noremap = true, })
-map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
-	{ silent = true, noremap = true, })
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
-	{ silent = true, noremap = true, })
-map("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>",
-	{ silent = true, noremap = true, })
-map("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>",
-	{ silent = true, noremap = true, })
-map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>",
-	{ silent = true, noremap = true, })
-map("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-	{ noremap = true, })
-map("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
-	{ noremap = true, })
 
 -- nvim-cmp
 local cmp = require'cmp'
@@ -164,14 +201,15 @@ cmp.setup({
 	},
 	sources = {
 		{ name = 'nvim_lsp' },
-		-- { name = 'buffer' },
 		{ name = 'nvim_lua' },
 		{ name = 'vsnip' },
+		{ name = 'path' },
 	}
 })
+
 -- nvim-treesitter ###########################################
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = "all",
+	ensure_installed = {"c", "lua", "vim", "bash", "go"},
 	highlight = {
 		enable = true,
 	},
@@ -234,20 +272,6 @@ require("nvim-autopairs.completion.cmp").setup({
   map_complete = true, -- it will auto insert `(` after select function or method item
   auto_select = false -- automatically select the first item
 })
-
--- vim-vsnip #################################################
-map("i", "<c-j>",
-	"vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'",
-	{ expr = true, })
-map("s", "<c-j>",
-	"vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'",
-	{ expr = true, })
-map("i", "<c-l>",
-	"vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'",
-	{ expr = true, })
-map("s", "<c-l>",
-	"vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'",
-	{ expr = true, })
 
 -- quick-scope ###############################################
 vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
