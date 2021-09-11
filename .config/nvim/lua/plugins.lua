@@ -95,10 +95,8 @@ local general_on_attach = function()
 	-- lsp_completion.on_attach(client)
 	map("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
 	{ silent = true, noremap = true, })
-	-- map("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
-	-- 	{ silent = true, noremap = true, })
-	map("n", "K", ":call <SID>show_documentation()<CR>",
-	{ silent = true, noremap = true, })
+	map("n", "<c-D>", "<cmd>lua vim.lsp.buf.definition()<CR>",
+		{ silent = true, noremap = true, })
 	map("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
 	{ silent = true, noremap = true, })
 	map("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",

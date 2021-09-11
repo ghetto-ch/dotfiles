@@ -21,6 +21,8 @@ function! s:show_documentation()
   endif
 endfunction
 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 " Populate the statusline
 source ~/.config/nvim/statusline.vim
 
