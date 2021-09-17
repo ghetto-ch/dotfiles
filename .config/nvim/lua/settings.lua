@@ -82,12 +82,12 @@ map("n", "<leader>,", ":normal! mqA,<Esc>`q",
 	{ noremap = true, })
 
 -- Move lines
-map("n", "<A-j>", ":m .+1<CR>==", { noremap = true, })
-map("n", "<A-k>", ":m .-2<CR>==", { noremap = true, })
-map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, })
-map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, })
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, })
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, })
+map("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
+map("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
+map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
+map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
 -- Add blank lines
 map("n", "]<Space>", ":set paste<CR>m`o<Esc>``:set nopaste<CR>",

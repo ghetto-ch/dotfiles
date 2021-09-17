@@ -1,4 +1,5 @@
 local map = vim.api.nvim_set_keymap
+local bmap = vim.api.nvim_buf_set_keymap
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -26,8 +27,9 @@ use {'nvim-telescope/telescope.nvim',
 }
 use {'christoomey/vim-tmux-navigator'}
 use {'moll/vim-bbye'}
-use {'norcalli/nvim-colorizer.lua',
-	config = function() require'colorizer'.setup() end
+use {'norcalli/nvim-colorizer.lua', opt = true,
+	config = function() require'colorizer'.setup() end,
+	event = {'BufRead'}
 }
 use {'unblevable/quick-scope'}
 use {'ghetto-ch/vim-noh'}
@@ -44,9 +46,10 @@ use {'windwp/nvim-autopairs',
 	config = function() require('nvim-autopairs').setup{} end
 }
 use {'jpalardy/vim-slime'}
-use {'lewis6991/gitsigns.nvim',
+use {'lewis6991/gitsigns.nvim', opt = true,
 	requires = {'nvim-lua/plenary.nvim'},
-	config = function() require('gitsigns').setup() end
+	config = function() require('gitsigns').setup() end,
+	event = {'BufRead'}
 }
 
 -- Debug with gdb etc...
@@ -93,27 +96,27 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local general_on_attach = function()
 	-- lsp_completion.on_attach(client)
-	map("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
+	bmap("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
 	{ silent = true, noremap = true, })
-	map("n", "<c-D>", "<cmd>lua vim.lsp.buf.definition()<CR>",
+	bmap("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
 		{ silent = true, noremap = true, })
-	map("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
+	bmap("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
 	{ silent = true, noremap = true, })
-	map("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+	bmap("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
 	{ silent = true, noremap = true, })
-	map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
+	bmap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
 	{ silent = true, noremap = true, })
-	map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
+	bmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
 	{ silent = true, noremap = true, })
-	map("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>",
+	bmap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>",
 	{ silent = true, noremap = true, })
-	map("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>",
+	bmap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>",
 	{ silent = true, noremap = true, })
-	map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>",
+	bmap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>",
 	{ silent = true, noremap = true, })
-	map("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+	bmap("n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
 	{ noremap = true, })
-	map("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
+	bmap("n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
 	{ noremap = true, })
 
 end
@@ -124,6 +127,7 @@ local servers = {
 	"bashls",
 	"clangd",
 	"gopls",
+	"arduino_language_server",
 }
 
 for _, server in ipairs(servers) do
@@ -278,6 +282,7 @@ vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
 local actions = require('telescope.actions')
 require("telescope").setup {
 	defaults = {
+		winblend = 10,
 		mappings = {
 			i = {
 				["<esc>"] = actions.close
@@ -297,4 +302,5 @@ map("n", "<leader>gl", ":Telescope live_grep<CR>", { noremap = true, })
 
 -- The rest
 map("n", "\"", ":Telescope registers<CR>", { noremap = true, })
+map("i", "<C-R>", "<C-o>:Telescope registers<CR>", { noremap = true, })
 map("n", "<leader>b", ":Telescope builtin<CR>", { noremap = true, })
