@@ -1,5 +1,27 @@
-local map = vim.api.nvim_set_keymap
-local bmap = vim.api.nvim_buf_set_keymap
+local disabled_built_ins = {
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+	"gzip",
+	"zip",
+	"zipPlugin",
+	"tar",
+	"tarPlugin",
+	"getscript",
+	"getscriptPlugin",
+	"vimball",
+	"vimballPlugin",
+	"2html_plugin",
+	"logipat",
+	"rrhelper",
+	"spellfile_plugin",
+	"matchit"
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+	vim.g["loaded_" .. plugin] = 1
+end
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -22,16 +44,29 @@ require('packer').startup(function(use)
 use {'wbthomason/packer.nvim'}
 
 -- Common use
+use {'nvim-lua/plenary.nvim'}
 use {'nvim-telescope/telescope.nvim',
-	requires = {'nvim-lua/plenary.nvim'}
+	opt = true,
+	cmd = {'Telescope'},
+	requires = {'nvim-lua/plenary.nvim'},
+	config = function ()
+		require('tele')
+	end
 }
 use {'christoomey/vim-tmux-navigator'}
 use {'moll/vim-bbye'}
-use {'norcalli/nvim-colorizer.lua', opt = true,
-	config = function() require'colorizer'.setup() end,
-	event = {'BufRead'}
+use {'norcalli/nvim-colorizer.lua',
+	opt = true,
+	event = {'BufReadPre', 'BufRead', 'BufNew'},
+	config = function()
+		require('colorizer').setup()
+	end,
 }
-use {'unblevable/quick-scope'}
+use {'unblevable/quick-scope',
+	config = function ()
+		vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
+	end
+}
 use {'ghetto-ch/vim-noh'}
 use {'dhruvasagar/vim-table-mode'}
 
@@ -43,21 +78,32 @@ use {'tpope/vim-commentary',
 	requires = {'tpope/vim-repeat'}
 }
 use {'windwp/nvim-autopairs',
-	config = function() require('nvim-autopairs').setup{} end
+	opt = true,
+	event = {'BufReadPost'},
+	config = function()
+		require('nvim-autopairs').setup({
+			map_cr = true, --  map <CR> on insert mode
+			map_complete = true, -- it will auto insert `(` after select function or method item
+			auto_select = false -- automatically select the first item
+		})
+	end
 }
 use {'jpalardy/vim-slime'}
-use {'lewis6991/gitsigns.nvim', opt = true,
+use {'lewis6991/gitsigns.nvim',
+	opt = true,
+	event = {'BufReadPost'},
 	requires = {'nvim-lua/plenary.nvim'},
-	config = function() require('gitsigns').setup {
-		signs = {
-			add = { hl = 'GitGutterAdd', text = '+' },
-			change = { hl = 'GitGutterChange', text = '~' },
-			delete = { hl = 'GitGutterDelete', text = '_' },
-			topdelete = { hl = 'GitGutterDelete', text = '‾' },
-			changedelete = { hl = 'GitGutterChange', text = '~' },
-		},
-	} end,
-	event = {'BufRead'}
+	config = function()
+		require('gitsigns').setup({
+			signs = {
+				add = { hl = 'GitGutterAdd', text = '+' },
+				change = { hl = 'GitGutterChange', text = '~' },
+				delete = { hl = 'GitGutterDelete', text = '_' },
+				topdelete = { hl = 'GitGutterDelete', text = '‾' },
+				changedelete = { hl = 'GitGutterChange', text = '~' },
+			},
+		})
+	end,
 }
 
 -- Debug with gdb etc...
@@ -68,19 +114,35 @@ use {'kana/vim-textobj-entire',
 	requires = {'kana/vim-textobj-user'}
 }
 use {'wellle/targets.vim'}
-use {'nvim-treesitter/nvim-treesitter-textobjects'}
-use {'RRethy/nvim-treesitter-textsubjects'}
+use {'nvim-treesitter/nvim-treesitter-textobjects',
+	opt = true,
+	after = 'nvim-treesitter'
+}
+use {'RRethy/nvim-treesitter-textsubjects',
+	opt = true,
+	after = 'nvim-treesitter'
+}
 
 -- Completion and snippets
-use {'neovim/nvim-lspconfig'}
+use {'neovim/nvim-lspconfig',
+	opt = true,
+	after = 'nvim-cmp',
+	config = function ()
+		require('lsp')
+	end
+}
 use {'hrsh7th/nvim-cmp',
+	opt = true,
+	event = {'BufReadPre', 'BufRead', 'BufNew'},
 	requires = {
-		'hrsh7th/vim-vsnip',
 		'hrsh7th/cmp-vsnip',
 		'hrsh7th/cmp-path',
 		'hrsh7th/cmp-nvim-lsp',
 		'hrsh7th/cmp-nvim-lua',
-	}
+	},
+	config = function ()
+		require('nvim-cmp')
+	end
 }
 use {'hrsh7th/vim-vsnip',
 	requires = {
@@ -88,218 +150,22 @@ use {'hrsh7th/vim-vsnip',
 		'rafamadriz/friendly-snippets'
 	}
 }
-use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+use {'nvim-treesitter/nvim-treesitter',
+	opt = true,
+	event = {'BufReadPre', 'BufRead', 'BufNew'},
+	run = ':TSUpdate',
+	config = function ()
+		require('treesitter')
+	end,
+}
 
 -- neovim related
 use {'thugcee/nvim-map-to-lua'}
 
 end)
 
--- LSP and completion #######################################
-local lsp_config = require("lspconfig")
-
--- Enable snippets completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-local general_on_attach = function(_, bufnr)
-	-- lsp_completion.on_attach(client)
-	bmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
-	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
-		{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
-	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
-	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
-	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
-	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>",
-	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>",
-	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>",
-	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-	{ noremap = true, })
-	bmap(bufnr, "n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
-	{ noremap = true, })
-
-end
-
--- Setup basic lsp servers
-local servers = {
-	"vimls",
-	"bashls",
-	"clangd",
-	"gopls",
-	"arduino_language_server",
-}
-
-for _, server in ipairs(servers) do
-	lsp_config[server].setup {
-		-- Add capabilities
-		capabilities = capabilities,
-		on_attach = general_on_attach
-	}
-end
-
--- Lua lsp
-local sumneko_root_path = '/usr/share/lua-language-server'
-local sumneko_binary = '/usr/bin/lua-language-server'
-
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
-
-require('lspconfig').sumneko_lua.setup {
-	cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-	on_attach = general_on_attach,
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
-				-- Setup your lua path
-				path = runtime_path,
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { 'vim' },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file('', true),
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-}
-
--- customize diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-vim.lsp.diagnostic.on_publish_diagnostics, {
-	underline = true,
-	virtual_text = {
-		spacing = 1,
-		prefix = '',
-	},
-}
-)
-
--- nvim-cmp
-local cmp = require'cmp'
-cmp.setup({
-	completion = {
-		keyword_length = 3,
-	},
-	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
-		end,
-	},
-	mapping = {
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
-		['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
-	},
-	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'nvim_lua' },
-		{ name = 'vsnip' },
-		{ name = 'path' },
-	}
-})
-
--- nvim-treesitter ###########################################
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = {"c", "lua", "vim", "bash", "go"},
-	highlight = {
-		enable = true,
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "grn",
-			scope_incremental = "grc",
-			node_decremental = "grm",
-		},
-	},
-	indent = {
-		enable = false
-	},
-	textobjects = {
-		select = {
-			enable = true,
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
-		},
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["]m"] = "@function.outer",
-				["]]"] = "@class.outer",
-			},
-			goto_next_end = {
-				["]M"] = "@function.outer",
-				["]["] = "@class.outer",
-			},
-			goto_previous_start = {
-				["[m"] = "@function.outer",
-				["[["] = "@class.outer",
-			},
-			goto_previous_end = {
-				["[M"] = "@function.outer",
-				["[]"] = "@class.outer",
-			},
-		},
-	},
-	textsubjects = {
-		enable = true,
-		keymaps = {
-			['.'] = 'textsubjects-smart',
-			[';'] = 'textsubjects-container-outer',
-		}
-	},
-}
-
--- autopairs #################################################
-require("nvim-autopairs.completion.cmp").setup({
-  map_cr = true, --  map <CR> on insert mode
-  map_complete = true, -- it will auto insert `(` after select function or method item
-  auto_select = false -- automatically select the first item
-})
-
--- quick-scope ###############################################
-vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
-
--- Telescope #################################################
-local actions = require('telescope.actions')
-require("telescope").setup {
-	defaults = {
-		winblend = 10,
-		mappings = {
-			i = {
-				["<esc>"] = actions.close
-			},
-		}
-	}
-}
-
--- Fuzzy find files
+-- -- Fuzzy find files
+local map = vim.api.nvim_set_keymap
 map("n", "<leader>f", ":Telescope find_files<CR>", { noremap = true, })
 map("n", "<leader>o", ":Telescope oldfiles<CR>", { noremap = true, })
 map("n", "<leader>gf", ":Telescope git_files<CR>", { noremap = true, })
