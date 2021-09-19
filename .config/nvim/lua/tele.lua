@@ -10,3 +10,22 @@ require("telescope").setup({
 	}
 })
 
+local M = {}
+
+function M.edit_neovim()
+	require('telescope.builtin').find_files({
+		-- path_display = {'shorten'},
+		cwd = '~/.config/nvim'
+	})
+end
+
+function M.dotfiles()
+	require('telescope.builtin').git_files({
+		-- path_display = {'shorten'},
+		cwd = '~/dotfiles'
+	})
+end
+
+vim.cmd('command! Teledot lua require("tele").dotfiles()')
+vim.cmd('command! Televim lua require("tele").edit_neovim()')
+return M

@@ -47,7 +47,7 @@ use {'wbthomason/packer.nvim'}
 use {'nvim-lua/plenary.nvim'}
 use {'nvim-telescope/telescope.nvim',
 	opt = true,
-	cmd = {'Telescope'},
+	cmd = {'Telescope', 'Teledot', 'Televim'},
 	requires = {'nvim-lua/plenary.nvim'},
 	config = function ()
 		require('tele')
@@ -168,6 +168,8 @@ local map = vim.api.nvim_set_keymap
 map("n", "<leader>f", ":Telescope find_files<CR>", { noremap = true, })
 map("n", "<leader>o", ":Telescope oldfiles<CR>", { noremap = true, })
 map("n", "<leader>gf", ":Telescope git_files<CR>", { noremap = true, })
+map("n", "<leader>df", ':Teledot<CR>', { noremap = true, })
+map("n", "<leader>nf", ':Televim<CR>', { noremap = true, })
 
 -- grep
 map("n", "<leader>gs", ":Telescope grep_string<CR>", { noremap = true, })
