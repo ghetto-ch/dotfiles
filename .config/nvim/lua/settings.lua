@@ -26,6 +26,7 @@ o.cursorline = true
 o.number = true
 o.relativenumber = true
 o.numberwidth = 5
+o.signcolumn = 'yes'
 o.ignorecase = true
 o.smartcase = true
 o.inccommand = 'nosplit'

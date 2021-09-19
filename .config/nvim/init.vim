@@ -1,15 +1,6 @@
 lua require('settings')
 lua require('plugins')
 
-" vim-slime #################################################
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
-let g:slime_dont_ask_default = 1
-let g:slime_no_mappings = 1
-xmap gs <Plug>SlimeRegionSend
-nmap gss <Plug>SlimeLineSend
-nmap gs <Plug>SlimeMotionSend
-
 " other stuff ###############################################
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
