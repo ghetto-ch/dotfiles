@@ -23,9 +23,6 @@ augroup highlight_yank
 	autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
 
-" Add included files to completion
-set complete+=i
-
 augroup filetypes
 	autocmd!
 	" Vim

@@ -98,8 +98,8 @@ map("n", "[<Space>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>",
 
 -- Export asciidoc to html and open a preview
 map("n", "<leader>a",
-":silent !export DISPLAY:=0 &" ..
-"asciidoctor -o ~/.var/tmp/surf-preview.html % &&" ..
-"surf-preview<CR>",
-{ noremap = true, })
+	":silent !export DISPLAY:=0 &" ..
+	"asciidoctor -o ~/.var/tmp/surf-preview.html % &&" ..
+	"surf-preview<CR>",
+	{ noremap = true, })
 

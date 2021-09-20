@@ -26,4 +26,5 @@ end
 
 vim.cmd('command! Teledot lua require("tele").dotfiles()')
 vim.cmd('command! Televim lua require("tele").edit_neovim()')
+
 return M
