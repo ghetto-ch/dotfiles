@@ -11,6 +11,9 @@ require("telescope").setup({
 	pickers = {
 		lsp_code_actions = {
 			theme = 'cursor',
+		},
+		registers = {
+			layout_config = {width = 0.5, height = 0.5}
 		}
 	}
 })

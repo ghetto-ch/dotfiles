@@ -178,5 +178,5 @@ map("n", "<leader>gl", ":Telescope live_grep<CR>", { noremap = true, })
 
 -- The rest
 map("n", "\"", ":Telescope registers<CR>", { noremap = true, })
-map("i", "<C-R>", "<C-o>:Telescope registers<CR>", { noremap = true, })
+map("i", "<C-R>", "<Cmd>Telescope registers<CR>", { noremap = true, })
 map("n", "<leader>b", ":Telescope builtin<CR>", { noremap = true, })
