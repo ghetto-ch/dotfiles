@@ -1,6 +1,20 @@
 lua require('settings')
 lua require('plugins')
 
+" preset clipboard to speedup sourcing clipboard.vim
+let g:clipboard = {
+        \   'name': 'xsel - bin',
+        \   'copy': {
+        \      '+': '/bin/xsel -i -b',
+        \      '*': '/bin/xsel -i -p',
+        \    },
+        \   'paste': {
+        \      '+': '/bin/xsel -b',
+        \      '*': '/bin/xsel -p',
+        \   },
+        \   'cache_enabled': 0,
+\ }
+
 " other stuff ###############################################
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

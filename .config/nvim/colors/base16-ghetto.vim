@@ -193,10 +193,10 @@ call <sid>hi("gitcommitDiscardedFile",  s:gui08, "", "bold", "")
 call <sid>hi("gitcommitSelectedFile",   s:gui0B, "", "bold", "")
 
 " GitGutter highlighting
-call <sid>hi("GitGutterAdd",     s:gui0B, s:gui01, "", "")
-call <sid>hi("GitGutterChange",  s:gui0A, s:gui01, "", "")
-call <sid>hi("GitGutterDelete",  s:gui08, s:gui01, "", "")
-call <sid>hi("GitGutterChangeDelete",  s:gui0E, s:gui01, "", "")
+call <sid>hi("GitGutterAdd",     s:gui0B, s:gui00, "", "")
+call <sid>hi("GitGutterChange",  s:gui0A, s:gui00, "", "")
+call <sid>hi("GitGutterDelete",  s:gui08, s:gui00, "", "")
+call <sid>hi("GitGutterChangeDelete",  s:gui0E, s:gui00, "", "")
 
 " HTML highlighting
 call <sid>hi("htmlBold",    s:gui0A, "", "", "")
@@ -284,11 +284,6 @@ call <sid>hi("sassClassChar",  s:gui09, "", "", "")
 call <sid>hi("sassInclude",    s:gui0E, "", "", "")
 call <sid>hi("sassMixing",     s:gui0E, "", "", "")
 call <sid>hi("sassMixinName",  s:gui0D, "", "", "")
-
-" Signify highlighting
-call <sid>hi("SignifySignAdd",     s:gui0B, s:gui01, "", "")
-call <sid>hi("SignifySignChange",  s:gui0D, s:gui01, "", "")
-call <sid>hi("SignifySignDelete",  s:gui08, s:gui01, "", "")
 
 " Spelling highlighting
 call <sid>hi("SpellBad",     "", "", "undercurl", s:gui08)
