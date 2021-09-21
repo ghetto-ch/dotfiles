@@ -20,6 +20,7 @@ use {'wbthomason/packer.nvim'}
 
 -- Common use
 use {'nvim-lua/plenary.nvim'}
+
 use {'nvim-telescope/telescope.nvim',
 	opt = true,
 	cmd = {'Telescope', 'Teledot', 'Televim'},
@@ -28,8 +29,11 @@ use {'nvim-telescope/telescope.nvim',
 		require('tele')
 	end
 }
+
 use {'christoomey/vim-tmux-navigator'}
+
 use {'moll/vim-bbye'}
+
 use {'norcalli/nvim-colorizer.lua',
 	opt = true,
 	event = {'BufReadPre', 'BufRead', 'BufNew'},
@@ -37,21 +41,26 @@ use {'norcalli/nvim-colorizer.lua',
 		require('colorizer').setup()
 	end,
 }
+
 use {'unblevable/quick-scope',
 	config = function ()
 		vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
 	end
 }
+
 use {'ghetto-ch/vim-noh'}
+
 use {'dhruvasagar/vim-table-mode'}
 
 -- General for programming
 use {'tpope/vim-surround',
 	requires = {'tpope/vim-repeat'}
 }
+
 use {'tpope/vim-commentary',
 	requires = {'tpope/vim-repeat'}
 }
+
 use {'windwp/nvim-autopairs',
 	opt = true,
 	event = {'BufReadPost'},
@@ -63,6 +72,7 @@ use {'windwp/nvim-autopairs',
 		})
 	end
 }
+
 use {'jpalardy/vim-slime',
 	config = function ()
 		vim.g.slime_target = 'tmux'
@@ -74,6 +84,7 @@ use {'jpalardy/vim-slime',
 		vim.api.nvim_set_keymap("n", "gs", "<Plug>SlimeMotionSend", { noremap = false, })
 	end
 }
+
 use {'lewis6991/gitsigns.nvim',
 	opt = true,
 	event = {'BufReadPost'},
@@ -91,6 +102,8 @@ use {'lewis6991/gitsigns.nvim',
 	end,
 }
 
+use {'sindrets/diffview.nvim'}
+
 -- Debug with gdb etc...
 use {'sakhnik/nvim-gdb', run = ':!./install.sh'}
 
@@ -98,11 +111,15 @@ use {'sakhnik/nvim-gdb', run = ':!./install.sh'}
 use {'kana/vim-textobj-entire',
 	requires = {'kana/vim-textobj-user'}
 }
+
 use {'wellle/targets.vim'}
+
 use {'nvim-treesitter/nvim-treesitter-textobjects',
 	opt = true,
-	after = 'nvim-treesitter'
+	after = 'nvim-treesitter',
+	branch = '0.5-compat',
 }
+
 use {'RRethy/nvim-treesitter-textsubjects',
 	opt = true,
 	after = 'nvim-treesitter'
@@ -116,6 +133,7 @@ use {'neovim/nvim-lspconfig',
 		require('lsp')
 	end
 }
+
 use {'hrsh7th/nvim-cmp',
 	opt = true,
 	event = {'BufReadPre', 'BufRead', 'BufNew'},
@@ -143,9 +161,6 @@ use {'nvim-treesitter/nvim-treesitter',
 		require('treesitter')
 	end,
 }
-
--- neovim related
-use {'thugcee/nvim-map-to-lua'}
 
 end)
 

@@ -57,12 +57,6 @@ function! g:Base16hi(group, guifg, guibg, ...)
   if a:guibg != ""
     exec "hi " . a:group . " guibg=" . a:guibg
   endif
-  " if a:ctermfg != ""
-  "   exec "hi " . a:group . " ctermfg=" . a:ctermfg
-  " endif
-  " if a:ctermbg != ""
-  "   exec "hi " . a:group . " ctermbg=" . a:ctermbg
-  " endif
   if l:attr != ""
     exec "hi " . a:group . " gui=" . l:attr
   endif

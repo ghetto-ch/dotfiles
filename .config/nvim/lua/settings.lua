@@ -40,6 +40,7 @@ o.list = true
 o.listchars = 'tab:→ ,trail:▒,extends:…,precedes:…,conceal:┊,nbsp:␣'
 o.complete:append({'i'})
 o.timeoutlen = 1000
+o.pumblend = 10
 
 map("n", "<up>", "<nop>", { noremap = true, })
 map("n", "<down>", "<nop>", { noremap = true, })

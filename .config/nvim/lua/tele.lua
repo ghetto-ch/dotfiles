@@ -7,6 +7,11 @@ require("telescope").setup({
 				["<esc>"] = actions.close
 			},
 		}
+	},
+	pickers = {
+		lsp_code_actions = {
+			theme = 'cursor',
+		}
 	}
 })
 

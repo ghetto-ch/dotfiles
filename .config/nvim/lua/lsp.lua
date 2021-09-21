@@ -2,32 +2,39 @@
 local lsp_config = require("lspconfig")
 local bmap = vim.api.nvim_buf_set_keymap
 
--- Enable snippets completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local general_on_attach = function(_, bufnr)
-	bmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>",
+	bmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>",
 	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>",
+	bmap(bufnr, "n", "<c-]>", "<cmd>lua vim.lsp.buf.declaration()<CR>",
 	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>",
+	bmap(bufnr, "n", "gD", ":Telescope lsp_implementations<CR>",
 	{ silent = true, noremap = true, })
 	bmap(bufnr, "n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
 	{ silent = true, noremap = true, })
 	bmap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
 	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
+	bmap(bufnr, "n", "gr", ":Telescope lsp_references<CR>",
 	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>",
+	bmap(bufnr, "n", "g0", ":Telescope lsp_document_symbols<CR>",
 	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>",
+	bmap(bufnr, "n", "gW", ":Telescope lsp_workspace_symbols<CR>",
 	{ silent = true, noremap = true, })
 	bmap(bufnr, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>",
 	{ silent = true, noremap = true, })
 	bmap(bufnr, "n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
 	{ noremap = true, })
 	bmap(bufnr, "n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
+	{ noremap = true, })
+	bmap(bufnr, "n", "<leader>db", ":Telescope lsp_document_diagnostics<CR>",
+	{ noremap = true, })
+	bmap(bufnr, "n", "<leader>dw", ":Telescope lsp_workspace_diagnostics<CR>",
+	{ noremap = true, })
+	bmap(bufnr, "n", "<leader>ca", ":Telescope lsp_code_actions<CR>",
+	{ noremap = true, })
+	bmap(bufnr, "v", "<leader>ca", ":Telescope lsp_range_code_actions<CR>",
 	{ noremap = true, })
 
 end
