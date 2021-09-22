@@ -14,7 +14,15 @@ require("telescope").setup({
 		},
 		registers = {
 			layout_config = {width = 0.5, height = 0.5}
-		}
+		},
+		current_buffer_fuzzy_find = {
+			sorting_strategy = 'ascending',
+			layout_config = {prompt_position = 'top'},
+		},
+		file_browser = {
+			sorting_strategy = 'ascending',
+			layout_config = {prompt_position = 'top'},
+		},
 	}
 })
 
@@ -26,6 +34,8 @@ function M.edit_neovim()
 	})
 end
 
+vim.cmd('command! Televim lua require("tele").edit_neovim()')
+
 function M.dotfiles()
 	require('telescope.builtin').git_files({
 		cwd = '~/dotfiles'
@@ -33,6 +43,5 @@ function M.dotfiles()
 end
 
 vim.cmd('command! Teledot lua require("tele").dotfiles()')
-vim.cmd('command! Televim lua require("tele").edit_neovim()')
 
 return M

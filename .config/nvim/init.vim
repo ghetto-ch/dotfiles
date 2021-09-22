@@ -68,7 +68,6 @@ command! TrimWhitspaces :call TrimWhitspaces()
 command! Col set colorcolumn=81
 command! Nocol set colorcolumn=0
 
-" Strip all trailing spaces on write
 function! TrimWhitspaces()
 	let l = line(".")
 	let c = col(".")
