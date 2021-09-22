@@ -30,6 +30,8 @@ use {'nvim-telescope/telescope.nvim',
 	end
 }
 
+use {'kyazdani42/nvim-web-devicons'}
+
 use {'christoomey/vim-tmux-navigator'}
 
 use {'moll/vim-bbye'}
@@ -133,6 +135,8 @@ use {'neovim/nvim-lspconfig',
 		require('lsp')
 	end
 }
+
+use {'onsails/lspkind-nvim'}
 
 use {'hrsh7th/nvim-cmp',
 	opt = true,
