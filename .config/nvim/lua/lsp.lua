@@ -12,7 +12,7 @@ local general_on_attach = function(_, bufnr)
 	{ silent = true, noremap = true, })
 	bmap(bufnr, "n", "gD", ":Telescope lsp_implementations<CR>",
 	{ silent = true, noremap = true, })
-	bmap(bufnr, "n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+	bmap(bufnr, "i", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
 	{ silent = true, noremap = true, })
 	bmap(bufnr, "n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
 	{ silent = true, noremap = true, })
