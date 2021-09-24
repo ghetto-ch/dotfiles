@@ -13,8 +13,8 @@ o.scrolloff = 999
 o.runtimepath:append({ '~/.local/share/nvim/runtime/' })
 o.shell = '/bin/zsh'
 o.spelllang = { 'it', 'en' }
-o.tabstop = 4
-o.softtabstop = 4
+o.tabstop = 2
+o.softtabstop = 2
 o.expandtab = false
 o.shiftwidth = 0
 o.foldnestmax = 1

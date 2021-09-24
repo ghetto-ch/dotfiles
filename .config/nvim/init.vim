@@ -28,22 +28,16 @@ augroup filetypes
 	" Vim
 	autocmd FileType vim setlocal foldmethod=marker foldlevel=0
 	" Lua
-	autocmd FileType lua setlocal ts=2 sts=2 sw=2
-				\ formatprg=stylua\ --config-path=/home/ghetto/.config/stylua/stylua.toml\ -
-	" sh
-	autocmd FileType sh setlocal ts=2 sts=2 sw=2
-	" html
-	autocmd FileType html setlocal ts=2 sts=2 sw=2
+	autocmd FileType lua setlocal formatprg=stylua\ --config-path=$HOME/.config/stylua/stylua.toml\ -
 	" Python
 	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 	" C
-	autocmd FileType c,cpp setlocal ts=2 sts=2 sw=2 formatprg=astyle
-				\ foldmethod=syntax foldlevel=1
+	autocmd FileType c,cpp setlocal formatprg=astyle foldmethod=syntax foldlevel=1
 	" go
-	autocmd FileType go setlocal ts=2 sts=2 sw=2 formatprg=gofmt
+	autocmd FileType go setlocal formatprg=gofmt
 	" asciidoc and others
 	autocmd FileType text,plaintext,markdown,asciidoc,help
-				\ setlocal ts=2 sts=2 sw=2 noautoindent textwidth=80
+				\ setlocal noautoindent textwidth=80
 				\ nonumber norelativenumber
 				\ signcolumn=no
 				\ foldcolumn=2
