@@ -72,48 +72,14 @@ require('packer').startup(function(use)
 		opt = true,
 		after = 'nvim-cmp',
 		config = function()
-			require('nvim-autopairs').setup({})
-			require('nvim-autopairs.completion.cmp').setup({
-				map_cr = true, --  map <CR> on insert mode
-				map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
-				auto_select = true, -- automatically select the first item
-				insert = false, -- use insert confirm behavior instead of replace
-				map_char = { -- modifies the function or method delimiter by filetypes
-					all = '(',
-					tex = '{',
-				},
-			})
+			require('autopairs')
 		end,
 	})
 
 	use({
 		'jpalardy/vim-slime',
 		config = function()
-			vim.g.slime_target = 'tmux'
-			vim.g.slime_default_config = {
-				socket_name = 'default',
-				target_pane = '{last}',
-			}
-			vim.g.slime_dont_ask_default = true
-			vim.g.slime_no_mappings = true
-			vim.api.nvim_set_keymap(
-				'x',
-				'gs',
-				'<Plug>SlimeRegionSend',
-				{ noremap = false }
-			)
-			vim.api.nvim_set_keymap(
-				'n',
-				'gss',
-				'<Plug>SlimeLineSend',
-				{ noremap = false }
-			)
-			vim.api.nvim_set_keymap(
-				'n',
-				'gs',
-				'<Plug>SlimeMotionSend',
-				{ noremap = false }
-			)
+			require('slime')
 		end,
 	})
 
@@ -123,15 +89,7 @@ require('packer').startup(function(use)
 		event = { 'BufReadPost' },
 		requires = { 'nvim-lua/plenary.nvim' },
 		config = function()
-			require('gitsigns').setup({
-				signs = {
-					add = { hl = 'GitGutterAdd', text = '+' },
-					change = { hl = 'GitGutterChange', text = '~' },
-					delete = { hl = 'GitGutterDelete', text = '_' },
-					topdelete = { hl = 'GitGutterDelete', text = '‾' },
-					changedelete = { hl = 'GitGutterChange', text = '~' },
-				},
-			})
+			require('signs')
 		end,
 	})
 
