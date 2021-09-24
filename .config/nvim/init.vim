@@ -1,20 +1,6 @@
 lua require('settings')
 lua require('plugins')
 
-" preset clipboard to speedup sourcing clipboard.vim
-let g:clipboard = {
-        \   'name': 'xsel - bin',
-        \   'copy': {
-        \      '+': '/bin/xsel -i -b',
-        \      '*': '/bin/xsel -i -p',
-        \    },
-        \   'paste': {
-        \      '+': '/bin/xsel -b',
-        \      '*': '/bin/xsel -p',
-        \   },
-        \   'cache_enabled': 0,
-\ }
-
 " other stuff ###############################################
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -41,6 +27,9 @@ augroup filetypes
 	autocmd!
 	" Vim
 	autocmd FileType vim setlocal foldmethod=marker foldlevel=0
+	" Lua
+	autocmd FileType lua setlocal ts=2 sts=2 sw=2
+				\ formatprg=stylua\ --config-path=/home/ghetto/.config/stylua/stylua.toml\ -
 	" sh
 	autocmd FileType sh setlocal ts=2 sts=2 sw=2
 	" html
@@ -51,7 +40,7 @@ augroup filetypes
 	autocmd FileType c,cpp setlocal ts=2 sts=2 sw=2 formatprg=astyle
 				\ foldmethod=syntax foldlevel=1
 	" go
-	autocmd FileType go setlocal formatprg=gofmt
+	autocmd FileType go setlocal ts=2 sts=2 sw=2 formatprg=gofmt
 	" asciidoc and others
 	autocmd FileType text,plaintext,markdown,asciidoc,help
 				\ setlocal ts=2 sts=2 sw=2 noautoindent textwidth=80
