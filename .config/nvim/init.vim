@@ -29,8 +29,8 @@ augroup filetypes
 	autocmd FileType vim setlocal foldmethod=marker foldlevel=0
 	" Lua
 	autocmd FileType lua setlocal formatprg=stylua\ --config-path=$HOME/.config/stylua/stylua.toml\ -
-	" Python
-	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+	" sh
+	autocmd FileType sh setlocal formatprg=shfmt
 	" C
 	autocmd FileType c,cpp setlocal formatprg=astyle foldmethod=syntax foldlevel=1
 	" go
@@ -42,6 +42,8 @@ augroup filetypes
 				\ signcolumn=no
 				\ foldcolumn=2
 				\ | highlight! link FoldColumn Normal
+	" Python
+	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 augroup END
 
 " Open help in vertical slpit

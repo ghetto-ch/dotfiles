@@ -60,7 +60,14 @@ require('packer').startup(function(use)
 
 	use({ 'ghetto-ch/vim-noh' })
 
-	use({ 'dhruvasagar/vim-table-mode' })
+	use({
+		'RRethy/nvim-align',
+		config = function()
+			vim.cmd(
+				'command! -range=% -nargs=1 Align lua require("align").align(<f-args>)'
+			)
+		end,
+	})
 
 	-- General for programming
 	use({ 'tpope/vim-surround', requires = { 'tpope/vim-repeat' } })
@@ -93,14 +100,17 @@ require('packer').startup(function(use)
 		end,
 	})
 
-	use({ 'sindrets/diffview.nvim' })
+	use({
+		'sindrets/diffview.nvim',
+		config = function()
+			require('diff')
+		end,
+	})
 
 	-- Debug with gdb etc...
 	use({ 'sakhnik/nvim-gdb', run = ':!./install.sh' })
 
 	-- Text objects
-	use({ 'kana/vim-textobj-entire', requires = { 'kana/vim-textobj-user' } })
-
 	use({ 'wellle/targets.vim' })
 
 	use({
@@ -127,6 +137,8 @@ require('packer').startup(function(use)
 	})
 
 	use({ 'onsails/lspkind-nvim' })
+
+	use({ 'RRethy/vim-illuminate' })
 
 	use({
 		'hrsh7th/nvim-cmp',

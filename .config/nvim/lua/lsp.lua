@@ -5,7 +5,7 @@ local bmap = vim.api.nvim_buf_set_keymap
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local general_on_attach = function(_, bufnr)
+local general_on_attach = function(client, bufnr)
 	bmap(
 		bufnr,
 		'n',
@@ -111,6 +111,9 @@ local general_on_attach = function(_, bufnr)
 		':Telescope lsp_range_code_actions<CR>',
 		{ noremap = true }
 	)
+	require 'illuminate'.on_attach(client)
+	bmap(bufnr, 'n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', {noremap=true})
+	bmap(bufnr, 'n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>', {noremap=true})
 end
 
 -- Setup basic lsp servers
