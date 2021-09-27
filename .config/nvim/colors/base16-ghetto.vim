@@ -39,6 +39,8 @@ let s:gui0F        = "#a16946"
 let g:base16_gui0F = "#a16946"
 let s:gui10        = "#999999"
 let g:base16_gui10 = "#999999"
+let s:gui11        = "#226699"
+let g:base16_gui11 = "#226699"
 
 " Theme setup
 hi clear
@@ -106,12 +108,12 @@ call <sid>hi("StatusLine",    s:gui04, s:gui02, "none", "")
 call <sid>hi("StatusLineNC",  s:gui03, s:gui01, "none", "")
 call <sid>hi("VertSplit",     s:gui02, s:gui02, "none", "")
 call <sid>hi("ColorColumn",   "", s:gui01, "none", "")
-call <sid>hi("CursorColumn",  "", s:gui02, "none", "")
-call <sid>hi("CursorLine",    "", s:gui02, "none", "")
-call <sid>hi("CursorLineNr",  s:gui09, s:gui02, "", "")
+call <sid>hi("CursorColumn",  "", s:gui01, "none", "")
+call <sid>hi("CursorLine",    "", s:gui01, "none", "")
+call <sid>hi("CursorLineNr",  s:gui09, s:gui01, "", "")
 call <sid>hi("QuickFixLine",  "", s:gui01, "none", "")
 call <sid>hi("PMenu",         s:gui05, s:gui01, "none", "")
-call <sid>hi("PMenuSel",      s:gui01, s:gui05, "", "")
+call <sid>hi("PMenuSel",      s:gui05, s:gui11, "", "")
 call <sid>hi("TabLine",       s:gui03, s:gui01, "none", "")
 call <sid>hi("TabLineFill",   s:gui03, s:gui01, "none", "")
 call <sid>hi("TabLineSel",    s:gui0B, s:gui01, "none", "")
@@ -365,9 +367,13 @@ call <sid>hi("TSCurrentScope"       ,"",      "",             "bold",           
 call <sid>hi("NvimInternalError"    ,s:gui00, s:gui08,         "none",             ""     )
 call <sid>hi("TreesitterContext"    ,"",     s:gui01,         "italic",           ""     )
 
+" Telescope
+call <sid>hi("TelescopeSelection", "", s:gui11, "none", "")
+
 " Remove functions
 delf <sid>hi
 
 " Remove color variables
 unlet s:gui00 s:gui01 s:gui02 s:gui03  s:gui04  s:gui05  s:gui06  s:gui07
 			\ s:gui08  s:gui09 s:gui0A  s:gui0B  s:gui0C  s:gui0D  s:gui0E  s:gui0F
+			\ s:gui10 s:gui11

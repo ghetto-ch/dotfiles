@@ -14,7 +14,7 @@ vim.api.nvim_exec(
 	[[
 		augroup Packer
 		autocmd!
-		autocmd BufWritePost plugins.lua PackerCompile
+		autocmd BufWritePost plugins.lua source <afile>|PackerCompile
 		augroup end
 	]],
 	false
@@ -108,7 +108,7 @@ require('packer').startup(function(use)
 	})
 
 	-- Debug with gdb etc...
-	use({ 'sakhnik/nvim-gdb', run = ':!./install.sh' })
+	use({ 'sakhnik/nvim-gdb', run = './install.sh' })
 
 	-- Text objects
 	use({ 'wellle/targets.vim' })
@@ -138,7 +138,12 @@ require('packer').startup(function(use)
 
 	use({ 'onsails/lspkind-nvim' })
 
-	use({ 'RRethy/vim-illuminate' })
+	use({
+		'RRethy/vim-illuminate',
+		config = function()
+			vim.g.Illuminate_delay = 500
+		end,
+	})
 
 	use({
 		'hrsh7th/nvim-cmp',
@@ -185,9 +190,4 @@ map('n', '<leader>gl', ':Telescope live_grep<CR>', { noremap = true })
 map('n', '"', ':Telescope registers<CR>', { noremap = true })
 map('i', '<c-r>', '<Cmd>Telescope registers<CR>', { noremap = true })
 map('n', '<leader>b', ':Telescope builtin<CR>', { noremap = true })
-map(
-	'n',
-	'<c-_>',
-	':Telescope current_buffer_fuzzy_find<CR>',
-	{ noremap = true }
-)
+map('n', '<c-_>', ':Telescope current_buffer_fuzzy_find<CR>', { noremap = true })
