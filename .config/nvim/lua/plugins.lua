@@ -40,7 +40,10 @@ require('packer').startup(function(use)
 
 	use({ 'christoomey/vim-tmux-navigator' })
 
-	use({ 'moll/vim-bbye' })
+	use({ 'moll/vim-bbye',
+		opt = true,
+		event = { 'BufReadPost' },
+	})
 
 	use({
 		'norcalli/nvim-colorizer.lua',
@@ -58,10 +61,15 @@ require('packer').startup(function(use)
 		end,
 	})
 
-	use({ 'ghetto-ch/vim-noh' })
+	use({ 'ghetto-ch/vim-noh',
+		opt = true,
+		event = { 'BufReadPost' },
+})
 
 	use({
 		'RRethy/nvim-align',
+		opt = true,
+		event = { 'BufReadPost' },
 		config = function()
 			vim.cmd(
 				'command! -range=% -nargs=1 Align lua require("align").align(<f-args>)'
@@ -70,9 +78,17 @@ require('packer').startup(function(use)
 	})
 
 	-- General for programming
-	use({ 'tpope/vim-surround', requires = { 'tpope/vim-repeat' } })
+	use({ 'tpope/vim-surround',
+		opt = true,
+		event = { 'BufReadPost' },
+	requires = { 'tpope/vim-repeat' },
+})
 
-	use({ 'tpope/vim-commentary', requires = { 'tpope/vim-repeat' } })
+	use({ 'tpope/vim-commentary',
+		opt = true,
+		event = { 'BufReadPost' },
+	requires = { 'tpope/vim-repeat' }
+})
 
 	use({
 		'windwp/nvim-autopairs',
@@ -85,6 +101,8 @@ require('packer').startup(function(use)
 
 	use({
 		'jpalardy/vim-slime',
+		opt = true,
+		event = { 'BufReadPost' },
 		config = function()
 			require('slime')
 		end,
@@ -102,16 +120,25 @@ require('packer').startup(function(use)
 
 	use({
 		'sindrets/diffview.nvim',
+		opt = true,
+		event = { 'BufReadPost' },
 		config = function()
 			require('diff')
 		end,
 	})
 
 	-- Debug with gdb etc...
-	use({ 'sakhnik/nvim-gdb', run = './install.sh' })
+	use({ 'sakhnik/nvim-gdb',
+		opt = true,
+		event = { 'BufReadPost' },
+		run = './install.sh'
+	})
 
 	-- Text objects
-	use({ 'wellle/targets.vim' })
+	use({ 'wellle/targets.vim',
+		opt = true,
+		event = { 'BufReadPost' },
+	})
 
 	use({
 		'nvim-treesitter/nvim-treesitter-textobjects',
@@ -140,6 +167,8 @@ require('packer').startup(function(use)
 
 	use({
 		'RRethy/vim-illuminate',
+		opt = true,
+		event = { 'BufReadPost' },
 		config = function()
 			vim.g.Illuminate_delay = 500
 		end,
@@ -160,7 +189,13 @@ require('packer').startup(function(use)
 		end,
 	})
 
-	use({ 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' } })
+	use({ 'L3MON4D3/LuaSnip',
+		opt = true,
+		after = 'nvim-cmp',
+		config = function ()
+			require('snip')
+		end
+	})
 
 	use({
 		'nvim-treesitter/nvim-treesitter',
