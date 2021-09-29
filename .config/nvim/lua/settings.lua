@@ -3,25 +3,6 @@ local o = vim.opt
 local c = vim.cmd
 local map = vim.api.nvim_set_keymap
 
-local is_wsl = (function ()
-	return string.find((vim.fn.systemlist 'uname -r')[1], 'WSL')
-end)
-
-if is_wsl() then
-	g.clipboard = {
-		['name'] = 'wsl-clip',
-		['copy'] = {
-			['+'] = 'clip.exe',
-			['*'] = 'clip.exe',
-		},
-		['paste'] = {
-			['+'] = 'powershell.exe Get-Clipboard',
-			['*'] = 'powershell.exe Get-Clipboard',
-		},
-		['cache_enabled'] = false,
-	}
-end
-
 g.mapleader = ' '
 o.termguicolors = true
 o.background = 'dark'
