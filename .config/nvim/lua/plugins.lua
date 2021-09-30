@@ -203,6 +203,7 @@ require('packer').startup(function(use)
 		event = { 'BufRead', 'BufNew' },
 		branch = '0.5-compat',
 		run = ':TSUpdate',
+		requires = {'nvim-treesitter/playground', opt = true},
 		config = function()
 			require('treesitter')
 		end,
