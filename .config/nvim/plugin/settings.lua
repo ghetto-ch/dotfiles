@@ -3,7 +3,6 @@ local o = vim.opt
 local c = vim.cmd
 local map = vim.api.nvim_set_keymap
 
-g.mapleader = ' '
 o.termguicolors = true
 o.background = 'dark'
 c('colorscheme base16-ghetto')

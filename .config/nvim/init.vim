@@ -1,5 +1,7 @@
-lua require('settings')
-lua require('plugins')
+" lua require('settings')
+" lua require('plugins')
+
+let mapleader =" "
 
 " other stuff ###############################################
 function! s:show_documentation()
