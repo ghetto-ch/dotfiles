@@ -229,4 +229,6 @@ map('n', '<leader>gl', ':Telescope live_grep<CR>', { noremap = true })
 map('n', '"', ':Telescope registers<CR>', { noremap = true })
 map('i', '<c-r>', '<Cmd>Telescope registers<CR>', { noremap = true })
 map('n', '<leader>b', ':Telescope builtin<CR>', { noremap = true })
+
+-- Grep current buffer with <C-/>
 map('n', '<c-_>', ':Telescope current_buffer_fuzzy_find<CR>', { noremap = true })
