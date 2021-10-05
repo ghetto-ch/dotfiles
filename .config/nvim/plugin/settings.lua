@@ -1,4 +1,3 @@
-local g = vim.g
 local o = vim.opt
 local c = vim.cmd
 local map = vim.api.nvim_set_keymap
@@ -84,6 +83,10 @@ map('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { noremap = true, silent = true })
 map('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { noremap = true, silent = true })
 map('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+-- Textobject to select the entire buffer
+map('x', 'ae', ':normal! ggVG<CR>', { noremap = true, silent = true })
+map('o', 'ae', ':normal! ggVG<CR>', { noremap = true, silent = true })
 
 -- Add blank lines
 map(
