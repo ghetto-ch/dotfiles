@@ -73,7 +73,7 @@ alias ls='exa -g --group-directories-first'
 # alias ls="ls -h --color='auto'"
 alias la='ls -la'
 alias ll='ls -l'
-alias clr=clear
+alias cl=clear
 alias psyu="sudo pacman -Syu"
 alias psearch="pacman -Ss"
 # Pastebin

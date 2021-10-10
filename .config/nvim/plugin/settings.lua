@@ -111,3 +111,23 @@ map(
 		.. 'surf-preview<CR>',
 	{ noremap = true }
 )
+
+-- -- Fuzzy find files
+local map = vim.api.nvim_set_keymap
+map('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true })
+map('n', '<leader>o', ':Telescope oldfiles<CR>', { noremap = true })
+map('n', '<leader>gf', ':Telescope git_files<CR>', { noremap = true })
+map('n', '<leader>df', ':Teledot<CR>', { noremap = true })
+map('n', '<leader>nf', ':Televim<CR>', { noremap = true })
+
+-- grep
+map('n', '<leader>gs', ':Telescope grep_string<CR>', { noremap = true })
+map('n', '<leader>gl', ':Telescope live_grep<CR>', { noremap = true })
+
+-- The rest
+map('n', '"', ':Telescope registers<CR>', { noremap = true })
+map('i', '<c-r>', '<Cmd>Telescope registers<CR>', { noremap = true })
+map('n', '<leader>b', ':Telescope builtin<CR>', { noremap = true })
+
+-- Grep current buffer with <C-/>
+map('n', '<c-_>', ':Telescope current_buffer_fuzzy_find<CR>', { noremap = true })
