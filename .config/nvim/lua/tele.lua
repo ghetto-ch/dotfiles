@@ -1,5 +1,8 @@
+local telescope = require('telescope')
 local actions = require('telescope.actions')
-require('telescope').setup({
+local builtin = require('telescope.builtin')
+
+telescope.setup({
 	defaults = {
 		winblend = 10,
 		mappings = {
@@ -26,10 +29,12 @@ require('telescope').setup({
 	},
 })
 
+require('telescope').load_extension('fzf')
+
 local M = {}
 
 function M.edit_neovim()
-	require('telescope.builtin').find_files({
+	builtin.find_files({
 		cwd = '~/.config/nvim',
 	})
 end
@@ -37,7 +42,7 @@ end
 vim.cmd('command! Televim lua require("tele").edit_neovim()')
 
 function M.dotfiles()
-	require('telescope.builtin').git_files({
+	builtin.git_files({
 		cwd = '~/dotfiles',
 	})
 end

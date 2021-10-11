@@ -14,12 +14,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 vim.api.nvim_exec(
-	[[
-		augroup Packer
-		autocmd!
-		autocmd BufWritePost plugins.lua source <afile>|PackerCompile
-		augroup end
-	]],
+([[
+augroup Packer
+autocmd!
+autocmd BufWritePost plugins.lua source <afile>|PackerCompile
+augroup end
+]]),
 	false
 )
 
@@ -29,11 +29,14 @@ require('packer').startup(function(use)
 	-- Common use
 	use({ 'nvim-lua/plenary.nvim' })
 
+	use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
 	use({
 		'nvim-telescope/telescope.nvim',
 		opt = true,
 		cmd = { 'Telescope', 'Teledot', 'Televim' },
-		requires = { 'nvim-lua/plenary.nvim' },
+		requires = {
+			{ 'nvim-lua/plenary.nvim' },
+		},
 		config = function()
 			require('tele')
 		end,
@@ -43,10 +46,7 @@ require('packer').startup(function(use)
 
 	use({ 'christoomey/vim-tmux-navigator' })
 
-	use({ 'moll/vim-bbye',
-		opt = true,
-		event = { 'BufReadPost' },
-	})
+	use({ 'moll/vim-bbye', opt = true, event = { 'BufReadPost' } })
 
 	use({
 		'norcalli/nvim-colorizer.lua',
@@ -64,10 +64,7 @@ require('packer').startup(function(use)
 		end,
 	})
 
-	use({ 'ghetto-ch/vim-noh',
-		opt = true,
-		event = { 'BufReadPost' },
-})
+	use({ 'ghetto-ch/vim-noh', opt = true, event = { 'BufReadPost' } })
 
 	use({
 		'RRethy/nvim-align',
@@ -81,17 +78,19 @@ require('packer').startup(function(use)
 	})
 
 	-- General for programming
-	use({ 'tpope/vim-surround',
+	use({
+		'tpope/vim-surround',
 		opt = true,
 		event = { 'BufReadPost' },
-	requires = { 'tpope/vim-repeat' },
-})
+		requires = { 'tpope/vim-repeat' },
+	})
 
-	use({ 'tpope/vim-commentary',
+	use({
+		'tpope/vim-commentary',
 		opt = true,
 		event = { 'BufReadPost' },
-	requires = { 'tpope/vim-repeat' }
-})
+		requires = { 'tpope/vim-repeat' },
+	})
 
 	use({
 		'windwp/nvim-autopairs',
@@ -131,17 +130,15 @@ require('packer').startup(function(use)
 	})
 
 	-- Debug with gdb etc...
-	use({ 'sakhnik/nvim-gdb',
+	use({
+		'sakhnik/nvim-gdb',
 		opt = true,
 		event = { 'BufReadPost' },
-		run = './install.sh'
+		run = './install.sh',
 	})
 
 	-- Text objects
-	use({ 'wellle/targets.vim',
-		opt = true,
-		event = { 'BufReadPost' },
-	})
+	use({ 'wellle/targets.vim', opt = true, event = { 'BufReadPost' } })
 
 	use({
 		'nvim-treesitter/nvim-treesitter-textobjects',
@@ -192,12 +189,13 @@ require('packer').startup(function(use)
 		end,
 	})
 
-	use({ 'L3MON4D3/LuaSnip',
+	use({
+		'L3MON4D3/LuaSnip',
 		opt = true,
 		after = 'nvim-cmp',
-		config = function ()
+		config = function()
 			require('snip')
-		end
+		end,
 	})
 
 	use({
@@ -206,7 +204,7 @@ require('packer').startup(function(use)
 		event = { 'BufRead', 'BufNew' },
 		branch = '0.5-compat',
 		run = ':TSUpdate',
-		requires = {'nvim-treesitter/playground', opt = true},
+		requires = { 'nvim-treesitter/playground', opt = true },
 		config = function()
 			require('treesitter')
 		end,
