@@ -1,6 +1,3 @@
--- disable some builtins
-vim.g.loaded_fzf = true
-
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -13,17 +10,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd('packadd packer.nvim')
 end
 
-vim.api.nvim_exec(
-([[
-augroup Packer
-autocmd!
-autocmd BufWritePost plugins.lua source <afile>|PackerCompile
-augroup end
-]]),
-	false
-)
+vim.cmd([[
+	augroup packer_user_config
+		autocmd!
+		autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+	augroup end
+]])
 
-require('packer').startup(function(use)
+require('packer').startup({function(use)
 	use({ 'wbthomason/packer.nvim' })
 
 	-- Common use
@@ -209,4 +203,4 @@ require('packer').startup(function(use)
 			require('treesitter')
 		end,
 	})
-end)
+end,})

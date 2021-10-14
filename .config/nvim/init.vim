@@ -1,7 +1,5 @@
-" lua require('settings')
-" lua require('plugins')
-
-let mapleader =" "
+let g:loaded_fzf=1
+let mapleader=" "
 
 " other stuff ###############################################
 function! s:show_documentation()
