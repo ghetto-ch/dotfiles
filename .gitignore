@@ -7,3 +7,5 @@
 .fzf/fzf-tab
 history.json
 packer_compiled.lua
+configstore
+clip.lua
