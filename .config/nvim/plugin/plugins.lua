@@ -40,7 +40,7 @@ require('packer').startup({function(use)
 
 	use({ 'christoomey/vim-tmux-navigator' })
 
-	use({ 'moll/vim-bbye', opt = true, event = { 'BufReadPost' } })
+	use({ 'famiu/bufdelete.nvim', opt = true, event = { 'BufReadPost' } })
 
 	use({
 		'norcalli/nvim-colorizer.lua',
