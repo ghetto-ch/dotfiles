@@ -69,10 +69,10 @@ bindkey '^x^e' edit-command-line
 # Some aliases
 alias dh='dirs -v'
 alias pd='popd'
-alias ls='exa -g --group-directories-first --long --git'
+alias ls='exa -g --group-directories-first'
 # alias ls="ls -h --color='auto'"
-alias la='ls -la'
-alias ll='ls -l'
+alias ll='ls -l --git'
+alias la='ll -a'
 alias cl=clear
 alias psyu="sudo pacman -Syu"
 alias psearch="pacman -Ss"
