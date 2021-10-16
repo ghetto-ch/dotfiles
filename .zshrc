@@ -69,7 +69,7 @@ bindkey '^x^e' edit-command-line
 # Some aliases
 alias dh='dirs -v'
 alias pd='popd'
-alias ls='exa -g --group-directories-first'
+alias ls='exa -g --group-directories-first --long --git'
 # alias ls="ls -h --color='auto'"
 alias la='ls -la'
 alias ll='ls -l'
