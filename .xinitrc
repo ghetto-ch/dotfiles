@@ -53,7 +53,7 @@ xwallpaper --output DP-4 --center /home/ghetto/img/wallpaper
 picom -b
 lxpolkit &
 [ -z $(pgrep 'dwm-status') ] && dwm-status &
-nm-applet &
-blueman-applet &
+# nm-applet &
+# blueman-applet &
 # pa-applet &
 exec dwm
