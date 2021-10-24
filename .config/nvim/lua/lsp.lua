@@ -6,32 +6,33 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local general_on_attach = function(client, bufnr)
-	local opts = { silent = true, noremap = true }
 	-- stylua: ignore
 	local maps = {
-		{ 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts },
-		{ 'n', '<c-]>', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts },
-		{ 'n', 'gD', ':Telescope lsp_implementations<CR>', opts },
-		{ 'i', 'c-k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts },
-		{ 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts },
-		{ 'n', 'gr', ':Telescope lsp_references<CR>', opts },
-		{ 'n', 'g0', ':Telescope lsp_document_symbols<CR>', opts },
-		{ 'n', 'gW', ':Telescope lsp_workspace_symbols<CR>', opts },
-		{ 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts },
-		{ 'n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts },
-		{ 'n', '<leader>dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts },
-		{ 'n', '<leader>db', ':Telescope lsp_document_diagnostics<CR>', opts },
-		{ 'n', '<leader>dw', ':Telescope lsp_workspace_diagnostics<CR>', opts },
-		{ 'n', '<leader>ca', ':Telescope lsp_code_actions<CR>', opts },
-		{ 'v', '<leader>ca', ':Telescope lsp_code_actions<CR>', opts },
-		{ 'n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', opts },
-		{ 'n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>', opts },
+		{ 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>' },
+		{ 'n', '<c-]>', '<cmd>lua vim.lsp.buf.declaration()<CR>' },
+		{ 'n', 'gD', ':Telescope lsp_implementations<CR>' },
+		{ 'i', 'c-k', '<cmd>lua vim.lsp.buf.signature_help()<CR>' },
+		{ 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>' },
+		{ 'n', 'gr', ':Telescope lsp_references<CR>' },
+		{ 'n', 'g0', ':Telescope lsp_document_symbols<CR>' },
+		{ 'n', 'gW', ':Telescope lsp_workspace_symbols<CR>' },
+		{ 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>' },
+		{ 'n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>' },
+		{ 'n', '<leader>dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>' },
+		{ 'n', '<leader>db', ':Telescope lsp_document_diagnostics<CR>' },
+		{ 'n', '<leader>dw', ':Telescope lsp_workspace_diagnostics<CR>' },
+		{ 'n', '<leader>ca', ':Telescope lsp_code_actions<CR>' },
+		{ 'v', '<leader>ca', ':Telescope lsp_code_actions<CR>' },
+		{ 'n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>' },
+		{ 'n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>' },
 	}
 
 	require('illuminate').on_attach(client)
 
+	local opts = { silent = true, noremap = true }
+
 	for _, map in ipairs(maps) do
-		bmap(bufnr, map[1], map[2], map[3], map[4])
+		bmap(bufnr, map[1], map[2], map[3], opts)
 	end
 end
 
