@@ -102,6 +102,10 @@ map(
 	{ silent = true, noremap = true }
 )
 
+-- Navigate quickfix
+map('n', ']q', ':cnext<CR>', { noremap = true, silent = true })
+map('n', '[q', ':cprev<CR>', { noremap = true, silent = true })
+
 -- Export asciidoc to html and open a preview
 map(
 	'n',
