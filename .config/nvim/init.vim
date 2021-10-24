@@ -34,12 +34,12 @@ augroup filetypes
 	" C
 	autocmd FileType c,cpp setlocal formatprg=astyle foldmethod=syntax foldlevel=1
 	" go
-	autocmd FileType go setlocal formatprg=gofmt
+	autocmd FileType go setlocal formatprg=goimports
 	" asciidoc and others
 	autocmd FileType text,plaintext,markdown,asciidoc,help
 				\ setlocal noautoindent textwidth=80
 				\ nonumber norelativenumber
-				\ signcolumn=no
+				\ wrap
 				\ foldcolumn=2
 				\ | highlight! link FoldColumn Normal
 	" Python

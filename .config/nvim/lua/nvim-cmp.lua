@@ -18,8 +18,8 @@ cmp.setup({
 		['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
 	},
 	sources = {
-		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lua' },
+		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'path' },
 	},

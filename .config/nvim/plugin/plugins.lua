@@ -125,9 +125,10 @@ require('packer').startup({
 		})
 
 		use({
-			'sindrets/diffview.nvim',
+			'tpope/vim-fugitive',
 			opt = true,
 			event = { 'BufReadPost' },
+			cmd = { 'Git', },
 			config = function()
 				require('diff')
 			end,
