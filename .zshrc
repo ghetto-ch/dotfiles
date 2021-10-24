@@ -101,6 +101,8 @@ alias b='buku --suggest'
 
 alias mcom='minicom -con'
 
+alias lg=lazygit
+
 ## Setup grep to be a bit more nice
 ## check if 'x' grep argument available
 grep-flag-available() {
