@@ -6,41 +6,23 @@
 
 " GUI color definitions
 let s:gui00        = "#181818"
-let g:base16_gui00 = "#181818"
 let s:gui01        = "#282828"
-let g:base16_gui01 = "#282828"
 let s:gui02        = "#383838"
-let g:base16_gui02 = "#383838"
 let s:gui03        = "#585858"
-let g:base16_gui03 = "#585858"
 let s:gui04        = "#b8b8b8"
-let g:base16_gui04 = "#b8b8b8"
 let s:gui05        = "#d8d8d8"
-let g:base16_gui05 = "#d8d8d8"
 let s:gui06        = "#e8e8e8"
-let g:base16_gui06 = "#e8e8e8"
 let s:gui07        = "#f8f8f8"
-let g:base16_gui07 = "#f8f8f8"
 let s:gui08        = "#ab4642"
-let g:base16_gui08 = "#ab4642"
 let s:gui09        = "#dc9656"
-let g:base16_gui09 = "#dc9656"
 let s:gui0A        = "#f7ca88"
-let g:base16_gui0A = "#f7ca88"
 let s:gui0B        = "#a1b56c"
-let g:base16_gui0B = "#a1b56c"
 let s:gui0C        = "#86c1b9"
-let g:base16_gui0C = "#86c1b9"
 let s:gui0D        = "#7cafc2"
-let g:base16_gui0D = "#7cafc2"
 let s:gui0E        = "#ba8baf"
-let g:base16_gui0E = "#ba8baf"
 let s:gui0F        = "#a16946"
-let g:base16_gui0F = "#a16946"
 let s:gui10        = "#999999"
-let g:base16_gui10 = "#999999"
 let s:gui11        = "#226699"
-let g:base16_gui11 = "#226699"
 
 " Theme setup
 hi clear
@@ -73,7 +55,7 @@ fun <sid>hi(group, guifg, guibg, attr, guisp)
 endfun
 
 " Vim editor colors
-call <sid>hi("Normal",        s:gui05, s:gui00, "", "")
+call <sid>hi("Normal",        s:gui05, "", "", "")
 call <sid>hi("Bold",          "", "", "bold", "")
 call <sid>hi("Debug",         s:gui08, "", "", "")
 call <sid>hi("Directory",     s:gui0D, "", "", "")
@@ -104,12 +86,12 @@ call <sid>hi("Cursor",        s:gui00, s:gui05, "", "")
 call <sid>hi("NonText",       s:gui03, "", "", "")
 call <sid>hi("LineNr",        s:gui04, s:gui00, "", "")
 call <sid>hi("SignColumn",    s:gui03, s:gui00, "", "")
-call <sid>hi("StatusLine",    s:gui04, s:gui02, "none", "")
+call <sid>hi("StatusLine",    s:gui04, s:gui00, "none", "")
 call <sid>hi("StatusLineNC",  s:gui03, s:gui01, "none", "")
 call <sid>hi("VertSplit",     s:gui02, s:gui02, "none", "")
 call <sid>hi("ColorColumn",   "", s:gui01, "none", "")
 call <sid>hi("CursorColumn",  "", s:gui01, "none", "")
-call <sid>hi("CursorLine",    "", s:gui01, "none", "")
+call <sid>hi("CursorLine",    "", s:gui00, "none", "")
 call <sid>hi("CursorLineNr",  s:gui09, s:gui01, "", "")
 call <sid>hi("QuickFixLine",  "", s:gui01, "none", "")
 call <sid>hi("PMenu",         s:gui05, s:gui01, "none", "")
@@ -377,3 +359,6 @@ delf <sid>hi
 unlet s:gui00 s:gui01 s:gui02 s:gui03  s:gui04  s:gui05  s:gui06  s:gui07
 			\ s:gui08  s:gui09 s:gui0A  s:gui0B  s:gui0C  s:gui0D  s:gui0E  s:gui0F
 			\ s:gui10 s:gui11
+
+highlight clear LineNr
+highlight clear SignColumn
