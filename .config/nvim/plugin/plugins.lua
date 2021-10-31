@@ -44,15 +44,6 @@ require('packer').startup({
 		use({ 'famiu/bufdelete.nvim', opt = true, event = { 'BufReadPost' } })
 
 		use({
-			'nacro90/numb.nvim',
-			opt = true,
-			event = { 'BufReadPost' },
-			config = function()
-				require('numb').setup()
-			end,
-		})
-
-		use({
 			'norcalli/nvim-colorizer.lua',
 			opt = true,
 			event = { 'BufReadPre', 'BufRead', 'BufNew' },
@@ -69,17 +60,6 @@ require('packer').startup({
 		})
 
 		use({ 'ghetto-ch/vim-noh', opt = true, event = { 'BufReadPost' } })
-
-		use({
-			'RRethy/nvim-align',
-			opt = true,
-			event = { 'BufReadPost' },
-			config = function()
-				vim.cmd(
-					'command! -range=% -nargs=1 Align lua require("align").align(<f-args>)'
-				)
-			end,
-		})
 
 		-- General for programming
 		use({
@@ -124,26 +104,20 @@ require('packer').startup({
 			end,
 		})
 
-		use({
-			'tpope/vim-fugitive',
-			opt = true,
-			event = { 'BufReadPost' },
-			cmd = { 'Git', },
-			config = function()
-				require('diff')
-			end,
-		})
-
-		-- Debug with gdb etc...
-		use({
-			'sakhnik/nvim-gdb',
-			opt = true,
-			event = { 'BufReadPost' },
-			run = './install.sh',
-		})
-
 		-- Text objects
 		use({ 'wellle/targets.vim', opt = true, event = { 'BufReadPost' } })
+
+		use({
+			'nvim-treesitter/nvim-treesitter',
+			opt = true,
+			event = { 'BufRead', 'BufNew' },
+			branch = '0.5-compat',
+			run = ':TSUpdate',
+			requires = { 'nvim-treesitter/playground', opt = true },
+			config = function()
+				require('treesitter')
+			end,
+		})
 
 		use({
 			'nvim-treesitter/nvim-treesitter-textobjects',
@@ -200,18 +174,6 @@ require('packer').startup({
 			after = 'nvim-cmp',
 			config = function()
 				require('snip')
-			end,
-		})
-
-		use({
-			'nvim-treesitter/nvim-treesitter',
-			opt = true,
-			event = { 'BufRead', 'BufNew' },
-			branch = '0.5-compat',
-			run = ':TSUpdate',
-			requires = { 'nvim-treesitter/playground', opt = true },
-			config = function()
-				require('treesitter')
 			end,
 		})
 	end,
