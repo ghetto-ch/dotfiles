@@ -65,7 +65,7 @@ map('n', '<C-q>', ':quit<CR>', { noremap = true })
 map('v', '<C-r>', '"hy:%s/\\V<C-r>h', { noremap = true })
 
 -- Replace visual selection with yanked text
--- TODO: fix bug when the text to be replaced is at the end of the line.
+-- FIXME: fix bug when the text to be replaced is at the end of the line.
 map('v', '<M-r>', 'dh"0p', { noremap = true })
 
 -- cd in the directory of the current file
