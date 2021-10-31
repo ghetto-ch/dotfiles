@@ -9,3 +9,5 @@ history.json
 packer_compiled.lua
 configstore
 clip.lua
+
+.config/lazygit/state.yml
