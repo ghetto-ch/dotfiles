@@ -23,6 +23,7 @@ let s:gui0E        = "#ba8baf"
 let s:gui0F        = "#a16946"
 let s:gui10        = "#999999"
 let s:gui11        = "#226699"
+let s:gui12        = "#330000"
 
 " Theme setup
 hi clear
@@ -62,7 +63,7 @@ call <sid>hi("Directory",     s:gui0D, "", "", "")
 call <sid>hi("Error",         s:gui00, s:gui08, "", "")
 call <sid>hi("ErrorMsg",      s:gui08, s:gui00, "", "")
 call <sid>hi("Exception",     s:gui08, "", "", "")
-call <sid>hi("FoldColumn",    s:gui0C, s:gui01, "", "")
+call <sid>hi("FoldColumn",    s:gui0C, "", "", "")
 call <sid>hi("Folded",        s:gui04, s:gui01, "", "")
 call <sid>hi("IncSearch",     s:gui01, s:gui09, "none", "")
 call <sid>hi("Italic",        "", "", "none", "")
@@ -84,15 +85,15 @@ call <sid>hi("Title",         s:gui0D, "", "none", "")
 call <sid>hi("Conceal",       s:gui0D, s:gui00, "", "")
 call <sid>hi("Cursor",        s:gui00, s:gui05, "", "")
 call <sid>hi("NonText",       s:gui03, "", "", "")
-call <sid>hi("LineNr",        s:gui04, s:gui00, "", "")
-call <sid>hi("SignColumn",    s:gui03, s:gui00, "", "")
+call <sid>hi("LineNr",        s:gui04, "", "", "")
+call <sid>hi("SignColumn",    s:gui03, "", "", "")
 call <sid>hi("StatusLine",    s:gui04, s:gui00, "none", "")
-call <sid>hi("StatusLineNC",  s:gui03, s:gui01, "none", "")
-call <sid>hi("VertSplit",     s:gui02, s:gui02, "none", "")
-call <sid>hi("ColorColumn",   "", s:gui01, "none", "")
-call <sid>hi("CursorColumn",  "", s:gui01, "none", "")
+call <sid>hi("StatusLineNC",  s:gui03, "", "none", "")
+call <sid>hi("VertSplit",     s:gui00, s:gui00, "none", "")
+call <sid>hi("ColorColumn",   "", s:gui12, "none", "")
+call <sid>hi("CursorColumn",  "", s:gui00, "none", "")
 call <sid>hi("CursorLine",    "", s:gui00, "none", "")
-call <sid>hi("CursorLineNr",  s:gui09, s:gui01, "", "")
+call <sid>hi("CursorLineNr",  s:gui09, "", "", "")
 call <sid>hi("QuickFixLine",  "", s:gui01, "none", "")
 call <sid>hi("PMenu",         s:gui05, s:gui01, "none", "")
 call <sid>hi("PMenuSel",      s:gui05, s:gui11, "", "")
@@ -177,10 +178,10 @@ call <sid>hi("gitcommitDiscardedFile",  s:gui08, "", "bold", "")
 call <sid>hi("gitcommitSelectedFile",   s:gui0B, "", "bold", "")
 
 " GitGutter highlighting
-call <sid>hi("GitGutterAdd",     s:gui0B, s:gui00, "", "")
-call <sid>hi("GitGutterChange",  s:gui0A, s:gui00, "", "")
-call <sid>hi("GitGutterDelete",  s:gui08, s:gui00, "", "")
-call <sid>hi("GitGutterChangeDelete",  s:gui0E, s:gui00, "", "")
+call <sid>hi("GitGutterAdd",     s:gui0B, "", "", "")
+call <sid>hi("GitGutterChange",  s:gui0A, "", "", "")
+call <sid>hi("GitGutterDelete",  s:gui08, "", "", "")
+call <sid>hi("GitGutterChangeDelete",  s:gui0E, "", "", "")
 
 " HTML highlighting
 call <sid>hi("htmlBold",    s:gui0A, "", "", "")
@@ -360,5 +361,4 @@ unlet s:gui00 s:gui01 s:gui02 s:gui03  s:gui04  s:gui05  s:gui06  s:gui07
 			\ s:gui08  s:gui09 s:gui0A  s:gui0B  s:gui0C  s:gui0D  s:gui0E  s:gui0F
 			\ s:gui10 s:gui11
 
-highlight clear LineNr
 highlight clear SignColumn

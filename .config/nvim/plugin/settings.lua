@@ -20,7 +20,7 @@ o.undofile = true
 o.path:append({ '**' })
 o.splitbelow = true
 o.splitright = true
-o.cursorline = true
+o.cursorline = false
 o.number = true
 o.relativenumber = true
 o.numberwidth = 5
