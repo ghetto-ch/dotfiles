@@ -37,8 +37,3 @@ cmp.setup({
 		}),
 	},
 })
-
-local cmp_window = require('cmp.utils.window')
-function cmp_window:has_scrollbar()
-	return false
-end
