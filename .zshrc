@@ -66,6 +66,30 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
+# Remove mode switching delay.
+KEYTIMEOUT=5
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+	if [[ ${KEYMAP} == vicmd ]] ||
+		[[ $1 = 'block' ]]; then
+				echo -ne '\e[1 q'
+
+			elif [[ ${KEYMAP} == main ]] ||
+				[[ ${KEYMAP} == viins ]] ||
+				[[ ${KEYMAP} = '' ]] ||
+				[[ $1 = 'beam' ]]; then
+								echo -ne '\e[5 q'
+	fi
+}
+
+zle -N zle-keymap-select
+_fix_cursor() {
+	echo -ne '\e[5 q'
+}
+
+precmd_functions+=(_fix_cursor)
+
 # Some aliases
 alias dh='dirs -v'
 alias pd='popd'
@@ -106,14 +130,14 @@ alias lg=lazygit
 ## Setup grep to be a bit more nice
 ## check if 'x' grep argument available
 grep-flag-available() {
-    echo | grep $1 "" >/dev/null 2>&1
+	echo | grep $1 "" >/dev/null 2>&1
 }
 
 local GREP_OPTIONS=""
 
 # color grep results
 if grep-flag-available --color=auto; then
-   GREP_OPTIONS+=" --color=auto"
+	GREP_OPTIONS+=" --color=auto"
 fi
 
 # ignore VCS folders (if the necessary grep flags are available)
@@ -165,10 +189,10 @@ export LS_COLORS
 
 #compdef pio
 _pio() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIO_COMPLETE=complete-zsh  pio)
+	eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIO_COMPLETE=complete-zsh  pio)
 }
 if [[ "$(basename -- ${(%):-%x})" != "_pio" ]]; then
-  compdef _pio pio
+	compdef _pio pio
 fi
 
 ## Powerlevel10k
