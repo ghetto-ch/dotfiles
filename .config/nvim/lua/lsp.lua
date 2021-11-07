@@ -45,6 +45,7 @@ local servers = {
 	'cssls',
 	'jsonls',
 	'html',
+	'pylsp'
 }
 
 for _, server in ipairs(servers) do
