@@ -51,7 +51,7 @@ map('i', '<right>', '<nop>', { noremap = true })
 
 -- Search
 map('n', '<Esc><Esc>', ':<C-u>nohlsearch<CR>', { noremap = true })
-map('', '<Plug>NohAfter', 'zzzo', { noremap = true })
+map('', '<Plug>NohAfter', 'zzzo', { noremap = true, silent = true })
 
 -- Buffers
 map('n', '<C-n>', ':bnext!<CR>', { noremap = true })
