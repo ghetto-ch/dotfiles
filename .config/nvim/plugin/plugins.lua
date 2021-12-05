@@ -74,7 +74,7 @@ require('packer').startup({
 			opt = true,
 			event = { 'BufReadPost' },
 			config = function ()
-				require('comment-nvim')
+				require('Comment').setup()
 			end
 		})
 
