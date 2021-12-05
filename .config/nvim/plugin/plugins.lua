@@ -70,10 +70,12 @@ require('packer').startup({
 		})
 
 		use({
-			'tpope/vim-commentary',
+			'numToStr/Comment.nvim',
 			opt = true,
 			event = { 'BufReadPost' },
-			requires = { 'tpope/vim-repeat' },
+			config = function ()
+				require('comment-nvim')
+			end
 		})
 
 		use({
@@ -111,7 +113,6 @@ require('packer').startup({
 			'nvim-treesitter/nvim-treesitter',
 			opt = true,
 			event = { 'BufRead', 'BufNew' },
-			branch = '0.5-compat',
 			run = ':TSUpdate',
 			requires = { 'nvim-treesitter/playground', opt = true },
 			config = function()
@@ -123,7 +124,6 @@ require('packer').startup({
 			'nvim-treesitter/nvim-treesitter-textobjects',
 			opt = true,
 			after = 'nvim-treesitter',
-			branch = '0.5-compat',
 		})
 
 		use({
