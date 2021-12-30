@@ -177,5 +177,15 @@ require('packer').startup({
 				require('snip')
 			end,
 		})
+
+		use({
+			'mhartington/formatter.nvim',
+			opt = true,
+			event = { 'BufReadPost' },
+			config = function()
+				require('format')
+			end,
+		})
+
 	end,
 })
