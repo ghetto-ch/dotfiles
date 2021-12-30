@@ -5,6 +5,7 @@ export BROWSER=brave
 export X_FILEMANAGER=spacefm
 export CLI_FILEMANAGER=vifm
 export HOST
+export XDG_CONFIG_HOME=$HOME/.config
 export QT_QPA_PLATFORMTHEME=qt5ct
 export PLAN9=/usr/local/plan9
 export GOPATH=$HOME/Develop/goprojects
