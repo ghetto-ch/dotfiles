@@ -33,7 +33,7 @@ require('packer').startup({
 				{ 'nvim-lua/plenary.nvim' },
 			},
 			config = function()
-				require('tele')
+				require('user.telescope')
 			end,
 		})
 
@@ -73,9 +73,9 @@ require('packer').startup({
 			'numToStr/Comment.nvim',
 			opt = true,
 			event = { 'BufReadPost' },
-			config = function ()
+			config = function()
 				require('Comment').setup()
-			end
+			end,
 		})
 
 		use({
@@ -83,7 +83,7 @@ require('packer').startup({
 			opt = true,
 			after = 'nvim-cmp',
 			config = function()
-				require('autopairs')
+				require('user.autopairs')
 			end,
 		})
 
@@ -92,7 +92,7 @@ require('packer').startup({
 			opt = true,
 			event = { 'BufReadPost' },
 			config = function()
-				require('slime')
+				require('user.slime')
 			end,
 		})
 
@@ -102,7 +102,7 @@ require('packer').startup({
 			event = { 'BufReadPost' },
 			requires = { 'nvim-lua/plenary.nvim' },
 			config = function()
-				require('signs')
+				require('user.signs')
 			end,
 		})
 
@@ -116,7 +116,7 @@ require('packer').startup({
 			run = ':TSUpdate',
 			requires = { 'nvim-treesitter/playground', opt = true },
 			config = function()
-				require('treesitter')
+				require('user.treesitter')
 			end,
 		})
 
@@ -138,7 +138,7 @@ require('packer').startup({
 			opt = true,
 			after = 'cmp-nvim-lsp',
 			config = function()
-				require('lsp')
+				require('user.lsp')
 			end,
 		})
 
@@ -165,7 +165,7 @@ require('packer').startup({
 				'hrsh7th/cmp-nvim-lua',
 			},
 			config = function()
-				require('nvim-cmp')
+				require('user.completion')
 			end,
 		})
 
@@ -174,7 +174,7 @@ require('packer').startup({
 			opt = true,
 			after = 'nvim-cmp',
 			config = function()
-				require('snip')
+				require('user.snippets')
 			end,
 		})
 
@@ -183,9 +183,8 @@ require('packer').startup({
 			opt = true,
 			event = { 'BufReadPost' },
 			config = function()
-				require('format')
+				require('user.format')
 			end,
 		})
-
 	end,
 })
