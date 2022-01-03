@@ -112,7 +112,7 @@ require('packer').startup({
 		use({
 			'nvim-treesitter/nvim-treesitter',
 			opt = true,
-			event = { 'BufRead', 'BufNew' },
+			event = { 'BufReadPre', 'BufRead', 'BufNew' },
 			run = ':TSUpdate',
 			requires = { 'nvim-treesitter/playground', opt = true },
 			config = function()

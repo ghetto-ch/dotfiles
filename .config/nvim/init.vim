@@ -1,5 +1,6 @@
 let g:loaded_fzf=1
 let mapleader=" "
+let g:ts_first_run=1
 
 " other stuff ###############################################
 function! s:show_documentation()
