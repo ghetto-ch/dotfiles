@@ -1,70 +1,14 @@
-require('formatter').setup({
-	filetype = {
-
-		sh = {
-			-- Shell Script Formatter
-			function()
-				return {
-					exe = 'shfmt',
-					args = { '-i', 2 },
-					stdin = true,
-				}
-			end,
-		},
-
-		lua = {
-			function()
-				return {
-					exe = 'stylua',
-					args = {
-						'--config-path '
-							.. os.getenv('XDG_CONFIG_HOME')
-							.. '/stylua/stylua.toml',
-						'-',
-					},
-					stdin = true,
-				}
-			end,
-		},
-
-		c = {
-			function()
-				return {
-					exe = 'astyle',
-					args = {},
-					stdin = true,
-				}
-			end,
-		},
-
-		cpp = {
-			function()
-				return {
-					exe = 'astyle',
-					args = {},
-					stdin = true,
-				}
-			end,
-		},
-
-		go = {
-			function()
-				return {
-					exe = 'goimports',
-					args = {},
-					stdin = true,
-				}
-			end,
-		},
+require('null-ls').setup({
+	sources = {
+		require('null-ls').builtins.formatting.stylua,
+		require('null-ls').builtins.formatting.clang_format,
+		require('null-ls').builtins.formatting.goimports,
+		require('null-ls').builtins.formatting.shfmt,
 	},
-})
 
-vim.api.nvim_exec(
-	[[
-	augroup FormatAutogroup
-		autocmd!
-		autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
-	augroup END
-	]],
-	true
-)
+	on_attach = function(client)
+		if client.resolved_capabilities.document_formatting then
+			vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+		end
+	end,
+})

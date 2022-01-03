@@ -39,7 +39,7 @@ function M.edit_neovim()
 	})
 end
 
-vim.cmd('command! Televim lua require("tele").edit_neovim()')
+vim.cmd('command! Televim lua require("user.telescope").edit_neovim()')
 
 function M.dotfiles()
 	builtin.git_files({
@@ -47,6 +47,6 @@ function M.dotfiles()
 	})
 end
 
-vim.cmd('command! Teledot lua require("tele").dotfiles()')
+vim.cmd('command! Teledot lua require("user.telescope").dotfiles()')
 
 return M

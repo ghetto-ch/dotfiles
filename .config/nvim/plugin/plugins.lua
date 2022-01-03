@@ -179,7 +179,7 @@ require('packer').startup({
 		})
 
 		use({
-			'mhartington/formatter.nvim',
+			'jose-elias-alvarez/null-ls.nvim',
 			opt = true,
 			event = { 'BufReadPost' },
 			config = function()
