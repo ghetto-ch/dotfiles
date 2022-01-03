@@ -25,6 +25,8 @@ augroup END
 
 augroup filetypes
 	autocmd!
+	" C
+	autocmd FileType c,cpp setlocal formatprg=astyle
 	" asciidoc and others
 	autocmd FileType text,plaintext,markdown,asciidoc,help
 				\ setlocal noautoindent textwidth=80

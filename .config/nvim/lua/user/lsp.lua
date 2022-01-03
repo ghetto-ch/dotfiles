@@ -6,6 +6,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local general_on_attach = function(client, bufnr)
+	require('illuminate').on_attach(client)
+
 	-- stylua: ignore
 	local maps = {
 		{ 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>' },
@@ -26,8 +28,6 @@ local general_on_attach = function(client, bufnr)
 		{ 'n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>' },
 		{ 'n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>' },
 	}
-
-	require('illuminate').on_attach(client)
 
 	local opts = { silent = true, noremap = true }
 
