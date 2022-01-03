@@ -57,5 +57,7 @@ require('nvim-treesitter.configs').setup({
 })
 
 if vim.g.ts_first_run then
-	vim.cmd(':e %')
+	if vim.fn.expand('%') ~= '' then
+		vim.cmd(':e %')
+	end
 end
