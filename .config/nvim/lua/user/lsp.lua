@@ -8,6 +8,10 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local general_on_attach = function(client, bufnr)
 	require('illuminate').on_attach(client)
 
+	if client.name == 'pylsp' then
+		client.resolved_capabilities.document_formatting = false
+	end
+
 	-- stylua: ignore
 	local maps = {
 		{ 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>' },
