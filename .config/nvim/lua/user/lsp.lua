@@ -25,6 +25,8 @@ local general_on_attach = function(client, bufnr)
 		{ 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>' },
 		{ 'n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>' },
 		{ 'n', '<leader>dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>' },
+		{ 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>' },
+		{ 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>' },
 		{ 'n', '<leader>db', ':Telescope lsp_document_diagnostics<CR>' },
 		{ 'n', '<leader>dw', ':Telescope lsp_workspace_diagnostics<CR>' },
 		{ 'n', '<leader>ca', ':Telescope lsp_code_actions<CR>' },
