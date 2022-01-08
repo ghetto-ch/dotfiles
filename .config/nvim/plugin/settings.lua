@@ -55,18 +55,18 @@ map('', '<Plug>NohAfter', 'zz', { noremap = true, silent = true })
 
 -- Buffers
 map('n', '<C-n>', ':bnext!<CR>', { noremap = true })
-map('v', '<C-n>', ':bnext!<CR>', { noremap = true })
+map('x', '<C-n>', ':bnext!<CR>', { noremap = true })
 map('n', '<C-p>', ':bprevious!<CR>', { noremap = true })
-map('v', '<C-p>', ':bprevious!<CR>', { noremap = true })
+map('x', '<C-p>', ':bprevious!<CR>', { noremap = true })
 map('n', '<M-d>', ':Bdelete<CR>', { noremap = true })
 map('n', '<C-q>', ':quit<CR>', { noremap = true })
 
 -- Replace selected text pressing C-r, use very nomagic
-map('v', '<C-r>', '"hy:%s/\\V<C-r>h', { noremap = true })
+map('x', '<C-r>', '"hy:%s/\\V<C-r>h', { noremap = true })
 
 -- Replace visual selection with yanked text
 -- FIXME: fix bug when the text to be replaced is at the end of the line.
-map('v', '<M-r>', 'dh"0p', { noremap = true })
+map('x', '<M-r>', 'dh"0p', { noremap = true })
 
 -- cd in the directory of the current file
 map('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { noremap = true })
@@ -81,8 +81,8 @@ map('n', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true })
 map('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true })
 map('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { noremap = true, silent = true })
 map('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { noremap = true, silent = true })
-map('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+map('x', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+map('x', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
 -- Textobject to select the entire buffer
 map('x', 'ae', ':normal! ggVG<CR>', { noremap = true, silent = true })
