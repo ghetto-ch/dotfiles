@@ -122,7 +122,8 @@
    Mod1+Mod4 + k
 
 # Take a screenshot
-"flameshot gui -p ~/pics/captures"
+# "pensela"
+"flameshot gui"
    Print
 
 # Lauch xkill

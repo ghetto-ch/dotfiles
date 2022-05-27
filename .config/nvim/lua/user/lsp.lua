@@ -8,9 +8,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local general_on_attach = function(client, bufnr)
 	require('illuminate').on_attach(client)
 
-	if client.name == 'pylsp' then
-		client.resolved_capabilities.document_formatting = false
-	end
+	client.resolved_capabilities.document_formatting = false
 
 	-- stylua: ignore
 	local maps = {
@@ -25,9 +23,8 @@ local general_on_attach = function(client, bufnr)
 		{ 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>' },
 		{ 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>' },
 		{ 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>' },
-		{ 'n', '<leader>db', ':Telescope lsp_document_diagnostics<CR>' },
-		{ 'n', '<leader>dw', ':Telescope lsp_workspace_diagnostics<CR>' },
-		{ 'n', '<leader>ca', ':Telescope lsp_code_actions<CR>' },
+		{ 'n', '<leader>db', ':vim.diagnostic.open_float<CR>' },
+		{ 'n', '<leader>ca', ':vim.lsp.buf.code_action<CR>' },
 		{ 'x', '<leader>ca', ':Telescope lsp_code_actions<CR>' },
 		{ 'n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>' },
 		{ 'n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>' },

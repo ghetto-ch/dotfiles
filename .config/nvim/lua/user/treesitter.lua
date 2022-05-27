@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup({
-	ensure_installed = 'maintained',
+	ensure_installed = 'all',
 	highlight = {
 		enable = true,
 	},
@@ -56,9 +56,9 @@ require('nvim-treesitter.configs').setup({
 	},
 })
 
-if vim.g.ts_first_run then
-	if vim.fn.expand('%') ~= '' then
-		vim.cmd(':e %')
-		vim.g.ts_first_run = false
-	end
-end
+-- if vim.g.ts_first_run then
+-- 	if vim.fn.expand('%') ~= '' then
+-- 		vim.cmd(':e')
+-- 		vim.g.ts_first_run = false
+-- 	end
+-- end

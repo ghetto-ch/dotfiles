@@ -1,6 +1,6 @@
 local o = vim.opt
 local c = vim.cmd
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 o.termguicolors = true
 o.background = 'dark'
@@ -39,42 +39,43 @@ o.listchars = 'tab:→ ,trail:▒,extends:…,precedes:…,conceal:┊,nbsp:␣'
 o.complete:append({ 'i' })
 o.timeoutlen = 2000
 o.pumblend = 10
+o.laststatus = 3
 
-map('n', '<up>', '<nop>', { noremap = true })
-map('n', '<down>', '<nop>', { noremap = true })
-map('n', '<left>', '<nop>', { noremap = true })
-map('n', '<right>', '<nop>', { noremap = true })
-map('i', '<up>', '<nop>', { noremap = true })
-map('i', '<down>', '<nop>', { noremap = true })
-map('i', '<left>', '<nop>', { noremap = true })
-map('i', '<right>', '<nop>', { noremap = true })
+map('n', '<up>', '<nop>')
+map('n', '<down>', '<nop>')
+map('n', '<left>', '<nop>')
+map('n', '<right>', '<nop>')
+map('i', '<up>', '<nop>')
+map('i', '<down>', '<nop>')
+map('i', '<left>', '<nop>')
+map('i', '<right>', '<nop>')
 
 -- Search
-map('n', '<Esc><Esc>', ':<C-u>nohlsearch<CR>', { noremap = true })
+map('n', '<Esc><Esc>', ':<C-u>nohlsearch<CR>')
 map('', '<Plug>NohAfter', 'zz', { noremap = true, silent = true })
 
 -- Buffers
-map('n', '<C-n>', ':bnext!<CR>', { noremap = true })
-map('x', '<C-n>', ':bnext!<CR>', { noremap = true })
-map('n', '<C-p>', ':bprevious!<CR>', { noremap = true })
-map('x', '<C-p>', ':bprevious!<CR>', { noremap = true })
-map('n', '<M-d>', ':Bdelete<CR>', { noremap = true })
-map('n', '<C-q>', ':quit<CR>', { noremap = true })
+map('n', '<C-n>', ':bnext!<CR>')
+map('x', '<C-n>', ':bnext!<CR>')
+map('n', '<C-p>', ':bprevious!<CR>')
+map('x', '<C-p>', ':bprevious!<CR>')
+map('n', '<M-d>', ':Bdelete<CR>')
+map('n', '<C-q>', ':quit<CR>')
 
 -- Replace selected text pressing C-r, use very nomagic
-map('x', '<C-r>', '"hy:%s/\\V<C-r>h', { noremap = true })
+map('x', '<C-r>', '"hy:%s/\\V<C-r>h')
 
 -- Replace visual selection with yanked text
 -- FIXME: fix bug when the text to be replaced is at the end of the line.
-map('x', '<M-r>', 'dh"0p', { noremap = true })
+map('x', '<M-r>', 'dh"0p')
 
 -- cd in the directory of the current file
-map('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { noremap = true })
+map('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>')
 
 -- Add semicolon at the end of the line
-map('n', '<leader>;', ':normal! mqA;<Esc>`q', { noremap = true })
+map('n', '<leader>;', ':normal! mqA;<Esc>`q')
 -- Add comma at the end of the line
-map('n', '<leader>,', ':normal! mqA,<Esc>`q', { noremap = true })
+map('n', '<leader>,', ':normal! mqA,<Esc>`q')
 
 -- Move lines
 map('n', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true })
@@ -111,27 +112,27 @@ map(
 	'n',
 	'<leader>a',
 	':silent !export DISPLAY:=0 &'
-		.. 'asciidoctor -o ~/.var/tmp/surf-preview.html % &&'
-		.. 'surf-preview<CR>',
+	.. 'asciidoctor -o ~/.var/tmp/surf-preview.html % &&'
+	.. 'surf-preview<CR>',
 	{ noremap = true }
 )
 
 -- -- Fuzzy find files
-map('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true })
-map('n', '<leader>o', ':Telescope oldfiles<CR>', { noremap = true })
-map('n', '<leader>gf', ':Telescope git_files<CR>', { noremap = true })
-map('n', '<leader>df', ':Teledot<CR>', { noremap = true })
-map('n', '<leader>nf', ':Televim<CR>', { noremap = true })
+map('n', '<leader>f', ':Telescope find_files<CR>')
+map('n', '<leader>o', ':Telescope oldfiles<CR>')
+map('n', '<leader>gf', ':Telescope git_files<CR>')
+map('n', '<leader>df', ':Teledot<CR>')
+map('n', '<leader>nf', ':Televim<CR>')
 
 -- grep
-map('n', '<leader>gs', ':Telescope grep_string<CR>', { noremap = true })
-map('n', '<leader>gl', ':Telescope live_grep<CR>', { noremap = true })
+map('n', '<leader>gs', ':Telescope grep_string<CR>')
+map('n', '<leader>gl', ':Telescope live_grep<CR>')
 -- Grep current buffer with <C-/>
-map('n', '<c-_>', ':Telescope current_buffer_fuzzy_find<CR>', { noremap = true })
+map('n', '<c-_>', ':Telescope current_buffer_fuzzy_find<CR>')
 
 -- The rest
-map('n', '<leader>b', ':Telescope builtin<CR>', { noremap = true })
+map('n', '<leader>b', ':Telescope builtin<CR>')
 
 -- registers
-map('n', '"', ':Telescope registers<CR>', { noremap = true })
-map('i', '<c-r>', '<Cmd>Telescope registers<CR>', { noremap = true })
+map('n', '"', ':Telescope registers<CR>')
+map('i', '<c-r>', '<Cmd>Telescope registers<CR>')
