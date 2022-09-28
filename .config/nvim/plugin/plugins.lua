@@ -106,15 +106,11 @@ require('packer').startup({
 			end,
 		})
 
-		-- Text objects
-		use({ 'wellle/targets.vim', opt = true, event = { 'BufReadPost' } })
-
 		use({
 			'nvim-treesitter/nvim-treesitter',
 			opt = true,
 			event = { 'BufReadPre', 'BufRead', 'BufNew' },
 			run = ':TSUpdate',
-			requires = { 'nvim-treesitter/playground', opt = true },
 			config = function()
 				require('user.treesitter')
 			end,
