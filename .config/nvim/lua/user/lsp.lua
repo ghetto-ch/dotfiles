@@ -3,12 +3,12 @@ local lsp_config = require('lspconfig')
 local bmap = vim.api.nvim_buf_set_keymap
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local general_on_attach = function(client, bufnr)
 	require('illuminate').on_attach(client)
 
-	client.resolved_capabilities.document_formatting = false
+	client.server_capabilities.document_formatting = false
 
 	-- stylua: ignore
 	local maps = {
@@ -58,26 +58,12 @@ for _, server in ipairs(servers) do
 	})
 end
 
--- Lua lsp
-local sumneko_root_path = '/usr/share/lua-language-server'
-local sumneko_binary = '/usr/bin/lua-language-server'
-
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
-
-require('lspconfig').sumneko_lua.setup({
-	cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-	on_attach = general_on_attach,
-	capabilities = capabilities,
+require('lspconfig').lua_ls.setup({
 	settings = {
 		Lua = {
 			runtime = {
 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 				version = 'LuaJIT',
-				-- Setup your lua path
-				path = runtime_path,
 			},
 			diagnostics = {
 				-- Get the language server to recognize the `vim` global
@@ -96,13 +82,11 @@ require('lspconfig').sumneko_lua.setup({
 })
 
 -- customize diagnostics
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics,
-	{
+vim.lsp.handlers['textDocument/publishDiagnostics'] =
+	vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 		underline = true,
 		virtual_text = {
 			spacing = 1,
 			prefix = '',
 		},
-	}
-)
+	})

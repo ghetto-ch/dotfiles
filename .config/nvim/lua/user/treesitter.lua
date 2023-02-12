@@ -55,3 +55,5 @@ require('nvim-treesitter.configs').setup({
 		},
 	},
 })
+
+vim.cmd("TSEnable highlight " .. vim.o.ft)

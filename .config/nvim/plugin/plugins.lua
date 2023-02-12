@@ -174,13 +174,5 @@ require('packer').startup({
 			end,
 		})
 
-		use({
-			'jose-elias-alvarez/null-ls.nvim',
-			opt = true,
-			event = { 'BufReadPost' },
-			config = function()
-				require('user.format')
-			end,
-		})
 	end,
 })

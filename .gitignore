@@ -11,3 +11,4 @@ configstore
 clip.lua
 
 .config/lazygit/state.yml
+.config/nvim/lua/.luarc.json
