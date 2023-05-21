@@ -129,6 +129,8 @@ alias mcom='minicom -con'
 
 alias lg=lazygit
 
+alias ta='tmux attach'
+alias td='tmux detach'
 ## Setup grep to be a bit more nice
 ## check if 'x' grep argument available
 grep-flag-available() {
@@ -408,3 +410,5 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 ## Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+eval $(thefuck --alias)
