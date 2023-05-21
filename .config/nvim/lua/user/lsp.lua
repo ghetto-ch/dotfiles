@@ -25,7 +25,7 @@ local general_on_attach = function(client, bufnr)
 		{ 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>' },
 		{ 'n', '<leader>db', ':vim.diagnostic.open_float<CR>' },
 		{ 'n', '<leader>ca', ':vim.lsp.buf.code_action<CR>' },
-		{ 'x', '<leader>ca', ':Telescope lsp_code_actions<CR>' },
+		{ 'x', '<leader>ca', ':vim.lsp.buf.code_action<CR>' },
 		{ 'n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>' },
 		{ 'n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>' },
 	}
@@ -36,6 +36,8 @@ local general_on_attach = function(client, bufnr)
 		bmap(bufnr, map[1], map[2], map[3], opts)
 	end
 end
+
+require("mason-lspconfig").setup()
 
 -- Setup basic lsp servers
 local servers = {

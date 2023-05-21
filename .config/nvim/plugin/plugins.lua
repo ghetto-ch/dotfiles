@@ -174,5 +174,17 @@ require('packer').startup({
 			end,
 		})
 
+		use {
+			'williamboman/mason.nvim',
+			run = ':MasonUpdate',
+			requires = {
+				'williamboman/mason-lspconfig.nvim',
+				'WhoIsSethDaniel/mason-tool-installer.nvim',
+			},
+			config = function()
+				require('user.mason')
+			end,
+		}
+
 	end,
 })
