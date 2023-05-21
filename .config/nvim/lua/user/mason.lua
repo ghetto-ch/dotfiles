@@ -12,5 +12,9 @@ require('mason-tool-installer').setup {
 		'html-lsp',
 		'python-lsp-server',
 		'yaml-language-server',
+		'stylua',
+		'goimports',
+		'shfmt',
+		'black',
 	},
 }

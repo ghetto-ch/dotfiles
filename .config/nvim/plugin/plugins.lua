@@ -174,7 +174,16 @@ require('packer').startup({
 			end,
 		})
 
-		use {
+		use({
+			'jose-elias-alvarez/null-ls.nvim',
+			opt = true,
+			event = { 'BufReadPre', 'BufRead', 'BufNew' },
+			config = function()
+				require('user.format')
+			end,
+		})
+
+		use({
 			'williamboman/mason.nvim',
 			run = ':MasonUpdate',
 			requires = {
@@ -184,7 +193,6 @@ require('packer').startup({
 			config = function()
 				require('user.mason')
 			end,
-		}
-
+		})
 	end,
 })
