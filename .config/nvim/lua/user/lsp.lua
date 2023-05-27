@@ -37,7 +37,7 @@ local general_on_attach = function(client, bufnr)
 	end
 end
 
-require("mason-lspconfig").setup()
+require('mason-lspconfig').setup()
 
 -- Setup basic lsp servers
 local servers = {
