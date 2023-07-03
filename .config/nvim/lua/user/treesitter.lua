@@ -1,3 +1,4 @@
+vim.env.CC = ''
 require('nvim-treesitter.configs').setup({
 	ensure_installed = 'all',
 	highlight = {
