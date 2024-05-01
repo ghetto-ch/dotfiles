@@ -43,15 +43,15 @@ require('packer').startup({
 
 		use({ 'famiu/bufdelete.nvim', opt = true, event = { 'BufReadPost' } })
 
-		use({
-			'norcalli/nvim-colorizer.lua',
-			opt = true,
-			event = { 'BufReadPre', 'BufRead', 'BufNew' },
-			config = function()
-				require('colorizer').setup()
-			end,
-		})
-
+		-- use({
+		-- 	'norcalli/nvim-colorizer.lua',
+		-- 	opt = true,
+		-- 	event = { 'BufReadPre', 'BufRead', 'BufNew' },
+		-- 	config = function()
+		-- 		require('colorizer').setup()
+		-- 	end,
+		-- })
+		--
 		use({
 			'unblevable/quick-scope',
 			config = function()
@@ -87,15 +87,15 @@ require('packer').startup({
 			end,
 		})
 
-		use({
-			'jpalardy/vim-slime',
-			opt = true,
-			event = { 'BufReadPost' },
-			config = function()
-				require('user.slime')
-			end,
-		})
-
+		-- use({
+		-- 	'jpalardy/vim-slime',
+		-- 	opt = true,
+		-- 	event = { 'BufReadPost' },
+		-- 	config = function()
+		-- 		require('user.slime')
+		-- 	end,
+		-- })
+		--
 		use({
 			'lewis6991/gitsigns.nvim',
 			opt = true,
@@ -122,12 +122,12 @@ require('packer').startup({
 			after = 'nvim-treesitter',
 		})
 
-		use({
-			'RRethy/nvim-treesitter-textsubjects',
-			opt = true,
-			after = 'nvim-treesitter',
-		})
-
+		-- use({
+		-- 	'RRethy/nvim-treesitter-textsubjects',
+		-- 	opt = true,
+		-- 	after = 'nvim-treesitter',
+		-- })
+		--
 		-- Completion and snippets
 		use({
 			'neovim/nvim-lspconfig',
@@ -140,15 +140,15 @@ require('packer').startup({
 
 		use({ 'onsails/lspkind-nvim' })
 
-		use({
-			'RRethy/vim-illuminate',
-			opt = true,
-			event = { 'BufReadPost' },
-			config = function()
-				vim.g.Illuminate_delay = 500
-			end,
-		})
-
+		-- use({
+		-- 	'RRethy/vim-illuminate',
+		-- 	opt = true,
+		-- 	event = { 'BufReadPost' },
+		-- 	config = function()
+		-- 		vim.g.Illuminate_delay = 500
+		-- 	end,
+		-- })
+		--
 		use({
 			'hrsh7th/nvim-cmp',
 			opt = true,
@@ -175,7 +175,7 @@ require('packer').startup({
 		})
 
 		use({
-			'jose-elias-alvarez/null-ls.nvim',
+			'nvimtools/none-ls.nvim',
 			opt = true,
 			event = { 'BufReadPre', 'BufRead', 'BufNew' },
 			config = function()
