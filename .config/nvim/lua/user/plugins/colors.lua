@@ -4,19 +4,7 @@ return {
 	config = function()
 		require('kanagawa').setup({
 			transparent = true,
-
-			-- overrides = function(colors)
-			-- 	local theme = colors.theme
-			-- 	return {
-			-- 		TelescopeTitle = { fg = theme.ui.special, bold = true },
-			-- 		TelescopePromptNormal = { bg = theme.ui.bg_p0 },
-			-- 		TelescopePromptBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg_p0 },
-			-- 		TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_p0 },
-			-- 		TelescopeResultsBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg_p0 },
-			-- 		TelescopePreviewNormal = { bg = theme.ui.bg_p0 },
-			-- 		TelescopePreviewBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg_p0 },
-			-- 	}
-			-- end,
+			-- dimInactive = true,
 
 			overrides = function(colors)
 				local theme = colors.theme
