@@ -1,11 +1,11 @@
-vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd('let g:netrw_liststyle = 3')
 local o = vim.opt
 
 o.undofile = true
 
 o.termguicolors = true
 
-o.signcolumn = "yes"
+o.signcolumn = 'yes'
 o.cursorline = true
 o.relativenumber = true
 o.number = true
@@ -20,10 +20,12 @@ o.softtabstop = 2
 o.shiftwidth = 0
 o.smartindent = true
 
-o.inccommand = "split"
+o.inccommand = 'split'
 
 o.list = true
 o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 o.splitbelow = true
 o.splitright = true
+
+o.wildmode = { 'longest:full', 'full' }

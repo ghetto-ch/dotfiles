@@ -1,13 +1,14 @@
 return {
-	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	'stevearc/conform.nvim',
+	event = { 'BufReadPre', 'BufNewFile' },
 	config = function()
-		local conform = require("conform")
+		local conform = require('conform')
 
 		conform.setup({
 			formatters_by_ft = {
-				lua = { "stylua" },
-				python = { "black" },
+				lua = { 'stylua' },
+				python = { 'black' },
+				c = { 'astyle' },
 			},
 			format_on_save = {
 				lsp_fallback = true,

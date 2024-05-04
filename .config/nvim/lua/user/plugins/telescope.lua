@@ -14,6 +14,11 @@ return {
 		telescope.setup({
 			defaults = {
 				path_display = { 'smart' },
+				mappings = {
+					i = {
+						['<esc>'] = actions.close,
+					},
+				},
 			},
 		})
 
