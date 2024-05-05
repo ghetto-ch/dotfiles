@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-path',
+		'hrsh7th/cmp-cmdline',
 		'onsails/lspkind.nvim',
 		'saadparwaiz1/cmp_luasnip',
 	},
@@ -24,10 +25,10 @@ return {
 			},
 
 			sources = cmp.config.sources({
-				{ name = 'buffer' },
-				{ name = 'path' },
 				{ name = 'luasnip' },
 				{ name = 'nvim_lsp' },
+				{ name = 'path' },
+				{ name = 'buffer' },
 			}),
 
 			mapping = cmp.mapping.preset.insert({
@@ -39,6 +40,32 @@ return {
 				['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
 				['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
 			}),
+
+			formatting = {
+				format = lspkind.cmp_format({
+					mode = 'symbol_text',
+					menu = {
+						buffer = '[Buf]',
+						path = '[Path]',
+						luasnip = '[Snip]',
+						nvim_lsp = '[LSP]',
+					},
+				}),
+			},
+		})
+
+		cmp.setup.cmdline('/', {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = 'buffer' },
+			},
+		})
+
+		cmp.setup.cmdline(':', {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = 'cmdline' },
+			},
 		})
 	end,
 }

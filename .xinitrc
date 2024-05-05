@@ -49,7 +49,7 @@ numlockx &
 xcape -t 200 -e 'Control_L=Escape;Shift_R=Caps_Lock'
 unclutter --ignore-scrolling --timeout 2 --fork
 xautolock -time 30 -locker slock &
-xwallpaper --output DisplayPort-1 --center /home/ghetto/img/wallpaper
+xwallpaper --output DisplayPort-1 --zoom /home/ghetto/img/wallpaper
 picom -b
 lxpolkit &
 [ -z $(pgrep 'dwm-status') ] && dwm-status &

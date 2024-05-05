@@ -28,14 +28,7 @@ return {
 				map('n', '<leader>db', vim.diagnostic.open_float, opts)
 				map('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 				map('x', '<leader>ca', vim.lsp.buf.code_action, opts)
-				map('n', 'K', function()
-					-- vim.filetype.match({ 'c', 'sh' })
-					if true then
-						vim.lsp.buf.hover()
-					else
-						vim.lsp.buf.hover()
-					end
-				end, opts)
+				map('n', 'K', vim.lsp.buf.hover, opts)
 			end,
 		})
 

@@ -2,7 +2,10 @@ return {
 	'nvim-treesitter/nvim-treesitter',
 	event = { 'BufReadPre', 'BufNewFile' },
 	build = ':TSUpdate',
-	dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+	dependencies = {
+		'nvim-treesitter/nvim-treesitter-textobjects',
+		'RRethy/nvim-treesitter-textsubjects',
+	},
 
 	config = function()
 		local treesitter = require('nvim-treesitter.configs')
@@ -18,7 +21,6 @@ return {
 			},
 
 			textobjects = {
-
 				select = {
 					enable = true,
 					keymaps = {
@@ -29,26 +31,36 @@ return {
 						['ic'] = '@class.inner',
 					},
 				},
+			},
 
-				move = {
-					enable = true,
-					set_jumps = true, -- whether to set jumps in the jumplist
-					goto_next_start = {
-						[']f'] = '@function.outer',
-						[']c'] = '@class.outer',
-					},
-					goto_next_end = {
-						[']F'] = '@function.outer',
-						[']C'] = '@class.outer',
-					},
-					goto_previous_start = {
-						['[f'] = '@function.outer',
-						['[c'] = '@class.outer',
-					},
-					goto_previous_end = {
-						['[F'] = '@function.outer',
-						['[C'] = '@class.outer',
-					},
+			textsubjects = {
+				enable = true,
+				prev_selection = ',', -- (Optional) keymap to select the previous selection
+				keymaps = {
+					['.'] = 'textsubjects-smart',
+					[';'] = 'textsubjects-container-outer',
+					['i;'] = 'textsubjects-container-inner',
+				},
+			},
+
+			move = {
+				enable = true,
+				set_jumps = true, -- whether to set jumps in the jumplist
+				goto_next_start = {
+					[']f'] = '@function.outer',
+					[']c'] = '@class.outer',
+				},
+				goto_next_end = {
+					[']F'] = '@function.outer',
+					[']C'] = '@class.outer',
+				},
+				goto_previous_start = {
+					['[f'] = '@function.outer',
+					['[c'] = '@class.outer',
+				},
+				goto_previous_end = {
+					['[F'] = '@function.outer',
+					['[C'] = '@class.outer',
 				},
 			},
 
