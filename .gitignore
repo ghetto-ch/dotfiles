@@ -13,3 +13,4 @@ clip.lua
 .config/lazygit/state.yml
 .config/nvim/lua/.luarc.json
 .config/nvim/.luarc.json
+.config/nvim/lazy-lock.json
