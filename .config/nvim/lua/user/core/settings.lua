@@ -29,3 +29,5 @@ o.splitbelow = true
 o.splitright = true
 
 o.wildmode = { 'longest:full', 'full' }
+
+o.timeoutlen = 2000
