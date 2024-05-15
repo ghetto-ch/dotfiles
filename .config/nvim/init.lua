@@ -1,2 +1,3 @@
-require("user.core")
-require("user.lazy")
+vim.g.mapleader = ' '
+require('user.autocmd')
+require('user.lazy')
