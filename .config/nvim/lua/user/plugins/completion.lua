@@ -15,8 +15,7 @@ return {
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-					-- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+					vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
 				end,
 			},
 
