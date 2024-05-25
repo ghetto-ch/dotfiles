@@ -1,6 +1,6 @@
 return {
 	'folke/trouble.nvim',
-	event = { 'BufNew', 'BufReadPre' },
+	event = { 'BufNewFile', 'BufReadPre' },
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	opts = {
 		-- your configuration comes here
