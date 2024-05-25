@@ -39,3 +39,20 @@ map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Replace selected text pressing C-r, use very nomagic
 map('x', '<C-r>', '"hy:%s/\\V<C-r>h')
+
+-- Snippets
+map({ 'i', 's' }, '<C-l>', function()
+	if vim.snippet.active({ direction = 1 }) then
+		return '<cmd>lua vim.snippet.jump(1)<cr>'
+	else
+		return '<C-l>'
+	end
+end, { expr = true })
+
+map({ 'i', 's' }, '<C-h>', function()
+	if vim.snippet.active({ direction = -1 }) then
+		return '<cmd>lua vim.snippet.jump(-1)<cr>'
+	else
+		return '<C-h>'
+	end
+end, { expr = true })

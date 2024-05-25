@@ -28,21 +28,16 @@ return {
 				map('n', '<leader>db', vim.diagnostic.open_float, opts)
 				map('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 				map('x', '<leader>ca', vim.lsp.buf.code_action, opts)
-				map('n', 'K', vim.lsp.buf.hover, opts)
 			end,
 		})
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
+		require('neodev').setup({})
+
 		lspconfig['lua_ls'].setup({
-			cmd = { 'lua-language-server' },
-			capabilities = capabilities,
 			settings = {
 				Lua = {
-					diagnostics = {
-						globals = { 'vim' },
-						disable = { 'missing-fields' },
-					},
 					completion = {
 						callSnippet = 'Replace',
 					},
@@ -57,7 +52,9 @@ return {
 		}
 
 		for _, server in ipairs(servers) do
-			lspconfig[server].setup({})
+			lspconfig[server].setup({
+				capabilities = capabilities,
+			})
 		end
 	end,
 }
