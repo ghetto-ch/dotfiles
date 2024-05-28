@@ -26,10 +26,10 @@ return {
 
 		local map = vim.keymap.set
 
-		map('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
-		map('n', '<leader>fg', '<cmd>Telescope git_files<cr>')
-		map('n', '<leader>gf', '<cmd>Telescope live_grep<cr>')
-		map('n', '<leader>gs', '<cmd>Telescope grep_string<cr>')
+		map('n', '<leader>ff', builtin.find_files)
+		map('n', '<leader>fg', builtin.git_files)
+		map('n', '<leader>gf', builtin.live_grep)
+		map('n', '<leader>gs', builtin.grep_string)
 
 		-- Search Neovim configuration files
 		map('n', '<leader>fn', function()
@@ -37,23 +37,11 @@ return {
 		end)
 
 		-- registers
-		map('n', '"', ':Telescope registers<CR>')
-		map('i', '<c-r>', '<Cmd>Telescope registers<CR>')
+		map('n', '"', builtin.registers)
+		map('i', '<c-r>', builtin.registers)
 
 		-- The rest
-		map('n', '<leader>b', ':Telescope builtin<CR>')
-
-		-- Open search results in quickfix
-		local trouble = require('trouble.providers.telescope')
-
-		telescope.setup({
-			defaults = {
-				mappings = {
-					i = { ['<c-t>'] = trouble.open_with_trouble },
-					n = { ['<c-t>'] = trouble.open_with_trouble },
-				},
-			},
-		})
+		map('n', '<leader>b', builtin.builtin)
 
 		-- end
 	end,

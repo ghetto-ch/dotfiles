@@ -19,7 +19,7 @@ return {
 				map('n', 'gd', vim.lsp.buf.definition, opts)
 				map('n', '<c-]>', vim.lsp.buf.declaration, opts)
 				map('n', 'gD', require('telescope.builtin').lsp_implementations, opts)
-				map('i', 'c-k', vim.lsp.buf.signature_help, opts)
+				map('i', '<c-k>', vim.lsp.buf.signature_help, opts)
 				map('n', 'gt', vim.lsp.buf.type_definition, opts)
 				map('n', 'gr', require('telescope.builtin').lsp_references, opts)
 				map('n', '<F2>', vim.lsp.buf.rename, opts)
