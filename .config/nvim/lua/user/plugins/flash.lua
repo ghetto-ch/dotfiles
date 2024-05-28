@@ -12,4 +12,13 @@ return {
 			},
 		},
 	},
+	keys = {
+		{
+			'<c-f>',
+			mode = 'c',
+			function()
+				require('flash').toggle()
+			end,
+		},
+	},
 }
