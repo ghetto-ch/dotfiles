@@ -12,7 +12,7 @@ return {
 		local builtin = require('telescope.builtin')
 
 		-- Open search results in quickfix
-		local trouble = require('trouble.providers.telescope')
+		local trouble = require('trouble.sources.telescope')
 
 		telescope.setup({
 			defaults = {
@@ -20,10 +20,10 @@ return {
 				mappings = {
 					i = {
 						['<esc>'] = actions.close,
-						['<c-t>'] = trouble.open_with_trouble,
+						['<c-t>'] = trouble.open,
 					},
 					n = {
-						['<c-t>'] = trouble.open_with_trouble,
+						['<c-t>'] = trouble.open,
 					},
 				},
 			},
