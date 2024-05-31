@@ -102,7 +102,7 @@
    Shift+Mod2+Mod4 + Return
 
 # tmux
-"$TERMINAL -e tmux a -t $USER"
+"tmux-session"
    Shift+Mod2+Mod4 + t
 
 # Lock screen
