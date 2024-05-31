@@ -2,8 +2,8 @@
 
 USER=$(whoami)
 
-if tmux has-session -t $USER 2> /dev/null; then
-	$TERMINAL -e tmux attach-session -t $USER &
+if tmux has-session -t "$USER" 2> /dev/null; then
+	$TERMINAL -e tmux attach-session -t "$USER" &
 else
-	$TERMINAL -e tmux new-session -s $USER &
+	$TERMINAL -e tmux new-session -s "$USER" &
 fi
