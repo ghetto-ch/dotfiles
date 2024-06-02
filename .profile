@@ -2,6 +2,7 @@
 export EDITOR=nvim
 export TERMINAL=alacritty
 export BROWSER=brave
+export MANPAGER='nvim +Man!'
 export X_FILEMANAGER=spacefm
 export CLI_FILEMANAGER=vifm
 export HOST

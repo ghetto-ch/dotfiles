@@ -2,7 +2,16 @@ return {
 	'neovim/nvim-lspconfig',
 	event = { 'BufReadPre', 'BufNewFile' },
 	dependencies = {
-		{ 'folke/neodev.nvim', opts = {} },
+		{
+			'folke/lazydev.nvim',
+			ft = 'lua', -- only load on lua files
+			opts = {
+				library = {
+					vim.env.LAZY .. '/luvit-meta/library', -- see below
+				},
+			},
+		},
+		'Bilal2453/luvit-meta', -- optional `vim.uv` typings
 		'hrsh7th/cmp-nvim-lsp',
 	},
 
@@ -32,8 +41,6 @@ return {
 		})
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
-
-		require('neodev').setup({})
 
 		lspconfig['lua_ls'].setup({
 			settings = {

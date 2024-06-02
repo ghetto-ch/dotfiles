@@ -68,6 +68,7 @@ return {
 				'lua',
 				'vimdoc',
 				'c',
+				'bash',
 				'python',
 				'fish',
 				'nix',
