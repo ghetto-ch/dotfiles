@@ -7,11 +7,21 @@ return {
 			ft = 'lua', -- only load on lua files
 			opts = {
 				library = {
-					vim.env.LAZY .. '/luvit-meta/library', -- see below
+					'luvit-meta/library', -- see below
 				},
 			},
 		},
 		'Bilal2453/luvit-meta', -- optional `vim.uv` typings
+		{ -- optional completion source for require statements and module annotations
+			'hrsh7th/nvim-cmp',
+			opts = function(_, opts)
+				opts.sources = opts.sources or {}
+				table.insert(opts.sources, {
+					name = 'lazydev',
+					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+				})
+			end,
+		},
 		'hrsh7th/cmp-nvim-lsp',
 	},
 
@@ -59,6 +69,7 @@ return {
 		local servers = {
 			'clangd',
 			'pylsp',
+			-- 'fish_lsp',
 		}
 
 		for _, server in ipairs(servers) do
