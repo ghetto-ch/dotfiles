@@ -5,7 +5,7 @@ return {
 	keys = {
 		{
 			'<leader>tt',
-			'<cmd>Trouble diagnostics toggle<cr>',
+			'<cmd>Trouble diagnostics toggle focus=true<cr>',
 			desc = 'Diagnostics (Trouble)',
 		},
 		{
@@ -24,5 +24,11 @@ return {
 			desc = 'Quickfix List (Trouble)',
 		},
 	},
-	opts = {},
+	opts = {
+		icons = {
+			indent = {
+				last = '╰╴',
+			},
+		},
+	},
 }
