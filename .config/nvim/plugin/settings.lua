@@ -22,7 +22,7 @@ o.smartindent = true
 
 o.inccommand = 'split'
 
-o.list = true
+-- o.list = true
 o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 o.splitbelow = true
