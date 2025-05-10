@@ -8,7 +8,7 @@ return {
 				enabled = true,
 			},
 			char = {
-				enabled = false,
+				enabled = true,
 			},
 		},
 	},

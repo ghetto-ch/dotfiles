@@ -26,14 +26,6 @@ map('x', '<A-k>', ":m '<-2<CR>gv=gv", opts)
 map('x', 'ae', ':normal! ggVG<CR>', opts)
 map('o', 'ae', ':normal! ggVG<CR>', opts)
 
--- Add blank lines
-map('n', ']<Space>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', opts)
-map('n', '[<Space>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
-
--- Navigate quickfix
-map('n', ']q', ':cnext<CR>', opts)
-map('n', '[q', ':cprev<CR>', opts)
-
 -- Search
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

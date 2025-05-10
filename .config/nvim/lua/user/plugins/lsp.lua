@@ -70,6 +70,7 @@ return {
 			'clangd',
 			'pylsp',
 			'fish_lsp',
+			'bashls',
 		}
 
 		for _, server in ipairs(servers) do
