@@ -35,18 +35,7 @@ return {
 			callback = function(ev)
 				local opts = { buffer = ev.buf, silent = true }
 
-				map('n', 'gd', vim.lsp.buf.definition, opts)
-				map('n', '<c-]>', vim.lsp.buf.declaration, opts)
-				map('n', 'gD', require('telescope.builtin').lsp_implementations, opts)
 				map('i', '<c-k>', vim.lsp.buf.signature_help, opts)
-				map('n', 'gt', vim.lsp.buf.type_definition, opts)
-				map('n', 'gr', require('telescope.builtin').lsp_references, opts)
-				map('n', '<F2>', vim.lsp.buf.rename, opts)
-				map('n', ']d', vim.diagnostic.goto_next, opts)
-				map('n', '[d', vim.diagnostic.goto_prev, opts)
-				map('n', '<leader>db', vim.diagnostic.open_float, opts)
-				map('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-				map('x', '<leader>ca', vim.lsp.buf.code_action, opts)
 			end,
 		})
 
