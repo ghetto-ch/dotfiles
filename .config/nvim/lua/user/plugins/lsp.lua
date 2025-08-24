@@ -35,7 +35,9 @@ return {
 			callback = function(ev)
 				local opts = { buffer = ev.buf, silent = true }
 
-				map('i', '<c-k>', vim.lsp.buf.signature_help, opts)
+				map('n', 'grd', require('telescope.builtin').lsp_definitions, opts)
+				map('n', 'grr', require('telescope.builtin').lsp_references, opts)
+				map('n', 'grD', vim.lsp.buf.declaration, opts)
 			end,
 		})
 
