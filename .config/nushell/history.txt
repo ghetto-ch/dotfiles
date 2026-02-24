@@ -1,0 +1,23 @@
+ll
+ls
+cd dotfiles/
+ls -h
+ls -a
+cd .config/
+ls
+ls | where size > 5 kb
+ls | where size > 5kb
+ps | sort-by mem | last 5
+help -f filesize
+help commands | explore 
+ls -l
+ls
+man ls
+help ls
+help ps
+ps
+ps | sort-by mem | last 5
+ps | sort-by mem
+help sed
+help awk
+free

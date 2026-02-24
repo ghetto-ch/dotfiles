@@ -1,6 +1,6 @@
 return {
-	'folke/flash.nvim',
-	event = { 'BufReadPre', 'BufNewFile' },
+	"folke/flash.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	---@type Flash.Config
 	opts = {
 		modes = {
@@ -8,16 +8,16 @@ return {
 				enabled = true,
 			},
 			char = {
-				enabled = true,
+				enabled = false,
 			},
 		},
 	},
 	keys = {
 		{
-			'<c-f>',
-			mode = 'c',
+			"<c-f>",
+			mode = "c",
 			function()
-				require('flash').toggle()
+				require("flash").toggle()
 			end,
 		},
 	},
