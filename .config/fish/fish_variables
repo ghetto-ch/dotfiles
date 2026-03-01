@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
+SETUVAR --export MANPAGER:'nvim +Man!'
 SETUVAR __fish_initialized:4300
 SETUVAR fish_cursor_default:block
 SETUVAR fish_greeting:\x1d
