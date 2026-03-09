@@ -47,14 +47,14 @@ return {
 				},
 			},
 
-			ensure_installed = {
+			require("nvim-treesitter").install({
 				"lua",
 				"vimdoc",
 				"c",
 				"bash",
 				"python",
 				"fish",
-			},
+			}),
 		})
 	end,
 }
