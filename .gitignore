@@ -23,3 +23,4 @@ clip.lua
 .local/share/nvim/tree-sitter-lua-tmp/tree-sitter-lua-main
 .local/share/nvim/telescope_history
 .local/state
+/.config/github-copilot

@@ -1,4 +1,0 @@
-#!/bin/sh
-[ -z "$(setxkbmap -print | grep '(intl)')" ] \
-	&& setxkbmap -layout us -variant intl \
-	|| setxkbmap -layout us
