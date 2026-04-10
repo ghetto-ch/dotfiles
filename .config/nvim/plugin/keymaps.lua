@@ -2,6 +2,9 @@ local map = vim.keymap.set
 
 local opts = { noremap = true, silent = true }
 
+-- Package manager
+map("n", "<leader>U", vim.pack.update, opts)
+
 -- Buffers
 map("n", "<C-n>", ":bnext!<CR>", opts)
 map("x", "<C-n>", ":bnext!<CR>", opts)
