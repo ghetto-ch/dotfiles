@@ -44,6 +44,5 @@ local plugins = {
 	"https://codeberg.org/mfussenegger/nvim-dap.git",
 	"https://github.com/igorlfs/nvim-dap-view",
 	"https://github.com/mfussenegger/nvim-dap-python",
-	"https://github.com/jbyuki/one-small-step-for-vimkind",
 }
 vim.pack.add(plugins)

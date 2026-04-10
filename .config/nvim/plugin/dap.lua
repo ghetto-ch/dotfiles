@@ -1,6 +1,12 @@
--- vim.api.nvim_create_autocmd("BufRead", {
--- 	callback = function()
 local dap = require("dap")
+local dv = require("dap-view")
+
+vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { noremap = true })
+vim.keymap.set("n", "<leader>dc", dap.continue, { noremap = true })
+vim.keymap.set("n", "<leader>do", dap.step_over, { noremap = true })
+vim.keymap.set("n", "<leader>di", dap.step_into, { noremap = true })
+vim.keymap.set("n", "<leader>dt", dap.terminate, { noremap = true })
+vim.keymap.set("n", "<leader>dv", dv.toggle, { noremap = true })
 
 -- C, C++
 dap.adapters.gdb = {
@@ -50,21 +56,3 @@ dap.configurations.rust = dap.configurations.c
 
 -- Python
 require("dap-python").setup("uv")
-
--- Neovim Lua
-dap.adapters.nlua = function(callback, config)
-	callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
-end
-
-dap.configurations.lua = {
-	{
-		type = "nlua",
-		request = "attach",
-		name = "Attach to running Neovim instance",
-	},
-}
-
--- END
--- 	end,
--- 	once = true,
--- })
