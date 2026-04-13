@@ -1,3 +1,12 @@
+-- Install parsers and queries
+require("tree-sitter-manager").setup({
+	ensure_install = {
+		"python",
+		"bash",
+		"go",
+	},
+})
+
 -- Treestitter textobjects
 vim.g.no_plugin_maps = true
 require("nvim-treesitter-textobjects").setup({

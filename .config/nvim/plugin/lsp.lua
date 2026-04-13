@@ -33,10 +33,9 @@ vim.lsp.enable("lua_ls")
 -- Setup basic lsp servers
 local servers = {
 	"clangd",
-	"pyright",
-	-- "fish_lsp",
+	"ty",
+	"gopls",
 	"bashls",
-	"zls",
 }
 
 for _, server in ipairs(servers) do
