@@ -26,6 +26,7 @@ local plugins = {
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+	"https://github.com/romus204/tree-sitter-manager.nvim",
 	"https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/folke/flash.nvim",
@@ -44,5 +45,6 @@ local plugins = {
 	"https://codeberg.org/mfussenegger/nvim-dap.git",
 	"https://github.com/igorlfs/nvim-dap-view",
 	"https://github.com/mfussenegger/nvim-dap-python",
+	"https://github.com/leoluz/nvim-dap-go",
 }
 vim.pack.add(plugins)

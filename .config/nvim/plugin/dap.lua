@@ -56,3 +56,6 @@ dap.configurations.rust = dap.configurations.c
 
 -- Python
 require("dap-python").setup("uv")
+
+-- GO
+require("dap-go").setup()
