@@ -3,6 +3,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		python = { "black" },
 		c = { "astyle" },
+		go = { "gofmt" },
 	},
 	format_on_save = {
 		lsp_fallback = true,
