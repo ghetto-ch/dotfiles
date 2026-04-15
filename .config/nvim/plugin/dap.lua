@@ -8,7 +8,9 @@ vim.keymap.set("n", "<leader>di", dap.step_into, { noremap = true })
 vim.keymap.set("n", "<leader>dt", dap.terminate, { noremap = true })
 vim.keymap.set("n", "<leader>dv", dv.toggle, { noremap = true })
 
+-- ############################################################################
 -- C, C++
+-- ############################################################################
 dap.adapters.gdb = {
 	type = "executable",
 	command = "gdb",
@@ -54,8 +56,12 @@ dap.configurations.c = {
 dap.configurations.cpp = dap.configurations.c
 dap.configurations.rust = dap.configurations.c
 
+-- ############################################################################
 -- Python
+-- ############################################################################
 require("dap-python").setup("uv")
 
+-- ############################################################################
 -- GO
+-- ############################################################################
 require("dap-go").setup()
