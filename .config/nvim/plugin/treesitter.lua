@@ -4,6 +4,7 @@ require("tree-sitter-manager").setup({
 		"python",
 		"bash",
 		"go",
+		"fish",
 	},
 })
 
