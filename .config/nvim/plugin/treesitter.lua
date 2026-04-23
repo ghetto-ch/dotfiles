@@ -1,6 +1,6 @@
 -- Install parsers and queries
 require("tree-sitter-manager").setup({
-	ensure_install = {
+	ensure_installed = {
 		"python",
 		"bash",
 		"go",

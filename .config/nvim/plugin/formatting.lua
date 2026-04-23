@@ -1,9 +1,10 @@
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		python = { "black" },
+		python = { "ruff" },
 		c = { "astyle" },
 		go = { "gofmt" },
+		sh = { "shfmt" },
 	},
 	format_on_save = {
 		lsp_fallback = true,

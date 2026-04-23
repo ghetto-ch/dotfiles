@@ -4,12 +4,19 @@ local opts = { noremap = true, silent = true }
 
 -- Package manager
 map("n", "<leader>U", vim.pack.update, opts)
+-- Delete all unused packages
+map("n", "<leader>D", function()
+	local to_del = vim.iter(vim.pack.get())
+	to_del:filter(function(x)
+		return not x.active
+	end)
+	to_del:map(function(x)
+		return x.spec.name
+	end)
+	vim.pack.del(to_del:totable())
+end, opts)
 
 -- Buffers
-map("n", "<C-n>", ":bnext!<CR>", opts)
-map("x", "<C-n>", ":bnext!<CR>", opts)
-map("n", "<C-p>", ":bprevious!<CR>", opts)
-map("x", "<C-p>", ":bprevious!<CR>", opts)
 map("n", "<A-d>", ":bdelete<CR>", opts)
 
 -- Add semicolon at the end of the line

@@ -46,5 +46,11 @@ local plugins = {
 	"https://github.com/igorlfs/nvim-dap-view",
 	"https://github.com/mfussenegger/nvim-dap-python",
 	"https://github.com/leoluz/nvim-dap-go",
+	"https://github.com/mfussenegger/nvim-lint",
 }
 vim.pack.add(plugins)
+
+if vim.g.neovide then
+	vim.o.guifont = "Hack Nerd Font Mono:h9"
+	vim.o.background = "dark"
+end
