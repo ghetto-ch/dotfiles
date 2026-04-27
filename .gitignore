@@ -10,17 +10,10 @@ packer_compiled.lua
 configstore
 clip.lua
 
-.config/lazygit/state.yml
-.config/nvim/lua/.luarc.json
-.config/nvim/.luarc.json
-.config/nvim/lazy-lock.json
 .config/vifm/vifminfo.json
 .local/share/fish/fish_history
-.local/share/nvim/lazy/cmp-buffer/
-.local/share/nvim/lazy/cmp-cmdline/
-.local/share/nvim/lazy/cmp-nvim-lsp/
-.local/share/nvim/lazy
-.local/share/nvim/tree-sitter-lua-tmp/tree-sitter-lua-main
 .local/share/nvim/telescope_history
 .local/state
 /.config/github-copilot
+/.config/nvim/nvim-pack-lock.json
+/.config/lazygit/state.yml
