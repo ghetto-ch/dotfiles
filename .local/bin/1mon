@@ -1,0 +1,3 @@
+#!/bin/sh
+xrandr --output DP-0 --off
+xwallpaper --output DP-4 --center /home/ghetto/img/wallpaper

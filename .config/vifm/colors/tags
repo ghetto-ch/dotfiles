@@ -1,0 +1,14 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+Distribution	README.md	/^### Distribution$/;"	S	language:Markdown
+Installation	README.md	/^## Installation$/;"	s	language:Markdown
+Manual	README.md	/^### Manual$/;"	S	language:Markdown
+Preview	README.md	/^## Preview$/;"	s	language:Markdown
+Set a theme	README.md	/^## Set a theme$/;"	s	language:Markdown
+openSUSE	README.md	/^#### openSUSE$/;"	t	language:Markdown
+vifm-colors	README.md	/^# vifm-colors$/;"	c	language:Markdown

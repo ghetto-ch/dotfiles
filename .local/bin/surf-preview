@@ -1,0 +1,27 @@
+#!/bin/sh
+
+xidfile="$HOME/.var/tmp/surf-preview.xid"
+previewfile="$HOME/.var/tmp/surf-preview.html"
+
+runsurf() {
+	if [ ! -r "$previewfile" ];
+	then
+		echo 'No preview file to show' > "$previewfile"
+	fi
+	surf -w "$previewfile" 2>/dev/null > "$xidfile" &
+}
+
+if [ ! -r "$xidfile" ];
+then
+	runsurf
+else
+	xid=$(sed 1q "$xidfile")
+	xprop -id "$xid" >/dev/null 2>&1
+	if [ $? -gt 0 ];
+	then
+		runsurf
+	else
+		pid=$(xdotool getwindowpid "$xid")
+		kill -1 "$pid"
+	fi
+fi
