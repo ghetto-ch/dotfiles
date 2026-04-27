@@ -3,6 +3,7 @@ require("vim._core.ui2").enable({})
 
 vim.g.mapleader = " "
 
+-- Hooks for plugins
 local hooks = function(ev)
 	local name, kind = ev.data.spec.name, ev.data.kind
 
@@ -42,6 +43,7 @@ local plugins = {
 		version = vim.version.range("^1.0.0"),
 	},
 	"https://github.com/nickjvandyke/opencode.nvim",
+	"https://github.com/zbirenbaum/copilot.lua",
 	"https://codeberg.org/mfussenegger/nvim-dap.git",
 	"https://github.com/igorlfs/nvim-dap-view",
 	"https://github.com/mfussenegger/nvim-dap-python",
@@ -50,6 +52,7 @@ local plugins = {
 }
 vim.pack.add(plugins)
 
+-- For Neovide (testing)
 if vim.g.neovide then
 	vim.o.guifont = "Hack Nerd Font Mono:h9"
 	vim.o.background = "dark"

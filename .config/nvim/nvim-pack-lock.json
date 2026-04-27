@@ -9,6 +9,10 @@
       "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "copilot.lua": {
+      "rev": "adff470bca742b7658228ed144589250ecb3dc0a",
+      "src": "https://github.com/zbirenbaum/copilot.lua"
+    },
     "eyeliner.nvim": {
       "rev": "108f4e39029a8bfc102e75cd3f47b454466ba6c7",
       "src": "https://github.com/cosmicbuffalo/eyeliner.nvim"
@@ -94,7 +98,7 @@
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "15ea3d82ad7680341be951200463d5974eb8a337",
+      "rev": "6b5d8768a1cc5a35af5ec9d3b082bc6e2bdfdb95",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-tmux-navigator": {
