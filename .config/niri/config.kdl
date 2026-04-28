@@ -18,6 +18,11 @@ input {
 	// focus-follows-mouse max-scroll-amount="0%"
 }
 
+cursor {
+	hide-after-inactive-ms 5000
+	hide-when-typing
+}
+
 output "eDP-1" {
 	mode "1920x1080@120.030"
 	scale 2
