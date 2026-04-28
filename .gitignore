@@ -3,14 +3,7 @@
 .netrwhist
 .fzf/fzf-tab
 history.json
-packer_compiled.lua
 configstore
-clip.lua
 
-.config/vifm/vifminfo.json
-.local/share/fish/fish_history
-.local/share/nvim/telescope_history
-.local/state
-/.config/github-copilot
 /.config/nvim/nvim-pack-lock.json
 /.config/lazygit/state.yml
