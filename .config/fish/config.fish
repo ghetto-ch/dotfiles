@@ -27,5 +27,5 @@ if status is-interactive
     set fish_cursor_visual block
 
     # source ~/.config/fish/conf.d/fish_command_timer.fish
-    set -Ux EDITOR nvim
+    set -gx EDITOR nvim
 end
