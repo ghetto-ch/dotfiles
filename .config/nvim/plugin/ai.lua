@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 					accept_line = false,
 					next = '<M-n>',
 					prev = '<M-p>',
-					dismiss = '',
+					dismiss = false,
 					toggle_auto_trigger = false,
 				},
 			},
