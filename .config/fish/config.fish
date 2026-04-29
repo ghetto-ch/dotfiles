@@ -28,4 +28,6 @@ if status is-interactive
 
     # source ~/.config/fish/conf.d/fish_command_timer.fish
     set -gx EDITOR nvim
+
+    tv init fish | source
 end
