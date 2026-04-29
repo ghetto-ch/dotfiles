@@ -1,4 +1,4 @@
-function opencode
+function oc
     set -l default_port 4096
 
     # Check if --port is already specified
