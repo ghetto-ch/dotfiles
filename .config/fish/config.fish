@@ -30,6 +30,4 @@ if status is-interactive
     set -gx EDITOR nvim
 
     tv init fish | source
-
-    alias opencode 'opencode --port 4096'
 end
