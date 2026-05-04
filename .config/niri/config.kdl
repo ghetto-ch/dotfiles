@@ -86,7 +86,8 @@ spawn-at-startup "dms" "run"
 binds {
 	Mod+Shift+Slash { show-hotkey-overlay; }
 
-	Mod+T hotkey-overlay-title="Open a Terminal" { spawn "tmux-session"; }
+	Mod+T hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }
+	// Mod+CR hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }
 	Mod+space hotkey-overlay-title="Run an Application" { spawn-sh "dms ipc call spotlight toggle"; }
 	Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "dms ipc call lock lock"; }
 
