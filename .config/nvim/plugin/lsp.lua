@@ -36,6 +36,7 @@ local servers = {
 	'gopls',
 	'bashls',
 	'fish_lsp',
+	'nil_ls',
 }
 
 for _, server in ipairs(servers) do

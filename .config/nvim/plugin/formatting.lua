@@ -1,13 +1,14 @@
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufNew" }, {
 	once = true,
 	callback = function()
-		require('conform').setup({
+		require("conform").setup({
 			formatters_by_ft = {
-				lua = { 'stylua' },
-				python = { 'ruff' },
-				c = { 'astyle' },
-				go = { 'gofmt' },
-				sh = { 'shfmt' },
+				lua = { "stylua" },
+				python = { "ruff" },
+				c = { "astyle" },
+				go = { "gofmt" },
+				sh = { "shfmt" },
+				nix = { "nixfmt" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
