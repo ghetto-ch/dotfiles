@@ -28,17 +28,3 @@ vim.lsp.config('lua_ls', {
 		},
 	},
 })
-
--- Setup basic lsp servers
-local servers = {
-	'clangd',
-	'ty',
-	'gopls',
-	'bashls',
-	'fish_lsp',
-	'nil_ls',
-}
-
-for _, server in ipairs(servers) do
-	vim.lsp.config(server, {})
-end
