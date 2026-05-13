@@ -76,6 +76,14 @@ window-rule {
 	}
 }
 
+// Enable blur behind the Alacritty terminal.
+window-rule {
+	match app-id="^foot$"
+	background-effect {
+		blur true
+	}
+}
+
 window-rule {
 	geometry-corner-radius 8
 	clip-to-geometry true
@@ -86,7 +94,7 @@ spawn-at-startup "dms" "run"
 binds {
 	Mod+Shift+Slash { show-hotkey-overlay; }
 
-	Mod+T hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }
+	Mod+T hotkey-overlay-title="Open a Terminal" { spawn "foot"; }
 	// Mod+CR hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }
 	Mod+space hotkey-overlay-title="Run an Application" { spawn-sh "dms ipc call spotlight toggle"; }
 	Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "dms ipc call lock lock"; }
