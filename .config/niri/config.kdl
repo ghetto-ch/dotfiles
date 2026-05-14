@@ -286,3 +286,5 @@ binds {
 	Mod+Alt+K { switch-layout "next"; }
 
 }
+
+include "dms/cursor.kdl"

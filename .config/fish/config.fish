@@ -10,6 +10,8 @@ if status is-interactive
         # resetting all bindings.
         # The argument specifies the initial mode (insert, "default" or visual).
         fish_vi_key_bindings --no-erase insert
+
+        bind --mode=insert \cf 'fm'
     end
     # Emulates vim's cursor shape behavior
     # Set the normal and visual mode cursors to a block
