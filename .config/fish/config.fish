@@ -1,6 +1,8 @@
 if status is-interactive
+    source ~/.config/fish/themes/kanagawa.fish
     # Commands to run in interactive sessions can go here
-    # starship init fish | source
+    set -g fish_greeting
+
     function fish_user_key_bindings
         # Execute this once per mode that emacs bindings should be used in
         fish_default_key_bindings -M insert
@@ -14,6 +16,7 @@ if status is-interactive
         bind --mode=insert ctrl-f fm
         bind --mode=insert alt-d "tv dirs"
     end
+
     # Emulates vim's cursor shape behavior
     # Set the normal and visual mode cursors to a block
     set fish_cursor_default block
