@@ -1,3 +1,3 @@
-function fm --description 'Launch yazi file manager'
-  yazi $argv
+function fm --description 'Launch file manager'
+    yazi $argv
 end
