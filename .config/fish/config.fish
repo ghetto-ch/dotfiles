@@ -11,7 +11,8 @@ if status is-interactive
         # The argument specifies the initial mode (insert, "default" or visual).
         fish_vi_key_bindings --no-erase insert
 
-        bind --mode=insert \cf fm
+        bind --mode=insert ctrl-f fm
+        bind --mode=insert alt-d "tv dirs"
     end
     # Emulates vim's cursor shape behavior
     # Set the normal and visual mode cursors to a block
