@@ -1,6 +1,6 @@
 # Variables
 export EDITOR=nvim
-export TERMINAL=alacritty
+export TERMINAL=foot
 export BROWSER=firefox
 export MANPAGER='nvim +Man!'
 export X_FILEMANAGER=spacefm
