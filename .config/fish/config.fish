@@ -11,7 +11,7 @@ if status is-interactive
         # The argument specifies the initial mode (insert, "default" or visual).
         fish_vi_key_bindings --no-erase insert
 
-        bind --mode=insert \cf 'fm'
+        bind --mode=insert \cf fm
     end
     # Emulates vim's cursor shape behavior
     # Set the normal and visual mode cursors to a block
@@ -32,4 +32,5 @@ if status is-interactive
     set -gx EDITOR nvim
 
     tv init fish | source
+    zoxide init --cmd cd fish | source
 end
