@@ -9,15 +9,23 @@ autocmd('TextYankPost', {
 })
 
 -- open help in vertical split
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
 	pattern = 'help',
 	command = 'wincmd L',
 })
 
 -- Filetypes
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
 	pattern = { 'asciidoc', 'text', 'gitcommit' },
 	callback = function()
 		vim.opt_local.wrap = true
+	end,
+})
+
+-- Close these buffers with q
+autocmd('FileType', {
+	pattern = { 'man', 'help', 'qf' },
+	callback = function()
+		vim.keymap.set('n', 'q', ':quit<CR>', { buffer = true, silent = true })
 	end,
 })
