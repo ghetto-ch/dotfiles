@@ -5,4 +5,6 @@ vim.wo[0][0].foldmethod = 'expr'
 vim.wo[0][0].foldlevel = 99
 
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+vim.opt_local.wrap = true
+
 require('render-markdown').buf_enable()
