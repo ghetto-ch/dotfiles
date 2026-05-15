@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
 		require('conform').setup({
 			formatters_by_ft = {
 				lua = { 'stylua' },
-				python = { 'ruff' },
+				python = { 'ruff_format' },
 				c = { 'astyle' },
 				go = { 'gofmt' },
 				sh = { 'shfmt' },
