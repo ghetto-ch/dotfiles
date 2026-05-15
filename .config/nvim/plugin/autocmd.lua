@@ -13,3 +13,11 @@ vim.api.nvim_create_autocmd('FileType', {
 	pattern = 'help',
 	command = 'wincmd L',
 })
+
+-- Filetypes
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = { 'asciidoc', 'text', 'gitcommit' },
+	callback = function()
+		vim.opt_local.wrap = true
+	end,
+})
