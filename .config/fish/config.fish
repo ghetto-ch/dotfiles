@@ -1,6 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set -g fish_greeting
+    source "$XDG_CONFIG_HOME/fish/themes/kanagawa.fish"
 
     function fish_user_key_bindings
         # Execute this once per mode that emacs bindings should be used in
