@@ -1,3 +1,4 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+# SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dcolor\x3d16
 SETUVAR __fish_initialized:4300

@@ -1,5 +1,4 @@
 if status is-interactive
-    source ~/.config/fish/themes/kanagawa.fish
     # Commands to run in interactive sessions can go here
     set -g fish_greeting
 
@@ -31,7 +30,6 @@ if status is-interactive
     # visual mode, but due to fish_cursor_default, is redundant here
     set fish_cursor_visual block
 
-    # source ~/.config/fish/conf.d/fish_command_timer.fish
     set -gx EDITOR nvim
 
     tv init fish | source

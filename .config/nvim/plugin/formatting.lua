@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
 				c = { 'astyle' },
 				go = { 'gofmt' },
 				sh = { 'shfmt' },
+				fish = { 'fish_indent' },
 				nix = { 'nixpkgs_fmt', lsp_format = 'never' },
 			},
 			format_on_save = {
