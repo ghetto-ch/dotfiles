@@ -14,7 +14,6 @@ if status is-interactive
         fish_vi_key_bindings --no-erase insert
 
         bind --mode=insert ctrl-f fm
-        bind --mode=insert alt-d "tv dirs"
     end
 
     # Emulates vim's cursor shape behavior
