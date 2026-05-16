@@ -32,7 +32,8 @@ output "eDP-1" {
 
 layout {
 	gaps 5
-	center-focused-column "never"
+	center-focused-column "on-overflow"
+	always-center-single-column
 	preset-column-widths {
 		proportion 0.33333
 		proportion 0.5
@@ -42,10 +43,11 @@ layout {
 	focus-ring {
 		// Uncomment this line to disable the focus ring.
 		// off
-		width 2
+		width 3
 
 		// Color of the ring on the active monitor.
 		active-color "#7fc8ff"
+		// active-gradient to="#7fc8ff" from="#ff0000" angle=-45
 
 		// Color of the ring on inactive monitors.
 		inactive-color "#505050"
