@@ -1,3 +1,3 @@
 function fm --description 'Launch file manager'
-    yazi $argv
+    $CLI_FILEMANAGER $argv
 end

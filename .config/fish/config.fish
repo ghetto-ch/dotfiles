@@ -1,7 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set -g fish_greeting
-    source "$XDG_CONFIG_HOME/fish/themes/kanagawa.fish"
 
     function fish_user_key_bindings
         # Execute this once per mode that emacs bindings should be used in
@@ -31,8 +30,12 @@ if status is-interactive
     # visual mode, but due to fish_cursor_default, is redundant here
     set fish_cursor_visual block
 
+    set -gx XDG_CONFIG_HOME $HOME/.config
     set -gx EDITOR nvim
-
+    set -gx MANPAGER 'nvim +Man!'
+    set -gx CLI_FILEMANAGER yazi
+    set -gx RIPGREP_CONFIG_PATH "$XDG_CONFIG_HOME/ripgrep/config"
+    source "$XDG_CONFIG_HOME/fish/themes/kanagawa.fish"
     tv init fish | source
     zoxide init --cmd cd fish | source
 end

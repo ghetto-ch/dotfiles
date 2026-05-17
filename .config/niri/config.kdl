@@ -92,6 +92,7 @@ window-rule {
 }
 
 spawn-at-startup "dms" "run"
+// spawn-at-startup "qs" "-c" "noctalia-shell"
 
 binds {
 	Mod+Shift+Slash { show-hotkey-overlay; }
@@ -99,9 +100,10 @@ binds {
 	Mod+T hotkey-overlay-title="Open a Terminal" { spawn "foot"; }
 	// Mod+CR hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }
 	Mod+space hotkey-overlay-title="Run an Application" { spawn-sh "dms ipc call spotlight toggle"; }
-	Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "dms ipc call lock lock"; }
+	// Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+	// Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "dms ipc call lock lock"; }
 
-	Mod+B hotkey-overlay-title="Toggle bar" { spawn-sh "dms ipc call bar toggle name 'Main Bar'"; }
+	// Mod+B hotkey-overlay-title="Toggle bar" { spawn-sh "dms ipc call bar toggle name 'Main Bar'"; }
 	XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
 	XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
 	XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
