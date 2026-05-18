@@ -194,7 +194,7 @@
   "spotlightSectionViewModes": {},
   "appDrawerSectionViewModes": {},
   "niriOverviewOverlayEnabled": true,
-  "dankLauncherV2Size": "compact",
+  "dankLauncherV2Size": "micro",
   "dankLauncherV2BorderEnabled": false,
   "dankLauncherV2BorderThickness": 2,
   "dankLauncherV2BorderColor": "primary",
@@ -391,8 +391,40 @@
   "updaterCustomCommand": "paru -Syu",
   "updaterTerminalAdditionalParams": "",
   "displayNameMode": "system",
-  "screenPreferences": {},
-  "showOnLastDisplay": {},
+  "screenPreferences": {
+    "notifications": [
+      {
+        "name": "DP-2",
+        "model": "DELL U2715H"
+      }
+    ],
+    "wallpaper": [
+      "all"
+    ],
+    "osd": [
+      {
+        "name": "DP-2",
+        "model": "DELL U2715H"
+      }
+    ],
+    "toast": [
+      {
+        "name": "DP-2",
+        "model": "DELL U2715H"
+      }
+    ],
+    "notepad": [
+      {
+        "name": "DP-2",
+        "model": "DELL U2715H"
+      }
+    ]
+  },
+  "showOnLastDisplay": {
+    "notifications": true,
+    "osd": true,
+    "toast": true
+  },
   "niriOutputSettings": {},
   "hyprlandOutputSettings": {},
   "displayProfiles": {},
@@ -407,7 +439,10 @@
       "enabled": true,
       "position": 0,
       "screenPreferences": [
-        "all"
+        {
+          "name": "DP-2",
+          "model": "DELL U2715H"
+        }
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
