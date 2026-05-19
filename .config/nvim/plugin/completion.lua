@@ -12,12 +12,19 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter' }, {
 					selection = { preselect = false, auto_insert = true },
 				},
 			},
+			cmdline = {
+				completion = {
+					list = {
+						selection = { preselect = false, auto_insert = true },
+					},
+				},
+			},
 			snippets = {
 				preset = 'default',
 			},
 			sources = {
 				-- add lazydev to your completion providers
-				default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+				default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'cmdline' },
 				providers = {
 					lazydev = {
 						name = 'LazyDev',
