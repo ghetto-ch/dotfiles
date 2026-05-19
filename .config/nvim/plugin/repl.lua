@@ -26,11 +26,11 @@ iron.setup({
 		end,
 
 		dap_integration = true,
-		repl_open_cmd = view.bottom(10),
+		repl_open_cmd = view.bottom(15),
 	},
 
 	keymaps = {
-		toggle_repl = '<space>rk',
+		toggle_repl = '<space>rt',
 		restart_repl = '<space>rr',
 		send_motion = '<space>sc',
 		visual_send = '<space>sc',
