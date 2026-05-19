@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
 
 		iron.setup({
 			config = {
-				scratch_repl = true,
+				scratch_repl = false,
 				repl_definition = {
 
 					sh = {
@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
 				end,
 
 				dap_integration = true,
-				repl_open_cmd = view.bottom(15),
+				repl_open_cmd = view.split(15),
 			},
 
 			keymaps = {
