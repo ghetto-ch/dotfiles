@@ -52,6 +52,7 @@ local plugins = {
 	'https://github.com/leoluz/nvim-dap-go',
 	'https://github.com/mfussenegger/nvim-lint',
 	'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+	'https://github.com/Vigemus/iron.nvim',
 }
 vim.pack.add(plugins)
 
