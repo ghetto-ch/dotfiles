@@ -6,6 +6,8 @@ require('tree-sitter-manager').setup({
 		'go',
 		'fish',
 		'nix',
+		'yaml',
+		'toml',
 	},
 })
 

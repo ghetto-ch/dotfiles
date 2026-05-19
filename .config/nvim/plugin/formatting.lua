@@ -10,6 +10,8 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
 				sh = { 'shfmt' },
 				fish = { 'fish_indent' },
 				nix = { 'nixpkgs_fmt', lsp_format = 'never' },
+				yaml = { 'yamlfmt' },
+				toml = { 'taplo fmt' },
 			},
 			format_on_save = {
 				lsp_fallback = true,
