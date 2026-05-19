@@ -40,3 +40,5 @@ o.confirm = true
 vim.diagnostic.config({
 	virtual_lines = { current_line = true },
 })
+
+o.completeopt = { 'menu', 'menuone', 'noselect' }
