@@ -8,6 +8,7 @@ require('tree-sitter-manager').setup({
 		'nix',
 		'yaml',
 		'toml',
+		'kdl',
 	},
 })
 

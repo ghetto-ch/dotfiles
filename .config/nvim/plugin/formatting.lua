@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
 				nix = { 'nixpkgs_fmt', lsp_format = 'never' },
 				yaml = { 'yamlfmt' },
 				toml = { 'taplo fmt' },
+				kdl = { 'kdlfmt' },
 			},
 			format_on_save = {
 				lsp_fallback = true,
