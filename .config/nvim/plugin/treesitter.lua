@@ -11,6 +11,26 @@ require('tree-sitter-manager').setup({
 		'kdl',
 		'json',
 	},
+
+	languages = {
+		asciidoc = {
+			install_info = {
+				url = 'https://github.com/cathaysia/tree-sitter-asciidoc',
+				location = 'tree-sitter-asciidoc',
+				queries = 'queries/asciidoc/',
+				use_repo_queries = false,
+			},
+		},
+
+		asciidoc_inline = {
+			install_info = {
+				url = 'https://github.com/cathaysia/tree-sitter-asciidoc',
+				location = 'tree-sitter-asciidoc_inline',
+				queries = 'queries/asciidoc_inline/',
+				use_repo_queries = false,
+			},
+		},
+	},
 })
 
 -- Treestitter textobjects
