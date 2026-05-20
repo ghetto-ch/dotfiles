@@ -8,23 +8,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', 'grD', vim.lsp.buf.declaration, opts)
 	end,
 })
-
-vim.lsp.config('lua_ls', {
-	settings = {
-		Lua = {
-			completion = {
-				callSnippet = 'Replace',
-			},
-			diagnostics = {
-				disable = { 'missing-fields' },
-			},
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					vim.env.VIMRUNTIME,
-					{ path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-				},
-			},
-		},
-	},
-})
