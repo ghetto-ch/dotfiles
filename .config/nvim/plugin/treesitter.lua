@@ -11,7 +11,6 @@ require('tree-sitter-manager').setup({
 		'kdl',
 		'json',
 		'markdown',
-		-- 'markdown_inline`',
 		'asciidoc',
 		'asciidoc_inline',
 	},
@@ -21,7 +20,6 @@ require('tree-sitter-manager').setup({
 			install_info = {
 				url = 'https://github.com/cathaysia/tree-sitter-asciidoc',
 				location = 'tree-sitter-asciidoc',
-				-- queries = 'queries/asciidoc/',
 				use_repo_queries = true,
 			},
 		},
@@ -30,7 +28,6 @@ require('tree-sitter-manager').setup({
 			install_info = {
 				url = 'https://github.com/cathaysia/tree-sitter-asciidoc',
 				location = 'tree-sitter-asciidoc_inline',
-				-- queries = 'queries/asciidoc_inline/',
 				use_repo_queries = true,
 			},
 		},

@@ -31,7 +31,7 @@ o.splitbelow = true
 o.splitright = true
 
 o.wildmode = { 'longest:full', 'full' }
--- o.completeopt = "fuzzy,menuone,preview,noselect"
+o.completeopt = { 'menu', 'menuone', 'noselect' }
 
 o.timeoutlen = 2000
 
@@ -40,5 +40,3 @@ o.confirm = true
 vim.diagnostic.config({
 	virtual_lines = { current_line = true },
 })
-
-o.completeopt = { 'menu', 'menuone', 'noselect' }

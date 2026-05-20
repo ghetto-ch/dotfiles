@@ -70,7 +70,8 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 		map('n', '<leader>dv', dv.toggle,             { noremap = true })
 		map('n', '<leader>dw', dv.add_expr,           { noremap = true })
 		-- stylua: ignore stop
-		map('n', '<leader>ds', function()
+		map('n', '<leader>ds',
+		function()
 			dap.set_breakpoint(vim.fn.input('Condition: '))
 		end,
 		{ noremap = true })

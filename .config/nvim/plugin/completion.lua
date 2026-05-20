@@ -9,6 +9,9 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter' }, {
 			},
 			completion = {
 				list = {
+					accept = {
+						auto_brackets = { enabled = false },
+					},
 					selection = { preselect = false, auto_insert = true },
 				},
 			},
