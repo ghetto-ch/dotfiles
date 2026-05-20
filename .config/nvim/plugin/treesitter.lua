@@ -10,7 +10,6 @@ require('tree-sitter-manager').setup({
 		'toml',
 		'kdl',
 		'json',
-		'markdown',
 		'asciidoc',
 		'asciidoc_inline',
 	},
