@@ -1,15 +1,63 @@
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
 	once = true,
 	callback = function()
+		-- Setup
 		local dap = require('dap')
 		local dv = require('dap-view')
 
+		require('dap-view').setup({
+			auto_toggle = true,
+			winbar = {
+				show = true,
+				default_section = 'scopes',
+				controls = {
+					enabled = true,
+				},
+			},
+
+			windows = {
+				size = 0.3,
+				terminal = {
+					size = 0.3,
+					position = 'below',
+				},
+			},
+
+			-- Virtual text inline (richiede Neovim 0.12+)
+			virtual_text = {
+				enabled = true,
+				position = 'inline', -- "inline" | "eol" | "eol_right_align"
+				format = function(variable, _, _)
+					return ' ' .. variable.value
+				end,
+			},
+
+			hover = { border = 'rounded' },
+			help = { border = 'rounded' },
+		})
+
+		-- stylua: ignore start
+		vim.api.nvim_set_hl(0, 'DapBrk',  { fg = '#e06c75' })
+		vim.api.nvim_set_hl(0, 'DapCond', { fg = '#e5c07b' })
+		vim.api.nvim_set_hl(0, 'DapRej',  { fg = '#61afef' })
+		vim.api.nvim_set_hl(0, 'DapLog',  { fg = '#61afef' })
+		vim.api.nvim_set_hl(0, 'DapStop', { fg = '#98c379',
+		                                    bg = '#2d3a2d' })
+
+		vim.fn.sign_define('DapBreakpoint',          { text = '●', texthl = 'DapBrk'  })
+		vim.fn.sign_define('DapBreakpointCondition', { text = '◆', texthl = 'DapCond' })
+		vim.fn.sign_define('DapBreakpointRejected',  { text = '○', texthl = 'DapRej'  })
+		vim.fn.sign_define('DapLogPoint',            { text = '󰆍', texthl = 'DapLog'  })
+		vim.fn.sign_define('DapStopped',             { text = '▶', texthl = 'DapStop',
+		                                                           linehl = 'DapStop' })
+
 		vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { noremap = true })
-		vim.keymap.set('n', '<leader>dc', dap.continue, { noremap = true })
-		vim.keymap.set('n', '<leader>do', dap.step_over, { noremap = true })
-		vim.keymap.set('n', '<leader>di', dap.step_into, { noremap = true })
-		vim.keymap.set('n', '<leader>dt', dap.terminate, { noremap = true })
-		vim.keymap.set('n', '<leader>dv', dv.toggle, { noremap = true })
+		vim.keymap.set('n', '<leader>dc', dap.continue,          { noremap = true })
+		vim.keymap.set('n', '<leader>do', dap.step_over,         { noremap = true })
+		vim.keymap.set('n', '<leader>di', dap.step_into,         { noremap = true })
+		vim.keymap.set('n', '<leader>dt', dap.terminate,         { noremap = true })
+		vim.keymap.set('n', '<leader>dv', dv.toggle,             { noremap = true })
+		-- stylua: ignore stop
 
 		-- ############################################################################
 		-- C, C++
