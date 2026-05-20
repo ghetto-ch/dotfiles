@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 	once = true,
 	callback = function()
 		-- Setup
@@ -9,6 +9,15 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
 			auto_toggle = true,
 			winbar = {
 				show = true,
+				sections = {
+					'watches',
+					'scopes',
+					'exceptions',
+					'breakpoints',
+					'threads',
+					'repl',
+					-- 'console',
+				},
 				default_section = 'scopes',
 				controls = {
 					enabled = true,
