@@ -1,4 +1,14 @@
-vim.lsp.enable('rust-analyzer')
+vim.lsp.config('rust_analyzer', {
+	settings = {
+		['rust_analyzer'] = {
+			check = {
+				command = 'clippy',
+			},
+		},
+	},
+})
+vim.lsp.enable('rust_analyzer')
+
 vim.treesitter.start()
 
 vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
