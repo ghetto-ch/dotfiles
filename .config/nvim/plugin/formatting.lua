@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 				toml = { 'taplo fmt' },
 				kdl = { 'kdlfmt' },
 				json = { 'prettier' },
+				rust = { 'rustfmt' },
 			},
 			format_on_save = {
 				lsp_fallback = true,

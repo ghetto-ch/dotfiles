@@ -12,6 +12,7 @@ require('tree-sitter-manager').setup({
 		'json',
 		'asciidoc',
 		'asciidoc_inline',
+		'rust',
 	},
 
 	languages = {

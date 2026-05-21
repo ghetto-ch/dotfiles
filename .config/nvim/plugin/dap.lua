@@ -69,12 +69,10 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 		map('n', '<leader>dt', dap.terminate,         { noremap = true })
 		map('n', '<leader>dv', dv.toggle,             { noremap = true })
 		map('n', '<leader>dw', dv.add_expr,           { noremap = true })
-		-- stylua: ignore stop
-		map('n', '<leader>ds',
-		function()
+		-- stylua: ignore end
+		map('n', '<leader>ds', function()
 			dap.set_breakpoint(vim.fn.input('Condition: '))
-		end,
-		{ noremap = true })
+		end, { noremap = true })
 
 		-- ############################################################################
 		-- C, C++
@@ -122,7 +120,52 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 			},
 		}
 		dap.configurations.cpp = dap.configurations.c
-		dap.configurations.rust = dap.configurations.c
+
+		-- ############################################################################
+		-- Rust
+		-- ############################################################################
+		dap.adapters['rust-gdb'] = {
+			type = 'executable',
+			command = 'rust-gdb',
+			args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
+		}
+
+		dap.configurations.rust = {
+			{
+				name = 'Launch',
+				type = 'rust-gdb',
+				request = 'launch',
+				program = function()
+					return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+				end,
+				args = {}, -- provide arguments if needed
+				cwd = '${workspaceFolder}',
+				stopAtBeginningOfMainSubprogram = false,
+			},
+			{
+				name = 'Select and attach to process',
+				type = 'rust-gdb',
+				request = 'attach',
+				program = function()
+					return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+				end,
+				pid = function()
+					local name = vim.fn.input('Executable name (filter): ')
+					return require('dap.utils').pick_process({ filter = name })
+				end,
+				cwd = '${workspaceFolder}',
+			},
+			{
+				name = 'Attach to gdbserver :1234',
+				type = 'rust-gdb',
+				request = 'attach',
+				target = 'localhost:1234',
+				program = function()
+					return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+				end,
+				cwd = '${workspaceFolder}',
+			},
+		}
 
 		-- ############################################################################
 		-- Python
