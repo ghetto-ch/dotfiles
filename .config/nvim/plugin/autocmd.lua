@@ -29,3 +29,11 @@ autocmd('FileType', {
 		vim.keymap.set('n', 'q', ':quit<CR>', { buffer = true, silent = true })
 	end,
 })
+
+-- Open diagnostic popup on hover
+vim.o.updatetime = 500
+vim.api.nvim_create_autocmd('CursorHold', {
+	callback = function()
+		vim.diagnostic.open_float()
+	end,
+})

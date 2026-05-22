@@ -53,6 +53,7 @@ local plugins = {
 	'https://github.com/mfussenegger/nvim-lint',
 	'https://github.com/OXY2DEV/markview.nvim',
 	'https://github.com/Vigemus/iron.nvim',
+	-- 'https://github.com/folke/trouble.nvim',
 }
 vim.pack.add(plugins)
 
@@ -61,3 +62,5 @@ if vim.g.neovide then
 	vim.o.guifont = 'Hack Nerd Font Mono:h12'
 	vim.o.background = 'dark'
 end
+
+-- require('trouble').setup()
