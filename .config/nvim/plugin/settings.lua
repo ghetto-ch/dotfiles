@@ -15,8 +15,9 @@ o.scrolloff = 999
 -- Indentation
 o.tabstop = 2
 o.softtabstop = 2
-o.shiftwidth = 0
+o.expandtab = false
 o.smartindent = true
+o.shiftwidth = 0
 
 -- Search
 o.ignorecase = true

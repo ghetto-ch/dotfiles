@@ -124,46 +124,24 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 		-- ############################################################################
 		-- Rust
 		-- ############################################################################
-		dap.adapters['rust-gdb'] = {
+		dap.adapters.codelldb = {
 			type = 'executable',
-			command = 'rust-gdb',
-			args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
+			command = 'codelldb', -- or if not in $PATH: "/absolute/path/to/codelldb"
+
+			-- On windows you may have to uncomment this:
+			-- detached = false,
 		}
 
 		dap.configurations.rust = {
 			{
-				name = 'Launch',
-				type = 'rust-gdb',
+				name = 'Launch file',
+				type = 'codelldb',
 				request = 'launch',
 				program = function()
 					return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 				end,
-				args = {}, -- provide arguments if needed
 				cwd = '${workspaceFolder}',
-				stopAtBeginningOfMainSubprogram = false,
-			},
-			{
-				name = 'Select and attach to process',
-				type = 'rust-gdb',
-				request = 'attach',
-				program = function()
-					return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-				end,
-				pid = function()
-					local name = vim.fn.input('Executable name (filter): ')
-					return require('dap.utils').pick_process({ filter = name })
-				end,
-				cwd = '${workspaceFolder}',
-			},
-			{
-				name = 'Attach to gdbserver :1234',
-				type = 'rust-gdb',
-				request = 'attach',
-				target = 'localhost:1234',
-				program = function()
-					return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-				end,
-				cwd = '${workspaceFolder}',
+				stopOnEntry = false,
 			},
 		}
 
