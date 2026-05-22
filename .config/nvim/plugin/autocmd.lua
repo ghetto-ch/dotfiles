@@ -32,6 +32,11 @@ autocmd('FileType', {
 
 -- Open diagnostic popup on hover
 vim.o.updatetime = 500
+vim.diagnostic.config({
+	float = {
+		border = 'single',
+	},
+})
 vim.api.nvim_create_autocmd('CursorHold', {
 	callback = function()
 		vim.diagnostic.open_float()
