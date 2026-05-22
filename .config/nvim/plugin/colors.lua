@@ -25,3 +25,6 @@ require('kanagawa').setup({
 })
 
 vim.cmd('colorscheme kanagawa')
+
+-- Not directly related to the colorscheme, but still appearance
+vim.diagnostic.config({ float = { border = 'single' } })
