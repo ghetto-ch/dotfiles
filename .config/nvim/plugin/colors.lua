@@ -1,4 +1,4 @@
-require("kanagawa").setup({
+require('kanagawa').setup({
 	transparent = true,
 	-- dimInactive = true,
 
@@ -7,7 +7,9 @@ require("kanagawa").setup({
 
 		return {
 			TelescopeTitle = { fg = theme.ui.special, bold = true },
-			TelescopeBorder = { bg = "NONE" },
+			TelescopeBorder = { bg = 'NONE' },
+			NormalFloat = { bg = 'NONE' },
+			FloatBorder = { bg = 'NONE' },
 		}
 	end,
 
@@ -15,11 +17,11 @@ require("kanagawa").setup({
 		theme = {
 			all = {
 				ui = {
-					bg_gutter = "NONE",
+					bg_gutter = 'NONE',
 				},
 			},
 		},
 	},
 })
 
-vim.cmd("colorscheme kanagawa")
+vim.cmd('colorscheme kanagawa')
