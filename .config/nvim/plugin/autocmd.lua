@@ -34,6 +34,6 @@ autocmd('FileType', {
 vim.o.updatetime = 500
 vim.api.nvim_create_autocmd('CursorHold', {
 	callback = function()
-		vim.diagnostic.open_float()
+		vim.diagnostic.open_float({ focus = false })
 	end,
 })
