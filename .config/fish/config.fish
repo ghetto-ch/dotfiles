@@ -13,6 +13,7 @@ if status is-interactive
         fish_vi_key_bindings --no-erase insert
 
         bind --mode=insert ctrl-f fm
+        bind --mode=insert ctrl-z "fg > /dev/null 2>&1"
     end
 
     # Emulates vim's cursor shape behavior

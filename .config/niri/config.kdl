@@ -68,9 +68,16 @@ window-rule {
         blur true
     }
 }
-// Enable blur behind the Alacritty terminal.
+// Enable blur behind the terminal.
 window-rule {
     match app-id="^foot$"
+    background-effect {
+        blur true
+    }
+}
+// Enable blur behind Neovide
+window-rule {
+    match app-id="^neovide$"
     background-effect {
         blur true
     }
