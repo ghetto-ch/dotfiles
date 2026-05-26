@@ -18,17 +18,20 @@ require('tree-sitter-manager').setup({
 	languages = {
 		asciidoc = {
 			install_info = {
-				url = 'https://github.com/cathaysia/tree-sitter-asciidoc',
+				branch = 'master',
 				location = 'tree-sitter-asciidoc',
-				use_repo_queries = true,
+				queries = 'queries/asciidoc/',
+				requires = { 'asciidoc_inline' },
+				url = 'https://github.com/cathaysia/tree-sitter-asciidoc',
 			},
 		},
 
 		asciidoc_inline = {
 			install_info = {
-				url = 'https://github.com/cathaysia/tree-sitter-asciidoc',
+				branch = 'master',
 				location = 'tree-sitter-asciidoc_inline',
-				use_repo_queries = true,
+				queries = 'queries/asciidoc_inline',
+				url = 'https://github.com/cathaysia/tree-sitter-asciidoc',
 			},
 		},
 	},
