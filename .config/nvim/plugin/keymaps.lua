@@ -61,6 +61,8 @@ map({ 'i', 's' }, '<C-h>', function()
 	end
 end, { expr = true })
 
+map('t', '<Esc>', [[<C-\><C-n>]])
+
 -- Show diagnostics popup
 -- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 
