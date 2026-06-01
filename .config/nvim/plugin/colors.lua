@@ -10,6 +10,7 @@ require('kanagawa').setup({
 			TelescopeBorder = { bg = 'NONE' },
 			NormalFloat = { bg = 'NONE' },
 			FloatBorder = { bg = 'NONE' },
+			WinSeparator = { fg = '#54546d' },
 		}
 	end,
 
