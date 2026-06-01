@@ -10,9 +10,10 @@ require('tree-sitter-manager').setup({
 		'toml',
 		'kdl',
 		'json',
-		-- 'asciidoc',
-		-- 'asciidoc_inline',
+		'asciidoc',
+		'asciidoc_inline',
 		'rust',
+		'haskell',
 	},
 
 	languages = {
