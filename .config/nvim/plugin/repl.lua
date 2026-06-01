@@ -10,14 +10,6 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 				scratch_repl = true,
 				repl_definition = {
 
-					sh = {
-						command = { 'bash' },
-					},
-
-					fish = {
-						command = { 'fish' },
-					},
-
 					python = {
 						command = { 'uv', 'run', 'ipython', '--no-autoindent' },
 						format = common.bracketed_paste_python,
