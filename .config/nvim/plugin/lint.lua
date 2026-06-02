@@ -6,6 +6,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 			asciidoc = { 'vale' },
 			python = { 'ruff' },
 			bash = { 'shellharden' },
+			haskell = { 'hlint' },
 		}
 
 		vim.api.nvim_create_autocmd({ 'BufWritePost' }, {

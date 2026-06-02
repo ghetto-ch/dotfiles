@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 				kdl = { 'kdlfmt' },
 				json = { 'prettier' },
 				rust = { 'rustfmt' },
+				haskell = { 'ormolu' },
 			},
 			format_on_save = {
 				lsp_fallback = true,

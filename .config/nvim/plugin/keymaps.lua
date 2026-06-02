@@ -17,7 +17,50 @@ map('n', '<leader>D', function()
 end, opts)
 
 -- Buffers
-map('n', '<A-d>', ':bdelete<CR>', opts)
+-- map('n', '<A-d>', ':bdelete<CR>', opts)
+vim.keymap.set('n', '<A-d>', function()
+	local bufnr = vim.api.nvim_get_current_buf()
+
+	-- Sostituisce il comando se il buffer ha modifiche non salvate
+	if vim.api.nvim_get_option_value('modified', { buf = bufnr }) then
+		vim.api.nvim_echo(
+			{ { 'Errore: Il buffer ha modifiche non salvate!', 'ErrorMsg' } },
+			false,
+			{}
+		)
+		return
+	end
+
+	-- Trova tutte le finestre che mostrano questo buffer
+	local windows = vim.fn.win_findbuf(bufnr)
+
+	-- Trova un buffer alternativo valido da mostrare
+	local alt_buf = vim.fn.bufnr('#')
+	if alt_buf == -1 or alt_buf == bufnr or vim.fn.buflisted(alt_buf) == 0 then
+		alt_buf = vim.fn.bufnr('$')
+		while alt_buf > 0 do
+			if alt_buf ~= bufnr and vim.fn.buflisted(alt_buf) == 1 then
+				break
+			end
+			alt_buf = alt_buf - 1
+		end
+	end
+
+	-- Se non ci sono altri buffer validi, ne crea uno vuoto
+	if alt_buf <= 0 then
+		alt_buf = vim.api.nvim_create_buf(true, false)
+	end
+
+	-- Sposta ogni finestra su quel buffer alternativo
+	for _, win in ipairs(windows) do
+		vim.api.nvim_win_set_buf(win, alt_buf)
+	end
+
+	-- Infine, elimina il buffer originale in sicurezza
+	if vim.api.nvim_buf_is_valid(bufnr) then
+		vim.cmd('bdelete ' .. bufnr)
+	end
+end, { desc = 'Elimina buffer preservando il layout' })
 
 -- Add semicolon at the end of the line
 map('n', '<leader>;', ':normal! mqA;<Esc>`q', opts)

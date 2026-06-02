@@ -13,7 +13,7 @@ require('tree-sitter-manager').setup({
 		'asciidoc',
 		'asciidoc_inline',
 		'rust',
-		'haskell',
+		-- 'haskell',
 	},
 
 	languages = {
