@@ -36,10 +36,10 @@ function fish_prompt
     # Line 2
     echo
     if set -q SSH_TTY
-        # set -g fish_color_host brred
+        set_color brblue
         printf '(ssh) '
+        set_color normal
     end
     printf 'λ ' # ↪
     set_color normal
-
 end
