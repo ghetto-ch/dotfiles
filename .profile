@@ -5,7 +5,8 @@ export BROWSER=firefox
 export X_FILEMANAGER=spacefm
 export XDG_CONFIG_HOME=$HOME/.config
 export GOPATH=$HOME/Develop/goprojects
-export PATH="$PATH:$HOME/.local/bin:$GOPATH/bin"
+export GHCUP_INSTALL_BASE_PREFIX=$HOME
+export PATH="$PATH:$HOME/.local/bin:$GOPATH/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin"
 
 # if ! mount|grep Data > /dev/null; then
 #     mount /mnt/Data
@@ -19,3 +20,5 @@ export PATH="$PATH:$HOME/.local/bin:$GOPATH/bin"
 # if ! mount|grep Downloads > /dev/null; then
 #     mount /mnt/Downloads
 # fi
+
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env

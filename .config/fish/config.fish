@@ -40,3 +40,6 @@ if status is-interactive
     tv init fish | source
     zoxide init --cmd cd fish | source
 end
+
+# set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/ghetto/.ghcup/bin $PATH # ghcup-env
+
