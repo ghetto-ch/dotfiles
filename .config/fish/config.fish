@@ -1,11 +1,13 @@
 if status is-interactive
-    if not set -q __sourced_profile
-        set -x __sourced_profile 1
-        exec bash -c "\
+    if set -q SSH_TTY
+        if not set -q __sourced_profile
+            set -x __sourced_profile 1
+            exec bash -c "\
             test -e /etc/profile && source /etc/profile
             test -e $HOME/.profile && source $HOME/.profile
             exec fish --login
         "
+        end
     end
     # Commands to run in interactive sessions can go here
     set -g fish_greeting

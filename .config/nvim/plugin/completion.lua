@@ -11,6 +11,9 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter' }, {
 				list = {
 					selection = { preselect = false, auto_insert = true },
 				},
+				menu = {
+					border = 'none',
+				},
 			},
 			cmdline = {
 				completion = {
