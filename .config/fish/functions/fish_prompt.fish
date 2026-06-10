@@ -24,7 +24,7 @@ function fish_prompt
         set -g __fish_git_prompt_char_upstream_ahead '+'
         set -g __fish_git_prompt_char_upstream_behind -
 
-        printf '%s%s%s%s%s%s ' (fish_git_prompt)
+        printf '%s' (fish_git_prompt)
         set_color normal
     end
 
