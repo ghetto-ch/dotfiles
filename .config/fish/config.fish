@@ -1,4 +1,12 @@
 if status is-interactive
+    if not set -q __sourced_profile
+        set -x __sourced_profile 1
+        exec bash -c "\
+            test -e /etc/profile && source /etc/profile
+            test -e $HOME/.profile && source $HOME/.profile
+            exec fish --login
+        "
+    end
     # Commands to run in interactive sessions can go here
     set -g fish_greeting
 
@@ -42,4 +50,3 @@ if status is-interactive
 end
 
 # set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/ghetto/.ghcup/bin $PATH # ghcup-env
-
