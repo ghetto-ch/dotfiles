@@ -16,14 +16,18 @@ function fish_prompt
         set -g __fish_git_prompt_color_stagedstate yellow
         set -g __fish_git_prompt_color_invalidstate red
         set -g __fish_git_prompt_color_cleanstate brgreen
+        set -g __fish_git_prompt_color_dirtystate bryellow
+        set -g __fish_git_prompt_color_untrackedfiles brcyan
+        set -g __fish_git_prompt_char_upstream_ahead green
+        set -g __fish_git_prompt_char_upstream_behind red
 
         # Status Chars
-        set -g __fish_git_prompt_char_dirtystate ' ⚡'
-        set -g __fish_git_prompt_char_stagedstate ' →'
-        set -g __fish_git_prompt_char_untrackedfiles ' ☡'
-        set -g __fish_git_prompt_char_stashstate ' ↩'
-        set -g __fish_git_prompt_char_upstream_ahead ' +'
-        set -g __fish_git_prompt_char_upstream_behind ' -'
+        set -g __fish_git_prompt_char_dirtystate '✎'
+        set -g __fish_git_prompt_char_stagedstate '→'
+        set -g __fish_git_prompt_char_untrackedfiles '?'
+        set -g __fish_git_prompt_char_stashstate '↩'
+        set -g __fish_git_prompt_char_upstream_ahead '↑'
+        set -g __fish_git_prompt_char_upstream_behind '↓'
 
         printf '%s' (fish_git_prompt)
         set_color normal
