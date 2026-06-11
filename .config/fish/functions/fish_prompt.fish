@@ -9,17 +9,15 @@ function fish_prompt
 
     function git_status
         set -g __fish_git_prompt_show_informative_status 1
-        set -g __fish_git_prompt_color_branch brmagenta
         set -g __fish_git_prompt_showupstream informative
         set -g __fish_git_prompt_showdirtystate yes
         set -g __fish_git_prompt_showuntrackedfiles yes
+        set -g __fish_git_prompt_color_branch brmagenta
         set -g __fish_git_prompt_color_stagedstate yellow
         set -g __fish_git_prompt_color_invalidstate red
         set -g __fish_git_prompt_color_cleanstate brgreen
         set -g __fish_git_prompt_color_dirtystate bryellow
         set -g __fish_git_prompt_color_untrackedfiles brcyan
-        set -g __fish_git_prompt_char_upstream_ahead green
-        set -g __fish_git_prompt_char_upstream_behind red
 
         # Status Chars
         set -g __fish_git_prompt_char_dirtystate '✎'
