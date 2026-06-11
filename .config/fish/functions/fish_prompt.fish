@@ -4,7 +4,7 @@ function fish_prompt
     end
 
     set_color yellow
-    printf '%s ' (prompt_pwd)
+    printf '%s' (prompt_pwd)
     set_color normal
 
     function git_status
