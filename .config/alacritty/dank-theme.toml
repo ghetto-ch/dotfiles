@@ -1,31 +1,31 @@
 [colors.primary]
-background = '#0c1515'
-foreground = '#dae5e3'
+background = '#171308'
+foreground = '#ece1cf'
 
 [colors.selection]
-text = '#dae5e3'
-background = '#6d3a00'
+text = '#ece1cf'
+background = '#5b3774'
 
 [colors.cursor]
-text = '#0c1515'
-cursor = '#ffb77a'
+text = '#171308'
+cursor = '#e2b6fd'
 
 [colors.normal]
-black   = '#0c1515'
-red     = '#ff746c'
-green   = '#90ff7a'
-yellow  = '#ffe56c'
-blue    = '#f2a05a'
-magenta = '#763805'
-cyan    = '#ffb77a'
-white   = '#fff6ef'
+black   = '#171308'
+red     = '#ff7289'
+green   = '#7efd9d'
+yellow  = '#ffdc72'
+blue    = '#d19ff0'
+magenta = '#5e3875'
+cyan    = '#e2b6fd'
+white   = '#f9efff'
 
 [colors.bright]
-black   = '#a59e98'
-red     = '#ffa09b'
-green   = '#b1ffa1'
-yellow  = '#ffeea1'
-blue    = '#ffc18d'
-magenta = '#ffcca1'
-cyan    = '#ffdec3'
-white   = '#fffbf8'
+black   = '#9f98a4'
+red     = '#ff9faf'
+green   = '#a5ffbb'
+yellow  = '#ffe8a5'
+blue    = '#e7c2ff'
+magenta = '#ebccff'
+cyan    = '#f2deff'
+white   = '#fcf8ff'
