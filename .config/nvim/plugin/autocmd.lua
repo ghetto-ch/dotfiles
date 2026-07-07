@@ -14,14 +14,6 @@ autocmd('FileType', {
 	command = 'wincmd L',
 })
 
--- Filetypes
-autocmd('FileType', {
-	pattern = { 'asciidoc', 'text', 'gitcommit' },
-	callback = function()
-		vim.opt_local.wrap = true
-	end,
-})
-
 -- Close these buffers with q
 autocmd('FileType', {
 	pattern = { 'man', 'help', 'qf' },
