@@ -13,8 +13,8 @@ o.wrap = false
 o.scrolloff = 999
 
 -- Indentation
-o.tabstop = 2
-o.softtabstop = 2
+o.tabstop = 4
+o.softtabstop = 4
 o.expandtab = false
 o.smartindent = true
 o.shiftwidth = 0
