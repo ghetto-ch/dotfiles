@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 				nix = { 'nixpkgs_fmt', lsp_format = 'never' },
 				yaml = { 'yamlfmt', 'prettier' },
 				toml = { 'taplo fmt' },
-				kdl = { 'kdlfmt' },
+				-- kdl = { 'kdlfmt' },
 				json = { 'prettier' },
 				rust = { 'rustfmt' },
 				haskell = { 'fourmolu' },
