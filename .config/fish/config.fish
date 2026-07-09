@@ -10,6 +10,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     set -g fish_greeting
     set -x PYTHON_KEYRING_BACKEND keyring.backends.null.Keyring
+    set -gx PARU_PAGER "aur-ai-review.sh"
 
     function fish_user_key_bindings
         # Execute this once per mode that emacs bindings should be used in
