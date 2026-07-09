@@ -1,5 +1,7 @@
 local o = vim.opt
 
+vim.g.c_syntax_for_h = 1
+
 o.undofile = true
 o.clipboard = 'unnamedplus'
 
@@ -17,7 +19,7 @@ o.tabstop = 4
 o.softtabstop = 4
 o.expandtab = false
 o.smartindent = true
-o.shiftwidth = 0
+o.shiftwidth = 4
 
 -- Search
 o.ignorecase = true

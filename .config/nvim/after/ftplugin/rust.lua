@@ -16,10 +16,3 @@ vim.treesitter.start()
 -- vim.wo[0][0].foldlevel = 99
 
 -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-
--- Indentation
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.expandtab = false
-vim.o.smartindent = true
-vim.o.shiftwidth = 0

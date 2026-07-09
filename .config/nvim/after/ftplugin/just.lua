@@ -1,6 +1,8 @@
 vim.lsp.enable('just')
 vim.treesitter.start()
 
+vim.o.expandtab = true
+
 -- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 -- vim.wo[0][0].foldmethod = 'expr'
 -- vim.wo[0][0].foldlevel = 99
