@@ -548,7 +548,7 @@
   "screenPreferences": {
     "notifications": [
       {
-        "name": "DP-2",
+        "name": "DP-1",
         "model": "DELL U2715H"
       }
     ],
@@ -557,19 +557,19 @@
     ],
     "osd": [
       {
-        "name": "DP-2",
+        "name": "DP-1",
         "model": "DELL U2715H"
       }
     ],
     "toast": [
       {
-        "name": "DP-2",
+        "name": "DP-1",
         "model": "DELL U2715H"
       }
     ],
     "notepad": [
       {
-        "name": "DP-2",
+        "name": "DP-1",
         "model": "DELL U2715H"
       }
     ]
@@ -579,7 +579,11 @@
     "osd": true,
     "toast": true
   },
-  "niriOutputSettings": {},
+  "niriOutputSettings": {
+    "DP-1": {
+      "focusAtStartup": true
+    }
+  },
   "hyprlandOutputSettings": {},
   "displayProfiles": {},
   "activeDisplayProfile": {},
@@ -595,7 +599,7 @@
       "position": 0,
       "screenPreferences": [
         {
-          "name": "DP-2",
+          "name": "DP-1",
           "model": "DELL U2715H"
         }
       ],

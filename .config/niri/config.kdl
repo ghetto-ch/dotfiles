@@ -20,12 +20,12 @@ cursor {
     hide-after-inactive-ms 5000
     hide-when-typing
 }
-output "eDP-1" {
-    mode "1920x1080@120.030"
-    scale 2
-    transform "normal"
-    position x=1280 y=0
-}
+// output "eDP-1" {
+//     mode "1920x1080@120.030"
+//     scale 2
+//     transform "normal"
+//     position x=1280 y=0
+// }
 layout {
     gaps 5
     center-focused-column "on-overflow"
@@ -43,7 +43,7 @@ layout {
         // off
         width 3
         // Color of the ring on the active monitor.
-        active-color "#7fc8ff"
+        active-color "#e2b6fd"
         // active-gradient to="#7fc8ff" from="#ff0000" angle=-45
         // Color of the ring on inactive monitors.
         inactive-color "#505050"
@@ -506,5 +506,5 @@ binds {
         switch-layout "next"
     }
 }
+// DMS Include Configs
 include "dms/outputs.kdl"
-
