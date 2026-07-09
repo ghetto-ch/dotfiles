@@ -582,6 +582,14 @@
   "niriOutputSettings": {
     "DP-1": {
       "focusAtStartup": true
+    },
+    "HDMI-A-2": {
+      "layout": {
+        "defaultColumnWidth": {
+          "type": "proportion",
+          "value": 1
+        }
+      }
     }
   },
   "hyprlandOutputSettings": {},
