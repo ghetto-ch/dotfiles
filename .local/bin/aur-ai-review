@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Se paru passa i file come argomenti, li leggiamo, altrimenti leggiamo dallo stdin
+if [ -n "$1" ] && [ -f "$1" ]; then
+	CONTENT=$(cat "$1")
+	FILE_NAME=$(basename "$1")
+else
+	# Se viene passato tramite stdin (comportamento tipico di molti pager)
+	CONTENT=$(cat)
+	FILE_NAME="PKGBUILD/Diff"
+fi
+
+# Se non c'è contenuto, esci senza errori
+if [ -z "$CONTENT" ]; then
+	exit 0
+fi
+
+echo -e "\n=== [AI REVIEW] Analisi di $FILE_NAME ==="
+
+# Prepariamo il prompt includendo il contenuto del file
+PROMPT=PROMPT="Sei un analista di sicurezza SOC esperto di Arch Linux. Il tuo unico compito è ispezionare i file PKGBUILD alla ricerca di indicatori di compromissione (IoC) o comportamenti altamente sospetti.
+
+Regole tassative di sicurezza da verificare:
+1. RICHIESTE DI RETE NASCOSTE: È vietato scaricare file (tramite curl, wget, o simili) all'interno delle funzioni build(), prepare() o package(). Qualsiasi download DEVE avvenire tassativamente tramite l'array ufficiale 'source=()'. Se trovi un comando di rete dentro una funzione, segnalalo come PERICOLO.
+2. MASCHERAMENTO E OFFUSCAMENTO: Ispeziona se file con estensioni innocue (es. .dat, .png, .txt) vengono eseguiti tramite interpreti (sh, bash, python). Questo è un chiaro tentativo di camuffamento.
+3. DOMINI SOSPETTI: Controlla gli URL. Se un pacchetto ufficiale (es. Adobe) scarica file da domini esterni non ufficiali, pastebin (es. pastebin, ptpb.ch) o accorciatori di URL, è una potenziale minaccia.
+4. ESECUZIONE IN BACKGROUND: L'uso del carattere '&' alla fine di un comando per avviarlo in background in modo silente è un indicatore di malware (es. backdoor/infostealer).
+
+Analizza il codice seguente. Se viola ANCHE UNA SOLA delle regole sopra, elenca la violazione specifica e spiega il rischio. Se rispetta tutte le regole in modo impeccabile, rispondi SEMPLICEMENTE con 'SICURO'.
+Ecco il contenuto del file da analizzare:
+$CONTENT"
+
+# RESPONSE=$(echo "$PROMPT" | agy)
+RESPONSE=$(echo "$PROMPT" | aichat)
+
+echo "$RESPONSE"
+echo "--------------------------------------------------"
