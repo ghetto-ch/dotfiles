@@ -1,0 +1,16 @@
+Language: Cpp
+BasedOnStyle: LLVM
+BreakBeforeBraces: Linux
+UseTab: Always
+IndentWidth: 4
+TabWidth: 4
+SpaceBeforeParens: ControlStatements
+AlignAfterOpenBracket: DontAlign
+PointerAlignment: Right
+ReferenceAlignment: Pointer
+DerivePointerAlignment: false
+BreakAfterReturnType: AllDefinitions
+AllowShortBlocksOnASingleLine: Always
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortLoopsOnASingleLine: true
