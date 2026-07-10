@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 					},
 
 					haskell = {
-						command = { 'ghci' },
+						command = { 'cabal', 'repl' },
 					},
 
 					-- end repl def
