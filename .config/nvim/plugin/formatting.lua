@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 			formatters_by_ft = {
 				lua = { 'stylua' },
 				python = { 'ruff_format' },
-				c = { 'astyle' },
+				c = { 'clang-format' },
 				go = { 'gofmt' },
 				sh = { 'shfmt' },
 				fish = { 'fish_indent' },
