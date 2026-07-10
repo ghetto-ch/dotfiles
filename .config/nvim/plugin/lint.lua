@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 	callback = function()
 		require('lint').linters_by_ft = {
 			markdown = { 'vale' },
-			asciidoc = { 'vale' },
+			-- asciidoc = { 'vale' },
 			python = { 'ruff' },
 			bash = { 'shellharden', 'shellcheck' },
 			haskell = { 'hlint' },
