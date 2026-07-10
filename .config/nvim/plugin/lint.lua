@@ -7,6 +7,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 			python = { 'ruff' },
 			bash = { 'shellharden', 'shellcheck' },
 			haskell = { 'hlint' },
+			c = { 'clang-tidy' },
 		}
 
 		vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
