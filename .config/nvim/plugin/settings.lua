@@ -3,11 +3,11 @@ local o = vim.opt
 vim.g.c_syntax_for_h = 1
 
 o.undofile = true
-o.clipboard = 'unnamedplus'
+o.clipboard = "unnamedplus"
 
 -- Visual settings
 o.termguicolors = true
-o.signcolumn = 'yes'
+o.signcolumn = "yes"
 o.cursorline = true
 o.relativenumber = true
 o.number = true
@@ -25,16 +25,16 @@ o.shiftwidth = 4
 o.ignorecase = true
 o.smartcase = true
 
-o.inccommand = 'split'
+o.inccommand = "split"
 
 -- o.list = true
-o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+o.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 o.splitbelow = true
 o.splitright = true
 
-o.wildmode = { 'longest:full', 'full' }
-o.completeopt = { 'menu', 'menuone', 'noselect' }
+o.wildmode = { "longest:full", "full" }
+o.completeopt = { "menu", "menuone", "noselect" }
 
 o.timeoutlen = 2000
 

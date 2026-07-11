@@ -1,2 +1,2 @@
-vim.lsp.enable('taplo')
+vim.lsp.enable("taplo")
 vim.treesitter.start()

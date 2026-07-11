@@ -1,2 +1,2 @@
-vim.lsp.enable('gopls')
+vim.lsp.enable("gopls")
 vim.treesitter.start()

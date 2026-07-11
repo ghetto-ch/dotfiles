@@ -1,18 +1,18 @@
-vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter' }, {
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
 	once = true,
 	callback = function()
-		require('blink.cmp').setup({
+		require("blink.cmp").setup({
 			keymap = {
-				['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-				['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-				['<CR>'] = { 'accept', 'fallback' },
+				["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+				["<CR>"] = { "accept", "fallback" },
 			},
 			completion = {
 				list = {
 					selection = { preselect = false, auto_insert = true },
 				},
 				menu = {
-					border = 'none',
+					border = "none",
 				},
 			},
 			cmdline = {
@@ -23,15 +23,15 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter' }, {
 				},
 			},
 			snippets = {
-				preset = 'default',
+				preset = "default",
 			},
 			sources = {
 				-- add lazydev to your completion providers
-				default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'cmdline' },
+				default = { "lazydev", "lsp", "path", "snippets", "buffer", "cmdline" },
 				providers = {
 					lazydev = {
-						name = 'LazyDev',
-						module = 'lazydev.integrations.blink',
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 100,
 					},
