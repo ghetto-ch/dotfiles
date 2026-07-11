@@ -42,16 +42,18 @@ require('tree-sitter-manager').setup({
 })
 
 -- Treestitter textobjects
-vim.g.no_plugin_maps = true
 require('nvim-treesitter-textobjects').setup({
 	select = {
 		lookahead = true,
 		selection_modes = {
 			['@parameter.outer'] = 'v', -- charwise
 			['@function.outer'] = 'V', -- linewise
-			['@class.outer'] = '<c-v>', -- blockwise
+			['@class.outer'] = 'V', -- blockwise
 		},
 		include_surrounding_whitespace = false,
+	},
+	move = {
+		set_jumps = true,
 	},
 })
 
@@ -79,9 +81,97 @@ vim.keymap.set({ 'x', 'o' }, 'ic', function()
 		'textobjects'
 	)
 end)
-vim.keymap.set({ 'x', 'o' }, 'as', function()
+vim.keymap.set({ 'x', 'o' }, 'ia', function()
 	require('nvim-treesitter-textobjects.select').select_textobject(
-		'@local.scope',
-		'locals'
+		'@parameter.inner',
+		'textobjects'
 	)
 end)
+vim.keymap.set({ 'x', 'o' }, 'aa', function()
+	require('nvim-treesitter-textobjects.select').select_textobject(
+		'@parameter.outer',
+		'textobjects'
+	)
+end)
+
+-- Swap objects
+vim.keymap.set({ 'n' }, 'cxa', function()
+	require('nvim-treesitter-textobjects.swap').swap_next(
+		'@parameter.inner',
+		'textobjects'
+	)
+end)
+vim.keymap.set({ 'n' }, 'cxA', function()
+	require('nvim-treesitter-textobjects.swap').swap_previous(
+		'@parameter.inner',
+		'textobjects'
+	)
+end)
+
+-- Jumps
+vim.keymap.set({ 'n', 'x', 'o' }, ']f', function()
+	require('nvim-treesitter-textobjects.move').goto_next_start(
+		{ '@class.outer', '@function.outer' },
+		'textobjects'
+	)
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[f', function()
+	require('nvim-treesitter-textobjects.move').goto_previous_start(
+		{ '@class.outer', '@function.outer' },
+		'textobjects'
+	)
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
+	require('nvim-treesitter-textobjects.move').goto_next(
+		{ '@block.outer', '@call.outer' },
+		'textobjects'
+	)
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[[', function()
+	require('nvim-treesitter-textobjects.move').goto_previous(
+		{ '@block.outer', '@call.outer' },
+		'textobjects'
+	)
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '<M-]>', function()
+	require('nvim-treesitter-textobjects.move').goto_next_start(
+		{ '@block.outer', '@call.outer' },
+		'textobjects'
+	)
+end)
+vim.keymap.set({ 'n', 'x', 'o' }, '<M-[>', function()
+	require('nvim-treesitter-textobjects.move').goto_previous_start(
+		{ '@block.outer', '@call.outer' },
+		'textobjects'
+	)
+end)
+
+-- Nodes
+-- @attribute.inner
+-- @attribute.outer
+-- @function.inner
+-- @function.outer
+-- @class.inner
+-- @class.outer
+-- @conditional.inner
+-- @conditional.outer
+-- @loop.inner
+-- @loop.outer
+-- @call.inner
+-- @call.outer
+-- @block.inner
+-- @block.outer
+-- @parameter.inner
+-- @parameter.outer
+-- @regex.inner
+-- @regex.outer
+-- @comment.inner
+-- @comment.outer
+-- @assignment.inner
+-- @assignment.outer
+-- @return.inner
+-- @return.outer
+
+-- For LaTeX frames
+-- @frame.inner
+-- @frame.outer
