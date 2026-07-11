@@ -147,30 +147,35 @@ vim.keymap.set({ 'n', 'x', 'o' }, '<M-[>', function()
 end)
 
 -- Nodes
+-- @assignment.inner
+-- @assignment.lhs
+-- @assignment.outer
+-- @assignment.rhs
 -- @attribute.inner
 -- @attribute.outer
--- @function.inner
--- @function.outer
--- @class.inner
--- @class.outer
--- @conditional.inner
--- @conditional.outer
--- @loop.inner
--- @loop.outer
--- @call.inner
--- @call.outer
 -- @block.inner
 -- @block.outer
+-- @call.inner
+-- @call.outer
+-- @class.inner
+-- @class.outer
+-- @comment.inner
+-- @comment.outer
+-- @conditional.inner
+-- @conditional.outer
+-- @function.inner
+-- @function.outer
+-- @loop.inner
+-- @loop.outer
+-- @number.inner
 -- @parameter.inner
 -- @parameter.outer
 -- @regex.inner
 -- @regex.outer
--- @comment.inner
--- @comment.outer
--- @assignment.inner
--- @assignment.outer
 -- @return.inner
 -- @return.outer
+-- @scopename.inner
+-- @statement.outer
 
 -- For LaTeX frames
 -- @frame.inner
