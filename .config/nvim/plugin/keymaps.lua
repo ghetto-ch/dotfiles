@@ -106,13 +106,9 @@ end, { expr = true })
 
 map('t', '<Esc>', [[<C-\><C-n>]])
 
--- Show diagnostics popup
--- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-
--- -- Show diagnostics on jump
--- vim.keymap.set('n', ']d', function()
--- 	vim.diagnostic.jump({ count = 1, float = true })
--- end)
--- vim.keymap.set('n', '[d', function()
--- 	vim.diagnostic.jump({ count = -1, float = true })
--- end)
+-- Experimental, exchange words
+-- TODO: solve bugs when at the end of the line
+map('n', 'cxw', 'dawwP')
+map('n', 'cxW', 'daWWP')
+map('n', 'cxb', 'dawbP')
+map('n', 'cxB', 'daWBP')
