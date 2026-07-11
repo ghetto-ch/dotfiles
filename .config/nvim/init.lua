@@ -55,9 +55,3 @@ local plugins = {
 	'https://github.com/Vigemus/iron.nvim',
 }
 vim.pack.add(plugins)
-
--- For Neovide (testing)
-if vim.g.neovide then
-	vim.o.guifont = 'Hack Nerd Font Mono:h12'
-	vim.o.background = 'dark'
-end
