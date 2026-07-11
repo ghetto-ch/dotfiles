@@ -1,4 +1,4 @@
 function ls --wraps=eza
-    eza --group-directories-first --loc $argv
+    eza --group-directories-first $argv
 
 end
