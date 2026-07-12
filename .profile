@@ -1,6 +1,6 @@
 # Variables
 export EDITOR=nvim
-export TERMINAL=foot
+export TERMINAL=wezterm
 export BROWSER=firefox
 export X_FILEMANAGER=thunar
 export CLI_FILEMANAGER=yazi

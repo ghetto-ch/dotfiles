@@ -71,9 +71,9 @@ window-rule {
         blur true
     }
 }
-// Enable blur behind Neovide
+// Enable blur behind wezterm
 window-rule {
-    match app-id="^neovide$"
+    match app-id="^org.wezfurlong.wezterm$"
     background-effect {
         blur true
     }
@@ -89,7 +89,7 @@ binds {
         show-hotkey-overlay
     }
     Mod+T hotkey-overlay-title="Open a Terminal" {
-        spawn "foot"
+        spawn "terminal"
     }
     Mod+space hotkey-overlay-title="Run an Application" {
         spawn-sh "dms ipc call spotlight toggle"
