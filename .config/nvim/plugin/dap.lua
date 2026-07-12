@@ -1,24 +1,24 @@
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 	once = true,
 	callback = function()
 		-- Setup
-		local dap = require("dap")
-		local dv = require("dap-view")
+		local dap = require('dap')
+		local dv = require('dap-view')
 
-		require("dap-view").setup({
+		require('dap-view').setup({
 			auto_toggle = true,
 			winbar = {
 				show = true,
 				sections = {
-					"watches",
-					"scopes",
-					"exceptions",
-					"breakpoints",
-					"threads",
-					"repl",
+					'watches',
+					'scopes',
+					'exceptions',
+					'breakpoints',
+					'threads',
+					'repl',
 					-- 'console',
 				},
-				default_section = "scopes",
+				default_section = 'scopes',
 				controls = {
 					enabled = true,
 				},
@@ -28,21 +28,21 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 				size = 0.3,
 				terminal = {
 					size = 0.3,
-					position = "below",
+					position = 'below',
 				},
 			},
 
 			-- Virtual text inline (richiede Neovim 0.12+)
 			virtual_text = {
 				enabled = true,
-				position = "inline", -- "inline" | "eol" | "eol_right_align"
+				position = 'inline', -- "inline" | "eol" | "eol_right_align"
 				format = function(variable, _, _)
-					return " " .. variable.value
+					return ' ' .. variable.value
 				end,
 			},
 
-			hover = { border = "rounded" },
-			help = { border = "rounded" },
+			hover = { border = 'rounded' },
+			help = { border = 'rounded' },
 		})
 
 		-- stylua: ignore start
@@ -70,53 +70,65 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		map('n', '<leader>dv', dv.toggle,             { noremap = true })
 		map('n', '<leader>dw', dv.add_expr,           { noremap = true })
 		-- stylua: ignore end
-		map("n", "<leader>ds", function()
-			dap.set_breakpoint(vim.fn.input("Condition: "))
+		map('n', '<leader>ds', function()
+			dap.set_breakpoint(vim.fn.input('Condition: '))
 		end, { noremap = true })
 
 		-- ############################################################################
 		-- C, C++
 		-- ############################################################################
 		dap.adapters.gdb = {
-			type = "executable",
-			command = "gdb",
-			args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+			type = 'executable',
+			command = 'gdb',
+			args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
 		}
 
 		dap.configurations.c = {
 			{
-				name = "Launch",
-				type = "gdb",
-				request = "launch",
+				name = 'Launch',
+				type = 'gdb',
+				request = 'launch',
 				program = function()
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					return vim.fn.input(
+						'Path to executable: ',
+						vim.fn.getcwd() .. '/',
+						'file'
+					)
 				end,
 				args = {}, -- provide arguments if needed
-				cwd = "${workspaceFolder}",
+				cwd = '${workspaceFolder}',
 				stopAtBeginningOfMainSubprogram = false,
 			},
 			{
-				name = "Select and attach to process",
-				type = "gdb",
-				request = "attach",
+				name = 'Select and attach to process',
+				type = 'gdb',
+				request = 'attach',
 				program = function()
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					return vim.fn.input(
+						'Path to executable: ',
+						vim.fn.getcwd() .. '/',
+						'file'
+					)
 				end,
 				pid = function()
-					local name = vim.fn.input("Executable name (filter): ")
-					return require("dap.utils").pick_process({ filter = name })
+					local name = vim.fn.input('Executable name (filter): ')
+					return require('dap.utils').pick_process({ filter = name })
 				end,
-				cwd = "${workspaceFolder}",
+				cwd = '${workspaceFolder}',
 			},
 			{
-				name = "Attach to gdbserver :1234",
-				type = "gdb",
-				request = "attach",
-				target = "localhost:1234",
+				name = 'Attach to gdbserver :1234',
+				type = 'gdb',
+				request = 'attach',
+				target = 'localhost:1234',
 				program = function()
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					return vim.fn.input(
+						'Path to executable: ',
+						vim.fn.getcwd() .. '/',
+						'file'
+					)
 				end,
-				cwd = "${workspaceFolder}",
+				cwd = '${workspaceFolder}',
 			},
 		}
 		dap.configurations.cpp = dap.configurations.c
@@ -125,8 +137,8 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		-- Rust
 		-- ############################################################################
 		dap.adapters.codelldb = {
-			type = "executable",
-			command = "codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
+			type = 'executable',
+			command = 'codelldb', -- or if not in $PATH: "/absolute/path/to/codelldb"
 
 			-- On windows you may have to uncomment this:
 			-- detached = false,
@@ -134,13 +146,17 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 
 		dap.configurations.rust = {
 			{
-				name = "Launch file",
-				type = "codelldb",
-				request = "launch",
+				name = 'Launch file',
+				type = 'codelldb',
+				request = 'launch',
 				program = function()
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					return vim.fn.input(
+						'Path to executable: ',
+						vim.fn.getcwd() .. '/',
+						'file'
+					)
 				end,
-				cwd = "${workspaceFolder}",
+				cwd = '${workspaceFolder}',
 				stopOnEntry = false,
 			},
 		}
@@ -148,11 +164,11 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		-- ############################################################################
 		-- Python
 		-- ############################################################################
-		require("dap-python").setup("uv")
+		require('dap-python').setup('uv')
 
 		-- ############################################################################
 		-- GO
 		-- ############################################################################
-		require("dap-go").setup()
+		require('dap-go').setup()
 	end,
 })

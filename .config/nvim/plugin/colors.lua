@@ -1,4 +1,4 @@
-require("kanagawa").setup({
+require('kanagawa').setup({
 	transparent = true,
 	-- dimInactive = true,
 
@@ -7,10 +7,10 @@ require("kanagawa").setup({
 
 		return {
 			TelescopeTitle = { fg = theme.ui.special, bold = true },
-			TelescopeBorder = { bg = "NONE" },
-			NormalFloat = { bg = "NONE" },
-			FloatBorder = { bg = "NONE" },
-			WinSeparator = { fg = "#54546d" },
+			TelescopeBorder = { bg = 'NONE' },
+			NormalFloat = { bg = 'NONE' },
+			FloatBorder = { bg = 'NONE' },
+			WinSeparator = { fg = '#54546d' },
 		}
 	end,
 
@@ -18,15 +18,15 @@ require("kanagawa").setup({
 		theme = {
 			all = {
 				ui = {
-					bg_gutter = "NONE",
+					bg_gutter = 'NONE',
 				},
 			},
 		},
 	},
 })
 
-vim.cmd("colorscheme kanagawa")
+vim.cmd('colorscheme kanagawa')
 
 -- Not directly related to the colorscheme, but still appearance
 -- vim.diagnostic.config({ float = { border = 'rounded' } })
-vim.o.winborder = "rounded"
+vim.o.winborder = 'rounded'

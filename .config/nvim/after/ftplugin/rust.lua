@@ -1,12 +1,12 @@
 vim.lsp.config.rust_analyzer = {
 	settings = {
-		["rust-analyzer"] = {
+		['rust-analyzer'] = {
 			check = {
-				command = "clippy",
+				command = 'clippy',
 			},
 		},
 	},
 }
-vim.lsp.enable("rust_analyzer")
+vim.lsp.enable('rust_analyzer')
 
 vim.treesitter.start()

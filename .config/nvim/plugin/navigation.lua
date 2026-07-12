@@ -1,7 +1,7 @@
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 	once = true,
 	callback = function()
-		require("flash").setup({
+		require('flash').setup({
 			modes = {
 				search = {
 					enabled = true,
@@ -12,8 +12,8 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 			},
 		})
 
-		require("eyeliner").setup({})
-		vim.api.nvim_set_hl(0, "EyelinerPrimary", { fg = "#BF0000", bold = true })
-		vim.api.nvim_set_hl(0, "EyelinerSecondary", { fg = "#BF0000" })
+		require('eyeliner').setup({})
+		vim.api.nvim_set_hl(0, 'EyelinerPrimary', { fg = '#BF0000', bold = true })
+		vim.api.nvim_set_hl(0, 'EyelinerSecondary', { fg = '#BF0000' })
 	end,
 })

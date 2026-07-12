@@ -6,10 +6,10 @@ vim.opt_local.expandtab = true
 vim.lsp.config.hls = {
 	settings = {
 		haskell = {
-			formattingProvider = "fourmolu", -- Specifica Fourmolu come formatter
+			formattingProvider = 'fourmolu', -- Specifica Fourmolu come formatter
 		},
 	},
 }
-vim.lsp.enable("hls")
+vim.lsp.enable('hls')
 
 vim.treesitter.start()
