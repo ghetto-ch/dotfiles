@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
 
 local plugins = {
 	'https://github.com/rebelot/kanagawa.nvim',
-	'https://github.com/christoomey/vim-tmux-navigator',
+	'https://github.com/mrjones2014/smart-splits.nvim',
 	'https://github.com/nvim-lua/plenary.nvim',
 	'https://github.com/nvim-tree/nvim-web-devicons',
 	'https://github.com/nvim-lualine/lualine.nvim',
@@ -53,7 +53,6 @@ local plugins = {
 	'https://github.com/leoluz/nvim-dap-go',
 	'https://github.com/mfussenegger/nvim-lint',
 	'https://github.com/OXY2DEV/markview.nvim',
-	-- "https://github.com/Vigemus/iron.nvim",
 	-- 'https://github.com/ghetto-ch/tunnell.nvim',
 	'~/Develop/neovim/tunnell.nvim',
 }
