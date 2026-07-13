@@ -3,6 +3,23 @@ require('vim._core.ui2').enable({})
 
 vim.g.mapleader = ' '
 
+-- Arch puts system-wide Vim plugins (black.vim, fzf.vim, ...) on the rtp
+vim.opt.runtimepath:remove('/usr/share/vim/vimfiles')
+vim.opt.runtimepath:remove('/usr/share/vim/vimfiles/after')
+
+-- Disable unused providers and default runtime plugins
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_gzip = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tutor_mode_plugin = 1
+vim.g.loaded_remote_plugins = 1
+-- oil replaces netrw (see plugin/filemanager.lua)
+vim.g.loaded_netrwPlugin = 1
+
 -- Hooks for plugins
 local hooks = function(ev)
 	local name, kind = ev.data.spec.name, ev.data.kind
