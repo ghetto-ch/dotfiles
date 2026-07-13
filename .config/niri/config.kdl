@@ -78,6 +78,11 @@ window-rule {
         blur true
     }
 }
+// Zeinity always float
+window-rule {
+    match app-id="^zenity$"
+    open-floating true
+}
 window-rule {
     geometry-corner-radius 8
     clip-to-geometry true
