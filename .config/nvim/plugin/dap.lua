@@ -1,6 +1,10 @@
 vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 	once = true,
 	callback = function()
+		vim.cmd.packadd('nvim-dap')
+		vim.cmd.packadd('nvim-dap-view')
+		vim.cmd.packadd('nvim-dap-python')
+		vim.cmd.packadd('nvim-dap-go')
 		-- Setup
 		local dap = require('dap')
 		local dv = require('dap-view')

@@ -35,6 +35,7 @@ end, { desc = 'Scroll opencode down' })
 vim.api.nvim_create_autocmd('InsertEnter', {
 	once = true,
 	callback = function()
+		vim.cmd.packadd('copilot.lua')
 		require('copilot').setup({
 			panel = {
 				enabled = true,

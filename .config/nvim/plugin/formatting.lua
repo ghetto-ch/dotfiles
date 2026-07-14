@@ -1,6 +1,7 @@
 vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 	once = true,
 	callback = function()
+		vim.cmd.packadd('conform.nvim')
 		require('conform').setup({
 			formatters_by_ft = {
 				lua = { 'stylua' },

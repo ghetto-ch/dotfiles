@@ -1,6 +1,7 @@
 vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter' }, {
 	once = true,
 	callback = function()
+		vim.cmd.packadd('blink.cmp')
 		require('blink.cmp').setup({
 			keymap = {
 				['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },

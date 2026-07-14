@@ -1,6 +1,7 @@
 vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 	once = true,
 	callback = function()
+		vim.cmd.packadd('tree-sitter-manager.nvim')
 		-- Install parsers and queries
 		require('tree-sitter-manager').setup({
 			ensure_installed = {
@@ -45,6 +46,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
 		})
 
 		-- Treestitter textobjects
+		vim.cmd.packadd('nvim-treesitter-textobjects')
 		require('nvim-treesitter-textobjects').setup({
 			select = {
 				lookahead = true,

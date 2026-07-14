@@ -1,4 +1,6 @@
 local function load_telescope()
+	vim.cmd.packadd('telescope.nvim')
+	vim.cmd.packadd('telescope-fzf-native.nvim')
 	local telescope = require('telescope')
 	local builtin = require('telescope.builtin')
 
