@@ -1,22 +1,22 @@
 {
-	"$schema": "https://opencode.ai/config.json",
-	"default_agent": "plan",
-	"model": "ollama/qwen3-coder-next:cloud",
-	"server": {
-		"port": 4096
-	},
-	"provider": {
-		"ollama": {
-			"npm": "@ai-sdk/openai-compatible",
-			"name": "Ollama (local)",
-			"options": {
-				"baseURL": "http://localhost:11434/v1"
-			},
-			"models": {
-				"qwen3-coder-next:cloud": {
-					"name": "Qwen3-Coder-Next"
-				}
-			}
-		}
-	}
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "model": "ollama/minimax-m3:cloud",
+  "server": {
+    "port": 4096
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "minimax-m3:cloud": {
+          "name": "minimax-m3:cloud"
+        }
+      }
+    }
+  }
 }

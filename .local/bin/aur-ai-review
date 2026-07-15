@@ -18,20 +18,28 @@ fi
 echo -e "\n=== [AI REVIEW] Analisi di $FILE_NAME ==="
 
 # Prepariamo il prompt includendo il contenuto del file
-PROMPT=PROMPT="Sei un analista di sicurezza SOC esperto di Arch Linux. Il tuo unico compito è ispezionare i file PKGBUILD alla ricerca di indicatori di compromissione (IoC) o comportamenti altamente sospetti.
+PROMPT="You are an expert SOC security analyst specializing in Arch Linux packaging. Your only task is to inspect PKGBUILD files (or diffs of them) for indicators of compromise (IoCs) or highly suspicious behavior. You are not reviewing code style or packaging conventions — only security.
 
-Regole tassative di sicurezza da verificare:
-1. RICHIESTE DI RETE NASCOSTE: È vietato scaricare file (tramite curl, wget, o simili) all'interno delle funzioni build(), prepare() o package(). Qualsiasi download DEVE avvenire tassativamente tramite l'array ufficiale 'source=()'. Se trovi un comando di rete dentro una funzione, segnalalo come PERICOLO.
-2. MASCHERAMENTO E OFFUSCAMENTO: Ispeziona se file con estensioni innocue (es. .dat, .png, .txt) vengono eseguiti tramite interpreti (sh, bash, python). Questo è un chiaro tentativo di camuffamento.
-3. DOMINI SOSPETTI: Controlla gli URL. Se un pacchetto ufficiale (es. Adobe) scarica file da domini esterni non ufficiali, pastebin (es. pastebin, ptpb.ch) o accorciatori di URL, è una potenziale minaccia.
-4. ESECUZIONE IN BACKGROUND: L'uso del carattere '&' alla fine di un comando per avviarlo in background in modo silente è un indicatore di malware (es. backdoor/infostealer).
+Check strictly for these violations:
 
-Analizza il codice seguente. Se viola ANCHE UNA SOLA delle regole sopra, elenca la violazione specifica e spiega il rischio. Se rispetta tutte le regole in modo impeccabile, rispondi SEMPLICEMENTE con 'SICURO'.
-Ecco il contenuto del file da analizzare:
+1. HIDDEN NETWORK REQUESTS: Downloading files (via curl, wget, git clone, nc, or similar) inside the build(), prepare(), package(), or any pkgver()/*_check() function is forbidden. All downloads MUST go exclusively through the official source=() array, so they are verified against the checksum arrays (sha256sums=, b2sums=, etc.). Flag any network command found inside a function body as DANGER.
+2. MASQUERADING / OBFUSCATION: Look for files with innocuous extensions (.dat, .png, .txt, .conf, etc.) that are actually executed through an interpreter (sh, bash, python, perl, eval, source). This is a clear disguise attempt. Also flag base64/hex-encoded blobs that get decoded and executed, and unusually long or randomized variable/function names meant to hide intent.
+3. SUSPICIOUS DOMAINS: Check every URL in source=() and anywhere else in the file. Flag URLs that don't match the project's official upstream domain, as well as pastebin-style services (pastebin.com, ptpb.ch, gist, ix.io, termbin), URL shorteners (bit.ly, tinyurl, t.co), raw IP addresses, or newly-registered-looking domains.
+4. SILENT BACKGROUND EXECUTION: Trailing '&' (or nohup/disown/setsid) used to launch a process in the background without the user noticing is a common backdoor/infostealer pattern — flag it.
+5. PRIVILEGE / PERSISTENCE ABUSE: Flag any use of sudo/su, writes outside $srcdir/$pkgdir (e.g. to $HOME, /etc, systemd unit/timer directories, shell rc files, cron), or code that modifies .bashrc/.profile/.zshrc/.bash_profile — these indicate an attempt to gain persistence or escalate privileges beyond what packaging requires.
+6. EXFILTRATION: Flag any command that reads sensitive files (SSH keys, GPG keys, browser profiles, environment variables, /etc/passwd or /etc/shadow) and sends them anywhere over the network.
+
+Analyze the following content. If it violates ANY of the rules above, list each specific violation, quote the offending line(s), and explain the concrete risk. If it is clean on every rule, respond with EXACTLY: SAFE — and nothing else.
+
+Content to analyze:
 $CONTENT"
 
 # RESPONSE=$(echo "$PROMPT" | agy)
 RESPONSE=$(echo "$PROMPT" | aichat)
+
+# Il modello espone il suo ragionamento tra tag <think>...</think>: lo scartiamo,
+# ci interessa solo la risposta finale (SAFE/violazioni).
+RESPONSE=$(sed '/<think>/,/<\/think>/d' <<< "$RESPONSE")
 
 echo "$RESPONSE"
 echo "--------------------------------------------------"
