@@ -50,6 +50,8 @@ local plugins = {
 	'https://github.com/nickjvandyke/opencode.nvim',
 	'https://github.com/OXY2DEV/markview.nvim',
 	'https://github.com/ghetto-ch/tunnell.nvim',
+	'https://github.com/folke/flash.nvim',
+	'https://github.com/cosmicbuffalo/eyeliner.nvim',
 	-- '~/Develop/neovim/tunnell.nvim',
 }
 vim.pack.add(plugins)
@@ -59,8 +61,6 @@ local lazy_plugins = {
 	'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
 	'https://github.com/romus204/tree-sitter-manager.nvim',
 	'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
-	'https://github.com/folke/flash.nvim',
-	'https://github.com/cosmicbuffalo/eyeliner.nvim',
 	'https://github.com/kylechui/nvim-surround',
 	'https://github.com/windwp/nvim-autopairs',
 	'https://github.com/stevearc/conform.nvim',

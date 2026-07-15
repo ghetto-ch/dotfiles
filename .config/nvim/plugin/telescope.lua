@@ -31,6 +31,10 @@ vim.keymap.set('n', '<leader>gs', function()
 	local builtin = load_telescope()
 	builtin.grep_string()
 end)
+vim.keymap.set('n', 'grr', function()
+	local builtin = load_telescope()
+	builtin.lsp_references()
+end)
 
 -- Search Neovim configuration files
 vim.keymap.set('n', '<leader>fn', function()
@@ -39,14 +43,14 @@ vim.keymap.set('n', '<leader>fn', function()
 end)
 
 -- registers
-vim.keymap.set('n', '"', function()
-	local builtin = load_telescope()
-	builtin.registers()
-end)
-vim.keymap.set('i', '<c-r>', function()
-	local builtin = load_telescope()
-	builtin.registers()
-end)
+-- vim.keymap.set('n', '"', function()
+-- 	local builtin = load_telescope()
+-- 	builtin.registers()
+-- end)
+-- vim.keymap.set('i', '<c-r>', function()
+-- 	local builtin = load_telescope()
+-- 	builtin.registers()
+-- end)
 
 -- The rest
 vim.keymap.set('n', '<leader>b', function()
