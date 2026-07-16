@@ -335,8 +335,8 @@
   "launcherLogoBrightness": 0.5,
   "launcherLogoContrast": 1,
   "launcherLogoSizeOffset": 0,
-  "fontFamily": "Inter Variable",
-  "monoFontFamily": "Hack Nerd Font Mono",
+  "fontFamily": "DejaVu Sans",
+  "monoFontFamily": "DejaVu Sans Mono",
   "fontWeight": 400,
   "fontScale": 1.2,
   "textRenderType": 0,
@@ -557,9 +557,7 @@
         "model": "DELL U2715H"
       }
     ],
-    "wallpaper": [
-      "all"
-    ],
+    "wallpaper": ["all"],
     "osd": [
       {
         "name": "DP-1",
@@ -617,14 +615,8 @@
         }
       ],
       "showOnLastDisplay": true,
-      "leftWidgets": [
-        "launcherButton",
-        "workspaceSwitcher",
-        "focusedWindow"
-      ],
-      "centerWidgets": [
-        "clock"
-      ],
+      "leftWidgets": ["launcherButton", "workspaceSwitcher", "focusedWindow"],
+      "centerWidgets": ["clock"],
       "rightWidgets": [
         {
           "id": "systemUpdate",
@@ -703,9 +695,7 @@
   "desktopClockY": -1,
   "desktopClockWidth": 280,
   "desktopClockHeight": 180,
-  "desktopClockDisplayPreferences": [
-    "all"
-  ],
+  "desktopClockDisplayPreferences": ["all"],
   "systemMonitorEnabled": false,
   "systemMonitorShowHeader": true,
   "systemMonitorTransparency": 0.8,
@@ -742,9 +732,7 @@
   "systemMonitorY": -1,
   "systemMonitorWidth": 320,
   "systemMonitorHeight": 480,
-  "systemMonitorDisplayPreferences": [
-    "all"
-  ],
+  "systemMonitorDisplayPreferences": ["all"],
   "systemMonitorVariants": [],
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
@@ -759,11 +747,7 @@
   "clipboardEnterToPaste": false,
   "clipboardRememberTypeFilter": false,
   "clipboardTypeFilter": "all",
-  "clipboardVisibleEntryActions": [
-    "pin",
-    "edit",
-    "delete"
-  ],
+  "clipboardVisibleEntryActions": ["pin", "edit", "delete"],
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],
   "frameEnabled": false,
@@ -771,9 +755,7 @@
   "frameRounding": 23,
   "frameColor": "#e91e63",
   "frameOpacity": 1,
-  "frameScreenPreferences": [
-    "all"
-  ],
+  "frameScreenPreferences": ["all"],
   "frameBarSize": 40,
   "frameShowOnOverview": true,
   "frameBlurEnabled": true,
