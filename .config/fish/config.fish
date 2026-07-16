@@ -1,6 +1,8 @@
 if status is-interactive
     # if set -q SSH_TTY && not set -q __sourced_profile
-    if set -q SSH_TTY && not set -q __sourced_profile
+    if set -q SSH_TTY \
+            || set -q WSLENV \
+            && not set -q __sourced_profile
         set -x __sourced_profile 1
         exec bash -c "\
 					test -e /etc/profile && source /etc/profile
