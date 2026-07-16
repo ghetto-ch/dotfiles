@@ -8,7 +8,7 @@ review_content() {
 		return 0
 	fi
 
-	echo -e "\n=== [AI REVIEW] Analisi di $FILE_NAME ==="
+	echo -e "\n=== [AI REVIEW] Checking $FILE_NAME ==="
 
 	PROMPT="You are an expert SOC security analyst specializing in Arch Linux packaging.
 Your only task is to inspect PKGBUILD files (or diffs of them) for indicators of
