@@ -1,24 +1,16 @@
 #!/bin/bash
 
-# Se paru passa i file come argomenti, li leggiamo, altrimenti leggiamo dallo stdin
-if [ -n "$1" ] && [ -f "$1" ]; then
-	CONTENT=$(cat "$1")
-	FILE_NAME=$(basename "$1")
-else
-	# Se viene passato tramite stdin (comportamento tipico di molti pager)
-	CONTENT=$(cat)
-	FILE_NAME="PKGBUILD/Diff"
-fi
+review_content() {
+	CONTENT="$1"
+	FILE_NAME="$2"
 
-# Se non c'è contenuto, esci senza errori
-if [ -z "$CONTENT" ]; then
-	exit 0
-fi
+	if [ -z "$CONTENT" ]; then
+		return 0
+	fi
 
-echo -e "\n=== [AI REVIEW] Analisi di $FILE_NAME ==="
+	echo -e "\n=== [AI REVIEW] Analisi di $FILE_NAME ==="
 
-# Prepariamo il prompt includendo il contenuto del file
-PROMPT="You are an expert SOC security analyst specializing in Arch Linux packaging.
+	PROMPT="You are an expert SOC security analyst specializing in Arch Linux packaging.
 Your only task is to inspect PKGBUILD files (or diffs of them) for indicators of
 compromise (IoCs) or highly suspicious behavior. You are not reviewing code style
 or packaging conventions — only security.
@@ -56,12 +48,23 @@ If it is clean on every rule, respond with EXACTLY: SAFE — and nothing else.
 Content to analyze:
 $CONTENT"
 
-# RESPONSE=$(echo "$PROMPT" | agy)
-RESPONSE=$(echo "$PROMPT" | aichat)
+	# RESPONSE=$(echo "$PROMPT" | agy)
+	RESPONSE=$(echo "$PROMPT" | aichat)
 
-# Il modello espone il suo ragionamento tra tag <think>...</think>: lo scartiamo,
-# ci interessa solo la risposta finale (SAFE/violazioni).
-RESPONSE=$(sed '/<think>/,/<\/think>/d' <<<"$RESPONSE")
+	RESPONSE=$(sed '/<think>/,/<\/think>/d' <<<"$RESPONSE")
 
-echo "$RESPONSE"
-echo "--------------------------------------------------"
+	echo "$RESPONSE"
+	echo "--------------------------------------------------"
+}
+
+if [ "$#" -gt 0 ]; then
+	for FILE in "$@"; do
+		if [ -f "$FILE" ]; then
+			review_content "$(cat "$FILE")" "$(basename "$FILE")"
+		else
+			echo "aur-ai-review: '$FILE' invalid." >&2
+		fi
+	done
+else
+	review_content "$(cat)" "PKGBUILD/Diff"
+fi
