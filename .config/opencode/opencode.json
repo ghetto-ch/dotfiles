@@ -2,8 +2,25 @@
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "plan",
   "model": "ollama/minimax-m3:cloud",
+  "shell": "/bin/bash",
   "server": {
     "port": 4096
+  },
+  "permission": {
+    "bash": {
+      "*": "allow",
+      "rm -rf *": "ask",
+      "rm -rf /*": "deny",
+      "systemctl stop *": "ask",
+      "systemctl restart *": "ask",
+      "systemctl disable *": "ask",
+      "pacman -R*": "ask",
+      "pacman -Syu*": "ask",
+      "dd *": "ask",
+      "mkfs*": "ask",
+      "git push*": "ask",
+      "git reset --hard*": "ask"
+    }
   },
   "provider": {
     "ollama": {
