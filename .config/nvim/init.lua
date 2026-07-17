@@ -19,6 +19,9 @@ vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_remote_plugins = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Neovim clashes with fish...
+vim.o.shell = '/bin/bash'
+
 -- Hooks for plugins
 local hooks = function(ev)
 	local name, kind = ev.data.spec.name, ev.data.kind
