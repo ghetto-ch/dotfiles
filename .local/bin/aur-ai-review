@@ -49,7 +49,11 @@ Content to analyze:
 $CONTENT"
 
 	# RESPONSE=$(echo "$PROMPT" | agy)
-	RESPONSE=$(echo "$PROMPT" | aichat)
+	# Function calling is disabled here on purpose: this script feeds untrusted,
+	# adversarial content (PKGBUILDs being screened for malware) straight into the
+	# prompt, and a malicious file could try to prompt-inject the model into
+	# reading local files or making web requests via the fs/web_search tools.
+	RESPONSE=$(echo "$PROMPT" | AICHAT_FUNCTION_CALLING=false aichat)
 
 	RESPONSE=$(sed '/<think>/,/<\/think>/d' <<<"$RESPONSE")
 

@@ -6,3 +6,13 @@ clients:
     api_base: http://localhost:11434/v1
     models:
       - name: minimax-m3:cloud
+        supports_function_calling: true
+
+# ---- function-calling ----
+# Tools come from https://github.com/sigoden/llm-functions, cloned to
+# ~/.local/share/llm-functions and symlinked at ./functions.
+# fs is restricted to read-only (fs_cat, fs_ls) -- no write/delete/mkdir.
+function_calling: true
+mapping_tools:
+  fs: 'fs_cat,fs_ls'
+use_tools: 'fs,web_search,fetch_url_via_jina'
