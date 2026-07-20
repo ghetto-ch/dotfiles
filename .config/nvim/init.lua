@@ -52,8 +52,7 @@ local plugins = {
 	'https://github.com/folke/lazydev.nvim',
 	'https://github.com/nickjvandyke/opencode.nvim',
 	'https://github.com/OXY2DEV/markview.nvim',
-	'https://github.com/ghetto-ch/tunnell.nvim',
-	-- '~/Develop/neovim/tunnell.nvim',
+	-- 'https://github.com/ghetto-ch/tunnell.nvim',
 }
 vim.pack.add(plugins)
 
