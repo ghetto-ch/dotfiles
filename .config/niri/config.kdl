@@ -135,7 +135,7 @@ binds {
     Mod+O repeat=false {
         toggle-overview
     }
-    Mod+D repeat=false {
+    Mod+Q repeat=false {
         close-window
     }
     Mod+Left {
