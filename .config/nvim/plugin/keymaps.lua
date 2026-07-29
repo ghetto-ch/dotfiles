@@ -57,6 +57,8 @@ map('n', '<leader>;', ':normal! mqA;<Esc>`q', opts)
 map('n', '<leader>,', ':normal! mqA,<Esc>`q', opts)
 -- Change directory to the active buffer path
 map('n', '<leader>cd', ':cd %:h<CR>:pwd<CR>', opts)
+-- Reload the file from disk, undoing all changes
+map('n', '<S-U>', ':e! %<CR>', opts)
 
 -- Move lines
 map('n', '<A-j>', ':m .+1<CR>==', opts)
@@ -93,6 +95,7 @@ map({ 'i', 's' }, '<C-h>', function()
 	end
 end, { expr = true })
 
+-- Exit terminal insert mode with ESC
 map('t', '<Esc>', [[<C-\><C-n>]])
 
 -- Experimental, exchange words
