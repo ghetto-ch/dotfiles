@@ -107,11 +107,10 @@ map('n', 'cxB', 'daWBP')
 
 -- Duplicate current line and move cursor to new line at the same column.
 local function duplicate_line()
-	local col = vim.fn.col('.')
-	local line = vim.fn.line('.')
-	local text = vim.fn.getline(line)
-	vim.fn.append(line, text)
-	vim.api.nvim_win_set_cursor(0, { line + 1, col - 1 })
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local text = vim.api.nvim_get_current_line()
+	vim.api.nvim_buf_set_lines(0, line, line, false, { text })
+	vim.api.nvim_win_set_cursor(0, { line + 1, col })
 end
 
 -- Still undecided which mapping to use. On emacs is C-; because C-y is yank (paste).
