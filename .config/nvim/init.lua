@@ -72,7 +72,7 @@ local lazy_plugins = {
 		version = vim.version.range('^1.0.0'),
 	},
 	'https://github.com/zbirenbaum/copilot.lua',
-	'https://codeberg.org/mfussenegger/nvim-dap.git',
+	'https://github.com/mfussenegger/nvim-dap.git',
 	'https://github.com/igorlfs/nvim-dap-view',
 	'https://github.com/mfussenegger/nvim-dap-python',
 	'https://github.com/leoluz/nvim-dap-go',
