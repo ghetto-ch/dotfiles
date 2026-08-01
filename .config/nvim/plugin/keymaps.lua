@@ -98,9 +98,24 @@ end, { expr = true })
 -- Exit terminal insert mode with ESC
 map('t', '<Esc>', [[<C-\><C-n>]])
 
--- Experimental, exchange words
+-- Exchange words
 -- TODO: solve bugs when at the end of the line
 map('n', 'cxw', 'dawwP')
 map('n', 'cxW', 'daWWP')
 map('n', 'cxb', 'dawbP')
 map('n', 'cxB', 'daWBP')
+
+-- Duplicate current line and move cursor to new line at the same column.
+local function duplicate_line()
+	local col = vim.fn.col('.')
+	local line = vim.fn.line('.')
+	local text = vim.fn.getline(line)
+	vim.fn.append(line, text)
+	vim.api.nvim_win_set_cursor(0, { line + 1, col - 1 })
+end
+
+-- Still undecided which mapping to use. On emacs is C-; because C-y is yank (paste).
+map('n', '<C-y>', duplicate_line)
+map('n', '<C-;>', duplicate_line)
+map('i', '<C-y>', duplicate_line)
+map('i', '<C-;>', duplicate_line)
