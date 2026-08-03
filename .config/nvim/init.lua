@@ -76,5 +76,6 @@ local lazy_plugins = {
 	'https://github.com/mfussenegger/nvim-dap-python',
 	'https://github.com/leoluz/nvim-dap-go',
 	'https://github.com/mfussenegger/nvim-lint',
+	'https://github.com/nvim-focus/focus.nvim',
 }
 vim.pack.add(lazy_plugins, { load = function() end })

@@ -13,3 +13,12 @@ vim.keymap.set('n', '<A-S-h>', require('smart-splits').swap_buf_left)
 vim.keymap.set('n', '<A-S-j>', require('smart-splits').swap_buf_down)
 vim.keymap.set('n', '<A-S-k>', require('smart-splits').swap_buf_up)
 vim.keymap.set('n', '<A-S-l>', require('smart-splits').swap_buf_right)
+
+-- Resize splits according to golden ratio. Active split is enlarged
+vim.api.nvim_create_autocmd('WinNew', {
+	once = true,
+	callback = function()
+		vim.cmd.packadd('focus.nvim')
+		require('focus').setup()
+	end,
+})
