@@ -30,56 +30,19 @@ end, { desc = 'Scroll opencode down' })
 -- Copilot
 --#############################################################################
 
--- Wrap setup in an autocmd because the copilot server takes long to startup.
--- Not ideal because :Copilot will not be available before.
-vim.api.nvim_create_autocmd('InsertEnter', {
-	once = true,
-	callback = function()
-		vim.cmd.packadd('copilot.lua')
-		require('copilot').setup({
-			panel = {
-				enabled = true,
-				auto_refresh = false,
-				-- TODO find good keymaps
-				keymap = {
-					jump_prev = '[[',
-					jump_next = ']]',
-					accept = '<CR>',
-					refresh = 'gr',
-					open = '<M-CR>',
-				},
-				layout = {
-					position = 'right', -- | top | left | right | bottom |
-					ratio = 0.4,
-				},
-			},
-			suggestion = {
-				enabled = true,
-				auto_trigger = false,
-				hide_during_completion = true,
-				debounce = 15,
-				trigger_on_accept = true,
-				-- TODO find good keymaps
-				keymap = {
-					accept = '<M-y>',
-					accept_word = false,
-					accept_line = false,
-					next = '<M-n>',
-					prev = '<M-p>',
-					dismiss = false,
-					toggle_auto_trigger = false,
-				},
-			},
-		})
+local function toggleCopilotLsp()
+	if vim.lsp.is_enabled('copilot') then
+		for _, client in ipairs(vim.lsp.get_clients({ name = 'copilot' })) do
+			client:stop()
+		end
+	else
+		vim.lsp.enable('copilot')
+	end
+	vim.lsp.inline_completion.enable(vim.lsp.is_enabled('copilot'))
+end
+-- Map a key combination to toggle Copilot auto_trigger
+vim.keymap.set('n', '<leader>ct', function()
+	toggleCopilotLsp()
+end)
 
-		-- Map a key combination to toggle Copilot auto_trigger
-		vim.keymap.set('n', '<leader>ct', function()
-			require('copilot.suggestion').toggle_auto_trigger()
-		end, { desc = 'Toggle Copilot' })
-
-		-- Map a key combination to toggle Copilot panel
-		vim.keymap.set('n', '<leader>cp', function()
-			require('copilot.panel').toggle()
-		end, { desc = 'Toggle Copilot' })
-	end,
-})
+vim.keymap.set('i', '<tab>', vim.lsp.inline_completion.get)
