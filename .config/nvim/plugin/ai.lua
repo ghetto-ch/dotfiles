@@ -35,14 +35,15 @@ local function toggleCopilotLsp()
 		for _, client in ipairs(vim.lsp.get_clients({ name = 'copilot' })) do
 			client:stop()
 		end
+		vim.lsp.inline_completion.enable(false)
 	else
 		vim.lsp.enable('copilot')
+		vim.lsp.inline_completion.enable(true)
 	end
-	vim.lsp.inline_completion.enable(vim.lsp.is_enabled('copilot'))
 end
 -- Map a key combination to toggle Copilot auto_trigger
 vim.keymap.set('n', '<leader>ct', function()
 	toggleCopilotLsp()
 end)
 
-vim.keymap.set('i', '<tab>', vim.lsp.inline_completion.get)
+vim.keymap.set('i', '<c-f>', vim.lsp.inline_completion.get)
