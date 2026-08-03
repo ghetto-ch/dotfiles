@@ -71,11 +71,11 @@ local lazy_plugins = {
 		src = 'https://github.com/saghen/blink.cmp',
 		version = vim.version.range('^1.0.0'),
 	},
+	'https://github.com/mfussenegger/nvim-lint',
 	'https://github.com/mfussenegger/nvim-dap.git',
 	'https://github.com/igorlfs/nvim-dap-view',
 	'https://github.com/mfussenegger/nvim-dap-python',
 	'https://github.com/leoluz/nvim-dap-go',
-	'https://github.com/mfussenegger/nvim-lint',
 	'https://github.com/nvim-focus/focus.nvim',
 }
 vim.pack.add(lazy_plugins, { load = function() end })
