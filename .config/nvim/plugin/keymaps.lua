@@ -58,7 +58,7 @@ map('n', '<leader>,', ':normal! mqA,<Esc>`q', opts)
 -- Change directory to the active buffer path
 map('n', '<leader>cd', ':cd %:h<CR>:pwd<CR>', opts)
 -- Reload the file from disk, undoing all changes
-map('n', '<S-U>', ':e! %<CR>', opts)
+map('n', '<S-U>', ':e!<CR>', opts)
 
 -- Move lines
 map('n', '<A-j>', ':m .+1<CR>==', opts)
@@ -114,7 +114,5 @@ local function duplicate_line()
 end
 
 -- Still undecided which mapping to use. On emacs is C-; because C-y is yank (paste).
-map('n', '<C-y>', duplicate_line)
-map('n', '<C-;>', duplicate_line)
-map('i', '<C-y>', duplicate_line)
-map('i', '<C-;>', duplicate_line)
+map({ 'n', 'i' }, '<C-y>', duplicate_line)
+map({ 'n', 'i' }, '<C-;>', duplicate_line)
