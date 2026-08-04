@@ -1,3 +1,7 @@
+local function lines()
+	return vim.api.nvim_buf_line_count(0)
+end
+
 require('lualine').setup({
 	options = {
 		theme = 'auto',
@@ -6,5 +10,6 @@ require('lualine').setup({
 	},
 	sections = {
 		lualine_b = { 'diagnostics' },
+		lualine_z = { 'location', lines },
 	},
 })
