@@ -51,7 +51,7 @@ local plugins = {
 	'https://github.com/neovim/nvim-lspconfig',
 	'https://github.com/folke/lazydev.nvim',
 	'https://github.com/nickjvandyke/opencode.nvim',
-	'https://github.com/OXY2DEV/markview.nvim',
+	-- 'https://github.com/OXY2DEV/markview.nvim',
 	-- 'https://github.com/ghetto-ch/tunnell.nvim',
 }
 vim.pack.add(plugins)
@@ -72,10 +72,10 @@ local lazy_plugins = {
 		version = vim.version.range('^1.0.0'),
 	},
 	'https://github.com/mfussenegger/nvim-lint',
-	'https://github.com/mfussenegger/nvim-dap.git',
-	'https://github.com/igorlfs/nvim-dap-view',
-	'https://github.com/mfussenegger/nvim-dap-python',
-	'https://github.com/leoluz/nvim-dap-go',
+	-- 'https://github.com/mfussenegger/nvim-dap.git',
+	-- 'https://github.com/igorlfs/nvim-dap-view',
+	-- 'https://github.com/mfussenegger/nvim-dap-python',
+	-- 'https://github.com/leoluz/nvim-dap-go',
 	'https://github.com/nvim-focus/focus.nvim',
 }
 vim.pack.add(lazy_plugins, { load = function() end })
