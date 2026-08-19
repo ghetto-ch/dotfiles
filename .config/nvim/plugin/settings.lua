@@ -39,11 +39,3 @@ o.completeopt = { 'menu', 'menuone', 'noselect' }
 o.timeoutlen = 2000
 
 o.confirm = true
-
--- vim.diagnostic.config({
--- 	virtual_lines = { current_line = true },
--- })
-
--- vim.diagnostic.config({
--- 	virtual_text = { current_line = true },
--- })
