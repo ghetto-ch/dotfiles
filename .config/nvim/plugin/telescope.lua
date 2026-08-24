@@ -42,16 +42,6 @@ vim.keymap.set('n', '<leader>fn', function()
 	builtin.find_files({ cwd = vim.fn.stdpath('config') })
 end)
 
--- registers
--- vim.keymap.set('n', '"', function()
--- 	local builtin = load_telescope()
--- 	builtin.registers()
--- end)
--- vim.keymap.set('i', '<c-r>', function()
--- 	local builtin = load_telescope()
--- 	builtin.registers()
--- end)
-
 -- The rest
 vim.keymap.set('n', '<leader>b', function()
 	local builtin = load_telescope()
