@@ -116,3 +116,9 @@ end
 -- Still undecided which mapping to use. On emacs is C-; because C-y is yank (paste).
 map({ 'n', 'i' }, '<C-y>', duplicate_line)
 map({ 'n', 'i' }, '<C-;>', duplicate_line)
+
+-- Future keymap to clear multicursor
+-- local mc_ns = vim.api.nvim_create_namespace('nvim.multicursor')
+-- map({ 'n', 'v', 'i' }, '<C-q>', function()
+-- 	vim.api.nvim_buf_clear_namespace(0, mc_ns, 0, -1)
+-- end)
