@@ -8,3 +8,4 @@ configstore
 /.config/nvim/nvim-pack-lock.json
 /.config/lazygit/state.yml
 /.config/vifm/vifminfo.json
+/.config/DankMaterialShell/.changelog-1.6
