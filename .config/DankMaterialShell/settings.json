@@ -4,10 +4,8 @@
   "customThemeFile": "/home/ghetto/.config/DankMaterialShell/themes/kanagawa-gh/theme.json",
   "matugenScheme": "scheme-expressive",
   "cornerRadius": 12,
-  "nightModeEnabled": false,
   "barElevationEnabled": false,
   "blurWallpaperOnOverview": true,
-  "batteryPillPercentSign": false,
   "controlCenterShowMicPercent": true,
   "controlCenterWidgets": [
     {
@@ -80,8 +78,6 @@
   "fontScale": 1.2,
   "acMonitorTimeout": 900,
   "acLockTimeout": 600,
-  "gtkThemingEnabled": false,
-  "qtThemingEnabled": false,
   "matugenTemplateFoot": false,
   "matugenTemplateWezterm": false,
   "osdPowerProfileEnabled": true,
@@ -195,6 +191,32 @@
       "clickThrough": false
     }
   ],
+  "desktopClockCustomColor": {
+    "r": 1,
+    "g": 1,
+    "b": 1,
+    "a": 1,
+    "hsvHue": -1,
+    "hsvSaturation": 0,
+    "hsvValue": 1,
+    "hslHue": -1,
+    "hslSaturation": 0,
+    "hslLightness": 1,
+    "valid": true
+  },
+  "systemMonitorCustomColor": {
+    "r": 1,
+    "g": 1,
+    "b": 1,
+    "a": 1,
+    "hsvHue": -1,
+    "hsvSaturation": 0,
+    "hsvValue": 1,
+    "hslHue": -1,
+    "hslSaturation": 0,
+    "hslLightness": 1,
+    "valid": true
+  },
   "builtInPluginSettings": {
     "dms_settings_search": {
       "trigger": "?"
@@ -202,6 +224,5 @@
   },
   "frameColor": "#e91e63",
   "frameShowOnOverview": true,
-  "configVersion": 17,
-  "closeNiriOverviewOnWindowFocus": true
+  "configVersion": 17
 }
